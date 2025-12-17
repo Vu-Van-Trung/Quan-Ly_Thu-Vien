@@ -1,0 +1,7 @@
+# Thư mục cấu hình và cache của Visual Studio
+.vs/
+# Thư mục chứa các tệp biên dịch
+[Bb]in/
+[Oo]bj/
+# Thư mục packages (nếu sử dụng)
+packages/
