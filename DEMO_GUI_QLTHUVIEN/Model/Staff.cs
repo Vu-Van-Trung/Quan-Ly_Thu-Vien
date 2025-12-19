@@ -1,3 +1,4 @@
+using DoAnDemoUI.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,20 +7,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace LibraryManagement.Models
 {
     /// <summary>
-    /// Entity cho bảng DOC_GIA - Độc giả/Thành viên
+    /// Entity cho bảng NHAN_VIEN - Nhân viên
     /// </summary>
-    [Table("DOC_GIA")]
-    public class Member
+    [Table("NHAN_VIEN")]
+    public class Staff
     {
         [Key]
-        [MaxLength(20)]
-        [Column("MaDocGia")]
-        public string MemberId { get; set; }
+        [Column("MaNhanVien")]
+        public int StaffId { get; set; }
 
         [Required]
         [MaxLength(100)]
         [Column("HoTen")]
-        public string FullName { get; set; }
+        public string HoTen { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        [Column("ChucVu")]
+        public string ChucVu { get; set; }
 
         [Column("NgaySinh")]
         public DateTime? NgaySinh { get; set; }
@@ -34,31 +39,24 @@ namespace LibraryManagement.Models
 
         [MaxLength(15)]
         [Column("SoDienThoai")]
-        public string? PhoneNumber { get; set; }
+        public string? SoDienThoai { get; set; }
 
         [MaxLength(100)]
         [Column("Email")]
         public string? Email { get; set; }
 
+        [Column("NgayVaoLam")]
+        public DateTime NgayVaoLam { get; set; } = DateTime.Now;
+
         [MaxLength(20)]
-        [Column("CMND")]
-        public string? CMND { get; set; }
-
-        [Column("NgayDangKy")]
-        public DateTime JoinDate { get; set; } = DateTime.Now;
-
-        [Column("NgayHetHan")]
-        public DateTime? NgayHetHan { get; set; }
-
-        [MaxLength(50)]
         [Column("TrangThai")]
-        public string TrangThai { get; set; } = "Hoạt động";
+        public string TrangThai { get; set; } = "Đang làm việc";
 
-        [MaxLength(500)]
-        [Column("GhiChu")]
-        public string? GhiChu { get; set; }
+        [Column("NgayTao")]
+        public DateTime NgayTao { get; set; } = DateTime.Now;
 
-        // Navigation property
+        // Navigation properties
+        public virtual User? User { get; set; }
         public virtual ICollection<Loan>? Loans { get; set; }
     }
 }
