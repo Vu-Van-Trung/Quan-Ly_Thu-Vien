@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using LibraryManagement.Data;
@@ -7,7 +8,7 @@ using LibraryManagement.Models;
 namespace DoAnDemoUI
 {
     /// <summary>
-    /// Form quản lý Nhà xuất bản
+    /// Form quản lý Nhà xuất bản - Enhanced UI
     /// </summary>
     public partial class FormPublisher : Form
     {
@@ -30,95 +31,228 @@ namespace DoAnDemoUI
         private void InitializeComponent()
         {
             this.dgvPublishers = new DataGridView();
+            this.grpInfo = new GroupBox();
             this.txtPublisherId = new TextBox();
             this.txtTenNhaXuatBan = new TextBox();
             this.txtDiaChi = new TextBox();
             this.txtSoDienThoai = new TextBox();
             this.txtEmail = new TextBox();
+            
+            this.lblPublisherId = new Label();
+            this.lblTenNXB = new Label();
+            this.lblDiaChi = new Label();
+            this.lblSoDienThoai = new Label();
+            this.lblEmail = new Label();
+            
             this.btnAdd = new Button();
             this.btnEdit = new Button();
             this.btnDelete = new Button();
             this.btnSave = new Button();
             this.btnCancel = new Button();
+            this.btnRefresh = new Button();
 
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublishers)).BeginInit();
+            this.grpInfo.SuspendLayout();
             this.SuspendLayout();
 
-            // DataGridView
-            this.dgvPublishers.Location = new System.Drawing.Point(20, 20);
-            this.dgvPublishers.Size = new System.Drawing.Size(750, 300);
+            // ========== DATAGRIDVIEW ==========
+            this.dgvPublishers.Location = new Point(20, 20);
+            this.dgvPublishers.Size = new Size(960, 300);
             this.dgvPublishers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPublishers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPublishers.MultiSelect = false;
+            this.dgvPublishers.ReadOnly = true;
+            this.dgvPublishers.AllowUserToAddRows = false;
             this.dgvPublishers.SelectionChanged += DgvPublishers_SelectionChanged;
+            
+            // Modern DataGridView styling
+            this.dgvPublishers.BackgroundColor = Color.White;
+            this.dgvPublishers.BorderStyle = BorderStyle.None;
+            this.dgvPublishers.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
+            this.dgvPublishers.EnableHeadersVisualStyles = false;
+            this.dgvPublishers.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(33, 150, 243);
+            this.dgvPublishers.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            this.dgvPublishers.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            this.dgvPublishers.ColumnHeadersHeight = 40;
+            this.dgvPublishers.RowTemplate.Height = 35;
+            this.dgvPublishers.DefaultCellStyle.Font = new Font("Segoe UI", 9.5F);
+            this.dgvPublishers.DefaultCellStyle.SelectionBackColor = Color.FromArgb(100, 181, 246);
+            this.dgvPublishers.DefaultCellStyle.SelectionForeColor = Color.White;
 
-            // Labels and TextBoxes
-            int startY = 340;
-            int labelX = 30;
-            int textX = 200;
-            int stepY = 40;
+            // ========== GROUP BOX ==========
+            this.grpInfo.Text = "📋 Thông Tin Nhà Xuất Bản";
+            this.grpInfo.Location = new Point(20, 340);
+            this.grpInfo.Size = new Size(960, 200);
+            this.grpInfo.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            this.grpInfo.ForeColor = Color.FromArgb(33, 150, 243);
 
-            AddLabelAndTextBox("Mã NXB:", txtPublisherId, labelX, textX, startY, 0);
-            txtPublisherId.ReadOnly = true;
+            int grpY = 35;
+            int grpStep = 42;
+            
+            // Mã NXB
+            this.lblPublisherId.Text = "Mã NXB:";
+            this.lblPublisherId.Location = new Point(20, grpY);
+            this.lblPublisherId.Size = new Size(130, 25);
+            this.lblPublisherId.Font = new Font("Segoe UI", 10F);
+            this.lblPublisherId.ForeColor = Color.FromArgb(66, 66, 66);
+            
+            this.txtPublisherId.Location = new Point(155, grpY);
+            this.txtPublisherId.Size = new Size(350, 28);
+            this.txtPublisherId.Font = new Font("Segoe UI", 10F);
+            this.txtPublisherId.BorderStyle = BorderStyle.FixedSingle;
+            this.txtPublisherId.ReadOnly = true;
+            this.txtPublisherId.BackColor = Color.FromArgb(240, 240, 240);
 
-            AddLabelAndTextBox("Tên NXB:", txtTenNhaXuatBan, labelX, textX, startY, 1);
-            AddLabelAndTextBox("Địa chỉ:", txtDiaChi, labelX, textX, startY, 2);
-            AddLabelAndTextBox("Số ĐT:", txtSoDienThoai, labelX, textX, startY, 3);
-            AddLabelAndTextBox("Email:", txtEmail, labelX, textX, startY, 4);
+            // Tên NXB
+            this.lblTenNXB.Text = "Tên NXB: *";
+            this.lblTenNXB.Location = new Point(530, grpY);
+            this.lblTenNXB.Size = new Size(100, 25);
+            this.lblTenNXB.Font = new Font("Segoe UI", 10F);
+            this.lblTenNXB.ForeColor = Color.FromArgb(66, 66, 66);
+            
+            this.txtTenNhaXuatBan.Location = new Point(635, grpY);
+            this.txtTenNhaXuatBan.Size = new Size(300, 28);
+            this.txtTenNhaXuatBan.Font = new Font("Segoe UI", 10F);
+            this.txtTenNhaXuatBan.BorderStyle = BorderStyle.FixedSingle;
 
-            // Buttons
-            int btnY = startY + stepY * 5;
-            this.btnAdd.Text = "Thêm";
-            this.btnAdd.Location = new System.Drawing.Point(30, btnY);
-            this.btnAdd.Size = new System.Drawing.Size(80, 30);
+            // Địa chỉ
+            this.lblDiaChi.Text = "Địa chỉ:";
+            this.lblDiaChi.Location = new Point(20, grpY + grpStep);
+            this.lblDiaChi.Size = new Size(130, 25);
+            this.lblDiaChi.Font = new Font("Segoe UI", 10F);
+            this.lblDiaChi.ForeColor = Color.FromArgb(66, 66, 66);
+            
+            this.txtDiaChi.Location = new Point(155, grpY + grpStep);
+            this.txtDiaChi.Size = new Size(780, 28);
+            this.txtDiaChi.Font = new Font("Segoe UI", 10F);
+            this.txtDiaChi.BorderStyle = BorderStyle.FixedSingle;
+
+            // SĐT
+            this.lblSoDienThoai.Text = "Số ĐT:";
+            this.lblSoDienThoai.Location = new Point(20, grpY + grpStep * 2);
+            this.lblSoDienThoai.Size = new Size(130, 25);
+            this.lblSoDienThoai.Font = new Font("Segoe UI", 10F);
+            this.lblSoDienThoai.ForeColor = Color.FromArgb(66, 66, 66);
+            
+            this.txtSoDienThoai.Location = new Point(155, grpY + grpStep * 2);
+            this.txtSoDienThoai.Size = new Size(200, 28);
+            this.txtSoDienThoai.Font = new Font("Segoe UI", 10F);
+            this.txtSoDienThoai.BorderStyle = BorderStyle.FixedSingle;
+
+            // Email
+            this.lblEmail.Text = "Email:";
+            this.lblEmail.Location = new Point(380, grpY + grpStep * 2);
+            this.lblEmail.Size = new Size(70, 25);
+            this.lblEmail.Font = new Font("Segoe UI", 10F);
+            this.lblEmail.ForeColor = Color.FromArgb(66, 66, 66);
+            
+            this.txtEmail.Location = new Point(450, grpY + grpStep * 2);
+            this.txtEmail.Size = new Size(485, 28);
+            this.txtEmail.Font = new Font("Segoe UI", 10F);
+            this.txtEmail.BorderStyle = BorderStyle.FixedSingle;
+
+            this.grpInfo.Controls.Add(this.lblPublisherId);
+            this.grpInfo.Controls.Add(this.txtPublisherId);
+            this.grpInfo.Controls.Add(this.lblTenNXB);
+            this.grpInfo.Controls.Add(this.txtTenNhaXuatBan);
+            this.grpInfo.Controls.Add(this.lblDiaChi);
+            this.grpInfo.Controls.Add(this.txtDiaChi);
+            this.grpInfo.Controls.Add(this.lblSoDienThoai);
+            this.grpInfo.Controls.Add(this.txtSoDienThoai);
+            this.grpInfo.Controls.Add(this.lblEmail);
+            this.grpInfo.Controls.Add(this.txtEmail);
+
+            // ========== BUTTONS ==========
+            int btnY = 560;
+            int btnX = 20;
+            int btnWidth = 110;
+            int btnHeight = 40;
+            int btnGap = 10;
+
+            this.btnAdd.Text = "➕ Thêm";
+            this.btnAdd.Location = new Point(btnX, btnY);
+            this.btnAdd.Size = new Size(btnWidth, btnHeight);
+            this.btnAdd.BackColor = Color.FromArgb(76, 175, 80);
+            this.btnAdd.ForeColor = Color.White;
+            this.btnAdd.FlatStyle = FlatStyle.Flat;
+            this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            this.btnAdd.Cursor = Cursors.Hand;
             this.btnAdd.Click += BtnAdd_Click;
 
-            this.btnEdit.Text = "Sửa";
-            this.btnEdit.Location = new System.Drawing.Point(120, btnY);
-            this.btnEdit.Size = new System.Drawing.Size(80, 30);
+            this.btnEdit.Text = "✏️ Sửa";
+            this.btnEdit.Location = new Point(btnX + (btnWidth + btnGap), btnY);
+            this.btnEdit.Size = new Size(btnWidth, btnHeight);
+            this.btnEdit.BackColor = Color.FromArgb(33, 150, 243);
+            this.btnEdit.ForeColor = Color.White;
+            this.btnEdit.FlatStyle = FlatStyle.Flat;
+            this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            this.btnEdit.Cursor = Cursors.Hand;
             this.btnEdit.Click += BtnEdit_Click;
 
-            this.btnDelete.Text = "Xóa";
-            this.btnDelete.Location = new System.Drawing.Point(210, btnY);
-            this.btnDelete.Size = new System.Drawing.Size(80, 30);
+            this.btnDelete.Text = "🗑️ Xóa";
+            this.btnDelete.Location = new Point(btnX + (btnWidth + btnGap) * 2, btnY);
+            this.btnDelete.Size = new Size(btnWidth, btnHeight);
+            this.btnDelete.BackColor = Color.FromArgb(244, 67, 54);
+            this.btnDelete.ForeColor = Color.White;
+            this.btnDelete.FlatStyle = FlatStyle.Flat;
+            this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            this.btnDelete.Cursor = Cursors.Hand;
             this.btnDelete.Click += BtnDelete_Click;
 
-            this.btnSave.Text = "Lưu";
-            this.btnSave.Location = new System.Drawing.Point(300, btnY);
-            this.btnSave.Size = new System.Drawing.Size(80, 30);
+            this.btnSave.Text = "💾 Lưu";
+            this.btnSave.Location = new Point(btnX + (btnWidth + btnGap) * 3, btnY);
+            this.btnSave.Size = new Size(btnWidth, btnHeight);
+            this.btnSave.BackColor = Color.FromArgb(0, 150, 136);
+            this.btnSave.ForeColor = Color.White;
+            this.btnSave.FlatStyle = FlatStyle.Flat;
+            this.btnSave.FlatAppearance.BorderSize = 0;
+            this.btnSave.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            this.btnSave.Cursor = Cursors.Hand;
             this.btnSave.Click += BtnSave_Click;
 
-            this.btnCancel.Text = "Hủy";
-            this.btnCancel.Location = new System.Drawing.Point(390, btnY);
-            this.btnCancel.Size = new System.Drawing.Size(80, 30);
+            this.btnCancel.Text = "✖️ Hủy";
+            this.btnCancel.Location = new Point(btnX + (btnWidth + btnGap) * 4, btnY);
+            this.btnCancel.Size = new Size(btnWidth, btnHeight);
+            this.btnCancel.BackColor = Color.FromArgb(158, 158, 158);
+            this.btnCancel.ForeColor = Color.White;
+            this.btnCancel.FlatStyle = FlatStyle.Flat;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            this.btnCancel.Cursor = Cursors.Hand;
             this.btnCancel.Click += BtnCancel_Click;
 
-            // Form
-            this.ClientSize = new System.Drawing.Size(800, 600);
+            this.btnRefresh.Text = "🔄 Làm mới";
+            this.btnRefresh.Location = new Point(btnX + (btnWidth + btnGap) * 5, btnY);
+            this.btnRefresh.Size = new Size(btnWidth, btnHeight);
+            this.btnRefresh.BackColor = Color.FromArgb(96, 125, 139);
+            this.btnRefresh.ForeColor = Color.White;
+            this.btnRefresh.FlatStyle = FlatStyle.Flat;
+            this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            this.btnRefresh.Cursor = Cursors.Hand;
+            this.btnRefresh.Click += (s, e) => { LoadData(); ClearInputs(); };
+
+            // ========== FORM ==========
+            this.ClientSize = new Size(1000, 630);
             this.Controls.Add(this.dgvPublishers);
+            this.Controls.Add(this.grpInfo);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnRefresh);
             this.Text = "Quản Lý Nhà Xuất Bản";
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.BackColor = Color.FromArgb(250, 250, 250);
+            this.Font = new Font("Segoe UI", 9F);
 
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublishers)).EndInit();
+            this.grpInfo.ResumeLayout(false);
             this.ResumeLayout(false);
-        }
-
-        private void AddLabelAndTextBox(string labelText, TextBox textBox, int labelX, int textX, int startY, int index)
-        {
-            var label = new Label();
-            label.Text = labelText;
-            label.Location = new System.Drawing.Point(labelX, startY + index * 40);
-            label.AutoSize = true;
-
-            textBox.Location = new System.Drawing.Point(textX, startY + index * 40 - 3);
-            textBox.Size = new System.Drawing.Size(300, 23);
-
-            this.Controls.Add(label);
-            this.Controls.Add(textBox);
         }
 
         private void LoadData()
@@ -142,10 +276,13 @@ namespace DoAnDemoUI
                 dgvPublishers.Columns["DiaChi"].HeaderText = "Địa Chỉ";
                 dgvPublishers.Columns["SoDienThoai"].HeaderText = "Số Điện Thoại";
                 dgvPublishers.Columns["Email"].HeaderText = "Email";
+                
+                dgvPublishers.Columns["PublisherId"].Width = 80;
+                dgvPublishers.Columns["SoDienThoai"].Width = 120;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi tải dữ liệu: " + ex.Message);
+                MessageBox.Show("Lỗi tải dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -175,7 +312,7 @@ namespace DoAnDemoUI
         {
             if (dgvPublishers.CurrentRow == null)
             {
-                MessageBox.Show("Vui lòng chọn nhà xuất bản cần sửa!");
+                MessageBox.Show("Vui lòng chọn nhà xuất bản cần sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             isEditing = true;
@@ -201,12 +338,14 @@ namespace DoAnDemoUI
                         db.Publishers.Remove(publisher);
                         db.SaveChanges();
                         LoadData();
-                        MessageBox.Show("Xóa thành công!");
+                        ClearInputs();
+                        MessageBox.Show("✅ Xóa thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Không thể xóa (có thể do có sách liên quan).\\nLỗi: " + ex.Message);
+                    MessageBox.Show("❌ Không thể xóa (có thể do có sách liên quan).\nLỗi: " + ex.Message, 
+                        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -215,7 +354,7 @@ namespace DoAnDemoUI
         {
             if (string.IsNullOrWhiteSpace(txtTenNhaXuatBan.Text))
             {
-                MessageBox.Show("Vui lòng nhập tên nhà xuất bản!");
+                MessageBox.Show("⚠️ Vui lòng nhập tên nhà xuất bản!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -223,7 +362,6 @@ namespace DoAnDemoUI
             {
                 if (txtPublisherId.Text == "(Tự động)" || string.IsNullOrEmpty(txtPublisherId.Text))
                 {
-                    // Thêm mới
                     var newPublisher = new Publisher
                     {
                         TenNhaXuatBan = txtTenNhaXuatBan.Text.Trim(),
@@ -233,11 +371,10 @@ namespace DoAnDemoUI
                     };
                     db.Publishers.Add(newPublisher);
                     db.SaveChanges();
-                    MessageBox.Show("Thêm nhà xuất bản thành công!");
+                    MessageBox.Show("✅ Thêm nhà xuất bản thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    // Cập nhật
                     int publisherId = int.Parse(txtPublisherId.Text);
                     var publisher = db.Publishers.Find(publisherId);
                     if (publisher != null)
@@ -249,7 +386,7 @@ namespace DoAnDemoUI
                         publisher.NgayCapNhat = DateTime.Now;
 
                         db.SaveChanges();
-                        MessageBox.Show("Cập nhật thành công!");
+                        MessageBox.Show("✅ Cập nhật thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
 
@@ -259,7 +396,7 @@ namespace DoAnDemoUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi lưu: " + ex.Message);
+                MessageBox.Show("❌ Lỗi khi lưu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -280,11 +417,21 @@ namespace DoAnDemoUI
             btnAdd.Enabled = !editing;
             btnEdit.Enabled = !editing;
             btnDelete.Enabled = !editing;
+            btnRefresh.Enabled = !editing;
 
             btnSave.Enabled = editing;
             btnCancel.Enabled = editing;
 
             dgvPublishers.Enabled = !editing;
+
+            if (editing)
+            {
+                grpInfo.ForeColor = Color.FromArgb(76, 175, 80);
+            }
+            else
+            {
+                grpInfo.ForeColor = Color.FromArgb(33, 150, 243);
+            }
         }
 
         private void ClearInputs()
@@ -298,15 +445,9 @@ namespace DoAnDemoUI
 
         // Controls
         private DataGridView dgvPublishers;
-        private TextBox txtPublisherId;
-        private TextBox txtTenNhaXuatBan;
-        private TextBox txtDiaChi;
-        private TextBox txtSoDienThoai;
-        private TextBox txtEmail;
-        private Button btnAdd;
-        private Button btnEdit;
-        private Button btnDelete;
-        private Button btnSave;
-        private Button btnCancel;
+        private GroupBox grpInfo;
+        private TextBox txtPublisherId, txtTenNhaXuatBan, txtDiaChi, txtSoDienThoai, txtEmail;
+        private Label lblPublisherId, lblTenNXB, lblDiaChi, lblSoDienThoai, lblEmail;
+        private Button btnAdd, btnEdit, btnDelete, btnSave, btnCancel, btnRefresh;
     }
 }

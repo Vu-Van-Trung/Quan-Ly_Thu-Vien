@@ -36,7 +36,6 @@ namespace DoAnDemoUI
             btnLogout = new Guna.UI2.WinForms.Guna2Button();
             btnMinimize = new Guna.UI2.WinForms.Guna2CircleButton();
             btnCancel = new Guna.UI2.WinForms.Guna2CircleButton();
-            checkedListBox1 = new CheckedListBox();
             pnlLeft.SuspendLayout();
             guna2CustomGradientPanel1.SuspendLayout();
             SuspendLayout();
@@ -165,21 +164,12 @@ namespace DoAnDemoUI
             btnCancel.TabIndex = 11;
             btnCancel.Click += btnCancel_Click;
             // 
-            // checkedListBox1
-            // 
-            checkedListBox1.FormattingEnabled = true;
-            checkedListBox1.Location = new Point(470, 179);
-            checkedListBox1.Name = "checkedListBox1";
-            checkedListBox1.Size = new Size(8, 4);
-            checkedListBox1.TabIndex = 3;
-            // 
             // QuanLiThuVien
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1848, 761);
-            Controls.Add(checkedListBox1);
             Controls.Add(guna2CustomGradientPanel1);
             Controls.Add(pnlLeft);
             Font = new Font("Segoe UI", 9F);
@@ -202,7 +192,6 @@ namespace DoAnDemoUI
         private Guna.UI2.WinForms.Guna2Button btnLogout;
         private Guna.UI2.WinForms.Guna2CircleButton btnMinimize;
         private Label lblMenuHeader;
-        private CheckedListBox checkedListBox1;
         private Label label1;
     }
 }

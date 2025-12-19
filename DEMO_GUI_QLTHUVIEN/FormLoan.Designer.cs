@@ -50,13 +50,13 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.ForeColor = System.Drawing.Color.Navy;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(33, 150, 243);
             this.lblTitle.Location = new System.Drawing.Point(411, 11);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(505, 45);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "QUẢN LÝ MƯỢN TRẢ SÁCH";
+            this.lblTitle.Text = "📚 QUẢN LÝ MƯỢN TRẢ SÁCH";
             // 
             // gbThongTin
             // 
@@ -73,7 +73,9 @@
             this.gbThongTin.Size = new System.Drawing.Size(467, 260);
             this.gbThongTin.TabIndex = 1;
             this.gbThongTin.TabStop = false;
-            this.gbThongTin.Text = "Thông Tin Phiếu Mượn";
+            this.gbThongTin.Text = "📄 Thông Tin Phiếu Mượn";
+            this.gbThongTin.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.gbThongTin.ForeColor = System.Drawing.Color.FromArgb(33, 150, 243);
             // 
             // dtpNgayTra
             // 
@@ -154,12 +156,25 @@
             this.gbDanhSach.Size = new System.Drawing.Size(803, 468);
             this.gbDanhSach.TabIndex = 2;
             this.gbDanhSach.TabStop = false;
-            this.gbDanhSach.Text = "Danh Sách Đang Mượn";
+            this.gbDanhSach.Text = "📊 Danh Sách Đang Mượn";
+            this.gbDanhSach.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.gbDanhSach.ForeColor = System.Drawing.Color.FromArgb(33, 150, 243);
             // 
             // dgvSachMuon
             // 
             this.dgvSachMuon.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvSachMuon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSachMuon.BackgroundColor = System.Drawing.Color.White;
+            this.dgvSachMuon.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvSachMuon.ColumnHeadersHeight = 40;
+            this.dgvSachMuon.EnableHeadersVisualStyles = false;
+            this.dgvSachMuon.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(33, 150, 243);
+            this.dgvSachMuon.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvSachMuon.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.dgvSachMuon.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.dgvSachMuon.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(100, 181, 246);
+            this.dgvSachMuon.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvSachMuon.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(245, 245, 245);
+            this.dgvSachMuon.RowTemplate.Height = 35;
             this.dgvSachMuon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSachMuon.Location = new System.Drawing.Point(3, 18);
             this.dgvSachMuon.Name = "dgvSachMuon";
@@ -179,48 +194,72 @@
             this.gbXuLy.Size = new System.Drawing.Size(467, 130);
             this.gbXuLy.TabIndex = 3;
             this.gbXuLy.TabStop = false;
-            this.gbXuLy.Text = "Chức Năng";
+            this.gbXuLy.Text = "⚙️ Chức Năng";
+            this.gbXuLy.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.gbXuLy.ForeColor = System.Drawing.Color.FromArgb(33, 150, 243);
             // 
             // btnSua
             // 
+            this.btnSua.BackColor = System.Drawing.Color.FromArgb(33, 150, 243);
+            this.btnSua.ForeColor = System.Drawing.Color.White;
+            this.btnSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSua.FlatAppearance.BorderSize = 0;
+            this.btnSua.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnSua.Location = new System.Drawing.Point(130, 37);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(90, 40);
             this.btnSua.TabIndex = 5;
-            this.btnSua.Text = "Sửa";
-            this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Text = "✏️ Sửa";
+            this.btnSua.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSua.UseVisualStyleBackColor = false;
             this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnXoa
             // 
+            this.btnXoa.BackColor = System.Drawing.Color.FromArgb(244, 67, 54);
+            this.btnXoa.ForeColor = System.Drawing.Color.White;
+            this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXoa.FlatAppearance.BorderSize = 0;
+            this.btnXoa.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnXoa.Location = new System.Drawing.Point(240, 37);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(90, 40);
             this.btnXoa.TabIndex = 4;
-            this.btnXoa.Text = "Xóa";
-            this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Text = "🗑️ Xóa";
+            this.btnXoa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnXoa.UseVisualStyleBackColor = false;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnThoat
             // 
-            this.btnThoat.ForeColor = System.Drawing.Color.Red;
+            this.btnThoat.BackColor = System.Drawing.Color.FromArgb(158, 158, 158);
+            this.btnThoat.ForeColor = System.Drawing.Color.White;
+            this.btnThoat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThoat.FlatAppearance.BorderSize = 0;
+            this.btnThoat.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnThoat.Location = new System.Drawing.Point(350, 37);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(90, 40);
             this.btnThoat.TabIndex = 2;
-            this.btnThoat.Text = "Thoát";
-            this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Text = "❌ Thoát";
+            this.btnThoat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnThoat.UseVisualStyleBackColor = false;
             this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // btnThem
             // 
-            this.btnThem.ForeColor = System.Drawing.Color.Green;
+            this.btnThem.BackColor = System.Drawing.Color.FromArgb(76, 175, 80);
+            this.btnThem.ForeColor = System.Drawing.Color.White;
+            this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThem.FlatAppearance.BorderSize = 0;
+            this.btnThem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnThem.Location = new System.Drawing.Point(20, 37);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(90, 40);
             this.btnThem.TabIndex = 0;
-            this.btnThem.Text = "Thêm";
-            this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Text = "➕ Thêm";
+            this.btnThem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // gbDieuKhien

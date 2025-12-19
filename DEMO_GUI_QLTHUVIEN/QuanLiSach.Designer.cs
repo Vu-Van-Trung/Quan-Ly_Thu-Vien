@@ -103,12 +103,12 @@ namespace DoAnDemoUI
             // 
             // topPanel
             // 
-            topPanel.BackColor = Color.Teal;
+            topPanel.BackColor = Color.FromArgb(33, 150, 243);
             topPanel.Controls.Add(lblTitle);
             topPanel.Dock = DockStyle.Top;
             topPanel.Location = new Point(0, 0);
             topPanel.Name = "topPanel";
-            topPanel.Size = new Size(1000, 50);
+            topPanel.Size = new Size(1000, 60);
             topPanel.TabIndex = 0;
             // 
             // grpDetails
@@ -125,12 +125,14 @@ namespace DoAnDemoUI
             grpDetails.Controls.Add(txtAuthor);
             grpDetails.Controls.Add(lblCategory);
             grpDetails.Controls.Add(txtCategory);
-            grpDetails.Location = new Point(12, 60);
+            grpDetails.Location = new Point(12, 70);
             grpDetails.Name = "grpDetails";
             grpDetails.Size = new Size(360, 320);
             grpDetails.TabIndex = 1;
             grpDetails.TabStop = false;
-            grpDetails.Text = "Thông tin sách";
+            grpDetails.Text = "📚 Thông Tin Sách";
+            grpDetails.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            grpDetails.ForeColor = Color.FromArgb(33, 150, 243);
             // 
             // lblBookId
             // 
@@ -245,54 +247,78 @@ namespace DoAnDemoUI
             // 
             // btnAdd
             // 
-            btnAdd.BackColor = Color.ForestGreen;
+            btnAdd.BackColor = Color.FromArgb(76, 175, 80);
             btnAdd.ForeColor = Color.White;
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.FlatAppearance.BorderSize = 0;
             btnAdd.Location = new Point(3, 3);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(65, 30);
+            btnAdd.Size = new Size(65, 34);
             btnAdd.TabIndex = 0;
-            btnAdd.Text = "Thêm";
+            btnAdd.Text = "➕ Thêm";
+            btnAdd.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnAdd.Cursor = Cursors.Hand;
             btnAdd.UseVisualStyleBackColor = false;
             // 
             // btnEdit
             // 
-            btnEdit.BackColor = Color.Orange;
+            btnEdit.BackColor = Color.FromArgb(33, 150, 243);
             btnEdit.ForeColor = Color.White;
+            btnEdit.FlatStyle = FlatStyle.Flat;
+            btnEdit.FlatAppearance.BorderSize = 0;
             btnEdit.Location = new Point(74, 3);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(65, 30);
+            btnEdit.Size = new Size(65, 34);
             btnEdit.TabIndex = 1;
-            btnEdit.Text = "Sửa";
+            btnEdit.Text = "✏️ Sửa";
+            btnEdit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnEdit.Cursor = Cursors.Hand;
             btnEdit.UseVisualStyleBackColor = false;
             // 
             // btnDelete
             // 
-            btnDelete.BackColor = Color.Firebrick;
+            btnDelete.BackColor = Color.FromArgb(244, 67, 54);
             btnDelete.ForeColor = Color.White;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.FlatAppearance.BorderSize = 0;
             btnDelete.Location = new Point(145, 3);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(65, 30);
+            btnDelete.Size = new Size(65, 34);
             btnDelete.TabIndex = 2;
-            btnDelete.Text = "Xóa";
+            btnDelete.Text = "🗑️ Xóa";
+            btnDelete.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnDelete.Cursor = Cursors.Hand;
             btnDelete.UseVisualStyleBackColor = false;
             // 
             // btnSave
             // 
+            btnSave.BackColor = Color.FromArgb(0, 150, 136);
+            btnSave.ForeColor = Color.White;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.FlatAppearance.BorderSize = 0;
             btnSave.Enabled = false;
             btnSave.Location = new Point(216, 3);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(65, 30);
+            btnSave.Size = new Size(65, 34);
             btnSave.TabIndex = 3;
-            btnSave.Text = "Lưu";
+            btnSave.Text = "💾 Lưu";
+            btnSave.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnSave.Cursor = Cursors.Hand;
             // 
             // btnCancel
             // 
+            btnCancel.BackColor = Color.FromArgb(158, 158, 158);
+            btnCancel.ForeColor = Color.White;
+            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.FlatAppearance.BorderSize = 0;
             btnCancel.Enabled = false;
             btnCancel.Location = new Point(287, 3);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(65, 30);
+            btnCancel.Size = new Size(65, 34);
             btnCancel.TabIndex = 4;
-            btnCancel.Text = "Hủy";
+            btnCancel.Text = "✖️ Hủy";
+            btnCancel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnCancel.Cursor = Cursors.Hand;
             // 
             // txtSearch
             // 
@@ -322,7 +348,18 @@ namespace DoAnDemoUI
             // 
             dgvBooks.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvBooks.ColumnHeadersHeight = 29;
+            dgvBooks.BackgroundColor = Color.White;
+            dgvBooks.BorderStyle = BorderStyle.None;
+            dgvBooks.ColumnHeadersHeight = 40;
+            dgvBooks.EnableHeadersVisualStyles = false;
+            dgvBooks.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(33, 150, 243);
+            dgvBooks.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvBooks.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dgvBooks.DefaultCellStyle.Font = new Font("Segoe UI", 9.5F);
+            dgvBooks.DefaultCellStyle.SelectionBackColor = Color.FromArgb(100, 181, 246);
+            dgvBooks.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgvBooks.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
+            dgvBooks.RowTemplate.Height = 35;
             dgvBooks.Location = new Point(390, 100);
             dgvBooks.MultiSelect = false;
             dgvBooks.Name = "dgvBooks";
