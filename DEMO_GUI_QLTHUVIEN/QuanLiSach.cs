@@ -41,6 +41,7 @@ namespace DoAnDemoUI
             try
             {
                 var books = db.Books
+                    .AsNoTracking()
                     .Include(b => b.Author)
                     .Include(b => b.Category)
                     .Include(b => b.Publisher)
@@ -180,15 +181,25 @@ namespace DoAnDemoUI
         // Hàm tạo mã sách tự động
         private string GenerateBookId()
         {
-            var lastBook = db.Books.OrderByDescending(b => b.BookId).FirstOrDefault();
-            if (lastBook == null)
+            var maxNumber = db.Books
+                .AsNoTracking()
+                .Select(b => b.BookId)
+                .AsEnumerable()
+                .Select(ParseBookNumber)
+                .DefaultIfEmpty(0)
+                .Max();
+
+            return $"S{maxNumber + 1:D3}";
+        }
+
+        private static int ParseBookNumber(string? bookId)
+        {
+            if (string.IsNullOrWhiteSpace(bookId) || bookId.Length <= 1)
             {
-                return "S001";
+                return 0;
             }
 
-            string lastId = lastBook.BookId;
-            int number = int.Parse(lastId.Substring(1)) + 1;
-            return $"S{number:D3}";
+            return int.TryParse(bookId.Substring(1), out var number) ? number : 0;
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -220,17 +231,20 @@ namespace DoAnDemoUI
                 // THÊM MỚI
                 if (txtBookId.Text == "(Tự động)" || string.IsNullOrEmpty(txtBookId.Text))
                 {
+                    db.ChangeTracker.Clear();
+                    var newId = GenerateBookId();
                     var newBook = new Book
                     {
-                        BookId = GenerateBookId(),
+                        BookId = newId,
                         Title = txtTitle.Text.Trim(),
                         PublishedYear = pubYear,
                         AuthorId = authorId,
                         CategoryId = categoryId,
-                        PublisherId = 1, // Default publisher
+                        PublisherId = 1,
                         SoLuongTon = 0,
                         TrangThai = "Có sẵn"
                     };
+
                     db.Books.Add(newBook);
                     db.SaveChanges();
                     MessageBox.Show("Thêm sách thành công!");

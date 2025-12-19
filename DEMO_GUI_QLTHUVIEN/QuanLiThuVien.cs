@@ -42,6 +42,7 @@ namespace DoAnDemoUI
             //AddMenuAction("ManageCategories", "Quản lý Thể loại", () => OpenOrActivateChild(typeof(FormCategory)));
             AddMenuAction("ManageMembers", "Quản lý Độc giả", () => OpenOrActivateChild(typeof(FormMember)));
             AddMenuAction("ManageLoans", "Quản lý Mượn/Trả", () => OpenOrActivateChild(typeof(FormLoan)));
+            AddMenuAction("ManageStaff", "Quản lý Nhân viên", () => OpenOrActivateChild(typeof(FormStaff)));
             AddMenuAction("ManagePublishers", "Quản lý Nhà XB", () => OpenOrActivateChild(typeof(FormPublisher)));
             AddMenuAction("Reports", "Báo cáo & Thống kê", () => OpenOrActivateChild(typeof(FormReport)));
         }
