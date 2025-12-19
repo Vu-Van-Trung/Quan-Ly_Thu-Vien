@@ -1,7 +1,71 @@
-# Thư mục cấu hình và cache của Visual Studio
+## Visual Studio & .NET
 .vs/
-# Thư mục chứa các tệp biên dịch
+.vscode/
+bin/
+obj/
+packages/
+*.user
+*.suo
+*.cache
+*.log
+
+## Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
 [Bb]in/
 [Oo]bj/
-# Thư mục packages (nếu sử dụng)
-packages/
+[Ll]og/
+[Ll]ogs/
+
+## Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+## ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+## NuGet
+*.nupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+
+## Database
+*.mdf
+*.ldf
+*.bak
+App_Data/
+
+## User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Backup & temp files
+*~
+*.swp
+*.tmp
+Thumbs.db
+Desktop.ini
+
+## Sensitive data (IMPORTANT!)
+appsettings.Development.json
+appsettings.Production.json
+*.secret
+*.private
+connection-strings.txt
+
+## Others
+.DS_Store
+node_modules/
+*.stackdump

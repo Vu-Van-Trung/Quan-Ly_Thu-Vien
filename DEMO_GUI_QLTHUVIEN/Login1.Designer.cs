@@ -25,276 +25,295 @@ namespace DoAnDemoUI
 
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login1));
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.lnkForgot = new System.Windows.Forms.LinkLabel();
-            this.dktk = new System.Windows.Forms.Label();
-            this.label = new System.Windows.Forms.Label();
-            this.btnLogin = new Guna.UI2.WinForms.Guna2Button();
-            this.loginError = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.Login = new Guna.UI2.WinForms.Guna2Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnMinimize = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.btnCancel = new Guna.UI2.WinForms.Guna2CircleButton();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.Login.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
-            this.SuspendLayout();
+            components = new Container();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(Login1));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            errorProvider1 = new ErrorProvider(components);
+            txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
+            txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
+            lnkForgot = new LinkLabel();
+            dktk = new Label();
+            label = new Label();
+            btnLogin = new Guna.UI2.WinForms.Guna2Button();
+            loginError = new Label();
+            label2 = new Label();
+            Login = new Guna.UI2.WinForms.Guna2Panel();
+            btnMinimize = new Guna.UI2.WinForms.Guna2CircleButton();
+            label4 = new Label();
+            label3 = new Label();
+            guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
+            btnCancel = new Guna.UI2.WinForms.Guna2CircleButton();
+            ((ISupportInitialize)errorProvider1).BeginInit();
+            Login.SuspendLayout();
+            ((ISupportInitialize)guna2PictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // errorProvider1
             // 
-            this.errorProvider1.ContainerControl = this;
-            // 
-            // lnkForgot
-            // 
-            this.lnkForgot.AutoSize = true;
-            this.lnkForgot.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnkForgot.Location = new System.Drawing.Point(617, 402);
-            this.lnkForgot.Name = "lnkForgot";
-            this.lnkForgot.Size = new System.Drawing.Size(142, 25);
-            this.lnkForgot.TabIndex = 6;
-            this.lnkForgot.TabStop = true;
-            this.lnkForgot.Text = "Quên mật khẩu?";
-            this.lnkForgot.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkForgot_LinkClicked);
-            // 
-            // dktk
-            // 
-            this.dktk.AutoSize = true;
-            this.dktk.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dktk.ForeColor = System.Drawing.Color.Blue;
-            this.dktk.Location = new System.Drawing.Point(890, 401);
-            this.dktk.Name = "dktk";
-            this.dktk.Size = new System.Drawing.Size(158, 25);
-            this.dktk.TabIndex = 9;
-            this.dktk.Text = "Đăng Ký Tài Khoản";
-            this.dktk.Click += new System.EventHandler(this.dktk_Click);
-            // 
-            // label
-            // 
-            this.label.AutoSize = true;
-            this.label.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label.Location = new System.Drawing.Point(747, 60);
-            this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(179, 41);
-            this.label.TabIndex = 13;
-            this.label.Text = "Đăng Nhập";
-            // 
-            // btnLogin
-            // 
-            this.btnLogin.BorderRadius = 18;
-            this.btnLogin.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnLogin.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnLogin.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnLogin.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(642, 331);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(380, 56);
-            this.btnLogin.TabIndex = 16;
-            this.btnLogin.Text = "Đăng Nhập";
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click_1);
-            // 
-            // loginError
-            // 
-            this.loginError.AutoSize = true;
-            this.loginError.ForeColor = System.Drawing.Color.Red;
-            this.loginError.Location = new System.Drawing.Point(699, 297);
-            this.loginError.Name = "loginError";
-            this.loginError.Size = new System.Drawing.Size(238, 20);
-            this.loginError.TabIndex = 17;
-            this.loginError.Text = "Tên đăng nhập hoặc mật khẩu sai !";
-            this.loginError.Visible = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri Light", 10.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.MediumTurquoise;
-            this.label2.Location = new System.Drawing.Point(354, 500);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(447, 22);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "*Bạn sẽ chấp nhận các điều khoản và điều kiện của chúng tôi";
-            // 
-            // Login
-            // 
-            this.Login.BackColor = System.Drawing.Color.White;
-            this.Login.Controls.Add(this.btnMinimize);
-            this.Login.Controls.Add(this.label4);
-            this.Login.Controls.Add(this.label3);
-            this.Login.Controls.Add(this.label2);
-            this.Login.Controls.Add(this.loginError);
-            this.Login.Controls.Add(this.btnLogin);
-            this.Login.Controls.Add(this.txtPassword);
-            this.Login.Controls.Add(this.txtUsername);
-            this.Login.Controls.Add(this.label);
-            this.Login.Controls.Add(this.guna2PictureBox1);
-            this.Login.Controls.Add(this.btnCancel);
-            this.Login.Controls.Add(this.dktk);
-            this.Login.Controls.Add(this.lnkForgot);
-            this.Login.Location = new System.Drawing.Point(251, 68);
-            this.Login.Name = "Login";
-            this.Login.Size = new System.Drawing.Size(1112, 550);
-            this.Login.TabIndex = 11;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(372, 83);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 41);
-            this.label4.TabIndex = 20;
-            this.label4.Text = "Tết";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Magenta;
-            this.label3.Location = new System.Drawing.Point(253, 83);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(166, 41);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "Thư Viện ";
-            // 
-            // btnMinimize
-            // 
-            this.btnMinimize.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnMinimize.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnMinimize.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnMinimize.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnMinimize.FillColor = System.Drawing.Color.White;
-            this.btnMinimize.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnMinimize.ForeColor = System.Drawing.Color.White;
-            this.btnMinimize.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimize.Image")));
-            this.btnMinimize.ImageSize = new System.Drawing.Size(50, 50);
-            this.btnMinimize.Location = new System.Drawing.Point(77, 14);
-            this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.btnMinimize.Size = new System.Drawing.Size(55, 52);
-            this.btnMinimize.TabIndex = 21;
-            this.btnMinimize.Click += new System.EventHandler(this.guna2CircleButton1_Click);
+            errorProvider1.ContainerControl = this;
             // 
             // txtPassword
             // 
-            this.txtPassword.BorderRadius = 18;
-            this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPassword.DefaultText = "";
-            this.txtPassword.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtPassword.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtPassword.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtPassword.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtPassword.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.ForeColor = System.Drawing.Color.Black;
-            this.txtPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.errorProvider1.SetIconAlignment(this.txtPassword, System.Windows.Forms.ErrorIconAlignment.TopRight);
-             //this.txtPassword.IconLeft = global::DoAnDemoUI.Properties.Resources.lock_25px;
-            
-            this.txtPassword.IconLeftOffset = new System.Drawing.Point(15, 0);
-            this.txtPassword.IconLeftSize = new System.Drawing.Size(30, 30);
-            this.txtPassword.Location = new System.Drawing.Point(621, 218);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '\0';
-            this.txtPassword.PlaceholderText = "Mật khẩu";
-            this.txtPassword.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtPassword.SelectedText = "";
-            this.txtPassword.Size = new System.Drawing.Size(415, 67);
-            this.txtPassword.TabIndex = 15;
-            this.txtPassword.TextOffset = new System.Drawing.Point(30, 0);
-            this.txtPassword.TextChanged += new System.EventHandler(this.guna2TextBox2_TextChanged);
-            this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
+            txtPassword.BorderRadius = 18;
+            txtPassword.Cursor = Cursors.IBeam;
+            txtPassword.CustomizableEdges = customizableEdges4;
+            txtPassword.DefaultText = "";
+            txtPassword.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtPassword.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtPassword.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtPassword.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtPassword.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPassword.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPassword.ForeColor = Color.Black;
+            txtPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            errorProvider1.SetIconAlignment(txtPassword, ErrorIconAlignment.TopRight);
+            txtPassword.IconLeftOffset = new Point(15, 0);
+            txtPassword.IconLeftSize = new Size(30, 30);
+            txtPassword.Location = new Point(621, 218);
+            txtPassword.Margin = new Padding(4);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PlaceholderText = "Mật khẩu";
+            txtPassword.RightToLeft = RightToLeft.No;
+            txtPassword.SelectedText = "";
+            txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges5;
+            txtPassword.Size = new Size(415, 67);
+            txtPassword.TabIndex = 15;
+            txtPassword.TextOffset = new Point(30, 0);
+            txtPassword.TextChanged += guna2TextBox2_TextChanged;
+            txtPassword.KeyDown += txtPassword_KeyDown;
             // 
             // txtUsername
             // 
-            this.txtUsername.BorderRadius = 18;
-            this.txtUsername.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.txtUsername.DefaultText = "";
-            this.txtUsername.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtUsername.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtUsername.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtUsername.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtUsername.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtUsername.Font = new System.Drawing.Font("Segoe UI", 10.8F);
-            this.txtUsername.ForeColor = System.Drawing.Color.Black;
-            this.txtUsername.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.errorProvider1.SetIconAlignment(this.txtUsername, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
-            
-            //this.txtUsername.IconLeft = global::DoAnDemoUI.Properties.Resources.user_25px;
-            
-            this.txtUsername.IconLeftOffset = new System.Drawing.Point(15, 0);
-            this.txtUsername.IconLeftSize = new System.Drawing.Size(30, 30);
-            this.txtUsername.Location = new System.Drawing.Point(621, 127);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.PasswordChar = '\0';
-            this.txtUsername.PlaceholderText = "Tên đăng nhập";
-            this.txtUsername.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtUsername.SelectedText = "";
-            this.txtUsername.Size = new System.Drawing.Size(415, 67);
-            this.txtUsername.TabIndex = 14;
-            this.txtUsername.TextOffset = new System.Drawing.Point(30, 0);
-            this.txtUsername.UseWaitCursor = true;
-            this.txtUsername.TextChanged += new System.EventHandler(this.guna2TextBox1_TextChanged);
+            txtUsername.BorderRadius = 18;
+            txtUsername.Cursor = Cursors.WaitCursor;
+            txtUsername.CustomizableEdges = customizableEdges6;
+            txtUsername.DefaultText = "";
+            txtUsername.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtUsername.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtUsername.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtUsername.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtUsername.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtUsername.Font = new Font("Segoe UI", 10.8F);
+            txtUsername.ForeColor = Color.Black;
+            txtUsername.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            errorProvider1.SetIconAlignment(txtUsername, ErrorIconAlignment.MiddleLeft);
+            txtUsername.IconLeftOffset = new Point(15, 0);
+            txtUsername.IconLeftSize = new Size(30, 30);
+            txtUsername.Location = new Point(621, 127);
+            txtUsername.Margin = new Padding(4);
+            txtUsername.Name = "txtUsername";
+            txtUsername.PlaceholderText = "Tên đăng nhập";
+            txtUsername.RightToLeft = RightToLeft.No;
+            txtUsername.SelectedText = "";
+            txtUsername.ShadowDecoration.CustomizableEdges = customizableEdges7;
+            txtUsername.Size = new Size(415, 67);
+            txtUsername.TabIndex = 14;
+            txtUsername.TextOffset = new Point(30, 0);
+            txtUsername.UseWaitCursor = true;
+            txtUsername.TextChanged += guna2TextBox1_TextChanged;
+            // 
+            // lnkForgot
+            // 
+            lnkForgot.AutoSize = true;
+            lnkForgot.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lnkForgot.Location = new Point(617, 402);
+            lnkForgot.Name = "lnkForgot";
+            lnkForgot.Size = new Size(142, 25);
+            lnkForgot.TabIndex = 6;
+            lnkForgot.TabStop = true;
+            lnkForgot.Text = "Quên mật khẩu?";
+            lnkForgot.LinkClicked += lnkForgot_LinkClicked;
+            // 
+            // dktk
+            // 
+            dktk.AutoSize = true;
+            dktk.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dktk.ForeColor = Color.Blue;
+            dktk.Location = new Point(890, 401);
+            dktk.Name = "dktk";
+            dktk.Size = new Size(158, 25);
+            dktk.TabIndex = 9;
+            dktk.Text = "Đăng Ký Tài Khoản";
+            dktk.Click += dktk_Click;
+            // 
+            // label
+            // 
+            label.AutoSize = true;
+            label.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label.Location = new Point(747, 60);
+            label.Name = "label";
+            label.Size = new Size(179, 41);
+            label.TabIndex = 13;
+            label.Text = "Đăng Nhập";
+            // 
+            // btnLogin
+            // 
+            btnLogin.BorderRadius = 18;
+            btnLogin.CustomizableEdges = customizableEdges2;
+            btnLogin.DisabledState.BorderColor = Color.DarkGray;
+            btnLogin.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnLogin.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnLogin.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnLogin.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogin.ForeColor = Color.White;
+            btnLogin.Location = new Point(642, 331);
+            btnLogin.Name = "btnLogin";
+            btnLogin.ShadowDecoration.CustomizableEdges = customizableEdges3;
+            btnLogin.Size = new Size(380, 56);
+            btnLogin.TabIndex = 16;
+            btnLogin.Text = "Đăng Nhập";
+            btnLogin.Click += btnLogin_Click_1;
+            // 
+            // loginError
+            // 
+            loginError.AutoSize = true;
+            loginError.ForeColor = Color.Red;
+            loginError.Location = new Point(699, 297);
+            loginError.Name = "loginError";
+            loginError.Size = new Size(238, 20);
+            loginError.TabIndex = 17;
+            loginError.Text = "Tên đăng nhập hoặc mật khẩu sai !";
+            loginError.Visible = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Calibri Light", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.MediumTurquoise;
+            label2.Location = new Point(354, 500);
+            label2.Name = "label2";
+            label2.Size = new Size(447, 22);
+            label2.TabIndex = 18;
+            label2.Text = "*Bạn sẽ chấp nhận các điều khoản và điều kiện của chúng tôi";
+            // 
+            // Login
+            // 
+            Login.BackColor = Color.White;
+            Login.Controls.Add(btnMinimize);
+            Login.Controls.Add(label4);
+            Login.Controls.Add(label3);
+            Login.Controls.Add(label2);
+            Login.Controls.Add(loginError);
+            Login.Controls.Add(btnLogin);
+            Login.Controls.Add(txtPassword);
+            Login.Controls.Add(txtUsername);
+            Login.Controls.Add(label);
+            Login.Controls.Add(guna2PictureBox1);
+            Login.Controls.Add(btnCancel);
+            Login.Controls.Add(dktk);
+            Login.Controls.Add(lnkForgot);
+            Login.CustomizableEdges = customizableEdges11;
+            Login.Location = new Point(251, 68);
+            Login.Name = "Login";
+            Login.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            Login.Size = new Size(1112, 550);
+            Login.TabIndex = 11;
+            // 
+            // btnMinimize
+            // 
+            btnMinimize.DisabledState.BorderColor = Color.DarkGray;
+            btnMinimize.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnMinimize.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnMinimize.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnMinimize.FillColor = Color.White;
+            btnMinimize.Font = new Font("Segoe UI", 9F);
+            btnMinimize.ForeColor = Color.White;
+            btnMinimize.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources._786263;
+            btnMinimize.ImageSize = new Size(50, 50);
+            btnMinimize.Location = new Point(77, 14);
+            btnMinimize.Name = "btnMinimize";
+            btnMinimize.ShadowDecoration.CustomizableEdges = customizableEdges1;
+            btnMinimize.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            btnMinimize.Size = new Size(55, 52);
+            btnMinimize.TabIndex = 21;
+            btnMinimize.Click += guna2CircleButton1_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Red;
+            label4.Location = new Point(372, 83);
+            label4.Name = "label4";
+            label4.Size = new Size(73, 41);
+            label4.TabIndex = 20;
+            label4.Text = "Tết";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Magenta;
+            label3.Location = new Point(253, 83);
+            label3.Name = "label3";
+            label3.Size = new Size(166, 41);
+            label3.TabIndex = 19;
+            label3.Text = "Thư Viện ";
             // 
             // guna2PictureBox1
             // 
-            this.guna2PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox1.Image")));
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(160, 127);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(330, 295);
-            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.guna2PictureBox1.TabIndex = 11;
-            this.guna2PictureBox1.TabStop = false;
+            guna2PictureBox1.CustomizableEdges = customizableEdges8;
+            guna2PictureBox1.ErrorImage = (Image)resources.GetObject("guna2PictureBox1.ErrorImage");
+            guna2PictureBox1.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources._174951701726937611;
+            guna2PictureBox1.ImageRotate = 0F;
+            guna2PictureBox1.InitialImage = DEMO_GUI_QLTHUVIEN.Properties.Resources._174951701726937611;
+            guna2PictureBox1.Location = new Point(160, 127);
+            guna2PictureBox1.Name = "guna2PictureBox1";
+            guna2PictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges9;
+            guna2PictureBox1.Size = new Size(330, 295);
+            guna2PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            guna2PictureBox1.TabIndex = 11;
+            guna2PictureBox1.TabStop = false;
             // 
             // btnCancel
             // 
-            this.btnCancel.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnCancel.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnCancel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnCancel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnCancel.FillColor = System.Drawing.Color.White;
-            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
-            this.btnCancel.ImageSize = new System.Drawing.Size(60, 60);
-            this.btnCancel.Location = new System.Drawing.Point(16, 14);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.btnCancel.Size = new System.Drawing.Size(55, 52);
-            this.btnCancel.TabIndex = 10;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click_1);
+            btnCancel.DisabledState.BorderColor = Color.DarkGray;
+            btnCancel.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnCancel.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnCancel.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnCancel.FillColor = Color.White;
+            btnCancel.Font = new Font("Segoe UI", 9F);
+            btnCancel.ForeColor = Color.White;
+            btnCancel.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
+            btnCancel.ImageSize = new Size(60, 60);
+            btnCancel.Location = new Point(16, 14);
+            btnCancel.Name = "btnCancel";
+            btnCancel.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btnCancel.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            btnCancel.Size = new Size(55, 52);
+            btnCancel.TabIndex = 10;
+            btnCancel.Click += btnCancel_Click_1;
             // 
             // Login1
             // 
-            this.ClientSize = new System.Drawing.Size(1866, 808);
-            this.Controls.Add(this.Login);
-            this.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "Login1";
-            this.Padding = new System.Windows.Forms.Padding(20);
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Đăng nhập - Thư Viện Tết";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Login_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.Login.ResumeLayout(false);
-            this.Login.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
-            this.ResumeLayout(false);
+            ClientSize = new Size(1866, 808);
+            Controls.Add(Login);
+            Font = new Font("Segoe UI", 9F);
+            FormBorderStyle = FormBorderStyle.None;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "Login1";
+            Padding = new Padding(20);
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Đăng nhập - Thư Viện Tết";
+            WindowState = FormWindowState.Maximized;
+            Load += Login_Load;
+            ((ISupportInitialize)errorProvider1).EndInit();
+            Login.ResumeLayout(false);
+            Login.PerformLayout();
+            ((ISupportInitialize)guna2PictureBox1).EndInit();
+            ResumeLayout(false);
 
         }
 
