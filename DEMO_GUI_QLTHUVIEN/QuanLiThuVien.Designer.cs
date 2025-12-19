@@ -63,14 +63,14 @@ namespace DoAnDemoUI
             // mniDangXuat
             // 
             mniDangXuat.Name = "mniDangXuat";
-            mniDangXuat.Size = new Size(224, 26);
+            mniDangXuat.Size = new Size(164, 26);
             mniDangXuat.Text = "Đăng xuất";
             mniDangXuat.Click += mniDangXuat_Click;
             // 
             // mniThoat
             // 
             mniThoat.Name = "mniThoat";
-            mniThoat.Size = new Size(224, 26);
+            mniThoat.Size = new Size(164, 26);
             mniThoat.Text = "Thoát";
             mniThoat.Click += mniThoat_Click;
             // 
@@ -101,6 +101,7 @@ namespace DoAnDemoUI
             lstMenu.Name = "lstMenu";
             lstMenu.Size = new Size(260, 668);
             lstMenu.TabIndex = 0;
+            lstMenu.SelectedIndexChanged += lstMenu_SelectedIndexChanged;
             // 
             // lblMenuHeader
             // 

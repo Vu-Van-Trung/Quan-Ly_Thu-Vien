@@ -1,5 +1,4 @@
-﻿
-using LibraryManagement.Data;
+﻿using LibraryManagement.Data;
 using LibraryManagement.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -33,7 +32,6 @@ namespace DoAnDemoUI
         private void QuanLiSach_Load(object sender, EventArgs e)
         {
             db = new LibraryContext();
-            // Không cần LoadComboBoxes nữa vì ta nhập tay
             LoadData();
             SetControlState(false);
         }
@@ -45,17 +43,18 @@ namespace DoAnDemoUI
                 var books = db.Books
                     .Include(b => b.Author)
                     .Include(b => b.Category)
+                    .Include(b => b.Publisher)
                     .Select(b => new
                     {
                         b.BookId,
                         b.Title,
-                        b.ISBN,
                         b.PublishedYear,
-                        AuthorName = b.Author.Name,     // Tên tác giả
-                        CategoryName = b.Category.Name, // Tên thể loại
-                        // Các ID ẩn (dù không dùng để chọn trên combo nữa nhưng vẫn cần để logic)
+                        AuthorName = b.Author.Name,
+                        CategoryName = b.Category.Name,
+                        PublisherName = b.Publisher.TenNhaXuatBan,
                         b.AuthorId,
-                        b.CategoryId
+                        b.CategoryId,
+                        b.PublisherId
                     })
                     .ToList();
 
@@ -66,9 +65,11 @@ namespace DoAnDemoUI
                 dgvBooks.Columns["PublishedYear"].HeaderText = "Năm XB";
                 dgvBooks.Columns["AuthorName"].HeaderText = "Tác Giả";
                 dgvBooks.Columns["CategoryName"].HeaderText = "Thể Loại";
+                dgvBooks.Columns["PublisherName"].HeaderText = "NXB";
 
                 dgvBooks.Columns["AuthorId"].Visible = false;
                 dgvBooks.Columns["CategoryId"].Visible = false;
+                dgvBooks.Columns["PublisherId"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -82,9 +83,9 @@ namespace DoAnDemoUI
             {
                 var row = dgvBooks.CurrentRow;
 
-                txtBookId.Text = row.Cells["BookId"].Value.ToString();
+                txtBookId.Text = row.Cells["BookId"].Value?.ToString();
                 txtTitle.Text = row.Cells["Title"].Value?.ToString();
-                txtISBN.Text = row.Cells["ISBN"].Value?.ToString();
+                txtISBN.Text = ""; // ISBN không được map trong database
                 txtPublishedYear.Text = row.Cells["PublishedYear"].Value?.ToString();
 
                 // Hiển thị tên Tác giả và Thể loại vào TextBox
@@ -118,7 +119,7 @@ namespace DoAnDemoUI
         {
             if (dgvBooks.CurrentRow == null) return;
 
-            int bookId = Convert.ToInt32(dgvBooks.CurrentRow.Cells["BookId"].Value);
+            string bookId = dgvBooks.CurrentRow.Cells["BookId"].Value.ToString();
             string title = dgvBooks.CurrentRow.Cells["Title"].Value.ToString();
 
             if (MessageBox.Show($"Bạn có chắc muốn xóa sách '{title}'?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
@@ -145,7 +146,6 @@ namespace DoAnDemoUI
         private int GetOrCreateAuthorId(string authorName)
         {
             authorName = authorName.Trim();
-            // Tìm xem tác giả đã có chưa
             var author = db.Authors.FirstOrDefault(a => a.Name == authorName);
             if (author != null)
             {
@@ -153,10 +153,9 @@ namespace DoAnDemoUI
             }
             else
             {
-                // Chưa có thì tạo mới
                 var newAuthor = new Author { Name = authorName };
                 db.Authors.Add(newAuthor);
-                db.SaveChanges(); // Lưu để sinh ra ID
+                db.SaveChanges();
                 return newAuthor.AuthorId;
             }
         }
@@ -164,7 +163,6 @@ namespace DoAnDemoUI
         private int GetOrCreateCategoryId(string categoryName)
         {
             categoryName = categoryName.Trim();
-            // Tìm xem thể loại đã có chưa
             var category = db.Categories.FirstOrDefault(c => c.Name == categoryName);
             if (category != null)
             {
@@ -172,12 +170,25 @@ namespace DoAnDemoUI
             }
             else
             {
-                // Chưa có thì tạo mới
                 var newCategory = new Category { Name = categoryName };
                 db.Categories.Add(newCategory);
-                db.SaveChanges(); // Lưu để sinh ra ID
+                db.SaveChanges();
                 return newCategory.CategoryId;
             }
+        }
+
+        // Hàm tạo mã sách tự động
+        private string GenerateBookId()
+        {
+            var lastBook = db.Books.OrderByDescending(b => b.BookId).FirstOrDefault();
+            if (lastBook == null)
+            {
+                return "S001";
+            }
+
+            string lastId = lastBook.BookId;
+            int number = int.Parse(lastId.Substring(1)) + 1;
+            return $"S{number:D3}";
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -190,8 +201,14 @@ namespace DoAnDemoUI
                 return;
             }
 
-            int pubYear = 0;
-            int.TryParse(txtPublishedYear.Text, out pubYear);
+            int? pubYear = null;
+            if (!string.IsNullOrWhiteSpace(txtPublishedYear.Text))
+            {
+                if (int.TryParse(txtPublishedYear.Text, out int year))
+                {
+                    pubYear = year;
+                }
+            }
 
             try
             {
@@ -205,11 +222,14 @@ namespace DoAnDemoUI
                 {
                     var newBook = new Book
                     {
+                        BookId = GenerateBookId(),
                         Title = txtTitle.Text.Trim(),
-                        ISBN = txtISBN.Text.Trim(),
                         PublishedYear = pubYear,
-                        AuthorId = authorId,     // Dùng ID vừa lấy được
-                        CategoryId = categoryId  // Dùng ID vừa lấy được
+                        AuthorId = authorId,
+                        CategoryId = categoryId,
+                        PublisherId = 1, // Default publisher
+                        SoLuongTon = 0,
+                        TrangThai = "Có sẵn"
                     };
                     db.Books.Add(newBook);
                     db.SaveChanges();
@@ -218,12 +238,11 @@ namespace DoAnDemoUI
                 // CẬP NHẬT
                 else
                 {
-                    int bookId = int.Parse(txtBookId.Text);
+                    string bookId = txtBookId.Text;
                     var book = db.Books.Find(bookId);
                     if (book != null)
                     {
                         book.Title = txtTitle.Text.Trim();
-                        book.ISBN = txtISBN.Text.Trim();
                         book.PublishedYear = pubYear;
                         book.AuthorId = authorId;
                         book.CategoryId = categoryId;
@@ -239,7 +258,7 @@ namespace DoAnDemoUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi lưu: " + ex.Message);
+                MessageBox.Show("Lỗi khi lưu: " + ex.Message + "\n" + ex.InnerException?.Message);
             }
         }
 
@@ -262,17 +281,20 @@ namespace DoAnDemoUI
             var result = db.Books
                 .Include(b => b.Author)
                 .Include(b => b.Category)
-                .Where(b => b.Title.Contains(keyword) || b.ISBN.Contains(keyword))
+                .Include(b => b.Publisher)
+                .Where(b => b.Title.ToLower().Contains(keyword) ||
+                           b.BookId.ToLower().Contains(keyword))
                 .Select(b => new
                 {
                     b.BookId,
                     b.Title,
-                    b.ISBN,
                     b.PublishedYear,
                     AuthorName = b.Author.Name,
                     CategoryName = b.Category.Name,
+                    PublisherName = b.Publisher.TenNhaXuatBan,
                     b.AuthorId,
-                    b.CategoryId
+                    b.CategoryId,
+                    b.PublisherId
                 })
                 .ToList();
 
@@ -284,8 +306,8 @@ namespace DoAnDemoUI
             txtTitle.ReadOnly = !editing;
             txtISBN.ReadOnly = !editing;
             txtPublishedYear.ReadOnly = !editing;
-            txtAuthor.ReadOnly = !editing;   // Giờ là TextBox nên dùng ReadOnly
-            txtCategory.ReadOnly = !editing; // Giờ là TextBox nên dùng ReadOnly
+            txtAuthor.ReadOnly = !editing;
+            txtCategory.ReadOnly = !editing;
 
             btnAdd.Enabled = !editing;
             btnEdit.Enabled = !editing;

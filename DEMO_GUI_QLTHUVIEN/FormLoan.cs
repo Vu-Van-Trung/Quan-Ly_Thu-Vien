@@ -1,5 +1,4 @@
-﻿  // Chứa LibraryContext
-using LibraryManagement.Data;
+﻿using LibraryManagement.Data;
 using LibraryManagement.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,6 +11,7 @@ namespace DoAnDemoUI
     {
         private LibraryContext db;
         private BindingSource bindingSource;
+        private int defaultStaffId = 1; // ID nhân viên mặc định - thay đổi theo nhu cầu
 
         public FormLoan()
         {
@@ -38,14 +38,16 @@ namespace DoAnDemoUI
         private void LoadComboBoxes()
         {
             // Load Sách
-            cbMaSach.DataSource = db.Books.ToList();
+            var books = db.Books.ToList();
+            cbMaSach.DataSource = books;
             cbMaSach.DisplayMember = "Title"; // Hiển thị tên sách
-            cbMaSach.ValueMember = "BookId";  // Giá trị là ID sách
+            cbMaSach.ValueMember = "BookId";  // Giá trị là ID sách (string)
 
             // Load Độc Giả
-            cbMaDocGia.DataSource = db.Members.ToList();
+            var members = db.Members.ToList();
+            cbMaDocGia.DataSource = members;
             cbMaDocGia.DisplayMember = "FullName"; // Hiển thị tên độc giả
-            cbMaDocGia.ValueMember = "MemberId";   // Giá trị là ID độc giả
+            cbMaDocGia.ValueMember = "MemberId";   // Giá trị là ID độc giả (string)
         }
 
         private void LoadData()
@@ -54,17 +56,18 @@ namespace DoAnDemoUI
             {
                 // Lấy dữ liệu từ bảng Loans, kèm theo thông tin Sách và Độc giả
                 var data = db.Loans
-                    .Include(l => l.Book)
                     .Include(l => l.Member)
+                    .Include(l => l.LoanDetails)
+                        .ThenInclude(ld => ld.Book)
                     .Select(l => new
                     {
                         l.LoanId,
-                        BookName = l.Book.Title,
                         MemberName = l.Member.FullName,
                         l.LoanDate,
                         l.DueDate,
-                        // Nếu ReturnDate null thì hiển thị "Chưa trả"
-                        Status = l.ReturnDate == null ? "Đang Mượn" : "Đã Trả"
+                        // Sử dụng NgayTraThucTe thay vì ReturnDate
+                        Status = l.NgayTraThucTe == null ? "Đang Mượn" : "Đã Trả",
+                        BookCount = l.LoanDetails.Count
                     })
                     .ToList();
 
@@ -80,19 +83,28 @@ namespace DoAnDemoUI
         // --- 2. SỰ KIỆN KHI CHỌN DÒNG TRÊN LƯỚI ---
         private void DgvSachMuon_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvSachMuon.CurrentRow != null)
+            if (dgvSachMuon.CurrentRow != null && dgvSachMuon.CurrentRow.Cells["LoanId"].Value != null)
             {
-                // Lấy ID của dòng đang chọn
-                var currentLoanId = (int)dgvSachMuon.CurrentRow.Cells["LoanId"].Value;
+                // Lấy ID của dòng đang chọn (LoanId là string)
+                var currentLoanId = dgvSachMuon.CurrentRow.Cells["LoanId"].Value.ToString();
 
                 // Tìm trong DB để fill ngược lại lên các ô nhập liệu
-                var loan = db.Loans.Find(currentLoanId);
+                var loan = db.Loans
+                    .Include(l => l.LoanDetails)
+                    .FirstOrDefault(l => l.LoanId == currentLoanId);
+
                 if (loan != null)
                 {
-                    cbMaSach.SelectedValue = loan.BookId;
                     cbMaDocGia.SelectedValue = loan.MemberId;
                     dtpNgayMuon.Value = loan.LoanDate;
                     dtpNgayTra.Value = loan.DueDate;
+
+                    // Nếu có sách trong chi tiết, chọn sách đầu tiên
+                    if (loan.LoanDetails != null && loan.LoanDetails.Any())
+                    {
+                        var firstBook = loan.LoanDetails.First();
+                        cbMaSach.SelectedValue = firstBook.BookId;
+                    }
                 }
                 UpdateIndex();
             }
@@ -111,16 +123,32 @@ namespace DoAnDemoUI
         {
             try
             {
+                // Tạo mã phiếu mượn tự động
+                string newLoanId = GenerateLoanId();
+
                 var newLoan = new Loan
                 {
-                    BookId = (int)cbMaSach.SelectedValue,
-                    MemberId = (int)cbMaDocGia.SelectedValue,
+                    LoanId = newLoanId,
+                    MemberId = cbMaDocGia.SelectedValue.ToString(),
+                    StaffId = defaultStaffId, // Sử dụng staff ID mặc định
                     LoanDate = dtpNgayMuon.Value,
                     DueDate = dtpNgayTra.Value,
-                    ReturnDate = null // Mới mượn thì chưa trả
+                    NgayTraThucTe = null, // Mới mượn thì chưa trả
+                    TrangThai = "Đang mượn"
                 };
 
                 db.Loans.Add(newLoan);
+
+                // Thêm chi tiết phiếu mượn cho sách được chọn
+                var loanDetail = new LoanDetail
+                {
+                    LoanId = newLoanId,
+                    BookId = cbMaSach.SelectedValue.ToString(),
+                    SoLuong = 1,
+                    TinhTrangMuon = "Tốt"
+                };
+                db.LoanDetails.Add(loanDetail);
+
                 db.SaveChanges();
 
                 LoadData();
@@ -128,21 +156,40 @@ namespace DoAnDemoUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi thêm: " + ex.Message);
+                MessageBox.Show("Lỗi thêm: " + ex.Message + "\n" + ex.InnerException?.Message);
             }
+        }
+
+        // Hàm tạo mã phiếu mượn tự động
+        private string GenerateLoanId()
+        {
+            var lastLoan = db.Loans.OrderByDescending(l => l.LoanId).FirstOrDefault();
+            if (lastLoan == null)
+            {
+                return "PM001";
+            }
+
+            // Lấy số từ mã cuối cùng và tăng lên 1
+            string lastId = lastLoan.LoanId;
+            int number = int.Parse(lastId.Substring(2)) + 1;
+            return $"PM{number:D3}";
         }
 
         // --- 4. CHỨC NĂNG SỬA ---
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (dgvSachMuon.CurrentRow == null) return;
-            int loanId = (int)dgvSachMuon.CurrentRow.Cells["LoanId"].Value;
+            if (dgvSachMuon.CurrentRow == null || dgvSachMuon.CurrentRow.Cells["LoanId"].Value == null)
+            {
+                MessageBox.Show("Vui lòng chọn phiếu mượn cần sửa!");
+                return;
+            }
+
+            string loanId = dgvSachMuon.CurrentRow.Cells["LoanId"].Value.ToString();
 
             var loan = db.Loans.Find(loanId);
             if (loan != null)
             {
-                loan.BookId = (int)cbMaSach.SelectedValue;
-                loan.MemberId = (int)cbMaDocGia.SelectedValue;
+                loan.MemberId = cbMaDocGia.SelectedValue.ToString();
                 loan.LoanDate = dtpNgayMuon.Value;
                 loan.DueDate = dtpNgayTra.Value;
 
@@ -155,17 +202,30 @@ namespace DoAnDemoUI
         // --- 5. CHỨC NĂNG XÓA ---
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (dgvSachMuon.CurrentRow == null) return;
-            int loanId = (int)dgvSachMuon.CurrentRow.Cells["LoanId"].Value;
+            if (dgvSachMuon.CurrentRow == null || dgvSachMuon.CurrentRow.Cells["LoanId"].Value == null)
+            {
+                MessageBox.Show("Vui lòng chọn phiếu mượn cần xóa!");
+                return;
+            }
+
+            string loanId = dgvSachMuon.CurrentRow.Cells["LoanId"].Value.ToString();
 
             if (MessageBox.Show("Bạn chắc chắn muốn xóa phiếu này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                var loan = db.Loans.Find(loanId);
-                if (loan != null)
+                try
                 {
-                    db.Loans.Remove(loan);
-                    db.SaveChanges();
-                    LoadData();
+                    var loan = db.Loans.Find(loanId);
+                    if (loan != null)
+                    {
+                        db.Loans.Remove(loan);
+                        db.SaveChanges();
+                        LoadData();
+                        MessageBox.Show("Xóa thành công!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Không thể xóa phiếu mượn này.\nLỗi: " + ex.Message);
                 }
             }
         }
