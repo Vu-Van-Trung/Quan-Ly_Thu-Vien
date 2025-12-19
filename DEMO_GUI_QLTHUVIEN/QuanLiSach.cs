@@ -328,5 +328,10 @@ namespace DoAnDemoUI
             txtAuthor.Clear();
             txtCategory.Clear();
         }
+
+        private void QuanLiSach_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

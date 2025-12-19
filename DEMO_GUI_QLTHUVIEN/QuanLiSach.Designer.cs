@@ -55,216 +55,306 @@ namespace DoAnDemoUI
 
         private void InitializeComponent()
         {
-            this.components = new Container();
-            this.lblTitle = new Label();
-            this.topPanel = new Panel();
-            this.grpDetails = new GroupBox();
-
-            this.lblBookId = new Label();
-            this.txtBookId = new TextBox();
-            this.lblTitleBook = new Label();
-            this.txtTitle = new TextBox();
-
-            // Khởi tạo TextBox cho Author và Category
-            this.lblAuthor = new Label();
-            this.txtAuthor = new TextBox();
-            this.lblCategory = new Label();
-            this.txtCategory = new TextBox();
-
-            this.lblISBN = new Label();
-            this.txtISBN = new TextBox();
-            this.lblPublishedYear = new Label();
-            this.txtPublishedYear = new TextBox();
-
-            this.flowButtons = new FlowLayoutPanel();
-            this.btnAdd = new Button();
-            this.btnEdit = new Button();
-            this.btnDelete = new Button();
-            this.btnSave = new Button();
-            this.btnCancel = new Button();
-
-            this.txtSearch = new TextBox();
-            this.btnSearch = new Button();
-            this.btnReload = new Button();
-
-            this.dgvBooks = new DataGridView();
-            this.bindingSourceBooks = new BindingSource(this.components);
-
-            ((ISupportInitialize)(this.dgvBooks)).BeginInit();
-            ((ISupportInitialize)(this.bindingSourceBooks)).BeginInit();
-            this.grpDetails.SuspendLayout();
-            this.topPanel.SuspendLayout();
-            this.flowButtons.SuspendLayout();
-            this.SuspendLayout();
-
+            components = new Container();
+            lblTitle = new Label();
+            topPanel = new Panel();
+            grpDetails = new GroupBox();
+            lblBookId = new Label();
+            txtBookId = new TextBox();
+            lblTitleBook = new Label();
+            txtTitle = new TextBox();
+            lblISBN = new Label();
+            txtISBN = new TextBox();
+            lblPublishedYear = new Label();
+            txtPublishedYear = new TextBox();
+            lblAuthor = new Label();
+            txtAuthor = new TextBox();
+            lblCategory = new Label();
+            txtCategory = new TextBox();
+            flowButtons = new FlowLayoutPanel();
+            btnAdd = new Button();
+            btnEdit = new Button();
+            btnDelete = new Button();
+            btnSave = new Button();
+            btnCancel = new Button();
+            txtSearch = new TextBox();
+            btnSearch = new Button();
+            btnReload = new Button();
+            dgvBooks = new DataGridView();
+            bindingSourceBooks = new BindingSource(components);
+            topPanel.SuspendLayout();
+            grpDetails.SuspendLayout();
+            flowButtons.SuspendLayout();
+            ((ISupportInitialize)dgvBooks).BeginInit();
+            ((ISupportInitialize)bindingSourceBooks).BeginInit();
+            SuspendLayout();
             // 
-            // topPanel & lblTitle
+            // lblTitle
             // 
-            this.topPanel.Dock = DockStyle.Top;
-            this.topPanel.Height = 50;
-            this.topPanel.BackColor = Color.Teal;
-            this.topPanel.Controls.Add(this.lblTitle);
-
-            this.lblTitle.Dock = DockStyle.Fill;
-            this.lblTitle.TextAlign = ContentAlignment.MiddleCenter;
-            this.lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            this.lblTitle.ForeColor = Color.White;
-            this.lblTitle.Text = "QUẢN LÝ SÁCH";
-
+            lblTitle.Dock = DockStyle.Fill;
+            lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(0, 0);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(1000, 50);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "QUẢN LÝ SÁCH";
+            lblTitle.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // topPanel
+            // 
+            topPanel.BackColor = Color.Teal;
+            topPanel.Controls.Add(lblTitle);
+            topPanel.Dock = DockStyle.Top;
+            topPanel.Location = new Point(0, 0);
+            topPanel.Name = "topPanel";
+            topPanel.Size = new Size(1000, 50);
+            topPanel.TabIndex = 0;
             // 
             // grpDetails
             // 
-            this.grpDetails.Location = new Point(12, 60);
-            this.grpDetails.Size = new Size(360, 260);
-            this.grpDetails.Text = "Thông tin sách";
-
-            // Layout constants
-            int lblX = 15, txtX = 110, startY = 30, stepY = 35;
-
-            // 1. Book ID
-            this.lblBookId.Location = new Point(lblX, startY);
-            this.lblBookId.Text = "Mã Sách:";
-            this.lblBookId.AutoSize = true;
-
-            this.txtBookId.Location = new Point(txtX, startY - 3);
-            this.txtBookId.Size = new Size(230, 23);
-            this.txtBookId.ReadOnly = true;
-            this.txtBookId.BackColor = SystemColors.ControlLight;
-
-            // 2. Title
-            this.lblTitleBook.Location = new Point(lblX, startY + stepY);
-            this.lblTitleBook.Text = "Tên Sách:";
-            this.lblTitleBook.AutoSize = true;
-
-            this.txtTitle.Location = new Point(txtX, startY + stepY - 3);
-            this.txtTitle.Size = new Size(230, 23);
-
-            // 3. ISBN
-            this.lblISBN.Location = new Point(lblX, startY + stepY * 2);
-            this.lblISBN.Text = "ISBN:";
-            this.lblISBN.AutoSize = true;
-
-            this.txtISBN.Location = new Point(txtX, startY + stepY * 2 - 3);
-            this.txtISBN.Size = new Size(230, 23);
-
-            // 4. Published Year
-            this.lblPublishedYear.Location = new Point(lblX, startY + stepY * 3);
-            this.lblPublishedYear.Text = "Năm XB:";
-            this.lblPublishedYear.AutoSize = true;
-
-            this.txtPublishedYear.Location = new Point(txtX, startY + stepY * 3 - 3);
-            this.txtPublishedYear.Size = new Size(230, 23);
-
-            // 5. Author (TextBox)
-            this.lblAuthor.Location = new Point(lblX, startY + stepY * 4);
-            this.lblAuthor.Text = "Tác Giả:";
-            this.lblAuthor.AutoSize = true;
-
-            this.txtAuthor.Location = new Point(txtX, startY + stepY * 4 - 3);
-            this.txtAuthor.Size = new Size(230, 23);
-
-            // 6. Category (TextBox)
-            this.lblCategory.Location = new Point(lblX, startY + stepY * 5);
-            this.lblCategory.Text = "Thể Loại:";
-            this.lblCategory.AutoSize = true;
-
-            this.txtCategory.Location = new Point(txtX, startY + stepY * 5 - 3);
-            this.txtCategory.Size = new Size(230, 23);
-
-            // Add controls to GroupBox
-            this.grpDetails.Controls.AddRange(new Control[] {
-                lblBookId, txtBookId,
-                lblTitleBook, txtTitle,
-                lblISBN, txtISBN,
-                lblPublishedYear, txtPublishedYear,
-                lblAuthor, txtAuthor,
-                lblCategory, txtCategory
-            });
-
+            grpDetails.Controls.Add(lblBookId);
+            grpDetails.Controls.Add(txtBookId);
+            grpDetails.Controls.Add(lblTitleBook);
+            grpDetails.Controls.Add(txtTitle);
+            grpDetails.Controls.Add(lblISBN);
+            grpDetails.Controls.Add(txtISBN);
+            grpDetails.Controls.Add(lblPublishedYear);
+            grpDetails.Controls.Add(txtPublishedYear);
+            grpDetails.Controls.Add(lblAuthor);
+            grpDetails.Controls.Add(txtAuthor);
+            grpDetails.Controls.Add(lblCategory);
+            grpDetails.Controls.Add(txtCategory);
+            grpDetails.Location = new Point(12, 60);
+            grpDetails.Name = "grpDetails";
+            grpDetails.Size = new Size(360, 320);
+            grpDetails.TabIndex = 1;
+            grpDetails.TabStop = false;
+            grpDetails.Text = "Thông tin sách";
+            // 
+            // lblBookId
+            // 
+            lblBookId.AutoSize = true;
+            lblBookId.Location = new Point(15, 35);
+            lblBookId.Name = "lblBookId";
+            lblBookId.Size = new Size(68, 20);
+            lblBookId.TabIndex = 0;
+            lblBookId.Text = "Mã Sách:";
+            // 
+            // txtBookId
+            // 
+            txtBookId.BackColor = SystemColors.ControlLight;
+            txtBookId.Location = new Point(110, 32);
+            txtBookId.Name = "txtBookId";
+            txtBookId.ReadOnly = true;
+            txtBookId.Size = new Size(230, 27);
+            txtBookId.TabIndex = 1;
+            // 
+            // lblTitleBook
+            // 
+            lblTitleBook.AutoSize = true;
+            lblTitleBook.Location = new Point(15, 75);
+            lblTitleBook.Name = "lblTitleBook";
+            lblTitleBook.Size = new Size(70, 20);
+            lblTitleBook.TabIndex = 2;
+            lblTitleBook.Text = "Tên Sách:";
+            // 
+            // txtTitle
+            // 
+            txtTitle.Location = new Point(110, 72);
+            txtTitle.Name = "txtTitle";
+            txtTitle.Size = new Size(230, 27);
+            txtTitle.TabIndex = 3;
+            // 
+            // lblISBN
+            // 
+            lblISBN.AutoSize = true;
+            lblISBN.Location = new Point(15, 115);
+            lblISBN.Name = "lblISBN";
+            lblISBN.Size = new Size(44, 20);
+            lblISBN.TabIndex = 4;
+            lblISBN.Text = "ISBN:";
+            // 
+            // txtISBN
+            // 
+            txtISBN.Location = new Point(110, 112);
+            txtISBN.Name = "txtISBN";
+            txtISBN.Size = new Size(230, 27);
+            txtISBN.TabIndex = 5;
+            // 
+            // lblPublishedYear
+            // 
+            lblPublishedYear.AutoSize = true;
+            lblPublishedYear.Location = new Point(15, 155);
+            lblPublishedYear.Name = "lblPublishedYear";
+            lblPublishedYear.Size = new Size(66, 20);
+            lblPublishedYear.TabIndex = 6;
+            lblPublishedYear.Text = "Năm XB:";
+            // 
+            // txtPublishedYear
+            // 
+            txtPublishedYear.Location = new Point(110, 152);
+            txtPublishedYear.Name = "txtPublishedYear";
+            txtPublishedYear.Size = new Size(230, 27);
+            txtPublishedYear.TabIndex = 7;
+            // 
+            // lblAuthor
+            // 
+            lblAuthor.AutoSize = true;
+            lblAuthor.Location = new Point(15, 195);
+            lblAuthor.Name = "lblAuthor";
+            lblAuthor.Size = new Size(59, 20);
+            lblAuthor.TabIndex = 8;
+            lblAuthor.Text = "Tác Giả:";
+            // 
+            // txtAuthor
+            // 
+            txtAuthor.Location = new Point(110, 192);
+            txtAuthor.Name = "txtAuthor";
+            txtAuthor.Size = new Size(230, 27);
+            txtAuthor.TabIndex = 9;
+            // 
+            // lblCategory
+            // 
+            lblCategory.AutoSize = true;
+            lblCategory.Location = new Point(15, 235);
+            lblCategory.Name = "lblCategory";
+            lblCategory.Size = new Size(68, 20);
+            lblCategory.TabIndex = 10;
+            lblCategory.Text = "Thể Loại:";
+            // 
+            // txtCategory
+            // 
+            txtCategory.Location = new Point(110, 232);
+            txtCategory.Name = "txtCategory";
+            txtCategory.Size = new Size(230, 27);
+            txtCategory.TabIndex = 11;
             // 
             // flowButtons
             // 
-            this.flowButtons.Location = new Point(12, 330);
-            this.flowButtons.Size = new Size(360, 40);
-            this.flowButtons.Controls.Add(btnAdd);
-            this.flowButtons.Controls.Add(btnEdit);
-            this.flowButtons.Controls.Add(btnDelete);
-            this.flowButtons.Controls.Add(btnSave);
-            this.flowButtons.Controls.Add(btnCancel);
-
-            // Buttons Config
-            this.btnAdd.Text = "Thêm";
-            this.btnAdd.Size = new Size(65, 30);
-            this.btnAdd.BackColor = Color.ForestGreen;
-            this.btnAdd.ForeColor = Color.White;
-
-            this.btnEdit.Text = "Sửa";
-            this.btnEdit.Size = new Size(65, 30);
-            this.btnEdit.BackColor = Color.Orange;
-            this.btnEdit.ForeColor = Color.White;
-
-            this.btnDelete.Text = "Xóa";
-            this.btnDelete.Size = new Size(65, 30);
-            this.btnDelete.BackColor = Color.Firebrick;
-            this.btnDelete.ForeColor = Color.White;
-
-            this.btnSave.Text = "Lưu";
-            this.btnSave.Size = new Size(65, 30);
-            this.btnSave.Enabled = false;
-
-            this.btnCancel.Text = "Hủy";
-            this.btnCancel.Size = new Size(65, 30);
-            this.btnCancel.Enabled = false;
-
+            flowButtons.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            flowButtons.Controls.Add(btnAdd);
+            flowButtons.Controls.Add(btnEdit);
+            flowButtons.Controls.Add(btnDelete);
+            flowButtons.Controls.Add(btnSave);
+            flowButtons.Controls.Add(btnCancel);
+            flowButtons.Location = new Point(12, 400);
+            flowButtons.Name = "flowButtons";
+            flowButtons.Size = new Size(360, 44);
+            flowButtons.TabIndex = 2;
             // 
-            // Search Area
+            // btnAdd
             // 
-            this.txtSearch.Location = new Point(390, 65);
-            this.txtSearch.Size = new Size(250, 23);
-            this.txtSearch.PlaceholderText = "Tìm kiếm theo tên sách...";
-
-            this.btnSearch.Location = new Point(650, 63);
-            this.btnSearch.Size = new Size(70, 26);
-            this.btnSearch.Text = "Tìm";
-
-            this.btnReload.Location = new Point(730, 63);
-            this.btnReload.Size = new Size(70, 26);
-            this.btnReload.Text = "Tải lại";
-
+            btnAdd.BackColor = Color.ForestGreen;
+            btnAdd.ForeColor = Color.White;
+            btnAdd.Location = new Point(3, 3);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(65, 30);
+            btnAdd.TabIndex = 0;
+            btnAdd.Text = "Thêm";
+            btnAdd.UseVisualStyleBackColor = false;
+            // 
+            // btnEdit
+            // 
+            btnEdit.BackColor = Color.Orange;
+            btnEdit.ForeColor = Color.White;
+            btnEdit.Location = new Point(74, 3);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(65, 30);
+            btnEdit.TabIndex = 1;
+            btnEdit.Text = "Sửa";
+            btnEdit.UseVisualStyleBackColor = false;
+            // 
+            // btnDelete
+            // 
+            btnDelete.BackColor = Color.Firebrick;
+            btnDelete.ForeColor = Color.White;
+            btnDelete.Location = new Point(145, 3);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(65, 30);
+            btnDelete.TabIndex = 2;
+            btnDelete.Text = "Xóa";
+            btnDelete.UseVisualStyleBackColor = false;
+            // 
+            // btnSave
+            // 
+            btnSave.Enabled = false;
+            btnSave.Location = new Point(216, 3);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(65, 30);
+            btnSave.TabIndex = 3;
+            btnSave.Text = "Lưu";
+            // 
+            // btnCancel
+            // 
+            btnCancel.Enabled = false;
+            btnCancel.Location = new Point(287, 3);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(65, 30);
+            btnCancel.TabIndex = 4;
+            btnCancel.Text = "Hủy";
+            // 
+            // txtSearch
+            // 
+            txtSearch.Location = new Point(390, 65);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Tìm kiếm theo tên sách...";
+            txtSearch.Size = new Size(250, 27);
+            txtSearch.TabIndex = 3;
+            // 
+            // btnSearch
+            // 
+            btnSearch.Location = new Point(650, 63);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(70, 26);
+            btnSearch.TabIndex = 4;
+            btnSearch.Text = "Tìm";
+            // 
+            // btnReload
+            // 
+            btnReload.Location = new Point(730, 63);
+            btnReload.Name = "btnReload";
+            btnReload.Size = new Size(70, 26);
+            btnReload.TabIndex = 5;
+            btnReload.Text = "Tải lại";
             // 
             // dgvBooks
             // 
-            this.dgvBooks.Location = new Point(390, 100);
-            this.dgvBooks.Size = new Size(580, 400);
-            this.dgvBooks.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            this.dgvBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvBooks.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBooks.ReadOnly = true;
-            this.dgvBooks.MultiSelect = false;
-
-            // Form
-            this.ClientSize = new Size(1000, 520);
-            this.Controls.Add(topPanel);
-            this.Controls.Add(grpDetails);
-            this.Controls.Add(flowButtons);
-            this.Controls.Add(txtSearch);
-            this.Controls.Add(btnSearch);
-            this.Controls.Add(btnReload);
-            this.Controls.Add(dgvBooks);
-
-            this.Name = "QuanLiSach";
-            this.Text = "Quản Lý Sách";
-            this.Font = new Font("Segoe UI", 9F);
-            this.StartPosition = FormStartPosition.CenterScreen;
-
-            ((ISupportInitialize)(this.dgvBooks)).EndInit();
-            ((ISupportInitialize)(this.bindingSourceBooks)).EndInit();
-            this.grpDetails.ResumeLayout(false);
-            this.grpDetails.PerformLayout();
-            this.topPanel.ResumeLayout(false);
-            this.flowButtons.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            dgvBooks.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvBooks.ColumnHeadersHeight = 29;
+            dgvBooks.Location = new Point(390, 100);
+            dgvBooks.MultiSelect = false;
+            dgvBooks.Name = "dgvBooks";
+            dgvBooks.ReadOnly = true;
+            dgvBooks.RowHeadersWidth = 51;
+            dgvBooks.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvBooks.Size = new Size(580, 400);
+            dgvBooks.TabIndex = 6;
+            // 
+            // QuanLiSach
+            // 
+            ClientSize = new Size(1000, 520);
+            Controls.Add(topPanel);
+            Controls.Add(grpDetails);
+            Controls.Add(flowButtons);
+            Controls.Add(txtSearch);
+            Controls.Add(btnSearch);
+            Controls.Add(btnReload);
+            Controls.Add(dgvBooks);
+            Font = new Font("Segoe UI", 9F);
+            Name = "QuanLiSach";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Quản Lý Sách";
+            Load += QuanLiSach_Load_1;
+            topPanel.ResumeLayout(false);
+            grpDetails.ResumeLayout(false);
+            grpDetails.PerformLayout();
+            flowButtons.ResumeLayout(false);
+            ((ISupportInitialize)dgvBooks).EndInit();
+            ((ISupportInitialize)bindingSourceBooks).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
     }
 }
