@@ -216,7 +216,7 @@ Dự án này được phát hành theo giấy phép MIT. Xem file `LICENSE` đ�
 
 ## 👥 Tác Giả
 
-- **LowKeyLifeeee** - [GitHub]((https://github.com/LowKeyLifeeee))
+- **LowKeyLifeeee** - [GitHub](https://github.com/LowKeyLifeeee)
 
 ## 📞 Liên Hệ
 
@@ -236,4 +236,5 @@ Nếu có câu hỏi hoặc góp ý, vui lòng liên hệ:
 ---
 
 **Made with ❤️ using C# and SQL Server**
+
 
