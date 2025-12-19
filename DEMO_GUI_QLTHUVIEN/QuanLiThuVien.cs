@@ -188,5 +188,27 @@ namespace DoAnDemoUI
 
             // future: preview info based on selection
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                // Mở lại form đăng nhập
+                Login1 loginForm = new Login1();
+                loginForm.Show();
+                this.Close(); // Đóng form chính
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }
