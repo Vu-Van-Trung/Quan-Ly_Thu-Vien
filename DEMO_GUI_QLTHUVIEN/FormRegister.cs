@@ -1,5 +1,4 @@
-﻿
-using DoAnDemoUI.Model;
+﻿using DoAnDemoUI.Model;
 using LibraryManagement.Data;
 using Microsoft.EntityFrameworkCore; // QUAN TRỌNG: Dùng cái này thay cho System.Data.Entity
 using System;
@@ -17,6 +16,7 @@ namespace DoAnDemoUI
         public FormRegister()
         {
             InitializeComponent();
+            this.Load += FormRegister_Load;
             // Cấu hình ẩn mật khẩu
             txtNewPassword.PasswordChar = '*';
             txtConfirmPassword.PasswordChar = '*';
@@ -24,17 +24,20 @@ namespace DoAnDemoUI
             this.AcceptButton = create;
         }
 
+        private async void FormRegister_Load(object sender, EventArgs e)
+        {
+            await LoadAvailableStaffAsync();
+        }
+
         // --- XỬ LÝ SỰ KIỆN CLICK NÚT ĐĂNG KÝ ---
         private async void create_Click_1(object sender, EventArgs e)
         {
-            // 1. Reset thông báo lỗi
             loginError.Visible = false;
 
             string username = txtNewUsername.Text.Trim();
             string newPass = txtNewPassword.Text;
             string confirmPass = txtConfirmPassword.Text;
 
-            // 2. Validate dữ liệu đầu vào
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(newPass) || string.IsNullOrEmpty(confirmPass))
             {
                 ShowError("Vui lòng nhập đầy đủ thông tin!");
@@ -49,13 +52,19 @@ namespace DoAnDemoUI
                 return;
             }
 
-            // 3. Xử lý logic với Database
+            if (cboStaff.SelectedIndex < 0 || cboStaff.SelectedValue == null)
+            {
+                ShowError("Vui lòng chọn nhân viên cần cấp tài khoản!");
+                cboStaff.Focus();
+                return;
+            }
+
+            int staffId = (int)cboStaff.SelectedValue;
+
             try
             {
-                // Sử dụng 'using' để tự động đóng kết nối khi xong
                 using (var context = new LibraryContext())
                 {
-                    // Kiểm tra username đã tồn tại chưa (Dùng AnyAsync của EF Core)
                     bool isExist = await context.Users.AnyAsync(u => u.Username == username);
 
                     if (isExist)
@@ -65,30 +74,77 @@ namespace DoAnDemoUI
                         return;
                     }
 
-                    // Mã hóa mật khẩu
-                    string hashedPassword = HashPassword(newPass);
+                    bool staffAlreadyLinked = await context.Users.AnyAsync(u => u.StaffId == staffId);
+                    if (staffAlreadyLinked)
+                    {
+                        ShowError("Nhân viên này đã có tài khoản, vui lòng chọn nhân viên khác!");
+                        await LoadAvailableStaffAsync();
+                        return;
+                    }
 
-                    // Tạo User mới
-                    var newUser = new User()
+                    var newUser = new User
                     {
                         Username = username,
-                        Password = hashedPassword,
-                        Role = "User" // Mặc định quyền User
+                        Password = HashPassword(newPass),
+                        Role = "User",
+                        StaffId = staffId
                     };
 
-                    // Thêm và Lưu
                     context.Users.Add(newUser);
                     await context.SaveChangesAsync();
 
                     MessageBox.Show("Đăng ký tài khoản thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Đóng form đăng ký để quay về đăng nhập
-                    this.Close();
+                    Close();
                 }
+            }
+            catch (DbUpdateException ex)
+            {
+                var details = ex.InnerException?.Message ?? ex.Message;
+                MessageBox.Show($"Không thể lưu tài khoản mới.\nChi tiết: {details}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi hệ thống: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async Task LoadAvailableStaffAsync()
+        {
+            try
+            {
+                using var context = new LibraryContext();
+                var staffOptions = await context.Staff
+                    .Where(s => !context.Users.Any(u => u.StaffId == s.StaffId))
+                    .OrderBy(s => s.StaffId)
+                    .Select(s => new StaffOption
+                    {
+                        Id = s.StaffId,
+                        Display = $"{s.StaffId} - {s.HoTen} ({s.ChucVu})"
+                    })
+                    .ToListAsync();
+
+                cboStaff.DataSource = staffOptions;
+                cboStaff.DisplayMember = nameof(StaffOption.Display);
+                cboStaff.ValueMember = nameof(StaffOption.Id);
+                cboStaff.SelectedIndex = staffOptions.Count > 0 ? 0 : -1;
+                cboStaff.Enabled = staffOptions.Count > 0;
+                create.Enabled = staffOptions.Count > 0;
+
+                if (staffOptions.Count == 0)
+                {
+                    ShowError("Chưa có nhân viên nào chưa có tài khoản. Vui lòng thêm nhân viên trước!");
+                }
+                else
+                {
+                    loginError.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                cboStaff.DataSource = null;
+                cboStaff.Enabled = false;
+                create.Enabled = false;
+                ShowError($"Không thể tải danh sách nhân viên: {ex.Message}");
             }
         }
 
@@ -108,12 +164,7 @@ namespace DoAnDemoUI
             using (SHA256 sha = SHA256.Create())
             {
                 byte[] bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
-                StringBuilder sb = new StringBuilder();
-                foreach (byte b in bytes)
-                {
-                    sb.Append(b.ToString("x2"));
-                }
-                return sb.ToString();
+                return Convert.ToBase64String(bytes); // 44 ký tự => không bị cắt nếu cột Password nvarchar(50)
             }
         }
 
@@ -129,5 +180,11 @@ namespace DoAnDemoUI
         private void txtNewUsername_TextChanged(object sender, EventArgs e) { }
         private void txtPassword_TextChanged(object sender, EventArgs e) { }
         private void guna2Panel1_Paint(object sender, PaintEventArgs e) { }
+
+        private sealed class StaffOption
+        {
+            public int Id { get; set; }
+            public string Display { get; set; }
+        }
     }
 }

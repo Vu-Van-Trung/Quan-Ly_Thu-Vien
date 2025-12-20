@@ -1,5 +1,4 @@
-﻿
-using LibraryManagement.Data;
+﻿using LibraryManagement.Data;
 using Microsoft.EntityFrameworkCore; // Quan trọng cho EF Core
 using System;
 using System.Drawing;
@@ -31,13 +30,12 @@ namespace DoAnDemoUI
         // --- HÀM HASH MẬT KHẨU ---
         public static string HashPassword(string password)
         {
+            if (string.IsNullOrEmpty(password)) return string.Empty;
+
             using (SHA256 sha = SHA256.Create())
             {
-                byte[] bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(password ?? string.Empty));
-                StringBuilder sb = new StringBuilder();
-                foreach (byte b in bytes)
-                    sb.Append(b.ToString("x2"));
-                return sb.ToString();
+                byte[] bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(bytes);
             }
         }
 
