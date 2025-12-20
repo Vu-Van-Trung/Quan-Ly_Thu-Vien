@@ -56,8 +56,14 @@ namespace DoAnDemoUI
         private void InitializeComponent()
         {
             components = new Container();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             lblTitle = new Label();
             topPanel = new Panel();
+            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             grpDetails = new GroupBox();
             lblBookId = new Label();
             txtBookId = new TextBox();
@@ -98,7 +104,7 @@ namespace DoAnDemoUI
             lblTitle.ForeColor = Color.White;
             lblTitle.Location = new Point(0, 0);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(1000, 50);
+            lblTitle.Size = new Size(1310, 60);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "QUẢN LÝ SÁCH";
             lblTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -106,12 +112,33 @@ namespace DoAnDemoUI
             // topPanel
             // 
             topPanel.BackColor = Color.FromArgb(33, 150, 243);
+            topPanel.Controls.Add(guna2Button1);
             topPanel.Controls.Add(lblTitle);
             topPanel.Dock = DockStyle.Top;
             topPanel.Location = new Point(0, 0);
             topPanel.Name = "topPanel";
-            topPanel.Size = new Size(1000, 60);
+            topPanel.Size = new Size(1310, 60);
             topPanel.TabIndex = 0;
+            // 
+            // guna2Button1
+            // 
+            guna2Button1.CustomizableEdges = customizableEdges1;
+            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button1.FillColor = Color.DodgerBlue;
+            guna2Button1.Font = new Font("Segoe UI", 9F);
+            guna2Button1.ForeColor = Color.White;
+            guna2Button1.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
+            guna2Button1.ImageSize = new Size(40, 40);
+            guna2Button1.Location = new Point(1254, 12);
+            guna2Button1.Name = "guna2Button1";
+            guna2Button1.PressedColor = SystemColors.ButtonFace;
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2Button1.Size = new Size(44, 36);
+            guna2Button1.TabIndex = 1;
+            guna2Button1.Click += guna2Button1_Click;
             // 
             // grpDetails
             // 
@@ -129,20 +156,21 @@ namespace DoAnDemoUI
             grpDetails.Controls.Add(txtAuthor);
             grpDetails.Controls.Add(lblCategory);
             grpDetails.Controls.Add(txtCategory);
-            grpDetails.Location = new Point(12, 70);
+            grpDetails.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            grpDetails.ForeColor = Color.FromArgb(33, 150, 243);
+            grpDetails.Location = new Point(12, 83);
+            grpDetails.Name = "grpDetails";
             grpDetails.Size = new Size(360, 360);
             grpDetails.TabIndex = 1;
             grpDetails.TabStop = false;
             grpDetails.Text = "📚 Thông Tin Sách";
-            grpDetails.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            grpDetails.ForeColor = Color.FromArgb(33, 150, 243);
             // 
             // lblBookId
             // 
             lblBookId.AutoSize = true;
             lblBookId.Location = new Point(15, 35);
             lblBookId.Name = "lblBookId";
-            lblBookId.Size = new Size(68, 20);
+            lblBookId.Size = new Size(82, 23);
             lblBookId.TabIndex = 0;
             lblBookId.Text = "Mã Sách:";
             // 
@@ -152,7 +180,7 @@ namespace DoAnDemoUI
             txtBookId.Location = new Point(110, 32);
             txtBookId.Name = "txtBookId";
             txtBookId.ReadOnly = true;
-            txtBookId.Size = new Size(230, 27);
+            txtBookId.Size = new Size(230, 30);
             txtBookId.TabIndex = 1;
             // 
             // lblTitleBook
@@ -160,7 +188,7 @@ namespace DoAnDemoUI
             lblTitleBook.AutoSize = true;
             lblTitleBook.Location = new Point(15, 75);
             lblTitleBook.Name = "lblTitleBook";
-            lblTitleBook.Size = new Size(70, 20);
+            lblTitleBook.Size = new Size(84, 23);
             lblTitleBook.TabIndex = 2;
             lblTitleBook.Text = "Tên Sách:";
             // 
@@ -168,7 +196,7 @@ namespace DoAnDemoUI
             // 
             txtTitle.Location = new Point(110, 72);
             txtTitle.Name = "txtTitle";
-            txtTitle.Size = new Size(230, 27);
+            txtTitle.Size = new Size(230, 30);
             txtTitle.TabIndex = 3;
             // 
             // lblPublisherCode
@@ -176,7 +204,7 @@ namespace DoAnDemoUI
             lblPublisherCode.AutoSize = true;
             lblPublisherCode.Location = new Point(15, 115);
             lblPublisherCode.Name = "lblPublisherCode";
-            lblPublisherCode.Size = new Size(71, 20);
+            lblPublisherCode.Size = new Size(80, 23);
             lblPublisherCode.TabIndex = 4;
             lblPublisherCode.Text = "Mã NXB:";
             // 
@@ -184,7 +212,7 @@ namespace DoAnDemoUI
             // 
             txtPublisherCode.Location = new Point(110, 112);
             txtPublisherCode.Name = "txtPublisherCode";
-            txtPublisherCode.Size = new Size(230, 27);
+            txtPublisherCode.Size = new Size(230, 30);
             txtPublisherCode.TabIndex = 5;
             // 
             // lblPublisherName
@@ -192,7 +220,7 @@ namespace DoAnDemoUI
             lblPublisherName.AutoSize = true;
             lblPublisherName.Location = new Point(15, 155);
             lblPublisherName.Name = "lblPublisherName";
-            lblPublisherName.Size = new Size(75, 20);
+            lblPublisherName.Size = new Size(82, 23);
             lblPublisherName.TabIndex = 6;
             lblPublisherName.Text = "Tên NXB:";
             // 
@@ -202,7 +230,7 @@ namespace DoAnDemoUI
             txtPublisherName.Location = new Point(110, 152);
             txtPublisherName.Name = "txtPublisherName";
             txtPublisherName.ReadOnly = true;
-            txtPublisherName.Size = new Size(230, 27);
+            txtPublisherName.Size = new Size(230, 30);
             txtPublisherName.TabIndex = 7;
             // 
             // lblPublishedYear
@@ -210,7 +238,7 @@ namespace DoAnDemoUI
             lblPublishedYear.AutoSize = true;
             lblPublishedYear.Location = new Point(15, 195);
             lblPublishedYear.Name = "lblPublishedYear";
-            lblPublishedYear.Size = new Size(66, 20);
+            lblPublishedYear.Size = new Size(80, 23);
             lblPublishedYear.TabIndex = 8;
             lblPublishedYear.Text = "Năm XB:";
             // 
@@ -218,7 +246,7 @@ namespace DoAnDemoUI
             // 
             txtPublishedYear.Location = new Point(110, 192);
             txtPublishedYear.Name = "txtPublishedYear";
-            txtPublishedYear.Size = new Size(230, 27);
+            txtPublishedYear.Size = new Size(230, 30);
             txtPublishedYear.TabIndex = 9;
             // 
             // lblAuthor
@@ -226,7 +254,7 @@ namespace DoAnDemoUI
             lblAuthor.AutoSize = true;
             lblAuthor.Location = new Point(15, 235);
             lblAuthor.Name = "lblAuthor";
-            lblAuthor.Size = new Size(59, 20);
+            lblAuthor.Size = new Size(72, 23);
             lblAuthor.TabIndex = 10;
             lblAuthor.Text = "Tác Giả:";
             // 
@@ -234,7 +262,7 @@ namespace DoAnDemoUI
             // 
             txtAuthor.Location = new Point(110, 232);
             txtAuthor.Name = "txtAuthor";
-            txtAuthor.Size = new Size(230, 27);
+            txtAuthor.Size = new Size(230, 30);
             txtAuthor.TabIndex = 11;
             // 
             // lblCategory
@@ -242,7 +270,7 @@ namespace DoAnDemoUI
             lblCategory.AutoSize = true;
             lblCategory.Location = new Point(15, 275);
             lblCategory.Name = "lblCategory";
-            lblCategory.Size = new Size(68, 20);
+            lblCategory.Size = new Size(82, 23);
             lblCategory.TabIndex = 12;
             lblCategory.Text = "Thể Loại:";
             // 
@@ -250,7 +278,7 @@ namespace DoAnDemoUI
             // 
             txtCategory.Location = new Point(110, 272);
             txtCategory.Name = "txtCategory";
-            txtCategory.Size = new Size(230, 27);
+            txtCategory.Size = new Size(230, 30);
             txtCategory.TabIndex = 13;
             // 
             // flowButtons
@@ -261,7 +289,7 @@ namespace DoAnDemoUI
             flowButtons.Controls.Add(btnDelete);
             flowButtons.Controls.Add(btnSave);
             flowButtons.Controls.Add(btnCancel);
-            flowButtons.Location = new Point(12, 440);
+            flowButtons.Location = new Point(12, 663);
             flowButtons.Name = "flowButtons";
             flowButtons.Size = new Size(360, 44);
             flowButtons.TabIndex = 2;
@@ -269,81 +297,83 @@ namespace DoAnDemoUI
             // btnAdd
             // 
             btnAdd.BackColor = Color.FromArgb(76, 175, 80);
-            btnAdd.ForeColor = Color.White;
-            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.Cursor = Cursors.Hand;
             btnAdd.FlatAppearance.BorderSize = 0;
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnAdd.ForeColor = Color.White;
             btnAdd.Location = new Point(3, 3);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(65, 34);
             btnAdd.TabIndex = 0;
             btnAdd.Text = "➕ Thêm";
-            btnAdd.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnAdd.Cursor = Cursors.Hand;
             btnAdd.UseVisualStyleBackColor = false;
             // 
             // btnEdit
             // 
             btnEdit.BackColor = Color.FromArgb(33, 150, 243);
-            btnEdit.ForeColor = Color.White;
-            btnEdit.FlatStyle = FlatStyle.Flat;
+            btnEdit.Cursor = Cursors.Hand;
             btnEdit.FlatAppearance.BorderSize = 0;
+            btnEdit.FlatStyle = FlatStyle.Flat;
+            btnEdit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnEdit.ForeColor = Color.White;
             btnEdit.Location = new Point(74, 3);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(65, 34);
             btnEdit.TabIndex = 1;
             btnEdit.Text = "✏️ Sửa";
-            btnEdit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnEdit.Cursor = Cursors.Hand;
             btnEdit.UseVisualStyleBackColor = false;
             // 
             // btnDelete
             // 
             btnDelete.BackColor = Color.FromArgb(244, 67, 54);
-            btnDelete.ForeColor = Color.White;
-            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Cursor = Cursors.Hand;
             btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnDelete.ForeColor = Color.White;
             btnDelete.Location = new Point(145, 3);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(65, 34);
             btnDelete.TabIndex = 2;
             btnDelete.Text = "🗑️ Xóa";
-            btnDelete.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnDelete.Cursor = Cursors.Hand;
             btnDelete.UseVisualStyleBackColor = false;
             // 
             // btnSave
             // 
             btnSave.BackColor = Color.FromArgb(0, 150, 136);
-            btnSave.ForeColor = Color.White;
-            btnSave.FlatStyle = FlatStyle.Flat;
-            btnSave.FlatAppearance.BorderSize = 0;
+            btnSave.Cursor = Cursors.Hand;
             btnSave.Enabled = false;
+            btnSave.FlatAppearance.BorderSize = 0;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnSave.ForeColor = Color.White;
             btnSave.Location = new Point(216, 3);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(65, 34);
             btnSave.TabIndex = 3;
             btnSave.Text = "💾 Lưu";
-            btnSave.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnSave.Cursor = Cursors.Hand;
+            btnSave.UseVisualStyleBackColor = false;
             // 
             // btnCancel
             // 
             btnCancel.BackColor = Color.FromArgb(158, 158, 158);
-            btnCancel.ForeColor = Color.White;
-            btnCancel.FlatStyle = FlatStyle.Flat;
-            btnCancel.FlatAppearance.BorderSize = 0;
+            btnCancel.Cursor = Cursors.Hand;
             btnCancel.Enabled = false;
+            btnCancel.FlatAppearance.BorderSize = 0;
+            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnCancel.ForeColor = Color.White;
             btnCancel.Location = new Point(287, 3);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(65, 34);
             btnCancel.TabIndex = 4;
             btnCancel.Text = "✖️ Hủy";
-            btnCancel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnCancel.Cursor = Cursors.Hand;
+            btnCancel.UseVisualStyleBackColor = false;
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(390, 65);
+            txtSearch.Location = new Point(390, 82);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Tìm kiếm theo tên sách...";
             txtSearch.Size = new Size(250, 27);
@@ -351,7 +381,7 @@ namespace DoAnDemoUI
             // 
             // btnSearch
             // 
-            btnSearch.Location = new Point(650, 63);
+            btnSearch.Location = new Point(655, 82);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(70, 26);
             btnSearch.TabIndex = 4;
@@ -359,7 +389,7 @@ namespace DoAnDemoUI
             // 
             // btnReload
             // 
-            btnReload.Location = new Point(730, 63);
+            btnReload.Location = new Point(731, 83);
             btnReload.Name = "btnReload";
             btnReload.Size = new Size(70, 26);
             btnReload.TabIndex = 5;
@@ -367,32 +397,43 @@ namespace DoAnDemoUI
             // 
             // dgvBooks
             // 
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(245, 245, 245);
+            dgvBooks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvBooks.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvBooks.BackgroundColor = Color.White;
             dgvBooks.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(33, 150, 243);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvBooks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvBooks.ColumnHeadersHeight = 40;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(100, 181, 246);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvBooks.DefaultCellStyle = dataGridViewCellStyle3;
             dgvBooks.EnableHeadersVisualStyles = false;
-            dgvBooks.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(33, 150, 243);
-            dgvBooks.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgvBooks.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            dgvBooks.DefaultCellStyle.Font = new Font("Segoe UI", 9.5F);
-            dgvBooks.DefaultCellStyle.SelectionBackColor = Color.FromArgb(100, 181, 246);
-            dgvBooks.DefaultCellStyle.SelectionForeColor = Color.White;
-            dgvBooks.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
-            dgvBooks.RowTemplate.Height = 35;
-            dgvBooks.Location = new Point(390, 100);
+            dgvBooks.Location = new Point(390, 126);
             dgvBooks.MultiSelect = false;
             dgvBooks.Name = "dgvBooks";
             dgvBooks.ReadOnly = true;
             dgvBooks.RowHeadersWidth = 51;
+            dgvBooks.RowTemplate.Height = 35;
             dgvBooks.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvBooks.Size = new Size(580, 400);
+            dgvBooks.Size = new Size(890, 597);
             dgvBooks.TabIndex = 6;
             // 
             // QuanLiSach
             // 
-            ClientSize = new Size(1000, 520);
+            ClientSize = new Size(1310, 743);
             Controls.Add(topPanel);
             Controls.Add(grpDetails);
             Controls.Add(flowButtons);
@@ -401,6 +442,7 @@ namespace DoAnDemoUI
             Controls.Add(btnReload);
             Controls.Add(dgvBooks);
             Font = new Font("Segoe UI", 9F);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "QuanLiSach";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản Lý Sách";
@@ -414,5 +456,6 @@ namespace DoAnDemoUI
             ResumeLayout(false);
             PerformLayout();
         }
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
     }
 }

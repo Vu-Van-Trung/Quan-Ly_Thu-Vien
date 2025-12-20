@@ -22,6 +22,8 @@ namespace DoAnDemoUI
             txtPassword.PasswordChar = '*';
             // Nhấn Enter thì tự động kích hoạt nút Login
             this.AcceptButton = btnLogin;
+            // Đặt mặc định dấu nháy vào ô username
+            this.ActiveControl = txtUsername;
         }
 
         // --- HÀM HASH MẬT KHẨU ---

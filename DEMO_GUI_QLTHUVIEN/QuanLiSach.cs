@@ -405,5 +405,10 @@ namespace DoAnDemoUI
             txtPublisherName.Text = publisher.TenNhaXuatBan;
             return true;
         }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
