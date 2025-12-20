@@ -16,19 +16,19 @@ namespace DoAnDemoUI
         private TextBox txtBookId;
         private Label lblTitleBook;
         private TextBox txtTitle;
-
-        // Đã sửa: Dùng TextBox thay vì ComboBox để nhập liệu trực tiếp
+        private Label lblPublisherCode;
+        private TextBox txtPublisherCode;
+        private Label lblPublisherName;
+        private TextBox txtPublisherName;
+        private Label lblPublishedYear;
+        private TextBox txtPublishedYear;
         private Label lblAuthor;
-        private TextBox txtAuthor; // Thay cho cbAuthor
-
+        private TextBox txtAuthor;
         private Label lblCategory;
         private TextBox txtCategory; // Thay cho cbCategory
 
         private Label lblISBN;
         private TextBox txtISBN;
-
-        private Label lblPublishedYear;
-        private TextBox txtPublishedYear;
 
         private FlowLayoutPanel flowButtons;
         private Button btnAdd;
@@ -63,8 +63,10 @@ namespace DoAnDemoUI
             txtBookId = new TextBox();
             lblTitleBook = new Label();
             txtTitle = new TextBox();
-            lblISBN = new Label();
-            txtISBN = new TextBox();
+            lblPublisherCode = new Label();
+            txtPublisherCode = new TextBox();
+            lblPublisherName = new Label();
+            txtPublisherName = new TextBox();
             lblPublishedYear = new Label();
             txtPublishedYear = new TextBox();
             lblAuthor = new Label();
@@ -117,8 +119,10 @@ namespace DoAnDemoUI
             grpDetails.Controls.Add(txtBookId);
             grpDetails.Controls.Add(lblTitleBook);
             grpDetails.Controls.Add(txtTitle);
-            grpDetails.Controls.Add(lblISBN);
-            grpDetails.Controls.Add(txtISBN);
+            grpDetails.Controls.Add(lblPublisherCode);
+            grpDetails.Controls.Add(txtPublisherCode);
+            grpDetails.Controls.Add(lblPublisherName);
+            grpDetails.Controls.Add(txtPublisherName);
             grpDetails.Controls.Add(lblPublishedYear);
             grpDetails.Controls.Add(txtPublishedYear);
             grpDetails.Controls.Add(lblAuthor);
@@ -126,8 +130,7 @@ namespace DoAnDemoUI
             grpDetails.Controls.Add(lblCategory);
             grpDetails.Controls.Add(txtCategory);
             grpDetails.Location = new Point(12, 70);
-            grpDetails.Name = "grpDetails";
-            grpDetails.Size = new Size(360, 320);
+            grpDetails.Size = new Size(360, 360);
             grpDetails.TabIndex = 1;
             grpDetails.TabStop = false;
             grpDetails.Text = "📚 Thông Tin Sách";
@@ -168,69 +171,87 @@ namespace DoAnDemoUI
             txtTitle.Size = new Size(230, 27);
             txtTitle.TabIndex = 3;
             // 
-            // lblISBN
+            // lblPublisherCode
             // 
-            lblISBN.AutoSize = true;
-            lblISBN.Location = new Point(15, 115);
-            lblISBN.Name = "lblISBN";
-            lblISBN.Size = new Size(44, 20);
-            lblISBN.TabIndex = 4;
-            lblISBN.Text = "ISBN:";
+            lblPublisherCode.AutoSize = true;
+            lblPublisherCode.Location = new Point(15, 115);
+            lblPublisherCode.Name = "lblPublisherCode";
+            lblPublisherCode.Size = new Size(71, 20);
+            lblPublisherCode.TabIndex = 4;
+            lblPublisherCode.Text = "Mã NXB:";
             // 
-            // txtISBN
+            // txtPublisherCode
             // 
-            txtISBN.Location = new Point(110, 112);
-            txtISBN.Name = "txtISBN";
-            txtISBN.Size = new Size(230, 27);
-            txtISBN.TabIndex = 5;
+            txtPublisherCode.Location = new Point(110, 112);
+            txtPublisherCode.Name = "txtPublisherCode";
+            txtPublisherCode.Size = new Size(230, 27);
+            txtPublisherCode.TabIndex = 5;
+            // 
+            // lblPublisherName
+            // 
+            lblPublisherName.AutoSize = true;
+            lblPublisherName.Location = new Point(15, 155);
+            lblPublisherName.Name = "lblPublisherName";
+            lblPublisherName.Size = new Size(75, 20);
+            lblPublisherName.TabIndex = 6;
+            lblPublisherName.Text = "Tên NXB:";
+            // 
+            // txtPublisherName
+            // 
+            txtPublisherName.BackColor = SystemColors.ControlLight;
+            txtPublisherName.Location = new Point(110, 152);
+            txtPublisherName.Name = "txtPublisherName";
+            txtPublisherName.ReadOnly = true;
+            txtPublisherName.Size = new Size(230, 27);
+            txtPublisherName.TabIndex = 7;
             // 
             // lblPublishedYear
             // 
             lblPublishedYear.AutoSize = true;
-            lblPublishedYear.Location = new Point(15, 155);
+            lblPublishedYear.Location = new Point(15, 195);
             lblPublishedYear.Name = "lblPublishedYear";
             lblPublishedYear.Size = new Size(66, 20);
-            lblPublishedYear.TabIndex = 6;
+            lblPublishedYear.TabIndex = 8;
             lblPublishedYear.Text = "Năm XB:";
             // 
             // txtPublishedYear
             // 
-            txtPublishedYear.Location = new Point(110, 152);
+            txtPublishedYear.Location = new Point(110, 192);
             txtPublishedYear.Name = "txtPublishedYear";
             txtPublishedYear.Size = new Size(230, 27);
-            txtPublishedYear.TabIndex = 7;
+            txtPublishedYear.TabIndex = 9;
             // 
             // lblAuthor
             // 
             lblAuthor.AutoSize = true;
-            lblAuthor.Location = new Point(15, 195);
+            lblAuthor.Location = new Point(15, 235);
             lblAuthor.Name = "lblAuthor";
             lblAuthor.Size = new Size(59, 20);
-            lblAuthor.TabIndex = 8;
+            lblAuthor.TabIndex = 10;
             lblAuthor.Text = "Tác Giả:";
             // 
             // txtAuthor
             // 
-            txtAuthor.Location = new Point(110, 192);
+            txtAuthor.Location = new Point(110, 232);
             txtAuthor.Name = "txtAuthor";
             txtAuthor.Size = new Size(230, 27);
-            txtAuthor.TabIndex = 9;
+            txtAuthor.TabIndex = 11;
             // 
             // lblCategory
             // 
             lblCategory.AutoSize = true;
-            lblCategory.Location = new Point(15, 235);
+            lblCategory.Location = new Point(15, 275);
             lblCategory.Name = "lblCategory";
             lblCategory.Size = new Size(68, 20);
-            lblCategory.TabIndex = 10;
+            lblCategory.TabIndex = 12;
             lblCategory.Text = "Thể Loại:";
             // 
             // txtCategory
             // 
-            txtCategory.Location = new Point(110, 232);
+            txtCategory.Location = new Point(110, 272);
             txtCategory.Name = "txtCategory";
             txtCategory.Size = new Size(230, 27);
-            txtCategory.TabIndex = 11;
+            txtCategory.TabIndex = 13;
             // 
             // flowButtons
             // 
@@ -240,7 +261,7 @@ namespace DoAnDemoUI
             flowButtons.Controls.Add(btnDelete);
             flowButtons.Controls.Add(btnSave);
             flowButtons.Controls.Add(btnCancel);
-            flowButtons.Location = new Point(12, 400);
+            flowButtons.Location = new Point(12, 440);
             flowButtons.Name = "flowButtons";
             flowButtons.Size = new Size(360, 44);
             flowButtons.TabIndex = 2;
