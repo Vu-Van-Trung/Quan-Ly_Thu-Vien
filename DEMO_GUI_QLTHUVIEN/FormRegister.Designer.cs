@@ -22,6 +22,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.cboStaff = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.lblStaff = new System.Windows.Forms.Label();
             this.loginError = new System.Windows.Forms.Label();
             this.Cancel = new Guna.UI2.WinForms.Guna2Button();
             this.create = new Guna.UI2.WinForms.Guna2Button();
@@ -51,6 +53,8 @@
             // guna2Panel1
             // 
             this.guna2Panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.guna2Panel1.Controls.Add(this.cboStaff);
+            this.guna2Panel1.Controls.Add(this.lblStaff);
             this.guna2Panel1.Controls.Add(this.loginError);
             this.guna2Panel1.Controls.Add(this.Cancel);
             this.guna2Panel1.Controls.Add(this.create);
@@ -64,15 +68,41 @@
             this.guna2Panel1.TabIndex = 10;
             this.guna2Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel1_Paint);
             // 
+            // cboStaff
+            // 
+            this.cboStaff.BackColor = System.Drawing.Color.Transparent;
+            this.cboStaff.BorderRadius = 18;
+            this.cboStaff.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cboStaff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboStaff.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cboStaff.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cboStaff.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.cboStaff.ForeColor = System.Drawing.Color.Black;
+            this.cboStaff.ItemHeight = 30;
+            this.cboStaff.Location = new System.Drawing.Point(252, 371);
+            this.cboStaff.Name = "cboStaff";
+            this.cboStaff.Size = new System.Drawing.Size(415, 36);
+            this.cboStaff.TabIndex = 18;
+            // 
+            // lblStaff
+            // 
+            this.lblStaff.AutoSize = true;
+            this.lblStaff.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
+            this.lblStaff.Location = new System.Drawing.Point(248, 340);
+            this.lblStaff.Name = "lblStaff";
+            this.lblStaff.Size = new System.Drawing.Size(169, 23);
+            this.lblStaff.TabIndex = 21;
+            this.lblStaff.Text = "Chọn nhân viên *";
+            // 
             // loginError
             // 
             this.loginError.AutoSize = true;
             this.loginError.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginError.ForeColor = System.Drawing.Color.Red;
-            this.loginError.Location = new System.Drawing.Point(332, 348);
+            this.loginError.Location = new System.Drawing.Point(282, 420);
             this.loginError.Name = "loginError";
             this.loginError.Size = new System.Drawing.Size(270, 20);
-            this.loginError.TabIndex = 20;
+            this.loginError.TabIndex = 22;
             this.loginError.Text = "Tên đăng nhập hoặc mật khẩu sai !";
             this.loginError.Visible = false;
             // 
@@ -82,10 +112,10 @@
             this.Cancel.FillColor = System.Drawing.Color.Teal;
             this.Cancel.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
             this.Cancel.ForeColor = System.Drawing.Color.White;
-            this.Cancel.Location = new System.Drawing.Point(272, 463);
+            this.Cancel.Location = new System.Drawing.Point(272, 490);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(380, 56);
-            this.Cancel.TabIndex = 19;
+            this.Cancel.TabIndex = 20;
             this.Cancel.Text = "Trờ Về Đăng Nhập";
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click_1);
             // 
@@ -95,10 +125,10 @@
             this.create.FillColor = System.Drawing.Color.Lime;
             this.create.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
             this.create.ForeColor = System.Drawing.Color.White;
-            this.create.Location = new System.Drawing.Point(272, 385);
+            this.create.Location = new System.Drawing.Point(272, 430);
             this.create.Name = "create";
             this.create.Size = new System.Drawing.Size(380, 56);
-            this.create.TabIndex = 18;
+            this.create.TabIndex = 19;
             this.create.Text = "Đăng Kí Tài Khoản";
             this.create.Click += new System.EventHandler(this.create_Click_1);
             // 
@@ -168,5 +198,7 @@
         private Guna.UI2.WinForms.Guna2Button create;
         private Guna.UI2.WinForms.Guna2Button Cancel;
         private System.Windows.Forms.Label loginError;
+        private Guna.UI2.WinForms.Guna2ComboBox cboStaff;
+        private System.Windows.Forms.Label lblStaff;
     }
 }
