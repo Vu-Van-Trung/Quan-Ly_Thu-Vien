@@ -100,7 +100,9 @@ namespace DoAnDemoUI
         // --- XỬ LÝ SỰ KIỆN THOÁT (Nút X tròn góc trái) ---
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
-            Application.Exit();
+            // Đặt kết quả để Program.cs nhận biết và thoát vòng lặp
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
 
         // --- SỰ KIỆN KHI FORM ĐANG ĐÓNG ---
@@ -158,6 +160,6 @@ namespace DoAnDemoUI
         // --- CÁC HÀM RỖNG (Giữ lại để tránh lỗi Designer nếu đã lỡ Double Click vào) ---
         private void Login_Load(object sender, EventArgs e) { }
         private void guna2TextBox1_TextChanged(object sender, EventArgs e) { }
-        private void guna2TextBox2_TextChanged(object sender, EventArgs e) { }
+        private void guna2TextBox2_TextChanged(object sender, EventArgs e) { }'
     }
 }
