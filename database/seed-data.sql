@@ -90,11 +90,11 @@ GO
 SET IDENTITY_INSERT TAI_KHOAN ON;
 
 INSERT INTO TAI_KHOAN (MaTaiKhoan, TenDangNhap, MatKhau, MaNhanVien, QuyenHan, TrangThai) VALUES
-(1, 'admin', '8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92', 1, N'Quản trị viên', N'Hoạt động'),
-(2, 'thuthu01', '8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92', 2, N'Thủ thư', N'Hoạt động'),
-(3, 'nhanvien01', '8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92', 3, N'Nhân viên', N'Hoạt động'),
-(4, 'nhanvien02', '8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92', 4, N'Nhân viên', N'Hoạt động'),
-(5, 'nhanvien03', '8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92', 5, N'Nhân viên', N'Hoạt động');
+(1, 'admin', 'pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=', 1, N'Quản trị viên', N'Hoạt động'),
+(2, 'thuthu01', 'pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=', 2, N'Thủ thư', N'Hoạt động'),
+(3, 'nhanvien01', 'pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=', 3, N'Nhân viên', N'Hoạt động'),
+(4, 'nhanvien02', 'pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=', 4, N'Nhân viên', N'Hoạt động'),
+(5, 'nhanvien03', 'pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=', 5, N'Nhân viên', N'Hoạt động');
 
 SET IDENTITY_INSERT TAI_KHOAN OFF;
 GO
