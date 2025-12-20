@@ -37,25 +37,14 @@ namespace DoAnDemoUI
 
             // --- ĐÃ CẬP NHẬT MENU ĐỂ KHỚP VỚI MODEL ---
 
-            // 1. Quản lý Sách (Book)
-            // Lưu ý: Bạn cần tạo FormBook.cs
             AddMenuAction("ManageBooks", "Quản lý Sách", () => OpenOrActivateChild(typeof(QuanLiSach)));
-
-            // 2. Quản lý Tác giả (Author) - Mới thêm
-            // Lưu ý: Bạn cần tạo FormAuthor.cs
             //AddMenuAction("ManageAuthors", "Quản lý Tác giả", () => OpenOrActivateChild(typeof(FormAuthor)));
-
-            // 3. Quản lý Thể loại (Category) - Mới thêm
-            // Lưu ý: Bạn cần tạo FormCategory.cs
             //AddMenuAction("ManageCategories", "Quản lý Thể loại", () => OpenOrActivateChild(typeof(FormCategory)));
-
-            // 4. Quản lý Độc giả (Member)
-            // Lưu ý: Bạn cần tạo FormMember.cs
-           AddMenuAction("ManageMembers", "Quản lý Độc giả", () => OpenOrActivateChild(typeof(FormMember)));
-
-            // 5. Quản lý Mượn Trả (Loan)
-            // Lưu ý: Bạn cần tạo FormLoan.cs
-           AddMenuAction("ManageLoans", "Quản lý Mượn/Trả", () => OpenOrActivateChild(typeof(FormLoan)));
+            AddMenuAction("ManageMembers", "Quản lý Độc giả", () => OpenOrActivateChild(typeof(FormMember)));
+            AddMenuAction("ManageLoans", "Quản lý Mượn/Trả", () => OpenOrActivateChild(typeof(FormLoan)));
+            AddMenuAction("ManageStaff", "Quản lý Nhân viên", () => OpenOrActivateChild(typeof(FormStaff)));
+            AddMenuAction("ManagePublishers", "Quản lý Nhà XB", () => OpenOrActivateChild(typeof(FormPublisher)));
+            AddMenuAction("Reports", "Báo cáo & Thống kê", () => OpenOrActivateChild(typeof(FormReport)));
         }
 
         // --- CÁC HÀM HỖ TRỢ XỬ LÝ MENU ---
@@ -189,6 +178,38 @@ namespace DoAnDemoUI
             public Action Action { get; set; }
 
             public override string ToString() => DisplayName;
+        }
+
+        private void lstMenu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!lstMenu.Focused)
+            {
+                return;
+            }
+
+            // future: preview info based on selection
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                // Mở lại form đăng nhập
+                Login1 loginForm = new Login1();
+                loginForm.Show();
+                this.Close(); // Đóng form chính
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

@@ -4,6 +4,15 @@
     <Compile Update="FormMember.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FormPublisher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="QuanLiSach.cs">
       <SubType>Form</SubType>
     </Compile>

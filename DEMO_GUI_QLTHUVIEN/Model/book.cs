@@ -70,6 +70,6 @@ namespace LibraryManagement.Models
         public virtual Publisher Publisher { get; set; }
 
         public virtual ICollection<LoanDetail>? LoanDetails { get; set; }
-        public object ISBN { get; internal set; }
+       // public object ISBN { get; internal set; }
     }
 }

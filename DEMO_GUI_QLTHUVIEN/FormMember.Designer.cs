@@ -45,12 +45,12 @@
             // 
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            lblTitle.ForeColor = Color.Navy;
+            lblTitle.ForeColor = Color.FromArgb(33, 150, 243);
             lblTitle.Location = new Point(557, 9);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(316, 46);
             lblTitle.TabIndex = 3;
-            lblTitle.Text = "QUẢN LÝ ĐỘC GIẢ";
+            lblTitle.Text = "👥 QUẢN LÝ ĐỘC GIẢ";
             lblTitle.Click += lblTitle_Click;
             // 
             // gbThongTin
@@ -72,7 +72,9 @@
             gbThongTin.Size = new Size(1313, 188);
             gbThongTin.TabIndex = 2;
             gbThongTin.TabStop = false;
-            gbThongTin.Text = "Thông Tin Thành Viên";
+            gbThongTin.Text = "📝 Thông Tin Thành Viên";
+            gbThongTin.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            gbThongTin.ForeColor = Color.FromArgb(33, 150, 243);
             // 
             // dtpJoinDate
             // 
@@ -171,13 +173,26 @@
             gbDanhSach.Size = new Size(730, 375);
             gbDanhSach.TabIndex = 1;
             gbDanhSach.TabStop = false;
-            gbDanhSach.Text = "Danh Sách Độc Giả";
+            gbDanhSach.Text = "📊 Danh Sách Độc Giả";
+            gbDanhSach.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            gbDanhSach.ForeColor = Color.FromArgb(33, 150, 243);
             // 
             // dgvDanhSach
             // 
             dgvDanhSach.AllowUserToAddRows = false;
             dgvDanhSach.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvDanhSach.ColumnHeadersHeight = 29;
+            dgvDanhSach.BackgroundColor = Color.White;
+            dgvDanhSach.BorderStyle = BorderStyle.None;
+            dgvDanhSach.ColumnHeadersHeight = 40;
+            dgvDanhSach.EnableHeadersVisualStyles = false;
+            dgvDanhSach.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(33, 150, 243);
+            dgvDanhSach.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvDanhSach.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dgvDanhSach.DefaultCellStyle.Font = new Font("Segoe UI", 9.5F);
+            dgvDanhSach.DefaultCellStyle.SelectionBackColor = Color.FromArgb(100, 181, 246);
+            dgvDanhSach.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgvDanhSach.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
+            dgvDanhSach.RowTemplate.Height = 35;
             dgvDanhSach.Dock = DockStyle.Fill;
             dgvDanhSach.Location = new Point(3, 24);
             dgvDanhSach.Margin = new Padding(3, 4, 3, 4);
@@ -202,61 +217,87 @@
             gbXuLy.Size = new Size(220, 375);
             gbXuLy.TabIndex = 0;
             gbXuLy.TabStop = false;
-            gbXuLy.Text = "Chức Năng";
+            gbXuLy.Text = "⚙️ Chức Năng";
+            gbXuLy.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            gbXuLy.ForeColor = Color.FromArgb(33, 150, 243);
             // 
             // btnThoat
             // 
+            btnThoat.BackColor = Color.FromArgb(158, 158, 158);
+            btnThoat.ForeColor = Color.White;
+            btnThoat.FlatStyle = FlatStyle.Flat;
+            btnThoat.FlatAppearance.BorderSize = 0;
             btnThoat.Location = new Point(120, 112);
             btnThoat.Margin = new Padding(3, 4, 3, 4);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(80, 50);
             btnThoat.TabIndex = 0;
-            btnThoat.Text = "Thoát";
+            btnThoat.Text = "❌ Thoát";
+            btnThoat.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnThoat.Cursor = Cursors.Hand;
             // 
             // btnXoa
             // 
-            btnXoa.BackColor = Color.Firebrick;
+            btnXoa.BackColor = Color.FromArgb(244, 67, 54);
             btnXoa.ForeColor = Color.White;
+            btnXoa.FlatStyle = FlatStyle.Flat;
+            btnXoa.FlatAppearance.BorderSize = 0;
             btnXoa.Location = new Point(20, 112);
             btnXoa.Margin = new Padding(3, 4, 3, 4);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(80, 50);
             btnXoa.TabIndex = 1;
-            btnXoa.Text = "Xóa";
+            btnXoa.Text = "🗑️ Xóa";
+            btnXoa.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnXoa.Cursor = Cursors.Hand;
             btnXoa.UseVisualStyleBackColor = false;
             // 
             // btnSua
             // 
-            btnSua.BackColor = Color.Orange;
+            btnSua.BackColor = Color.FromArgb(33, 150, 243);
             btnSua.ForeColor = Color.White;
+            btnSua.FlatStyle = FlatStyle.Flat;
+            btnSua.FlatAppearance.BorderSize = 0;
             btnSua.Location = new Point(120, 38);
             btnSua.Margin = new Padding(3, 4, 3, 4);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(80, 50);
             btnSua.TabIndex = 2;
-            btnSua.Text = "Sửa";
+            btnSua.Text = "✏️ Sửa";
+            btnSua.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnSua.Cursor = Cursors.Hand;
             btnSua.UseVisualStyleBackColor = false;
             // 
             // btnThem
             // 
-            btnThem.BackColor = Color.ForestGreen;
+            btnThem.BackColor = Color.FromArgb(76, 175, 80);
             btnThem.ForeColor = Color.White;
+            btnThem.FlatStyle = FlatStyle.Flat;
+            btnThem.FlatAppearance.BorderSize = 0;
             btnThem.Location = new Point(20, 38);
             btnThem.Margin = new Padding(3, 4, 3, 4);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(80, 50);
             btnThem.TabIndex = 3;
-            btnThem.Text = "Thêm";
+            btnThem.Text = "➕ Thêm";
+            btnThem.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnThem.Cursor = Cursors.Hand;
             btnThem.UseVisualStyleBackColor = false;
             // 
             // btnTimKiem
             // 
+            btnTimKiem.BackColor = Color.FromArgb(33, 150, 243);
+            btnTimKiem.ForeColor = Color.White;
+            btnTimKiem.FlatStyle = FlatStyle.Flat;
+            btnTimKiem.FlatAppearance.BorderSize = 0;
             btnTimKiem.Location = new Point(20, 238);
             btnTimKiem.Margin = new Padding(3, 4, 3, 4);
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(180, 38);
             btnTimKiem.TabIndex = 4;
-            btnTimKiem.Text = "Tìm Kiếm";
+            btnTimKiem.Text = "🔍 Tìm Kiếm";
+            btnTimKiem.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnTimKiem.Cursor = Cursors.Hand;
             // 
             // txtTimKiem
             // 
