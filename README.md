@@ -108,9 +108,9 @@ Sau khi import dữ liệu mẫu, bạn có thể đăng nhập với các tài 
 
 | Tên đăng nhập | Mật khẩu | Quyền hạn |
 |---------------|----------|-----------|
-| admin | 123456 | Quản trị viên |
-| thuthu01 | 123456 | Thủ thư |
-| nhanvien01 | 123456 | Nhân viên |
+| admin | 123 | Quản trị viên |
+| thuthu01 | 123 | Thủ thư |
+| nhanvien01 | 123 | Nhân viên |
 
 > ⚠️ **Lưu ý**: Đổi mật khẩu ngay sau lần đăng nhập đầu tiên!
 

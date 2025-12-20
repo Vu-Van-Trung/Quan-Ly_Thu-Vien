@@ -33,7 +33,7 @@ namespace LibraryManagement.Data
             {
                 // Connection string đến database QuanLyThuVien
                 optionsBuilder.UseSqlServer(
-                    "Server=.;Database=QuanLyThuVien;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
+                    "Server=.\\SQLEXPRESS;Database=QuanLyThuVien;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
                 );
             }
         }
