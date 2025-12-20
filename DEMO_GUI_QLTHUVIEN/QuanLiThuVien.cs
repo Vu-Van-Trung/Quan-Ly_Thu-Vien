@@ -138,15 +138,17 @@ namespace DoAnDemoUI
 
         // --- CÁC SỰ KIỆN HỆ THỐNG ---
 
-        private void mniDangXuat_Click(object sender, EventArgs e)
+        private void mniDangXuat_Click(object sender, EventArgs e) // Hoặc btnLogout_Click
         {
             var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
             if (result == DialogResult.Yes)
             {
-                // Mở lại form đăng nhập
-                Login1 loginForm = new Login1();
-                loginForm.Show();
-                this.Close(); // Đóng form chính
+                // CHỈ CẦN GỌI LỆNH NÀY
+                this.Close();
+
+                // Giải thích: Khi Close() chạy, Application.Run() bên Program.cs kết thúc.
+                // Vòng lặp while bên đó sẽ chạy lại và tự mở Form Login mới.
             }
         }
 

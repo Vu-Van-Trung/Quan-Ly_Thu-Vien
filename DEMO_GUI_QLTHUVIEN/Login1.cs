@@ -14,6 +14,8 @@ namespace DoAnDemoUI
     {
         private bool exitConfirmed = false;
 
+        private bool dangNhapThanhCong = false;
+
         public Login1()
         {
             InitializeComponent();
@@ -23,7 +25,7 @@ namespace DoAnDemoUI
             // Nhấn Enter thì tự động kích hoạt nút Login
             this.AcceptButton = btnLogin;
             // Đặt mặc định dấu nháy vào ô username
-            this.ActiveControl = txtUsername;
+    this.ActiveControl = txtUsername;
         }
 
         // --- HÀM HASH MẬT KHẨU ---
@@ -72,14 +74,12 @@ namespace DoAnDemoUI
                     if (user != null)
                     {
                         // --- ĐĂNG NHẬP THÀNH CÔNG ---
-                        // Khởi tạo Form chính (Đảm bảo bạn đã có Form QuanLiThuVien)
-                        QuanLiThuVien mainForm = new QuanLiThuVien();
 
-                        // Ẩn form Login
-                        this.Hide();
+                        // 1. Báo hiệu kết quả OK về cho Program.cs
+                        this.DialogResult = DialogResult.OK;
 
-                        // Hiện form chính
-                        mainForm.Show();
+                        // 2. Đóng form Login lại (Lúc này Program.cs sẽ nhận được OK và mở Form chính)
+                        this.Close();
                     }
                     else
                     {
@@ -102,17 +102,19 @@ namespace DoAnDemoUI
         // --- XỬ LÝ SỰ KIỆN THOÁT (Nút X tròn góc trái) ---
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Bạn có chắc muốn thoát ứng dụng?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                exitConfirmed = true;
-                Application.Exit();
-            }
+            Application.Exit();
         }
 
         // --- SỰ KIỆN KHI FORM ĐANG ĐÓNG ---
         private void form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Nếu Đăng nhập thành công (OK) HOẶC bấm nút Thoát (Cancel) 
+            // thì cho đóng luôn, không hiện MessageBox hỏi han gì nữa.
+            if (this.DialogResult == DialogResult.OK || this.DialogResult == DialogResult.Cancel)
+            {
+                return;
+            }
+
             if (exitConfirmed) return;
 
             var result = MessageBox.Show("Bạn có chắc muốn thoát ứng dụng?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
