@@ -202,13 +202,10 @@ Tìm constant `MAX_BOOKS_PER_READER` (mặc định: 5 quyển)
 
 ## 🤝 Đóng Góp
 --**Vũ Văn Trung** - [GitHub](https://github.com/Vu-Van-Trung)
+
 --**KoliangFish** - [GitHub] (https://github.com/KoliangFish).
 
-1. Fork repository
-2. Tạo branch mới (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'feat: Add some AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Tạo Pull Request
+
 
 ## 📄 License
 
