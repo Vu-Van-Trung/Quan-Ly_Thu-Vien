@@ -67,7 +67,7 @@ namespace DoAnDemoUI
                         user.LanDangNhapCuoi = DateTime.Now;
                         context.SaveChanges();
 
-                        QuanLiThuVien mainForm = new QuanLiThuVien();
+                        QuanLiThuVien mainForm = new QuanLiThuVien(user.Role);
                         this.Hide();
                         mainForm.Show();
                     }

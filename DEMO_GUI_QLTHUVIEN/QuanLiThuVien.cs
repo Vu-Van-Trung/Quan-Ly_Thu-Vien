@@ -10,10 +10,12 @@ namespace DoAnDemoUI
     {
         // Danh sách lưu trữ các chức năng menu
         private readonly List<MenuAction> _menuActions = new List<MenuAction>();
+        private string _userRole;
 
-        public QuanLiThuVien()
+        public QuanLiThuVien(string userRole = "Nhân viên")
         {
             InitializeComponent();
+            _userRole = userRole;
 
             // QUAN TRỌNG: Đặt Form này làm Form cha (MDI Container)
             this.IsMdiContainer = true;
@@ -46,7 +48,30 @@ namespace DoAnDemoUI
             AddMenuAction("ManagePublishers", "Quản lý Nhà XB", () => OpenOrActivateChild(typeof(FormPublisher)));
             AddMenuAction("Reports", "Báo cáo & Thống kê", () => OpenOrActivateChild(typeof(FormReport)));
             AddMenuAction("ManageFines", "Phiếu Phạt & Trả Sách", () => OpenOrActivateChild(typeof(FormFine)));
+
+            // Thêm mục Cài đặt (chung cho mọi người, nhưng FormSettings sẽ tự kiểm tra quyền)
+            AddMenuAction("Settings", "Cài đặt & Dữ liệu", ShowSettingsForm);
         }
+
+        private void ShowSettingsForm()
+        {
+             foreach (var child in this.MdiChildren)
+            {
+                if (child is FormSettings)
+                {
+                    child.BringToFront();
+                    if (child.WindowState == FormWindowState.Minimized)
+                        child.WindowState = FormWindowState.Normal;
+                    return;
+                }
+            }
+
+            FormSettings frm = new FormSettings(_userRole);
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
+        }
+
 
         // --- CÁC HÀM HỖ TRỢ XỬ LÝ MENU ---
 
