@@ -3,7 +3,7 @@
 ## 1. Database & Backend
 - [x] 1.1 Create/Modify `PHAT` table entity if not exists (check `project.md` schema)
 - [x] 1.2 Implement `FineService` to calculate fees and handle `PHAT` CRUD
-- [x] 1.3 Update `BorrowService` to handle "Return" logic and status updates
+- [x] 1.3 Update `BorrowService` to handle "Return" logic and status updates (Handled in FineService/LoanDetails)
 
 ## 2. Frontend (WinForms/WPF)
 - [x] 2.1 Create `FineManagementForm` (Phiếu Phạt UI)

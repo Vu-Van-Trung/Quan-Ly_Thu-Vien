@@ -259,9 +259,20 @@ namespace DoAnDemoUI
                 if (status == "Đã trả") continue;
 
                 int detailId = (int)row.Cells["LoanDetailId"].Value;
-                bool isDamage = MessageBox.Show($"Sách '{row.Cells["pBookName"].Value}' có bị hư hỏng không?", "Kiểm tra sách", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+                string bookName = row.Cells["pBookName"].Value.ToString();
+                string condition = "Tốt"; // Default
+
+                // Check condition sequence
+                if (MessageBox.Show($"Sách '{bookName}' có bị hư hỏng không?", "Kiểm tra tình trạng Hư hỏng", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    condition = "Hư hỏng";
+                }
+                else if (MessageBox.Show($"Sách '{bookName}' có bị mất không?", "Kiểm tra tình trạng Mất", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    condition = "Mất";
+                }
                 
-                _fineService.ReturnBook(detailId, isDamage ? "Hư hỏng" : "Tốt", isDamage);
+                _fineService.ReturnBook(detailId, condition);
                 successCount++;
             }
             

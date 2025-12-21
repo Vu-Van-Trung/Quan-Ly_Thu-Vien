@@ -65,20 +65,24 @@ namespace DoAnDemoUI
             try
             {
                 // Lấy dữ liệu từ bảng Loans, kèm theo thông tin Sách và Độc giả
-                var data = db.Loans
+                // 1. Fetch raw data first (Server Side)
+                var rawData = db.Loans
                     .Include(l => l.Member)
                     .Include(l => l.LoanDetails)
                         .ThenInclude(ld => ld.Book)
-                    .Select(l => new
-                    {
-                        l.LoanId,
-                        MemberName = CryptoHelper.Decrypt(l.Member.FullName),
-                        l.LoanDate,
-                        l.DueDate,
-                        // Sử dụng NgayTraThucTe thay vì ReturnDate
-                        Status = l.NgayTraThucTe == null ? "Đang Mượn" : "Đã Trả",
-                        BookCount = l.LoanDetails.Count
-                    })
+                    .ToList(); // Execute SQL here
+
+                // 2. Process data in memory (Client Side)
+                var data = rawData.Select(l => new
+                {
+                    l.LoanId,
+                    MemberName = CryptoHelper.Decrypt(l.Member.FullName),
+                    l.LoanDate,
+                    l.DueDate,
+                    Status = l.NgayTraThucTe == null ? "Đang Mượn" : "Đã Trả",
+                    BookCount = l.LoanDetails.Count
+                })
+                    .OrderBy(x => x.MemberName) // Sort by decrypted name
                     .ToList();
 
                 bindingSource.DataSource = data;
@@ -95,29 +99,73 @@ namespace DoAnDemoUI
         {
             if (dgvSachMuon.CurrentRow != null && dgvSachMuon.CurrentRow.Cells["LoanId"].Value != null)
             {
-                // Lấy ID của dòng đang chọn (LoanId là string)
                 var currentLoanId = dgvSachMuon.CurrentRow.Cells["LoanId"].Value.ToString();
-
-                // Tìm trong DB để fill ngược lại lên các ô nhập liệu
                 var loan = db.Loans
                     .Include(l => l.LoanDetails)
+                    .ThenInclude(ld => ld.Book)
                     .FirstOrDefault(l => l.LoanId == currentLoanId);
 
-                if (loan != null)
+                if (loan != null && dgvChiTiet != null)
                 {
-                    cbMaDocGia.SelectedValue = loan.MemberId;
-                    dtpNgayMuon.Value = loan.LoanDate;
-                    dtpNgayTra.Value = loan.DueDate;
+                    // 1. Cấu hình chung cho DataGridView đẹp hơn
+                    ConfigureBeautifulGrid(dgvChiTiet);
 
-                    // Nếu có sách trong chi tiết, chọn sách đầu tiên
-                    if (loan.LoanDetails != null && loan.LoanDetails.Any())
+                    // 2. Gán dữ liệu với tên thuộc tính rõ ràng
+                    dgvChiTiet.DataSource = loan.LoanDetails.Select(d => new
                     {
-                        var firstBook = loan.LoanDetails.First();
-                        cbMaSach.SelectedValue = firstBook.BookId;
+                        STT = loan.LoanDetails.ToList().IndexOf(d) + 1,
+                        MaSach = d.BookId,
+                        TenSach = d.Book?.Title,
+                        TinhTrang = d.TinhTrangMuon,
+                        TrangThai = d.NgayTra != null ? "✅ Đã trả" : "📖 Đang mượn"
+                    }).ToList();
+
+                    // 3. Định dạng chi tiết từng cột
+                    if (dgvChiTiet.Columns.Count > 0)
+                    {
+                        dgvChiTiet.Columns["STT"].Width = 40;
+                        dgvChiTiet.Columns["STT"].HeaderText = "No.";
+
+                        dgvChiTiet.Columns["MaSach"].HeaderText = "Mã Sách";
+                        dgvChiTiet.Columns["MaSach"].Width = 90;
+
+                        dgvChiTiet.Columns["TenSach"].HeaderText = "Tên Cuốn Sách";
+                        dgvChiTiet.Columns["TenSach"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                        dgvChiTiet.Columns["TinhTrang"].HeaderText = "Tình Trạng";
+                        dgvChiTiet.Columns["TinhTrang"].Width = 110;
+
+                        dgvChiTiet.Columns["TrangThai"].HeaderText = "Trạng Thái";
+                        dgvChiTiet.Columns["TrangThai"].Width = 120;
+
+                        // Căn giữa các cột mã và trạng thái
+                        dgvChiTiet.Columns["STT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        dgvChiTiet.Columns["MaSach"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        dgvChiTiet.Columns["TrangThai"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                     }
                 }
                 UpdateIndex();
             }
+        }
+        private void ConfigureBeautifulGrid(DataGridView dgv)
+        {
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dgv.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dgv.BackgroundColor = Color.White;
+
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgv.ColumnHeadersHeight = 30;
+
+            dgv.RowHeadersVisible = false; // Ẩn cột thừa bên trái
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.AllowUserToResizeRows = false;
+            dgv.ReadOnly = true;
         }
 
         private void UpdateIndex()
@@ -133,36 +181,64 @@ namespace DoAnDemoUI
         {
             try
             {
-                // Tạo mã phiếu mượn tự động
-                string newLoanId = GenerateLoanId();
+                string memberId = cbMaDocGia.SelectedValue.ToString();
+                string bookId = cbMaSach.SelectedValue.ToString();
 
-                var newLoan = new Loan
+                // Check for existing active loan for this member
+                var existingLoan = db.Loans
+                    .Include(l => l.LoanDetails)
+                    .FirstOrDefault(l => l.MemberId == memberId && l.TrangThai == "Đang mượn");
+
+                if (existingLoan != null)
                 {
-                    LoanId = newLoanId,
-                    MemberId = cbMaDocGia.SelectedValue.ToString(),
-                    StaffId = defaultStaffId, // Sử dụng staff ID mặc định
-                    LoanDate = dtpNgayMuon.Value,
-                    DueDate = dtpNgayTra.Value,
-                    NgayTraThucTe = null, // Mới mượn thì chưa trả
-                    TrangThai = "Đang mượn"
-                };
+                    // Add to existing loan
+                    if (existingLoan.LoanDetails.Any(d => d.BookId == bookId && d.NgayTra == null))
+                    {
+                        MessageBox.Show("Thành viên này đang mượn cuốn sách này rồi!");
+                        return;
+                    }
 
-                db.Loans.Add(newLoan);
-
-                // Thêm chi tiết phiếu mượn cho sách được chọn
-                var loanDetail = new LoanDetail
+                    var loanDetail = new LoanDetail
+                    {
+                        LoanId = existingLoan.LoanId,
+                        BookId = bookId,
+                        SoLuong = 1,
+                        TinhTrangMuon = "Tốt"
+                    };
+                    db.LoanDetails.Add(loanDetail);
+                    db.SaveChanges();
+                    MessageBox.Show($"Đã thêm sách vào phiếu mượn hiện tại ({existingLoan.LoanId})!");
+                }
+                else
                 {
-                    LoanId = newLoanId,
-                    BookId = cbMaSach.SelectedValue.ToString(),
-                    SoLuong = 1,
-                    TinhTrangMuon = "Tốt"
-                };
-                db.LoanDetails.Add(loanDetail);
+                    // Create new Loan
+                    string newLoanId = GenerateLoanId();
+                    var newLoan = new Loan
+                    {
+                        LoanId = newLoanId,
+                        MemberId = memberId,
+                        StaffId = defaultStaffId,
+                        LoanDate = dtpNgayMuon.Value,
+                        DueDate = dtpNgayTra.Value,
+                        NgayTraThucTe = null,
+                        TrangThai = "Đang mượn"
+                    };
 
-                db.SaveChanges();
+                    db.Loans.Add(newLoan);
+
+                    var loanDetail = new LoanDetail
+                    {
+                        LoanId = newLoanId,
+                        BookId = bookId,
+                        SoLuong = 1,
+                        TinhTrangMuon = "Tốt"
+                    };
+                    db.LoanDetails.Add(loanDetail);
+                    db.SaveChanges();
+                    MessageBox.Show("Tạo phiếu mượn mới thành công!");
+                }
 
                 LoadData();
-                MessageBox.Show("Thêm phiếu mượn thành công!");
             }
             catch (Exception ex)
             {
@@ -291,6 +367,11 @@ namespace DoAnDemoUI
         }
 
         private void cbMaDocGia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvChiTiet_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

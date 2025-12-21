@@ -44,11 +44,15 @@
             btnSau = new Button();
             btnTruoc = new Button();
             btnDau = new Button();
+            gbChiTiet = new GroupBox();
+            dgvChiTiet = new DataGridView();
             gbThongTin.SuspendLayout();
             gbDanhSach.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSachMuon).BeginInit();
             gbXuLy.SuspendLayout();
             gbDieuKhien.SuspendLayout();
+            gbChiTiet.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvChiTiet).BeginInit();
             SuspendLayout();
             // 
             // lblTitle
@@ -157,7 +161,7 @@
             // 
             // gbDanhSach
             // 
-            gbDanhSach.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            gbDanhSach.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             gbDanhSach.Controls.Add(dgvSachMuon);
             gbDanhSach.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             gbDanhSach.ForeColor = Color.FromArgb(33, 150, 243);
@@ -165,10 +169,10 @@
             gbDanhSach.Margin = new Padding(3, 4, 3, 4);
             gbDanhSach.Name = "gbDanhSach";
             gbDanhSach.Padding = new Padding(3, 4, 3, 4);
-            gbDanhSach.Size = new Size(803, 585);
+            gbDanhSach.Size = new Size(803, 300);
             gbDanhSach.TabIndex = 2;
             gbDanhSach.TabStop = false;
-            gbDanhSach.Text = "📊 Danh Sách Đang Mượn";
+            gbDanhSach.Text = "📊 Danh Sách Phiếu Mượn";
             // 
             // dgvSachMuon
             // 
@@ -202,7 +206,7 @@
             dgvSachMuon.RowHeadersWidth = 51;
             dgvSachMuon.RowTemplate.Height = 35;
             dgvSachMuon.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSachMuon.Size = new Size(797, 554);
+            dgvSachMuon.Size = new Size(797, 269);
             dgvSachMuon.TabIndex = 0;
             dgvSachMuon.CellContentClick += dgvSachMuon_CellContentClick;
             // 
@@ -379,11 +383,40 @@
             btnDau.UseVisualStyleBackColor = true;
             btnDau.Click += btnDau_Click;
             // 
+            // gbChiTiet
+            // 
+            gbChiTiet.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            gbChiTiet.Controls.Add(dgvChiTiet);
+            gbChiTiet.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            gbChiTiet.ForeColor = Color.Red;
+            gbChiTiet.Location = new Point(507, 400);
+            gbChiTiet.Name = "gbChiTiet";
+            gbChiTiet.Size = new Size(803, 280);
+            gbChiTiet.TabIndex = 10;
+            gbChiTiet.TabStop = false;
+            gbChiTiet.Text = "📕 Chi Tiết Sách Đang Mượn";
+            // 
+            // dgvChiTiet
+            // 
+            dgvChiTiet.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvChiTiet.BackgroundColor = Color.White;
+            dgvChiTiet.ColumnHeadersHeight = 30;
+            dgvChiTiet.Dock = DockStyle.Fill;
+            dgvChiTiet.Location = new Point(3, 26);
+            dgvChiTiet.Name = "dgvChiTiet";
+            dgvChiTiet.ReadOnly = true;
+            dgvChiTiet.RowHeadersWidth = 51;
+            dgvChiTiet.RowTemplate.Height = 30;
+            dgvChiTiet.Size = new Size(797, 251);
+            dgvChiTiet.TabIndex = 0;
+            dgvChiTiet.CellContentClick += dgvChiTiet_CellContentClick;
+            // 
             // FormLoan
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1333, 815);
+            Controls.Add(gbChiTiet);
             Controls.Add(gbDieuKhien);
             Controls.Add(gbXuLy);
             Controls.Add(gbDanhSach);
@@ -401,6 +434,8 @@
             gbXuLy.ResumeLayout(false);
             gbDieuKhien.ResumeLayout(false);
             gbDieuKhien.PerformLayout();
+            gbChiTiet.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvChiTiet).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -429,6 +464,10 @@
         private System.Windows.Forms.Button btnSau;
         private System.Windows.Forms.Button btnTruoc;
         private System.Windows.Forms.Button btnDau;
+        private System.Windows.Forms.GroupBox gbChiTiet;
+        private System.Windows.Forms.DataGridView dgvChiTiet;
         private System.Windows.Forms.TextBox txtIndex;
+
+        // ... existing controls ...
     }
 }
