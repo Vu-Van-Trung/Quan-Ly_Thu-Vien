@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using LibraryManagement.Data;
 using LibraryManagement.Models;
+using LibraryManagement.Security;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace DoAnDemoUI
         {
             InitializeComponent();
             bindingSource = new BindingSource();
-            
+
         }
 
         // --- 1. HÀM LOAD KHI MỞ FORM ---
@@ -39,17 +40,24 @@ namespace DoAnDemoUI
 
         private void LoadComboBoxes()
         {
-            // Load Sách
+            // 1. Load Sách (Giữ nguyên nếu Title không mã hóa)
             var books = db.Books.ToList();
             cbMaSach.DataSource = books;
-            cbMaSach.DisplayMember = "Title"; // Hiển thị tên sách
-            cbMaSach.ValueMember = "BookId";  // Giá trị là ID sách (string)
+            cbMaSach.DisplayMember = "Title";
+            cbMaSach.ValueMember = "BookId";
 
-            // Load Độc Giả
+            // 2. Load Độc Giả và GIẢI MÃ tên
             var members = db.Members.ToList();
-            cbMaDocGia.DataSource = members;
-            cbMaDocGia.DisplayMember = "FullName"; // Hiển thị tên độc giả
-            cbMaDocGia.ValueMember = "MemberId";   // Giá trị là ID độc giả (string)
+            var memberDisplayList = members.Select(m => new
+            {
+                m.MemberId,
+                // Sử dụng CryptoHelper để giải mã tên hiển thị
+                DisplayName = CryptoHelper.Decrypt(m.FullName)
+            }).ToList();
+
+            cbMaDocGia.DataSource = memberDisplayList;
+            cbMaDocGia.DisplayMember = "DisplayName"; // Sử dụng tên thuộc tính mới đã giải mã
+            cbMaDocGia.ValueMember = "MemberId";
         }
 
         public void LoadData()
@@ -64,7 +72,7 @@ namespace DoAnDemoUI
                     .Select(l => new
                     {
                         l.LoanId,
-                        MemberName = l.Member.FullName,
+                        MemberName = CryptoHelper.Decrypt(l.Member.FullName),
                         l.LoanDate,
                         l.DueDate,
                         // Sử dụng NgayTraThucTe thay vì ReturnDate
@@ -210,24 +218,41 @@ namespace DoAnDemoUI
                 return;
             }
 
-            string loanId = dgvSachMuon.CurrentRow.Cells["LoanId"].Value.ToString();
+            // Sử dụng null-conditional để an toàn hơn
+            string loanId = dgvSachMuon.CurrentRow.Cells["LoanId"].Value?.ToString();
 
-            if (MessageBox.Show("Bạn chắc chắn muốn xóa phiếu này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show($"Bạn chắc chắn muốn xóa phiếu {loanId}?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
                 {
-                    var loan = db.Loans.Find(loanId);
+                    // Sử dụng Include để lấy các chi tiết liên quan nếu Database không đặt Cascade Delete
+                    var loan = db.Loans
+                                 .Include(l => l.LoanDetails)
+                                 .FirstOrDefault(l => l.LoanId == loanId);
+
                     if (loan != null)
                     {
+                        // Kiểm tra trạng thái: Ví dụ không cho xóa phiếu đã hoàn thành/đang mượn tùy yêu cầu
+                        // if (loan.TrangThai == "Đang mượn") { ... }
+
+                        // Xóa các chi tiết phiếu mượn trước (nếu không cấu hình Cascade Delete trong SQL)
+                        if (loan.LoanDetails != null)
+                        {
+                            db.LoanDetails.RemoveRange(loan.LoanDetails);
+                        }
+
                         db.Loans.Remove(loan);
                         db.SaveChanges();
+
                         LoadData();
-                        MessageBox.Show("Xóa thành công!");
+                        MessageBox.Show("✅ Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Không thể xóa phiếu mượn này.\nLỗi: " + ex.Message);
+                    // Hiển thị lỗi chi tiết hơn (InnerException) nếu có
+                    string errorMsg = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                    MessageBox.Show("❌ Không thể xóa phiếu mượn này.\nChi tiết lỗi: " + errorMsg, "Lỗi hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -258,6 +283,16 @@ namespace DoAnDemoUI
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dgvSachMuon_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void cbMaDocGia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

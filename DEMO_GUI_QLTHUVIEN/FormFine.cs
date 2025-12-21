@@ -6,6 +6,8 @@ using LibraryManagement.Models;
 #nullable disable
 using LibraryManagement.Data;
 using System.Linq;
+using System.Drawing.Printing;
+using TheArtOfDevHtmlRenderer.Adapters;
 
 namespace DoAnDemoUI
 {
@@ -13,6 +15,8 @@ namespace DoAnDemoUI
     {
         private FineService _fineService;
         private Loan _currentLoan;
+        private PrintDocument printDocument1 = new PrintDocument();
+        private PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
 
         // Controls
         private GroupBox grpSearch;
@@ -105,6 +109,10 @@ namespace DoAnDemoUI
             btnPrint.Click += BtnPrint_Click;
             dgvBooks.CellDoubleClick += DgvBooks_CellDoubleClick;
             dgvFines.CellDoubleClick += DgvFines_CellDoubleClick; // Quick Pay by Double Click
+            
+            // Print Configuration
+            printDocument1.PrintPage += PrintDocument1_PrintPage;
+            printPreviewDialog1.Document = printDocument1;
         }
 
         private void DgvFines_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -340,7 +348,74 @@ namespace DoAnDemoUI
 
         private void BtnPrint_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Chức năng in đang phát triển...");
+            if (_currentLoan == null)
+            {
+                MessageBox.Show("Vui lòng tìm kiếm thông tin phiếu mượn trước khi in!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            printPreviewDialog1.WindowState = FormWindowState.Maximized;
+            printPreviewDialog1.ShowDialog();
+        }
+        private void PrintDocument1_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            Font fontTitle = new Font("Arial", 20, FontStyle.Bold);
+            Font fontHeader = new Font("Arial", 12, FontStyle.Bold);
+            Font fontBody = new Font("Arial", 11, FontStyle.Regular);
+            Font fontFooter = new Font("Arial", 10, FontStyle.Italic);
+
+            float y = 50;
+            float x = e.MarginBounds.Left;
+
+            // 1. Tiêu đề
+            g.DrawString("BIÊN LAI THU PHÍ PHẠT & TRẢ SÁCH", fontTitle, Brushes.Black, x + 50, y);
+            y += 60;
+
+            // 2. Thông tin chung
+            g.DrawString($"Mã phiếu mượn: {_currentLoan.LoanId}", fontBody, Brushes.Black, x, y);
+            y += 25;
+            g.DrawString($"Ngày in: {DateTime.Now:dd/MM/yyyy HH:mm}", fontBody, Brushes.Black, x, y);
+            y += 40;
+
+            // 3. Danh sách sách trả (Dữ liệu từ dgvBooks)
+            g.DrawString("DANH SÁCH SÁCH XỬ LÝ:", fontHeader, Brushes.Black, x, y);
+            y += 30;
+            foreach (var d in _currentLoan.LoanDetails)
+            {
+                string status = d.NgayTra != null ? $"Đã trả ({d.TinhTrangTra})" : "Chưa trả";
+                g.DrawString($"- {d.Book?.Title ?? "N/A"}: {status}", fontBody, Brushes.Black, x + 20, y);
+                y += 25;
+            }
+            y += 20;
+
+            // 4. Chi tiết các khoản phạt (Dữ liệu từ bảng PHAT)
+            if (_currentLoan.Fines != null && _currentLoan.Fines.Any())
+            {
+                g.DrawLine(Pens.Black, x, y, e.MarginBounds.Right, y);
+                y += 10;
+                g.DrawString("CHI TIẾT PHẠT:", fontHeader, Brushes.Black, x, y);
+                y += 30;
+
+                foreach (var f in _currentLoan.Fines)
+                {
+                    string line = $"{f.LyDo}: {f.SoTienPhat:N0} VNĐ ({f.TrangThaiThanhToan})";
+                    g.DrawString(line, fontBody, Brushes.Black, x + 20, y);
+                    y += 25;
+                }
+            }
+
+            // 5. Tổng kết
+            y += 20;
+            decimal total = _currentLoan.Fines.Where(f => f.TrangThaiThanhToan != "Đã thanh toán").Sum(f => f.SoTienPhat);
+            g.DrawString(lblTotalFine.Text, fontHeader, Brushes.Blue, x, y);
+
+            // 6. Chữ ký
+            y += 60;
+            g.DrawString("Thủ thư", fontHeader, Brushes.Black, x + 50, y);
+            g.DrawString("Người nộp", fontHeader, Brushes.Black, e.MarginBounds.Right - 150, y);
+            y += 80;
+            g.DrawString("(Ký và ghi rõ họ tên)", fontFooter, Brushes.Black, x + 40, y);
+            g.DrawString("(Ký và ghi rõ họ tên)", fontFooter, Brushes.Black, e.MarginBounds.Right - 160, y);
         }
     }
 }

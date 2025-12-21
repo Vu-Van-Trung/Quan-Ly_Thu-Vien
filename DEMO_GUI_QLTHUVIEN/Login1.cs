@@ -100,6 +100,7 @@ namespace DoAnDemoUI
         //        exitConfirmed = true;
         //        Application.Exit();
         //    }
+        this.Close();
         }
 
         private void form1_FormClosing(object? sender, FormClosingEventArgs e)
