@@ -1,9 +1,11 @@
+#nullable disable
+using LibraryManagement.Data;
+using LibraryManagement.Models;
+using LibraryManagement.Security;
 using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using LibraryManagement.Data;
-using LibraryManagement.Models;
 
 namespace DoAnDemoUI
 {
@@ -376,23 +378,33 @@ namespace DoAnDemoUI
         {
             try
             {
-                var staff = db.Staff
-                    .Select(s => new
-                    {
-                        s.StaffId,
-                        s.HoTen,
-                        s.ChucVu,
-                        s.NgaySinh,
-                        s.GioiTinh,
-                        s.SoDienThoai,
-                        s.Email,
-                        s.NgayVaoLam,
-                        s.TrangThai
-                    })
-                    .ToList();
+                // Phải lấy từ db.Staff cho Form nhân viên
+                var rawStaff = db.Staff.ToList();
 
-                dgvStaff.DataSource = staff;
-                
+                var displayList = rawStaff.Select(s => new
+                {
+                    s.StaffId, // Đây là kiểu int
+                    HoTen = CryptoHelper.Decrypt(s.HoTen),
+                    ChucVu = CryptoHelper.Decrypt(s.ChucVu),
+                    s.NgaySinh,
+                    s.GioiTinh,
+                    SoDienThoai = CryptoHelper.Decrypt(s.SoDienThoai),
+                    Email = CryptoHelper.Decrypt(s.Email),
+                    s.NgayVaoLam,
+                    s.TrangThai
+                }).ToList();
+
+                dgvStaff.DataSource = displayList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi hiển thị: " + ex.Message);
+            }
+        }
+        private void FormatGridView()
+        {
+            if (dgvStaff.Columns.Count > 0)
+            {
                 dgvStaff.Columns["StaffId"].HeaderText = "Mã NV";
                 dgvStaff.Columns["HoTen"].HeaderText = "Họ Tên";
                 dgvStaff.Columns["ChucVu"].HeaderText = "Chức Vụ";
@@ -403,18 +415,13 @@ namespace DoAnDemoUI
                 dgvStaff.Columns["NgayVaoLam"].HeaderText = "Ngày Vào Làm";
                 dgvStaff.Columns["TrangThai"].HeaderText = "Trạng Thái";
 
-                dgvStaff.Columns["StaffId"].Width = 80;
-                dgvStaff.Columns["NgaySinh"].Width = 100;
-                dgvStaff.Columns["GioiTinh"].Width = 80;
-                dgvStaff.Columns["NgayVaoLam"].Width = 110;
-                dgvStaff.Columns["TrangThai"].Width = 120;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi tải dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dgvStaff.Columns["StaffId"].Width = 70;
+                dgvStaff.Columns["NgaySinh"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                dgvStaff.Columns["NgayVaoLam"].DefaultCellStyle.Format = "dd/MM/yyyy";
             }
         }
-
+        private void lblTitle_Click(object sender, EventArgs e) { }
+        private void dgvDanhSach_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
         private void DgvStaff_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvStaff.CurrentRow != null && !isEditing)
@@ -423,30 +430,23 @@ namespace DoAnDemoUI
                 txtStaffId.Text = row.Cells["StaffId"].Value?.ToString();
                 txtHoTen.Text = row.Cells["HoTen"].Value?.ToString();
                 cboChucVu.Text = row.Cells["ChucVu"].Value?.ToString();
-                
-                if (row.Cells["NgaySinh"].Value != null && row.Cells["NgaySinh"].Value != DBNull.Value)
-                    dtpNgaySinh.Value = Convert.ToDateTime(row.Cells["NgaySinh"].Value);
-                else
-                    dtpNgaySinh.Value = DateTime.Now.AddYears(-25);
-
-                cboGioiTinh.Text = row.Cells["GioiTinh"].Value?.ToString();
                 txtSoDienThoai.Text = row.Cells["SoDienThoai"].Value?.ToString();
                 txtEmail.Text = row.Cells["Email"].Value?.ToString();
 
-                if (row.Cells["NgayVaoLam"].Value != null && row.Cells["NgayVaoLam"].Value != DBNull.Value)
-                    dtpNgayVaoLam.Value = Convert.ToDateTime(row.Cells["NgayVaoLam"].Value);
-                else
-                    dtpNgayVaoLam.Value = DateTime.Now;
+                if (row.Cells["NgaySinh"].Value != null)
+                    dtpNgaySinh.Value = Convert.ToDateTime(row.Cells["NgaySinh"].Value);
 
-                cboTrangThai.Text = row.Cells["TrangThai"].Value?.ToString();
-                
-                // Get full address from database if needed
-                var staffId = Convert.ToInt32(row.Cells["StaffId"].Value);
-                var fullStaff = db.Staff.Find(staffId);
-                if (fullStaff != null)
+                // Địa chỉ được bảo mật cao hơn, truy vấn riêng khi cần hiển thị chi tiết
+                try
                 {
-                    txtDiaChi.Text = fullStaff.DiaChi;
+                    int staffId = Convert.ToInt32(row.Cells["StaffId"].Value);
+                    var fullStaff = db.Staff.FirstOrDefault(s => s.StaffId == staffId);
+                    if (fullStaff != null)
+                    {
+                        txtDiaChi.Text = CryptoHelper.Decrypt(fullStaff.DiaChi);
+                    }
                 }
+                catch { txtDiaChi.Clear(); }
             }
         }
 
@@ -503,54 +503,46 @@ namespace DoAnDemoUI
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtHoTen.Text) || 
-                string.IsNullOrWhiteSpace(cboChucVu.Text))
+            if (string.IsNullOrWhiteSpace(txtHoTen.Text))
             {
-                MessageBox.Show("⚠️ Vui lòng nhập họ tên và chức vụ!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("⚠️ Vui lòng nhập họ tên!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             try
             {
+                Staff staff;
+                bool isNew = false;
+
                 if (txtStaffId.Text == "(Tự động)" || string.IsNullOrEmpty(txtStaffId.Text))
                 {
-                    // Thêm mới
-                    var newStaff = new Staff
-                    {
-                        HoTen = txtHoTen.Text.Trim(),
-                        ChucVu = cboChucVu.Text.Trim(),
-                        NgaySinh = dtpNgaySinh.Value,
-                        GioiTinh = cboGioiTinh.Text,
-                        DiaChi = txtDiaChi.Text.Trim(),
-                        SoDienThoai = txtSoDienThoai.Text.Trim(),
-                        Email = txtEmail.Text.Trim(),
-                        NgayVaoLam = dtpNgayVaoLam.Value,
-                        TrangThai = cboTrangThai.Text
-                    };
-                    db.Staff.Add(newStaff);
-                    db.SaveChanges();
-                    MessageBox.Show("✅ Thêm nhân viên thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    staff = new Staff();
+                    isNew = true;
                 }
                 else
                 {
-                    // Cập nhật
-                    int staffId = int.Parse(txtStaffId.Text);
-                    var staff = db.Staff.Find(staffId);
-                    if (staff != null)
-                    {
-                        staff.HoTen = txtHoTen.Text.Trim();
-                        staff.ChucVu = cboChucVu.Text.Trim();
-                        staff.NgaySinh = dtpNgaySinh.Value;
-                        staff.GioiTinh = cboGioiTinh.Text;
-                        staff.DiaChi = txtDiaChi.Text.Trim();
-                        staff.SoDienThoai = txtSoDienThoai.Text.Trim();
-                        staff.Email = txtEmail.Text.Trim();
-                        staff.NgayVaoLam = dtpNgayVaoLam.Value;
-                        staff.TrangThai = cboTrangThai.Text;
+                    int id = int.Parse(txtStaffId.Text);
+                    staff = db.Staff.Find(id);
+                }
 
-                        db.SaveChanges();
-                        MessageBox.Show("✅ Cập nhật thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                if (staff != null)
+                {
+                    // MÃ HÓA DỮ LIỆU BẰNG AES TRƯỚC KHI LƯU XUỐNG DB
+                    staff.HoTen = CryptoHelper.Encrypt(txtHoTen.Text.Trim());
+                    staff.ChucVu = CryptoHelper.Encrypt(cboChucVu.Text.Trim());
+                    staff.DiaChi = CryptoHelper.Encrypt(txtDiaChi.Text.Trim());
+                    staff.SoDienThoai = CryptoHelper.Encrypt(txtSoDienThoai.Text.Trim());
+                    staff.Email = CryptoHelper.Encrypt(txtEmail.Text.Trim());
+
+                    staff.NgaySinh = dtpNgaySinh.Value;
+                    staff.GioiTinh = cboGioiTinh.Text;
+                    staff.NgayVaoLam = dtpNgayVaoLam.Value;
+                    staff.TrangThai = cboTrangThai.Text;
+
+                    if (isNew) db.Staff.Add(staff);
+                    db.SaveChanges();
+
+                    MessageBox.Show("✅ Đã mã hóa và lưu dữ liệu thành công!", "Bảo mật", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 isEditing = false;
@@ -559,7 +551,7 @@ namespace DoAnDemoUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ Lỗi khi lưu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("❌ Lỗi mã hóa khi lưu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

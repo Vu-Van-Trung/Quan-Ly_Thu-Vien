@@ -34,6 +34,7 @@
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
+            this.btnTraSach = new System.Windows.Forms.Button();
             this.gbDieuKhien = new System.Windows.Forms.GroupBox();
             this.txtIndex = new System.Windows.Forms.TextBox();
             this.btnCuoi = new System.Windows.Forms.Button();
@@ -189,6 +190,7 @@
             this.gbXuLy.Controls.Add(this.btnXoa);
             this.gbXuLy.Controls.Add(this.btnThoat);
             this.gbXuLy.Controls.Add(this.btnThem);
+            this.gbXuLy.Controls.Add(this.btnTraSach);
             this.gbXuLy.Location = new System.Drawing.Point(16, 350);
             this.gbXuLy.Name = "gbXuLy";
             this.gbXuLy.Size = new System.Drawing.Size(467, 130);
@@ -261,6 +263,22 @@
             this.btnThem.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
+            // 
+            // btnTraSach
+            // 
+            this.btnTraSach.BackColor = System.Drawing.Color.FromArgb(255, 152, 0); // Orange
+            this.btnTraSach.ForeColor = System.Drawing.Color.White;
+            this.btnTraSach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTraSach.FlatAppearance.BorderSize = 0;
+            this.btnTraSach.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnTraSach.Location = new System.Drawing.Point(20, 83); // Lower row
+            this.btnTraSach.Name = "btnTraSach";
+            this.btnTraSach.Size = new System.Drawing.Size(120, 40);
+            this.btnTraSach.TabIndex = 6;
+            this.btnTraSach.Text = "📖 Trả Sách";
+            this.btnTraSach.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTraSach.UseVisualStyleBackColor = false;
+            this.btnTraSach.Click += new System.EventHandler(this.btnTraSach_Click);
             // 
             // gbDieuKhien
             // 
@@ -351,7 +369,6 @@
         }
 
         #endregion
-
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.GroupBox gbThongTin;
         private System.Windows.Forms.Label label5;
@@ -369,6 +386,7 @@
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.Button btnThem;
+        private System.Windows.Forms.Button btnTraSach;
         private System.Windows.Forms.GroupBox gbDieuKhien;
         private System.Windows.Forms.Button btnCuoi;
         private System.Windows.Forms.Button btnSau;

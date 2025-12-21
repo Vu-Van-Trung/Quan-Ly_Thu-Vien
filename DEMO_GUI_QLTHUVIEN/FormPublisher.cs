@@ -2,8 +2,10 @@ using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+#nullable disable
 using LibraryManagement.Data;
 using LibraryManagement.Models;
+using LibraryManagement.Security;
 
 namespace DoAnDemoUI
 {
@@ -259,14 +261,16 @@ namespace DoAnDemoUI
         {
             try
             {
-                var publishers = db.Publishers
+                // Sử dụng AsEnumerable() để giải mã dữ liệu trong bộ nhớ RAM
+                // CryptoHelper sẽ tự động dùng RSA để mở khóa AES key trước khi giải mã
+                var publishers = db.Publishers.AsEnumerable()
                     .Select(p => new
                     {
                         p.PublisherId,
-                        p.TenNhaXuatBan,
-                        p.DiaChi,
-                        p.SoDienThoai,
-                        p.Email
+                        TenNhaXuatBan = CryptoHelper.Decrypt(p.TenNhaXuatBan),
+                        DiaChi = CryptoHelper.Decrypt(p.DiaChi),
+                        SoDienThoai = CryptoHelper.Decrypt(p.SoDienThoai),
+                        Email = CryptoHelper.Decrypt(p.Email)
                     })
                     .ToList();
 
@@ -276,13 +280,13 @@ namespace DoAnDemoUI
                 dgvPublishers.Columns["DiaChi"].HeaderText = "Địa Chỉ";
                 dgvPublishers.Columns["SoDienThoai"].HeaderText = "Số Điện Thoại";
                 dgvPublishers.Columns["Email"].HeaderText = "Email";
-                
+
                 dgvPublishers.Columns["PublisherId"].Width = 80;
                 dgvPublishers.Columns["SoDienThoai"].Width = 120;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi tải dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi tải dữ liệu bảo mật: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -291,6 +295,7 @@ namespace DoAnDemoUI
             if (dgvPublishers.CurrentRow != null && !isEditing)
             {
                 var row = dgvPublishers.CurrentRow;
+                // Dữ liệu trên Grid đã được giải mã từ hàm LoadData()
                 txtPublisherId.Text = row.Cells["PublisherId"].Value?.ToString();
                 txtTenNhaXuatBan.Text = row.Cells["TenNhaXuatBan"].Value?.ToString();
                 txtDiaChi.Text = row.Cells["DiaChi"].Value?.ToString();
@@ -360,18 +365,20 @@ namespace DoAnDemoUI
 
             try
             {
+                // Kiểm tra trạng thái demo nếu cần (CryptoHelper.IsEncryptionEnabled)
                 if (txtPublisherId.Text == "(Tự động)" || string.IsNullOrEmpty(txtPublisherId.Text))
                 {
                     var newPublisher = new Publisher
                     {
-                        TenNhaXuatBan = txtTenNhaXuatBan.Text.Trim(),
-                        DiaChi = txtDiaChi.Text.Trim(),
-                        SoDienThoai = txtSoDienThoai.Text.Trim(),
-                        Email = txtEmail.Text.Trim()
+                        // MÃ HÓA AES TRƯỚC KHI LƯU
+                        TenNhaXuatBan = CryptoHelper.Encrypt(txtTenNhaXuatBan.Text.Trim()),
+                        DiaChi = CryptoHelper.Encrypt(txtDiaChi.Text.Trim()),
+                        SoDienThoai = CryptoHelper.Encrypt(txtSoDienThoai.Text.Trim()),
+                        Email = CryptoHelper.Encrypt(txtEmail.Text.Trim())
                     };
                     db.Publishers.Add(newPublisher);
                     db.SaveChanges();
-                    MessageBox.Show("✅ Thêm nhà xuất bản thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("✅ Thêm và mã hóa dữ liệu thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -379,14 +386,14 @@ namespace DoAnDemoUI
                     var publisher = db.Publishers.Find(publisherId);
                     if (publisher != null)
                     {
-                        publisher.TenNhaXuatBan = txtTenNhaXuatBan.Text.Trim();
-                        publisher.DiaChi = txtDiaChi.Text.Trim();
-                        publisher.SoDienThoai = txtSoDienThoai.Text.Trim();
-                        publisher.Email = txtEmail.Text.Trim();
-                        publisher.NgayCapNhat = DateTime.Now;
+                        // CẬP NHẬT VÀ MÃ HÓA LẠI
+                        publisher.TenNhaXuatBan = CryptoHelper.Encrypt(txtTenNhaXuatBan.Text.Trim());
+                        publisher.DiaChi = CryptoHelper.Encrypt(txtDiaChi.Text.Trim());
+                        publisher.SoDienThoai = CryptoHelper.Encrypt(txtSoDienThoai.Text.Trim());
+                        publisher.Email = CryptoHelper.Encrypt(txtEmail.Text.Trim());
 
                         db.SaveChanges();
-                        MessageBox.Show("✅ Cập nhật thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("✅ Cập nhật dữ liệu mã hóa thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
 
@@ -396,7 +403,7 @@ namespace DoAnDemoUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ Lỗi khi lưu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("❌ Lỗi bảo mật khi lưu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -404,7 +411,7 @@ namespace DoAnDemoUI
         {
             isEditing = false;
             SetControlState(false);
-            DgvPublishers_SelectionChanged(null, null);
+           // DgvPublishers_SelectionChanged(null, null);
         }
 
         private void SetControlState(bool editing)

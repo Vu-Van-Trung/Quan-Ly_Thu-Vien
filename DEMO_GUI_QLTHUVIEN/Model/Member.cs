@@ -17,7 +17,7 @@ namespace LibraryManagement.Models
         public string MemberId { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(300)]
         [Column("HoTen")]
         public string FullName { get; set; }
 
@@ -36,7 +36,7 @@ namespace LibraryManagement.Models
         [Column("SoDienThoai")]
         public string? PhoneNumber { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(300)]
         [Column("Email")]
         public string? Email { get; set; }
 

@@ -50,7 +50,7 @@ namespace LibraryManagement.Models
         [ForeignKey("StaffId")]
         public virtual Staff Staff { get; set; }
 
-        public virtual ICollection<LoanDetail>? LoanDetails { get; set; }
-        public virtual ICollection<Fine>? Fines { get; set; }
+        public virtual ICollection<LoanDetail> LoanDetails { get; set; } = new List<LoanDetail>();
+        public virtual ICollection<Fine> Fines { get; set; } = new List<Fine>();
     }
 }

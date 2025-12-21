@@ -45,6 +45,7 @@ namespace DoAnDemoUI
             AddMenuAction("ManageStaff", "Quản lý Nhân viên", () => OpenOrActivateChild(typeof(FormStaff)));
             AddMenuAction("ManagePublishers", "Quản lý Nhà XB", () => OpenOrActivateChild(typeof(FormPublisher)));
             AddMenuAction("Reports", "Báo cáo & Thống kê", () => OpenOrActivateChild(typeof(FormReport)));
+            AddMenuAction("ManageFines", "Phiếu Phạt & Trả Sách", () => OpenOrActivateChild(typeof(FormFine)));
         }
 
         // --- CÁC HÀM HỖ TRỢ XỬ LÝ MENU ---
@@ -95,7 +96,7 @@ namespace DoAnDemoUI
             ExecuteSelectedAction();
         }
 
-        private void lstMenu_KeyDown(object sender, KeyEventArgs e)
+        private void lstMenu_KeyDown(object? sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {

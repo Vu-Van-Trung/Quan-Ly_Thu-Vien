@@ -1,3 +1,4 @@
+#nullable disable
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -194,7 +195,7 @@ namespace DoAnDemoUI
             ResumeLayout(false);
             PerformLayout();
         }
-
+        
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             dgvReport.DataSource = null;
@@ -443,7 +444,7 @@ namespace DoAnDemoUI
         private Label lblTo;
         private Label lblTotal;
 
-        private void FormReport_Load_1(object sender, EventArgs e)
+        private void FormReport_Load_1(object? sender, EventArgs e)
         {
 
         }

@@ -1,4 +1,5 @@
-﻿using LibraryManagement.Data;
+﻿#nullable disable
+using LibraryManagement.Data;
 using LibraryManagement.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,6 +18,7 @@ namespace DoAnDemoUI
         {
             InitializeComponent();
             bindingSource = new BindingSource();
+            
         }
 
         // --- 1. HÀM LOAD KHI MỞ FORM ---
@@ -50,7 +52,7 @@ namespace DoAnDemoUI
             cbMaDocGia.ValueMember = "MemberId";   // Giá trị là ID độc giả (string)
         }
 
-        private void LoadData()
+        public void LoadData()
         {
             try
             {
@@ -228,6 +230,23 @@ namespace DoAnDemoUI
                     MessageBox.Show("Không thể xóa phiếu mượn này.\nLỗi: " + ex.Message);
                 }
             }
+        }
+
+        // --- NEW: CHỨC NĂNG TRẢ SÁCH (Link to FormFine) ---
+        private void btnTraSach_Click(object sender, EventArgs e)
+        {
+            if (dgvSachMuon.CurrentRow == null || dgvSachMuon.CurrentRow.Cells["LoanId"].Value == null)
+            {
+                MessageBox.Show("Vui lòng chọn phiếu mượn cần trả!");
+                return;
+            }
+
+            string loanId = dgvSachMuon.CurrentRow.Cells["LoanId"].Value.ToString();
+
+            // Mở FormFine và truyền ID
+            FormFine frmFine = new FormFine(loanId);
+            frmFine.MdiParent = this.MdiParent; // Set same parent if MDI
+            frmFine.Show();
         }
 
         // --- 6. CÁC NÚT ĐIỀU HƯỚNG ---

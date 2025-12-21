@@ -1,4 +1,5 @@
-﻿using LibraryManagement.Data;
+﻿#nullable disable
+using LibraryManagement.Data;
 using LibraryManagement.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -276,7 +277,7 @@ namespace DoAnDemoUI
             }
         }
 
-        private void BtnCancel_Click(object sender, EventArgs e)
+        private void BtnCancel_Click(object? sender, EventArgs e)
         {
             isEditing = false;
             SetControlState(false);
