@@ -17,21 +17,18 @@ namespace DoAnDemoUI
         private TextBox txtBookId;
         private Label lblTitleBook;
         private TextBox txtTitle;
-
-        // Đã sửa: Dùng TextBox thay vì ComboBox để nhập liệu trực tiếp
-        private Label lblAuthor;
-        private TextBox txtAuthor; // Thay cho cbAuthor
-
-        private Label lblCategory;
-        private TextBox txtCategory; // Thay cho cbCategory
-
-        private Label lblISBN;
-        private TextBox txtISBN;
-
+        
         private Label lblPublishedYear;
         private TextBox txtPublishedYear;
-
-        private FlowLayoutPanel flowButtons;
+        private Label lblAuthor;
+        private TextBox txtAuthor;
+        private Label lblCategory;
+        private TextBox txtCategory;
+        private Label lblPublisherCode;
+        private TextBox txtPublisherCode;
+        private Label lblPublisherName;
+        private TextBox txtPublisherName;
+        private TableLayoutPanel buttonPanel;
         private Button btnAdd;
         private Button btnEdit;
         private Button btnDelete;
@@ -64,15 +61,17 @@ namespace DoAnDemoUI
             txtBookId = new TextBox();
             lblTitleBook = new Label();
             txtTitle = new TextBox();
-            lblISBN = new Label();
-            txtISBN = new TextBox();
             lblPublishedYear = new Label();
             txtPublishedYear = new TextBox();
             lblAuthor = new Label();
             txtAuthor = new TextBox();
             lblCategory = new Label();
             txtCategory = new TextBox();
-            flowButtons = new FlowLayoutPanel();
+            lblPublisherCode = new Label();
+            txtPublisherCode = new TextBox();
+            lblPublisherName = new Label();
+            txtPublisherName = new TextBox();
+            buttonPanel = new TableLayoutPanel();
             btnAdd = new Button();
             btnEdit = new Button();
             btnDelete = new Button();
@@ -85,7 +84,7 @@ namespace DoAnDemoUI
             bindingSourceBooks = new BindingSource(components);
             topPanel.SuspendLayout();
             grpDetails.SuspendLayout();
-            flowButtons.SuspendLayout();
+            buttonPanel.SuspendLayout();
             ((ISupportInitialize)dgvBooks).BeginInit();
             ((ISupportInitialize)bindingSourceBooks).BeginInit();
             SuspendLayout();
@@ -118,17 +117,19 @@ namespace DoAnDemoUI
             grpDetails.Controls.Add(txtBookId);
             grpDetails.Controls.Add(lblTitleBook);
             grpDetails.Controls.Add(txtTitle);
-            grpDetails.Controls.Add(lblISBN);
-            grpDetails.Controls.Add(txtISBN);
             grpDetails.Controls.Add(lblPublishedYear);
             grpDetails.Controls.Add(txtPublishedYear);
             grpDetails.Controls.Add(lblAuthor);
             grpDetails.Controls.Add(txtAuthor);
             grpDetails.Controls.Add(lblCategory);
             grpDetails.Controls.Add(txtCategory);
+            grpDetails.Controls.Add(lblPublisherCode);
+            grpDetails.Controls.Add(txtPublisherCode);
+            grpDetails.Controls.Add(lblPublisherName);
+            grpDetails.Controls.Add(txtPublisherName);
             grpDetails.Location = new Point(12, 70);
             grpDetails.Name = "grpDetails";
-            grpDetails.Size = new Size(360, 320);
+            grpDetails.Size = new Size(360, 330);
             grpDetails.TabIndex = 1;
             grpDetails.TabStop = false;
             grpDetails.Text = "📚 Thông Tin Sách";
@@ -169,26 +170,10 @@ namespace DoAnDemoUI
             txtTitle.Size = new Size(230, 27);
             txtTitle.TabIndex = 3;
             // 
-            // lblISBN
-            // 
-            lblISBN.AutoSize = true;
-            lblISBN.Location = new Point(15, 115);
-            lblISBN.Name = "lblISBN";
-            lblISBN.Size = new Size(44, 20);
-            lblISBN.TabIndex = 4;
-            lblISBN.Text = "ISBN:";
-            // 
-            // txtISBN
-            // 
-            txtISBN.Location = new Point(110, 112);
-            txtISBN.Name = "txtISBN";
-            txtISBN.Size = new Size(230, 27);
-            txtISBN.TabIndex = 5;
-            // 
             // lblPublishedYear
             // 
             lblPublishedYear.AutoSize = true;
-            lblPublishedYear.Location = new Point(15, 155);
+            lblPublishedYear.Location = new Point(15, 115);
             lblPublishedYear.Name = "lblPublishedYear";
             lblPublishedYear.Size = new Size(66, 20);
             lblPublishedYear.TabIndex = 6;
@@ -196,7 +181,7 @@ namespace DoAnDemoUI
             // 
             // txtPublishedYear
             // 
-            txtPublishedYear.Location = new Point(110, 152);
+            txtPublishedYear.Location = new Point(110, 112);
             txtPublishedYear.Name = "txtPublishedYear";
             txtPublishedYear.Size = new Size(230, 27);
             txtPublishedYear.TabIndex = 7;
@@ -204,7 +189,7 @@ namespace DoAnDemoUI
             // lblAuthor
             // 
             lblAuthor.AutoSize = true;
-            lblAuthor.Location = new Point(15, 195);
+            lblAuthor.Location = new Point(15, 155);
             lblAuthor.Name = "lblAuthor";
             lblAuthor.Size = new Size(59, 20);
             lblAuthor.TabIndex = 8;
@@ -212,7 +197,7 @@ namespace DoAnDemoUI
             // 
             // txtAuthor
             // 
-            txtAuthor.Location = new Point(110, 192);
+            txtAuthor.Location = new Point(110, 152);
             txtAuthor.Name = "txtAuthor";
             txtAuthor.Size = new Size(230, 27);
             txtAuthor.TabIndex = 9;
@@ -220,7 +205,7 @@ namespace DoAnDemoUI
             // lblCategory
             // 
             lblCategory.AutoSize = true;
-            lblCategory.Location = new Point(15, 235);
+            lblCategory.Location = new Point(15, 195);
             lblCategory.Name = "lblCategory";
             lblCategory.Size = new Size(68, 20);
             lblCategory.TabIndex = 10;
@@ -228,23 +213,67 @@ namespace DoAnDemoUI
             // 
             // txtCategory
             // 
-            txtCategory.Location = new Point(110, 232);
+            txtCategory.Location = new Point(110, 192);
             txtCategory.Name = "txtCategory";
             txtCategory.Size = new Size(230, 27);
             txtCategory.TabIndex = 11;
             // 
-            // flowButtons
+            // lblPublisherCode
             // 
-            flowButtons.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            flowButtons.Controls.Add(btnAdd);
-            flowButtons.Controls.Add(btnEdit);
-            flowButtons.Controls.Add(btnDelete);
-            flowButtons.Controls.Add(btnSave);
-            flowButtons.Controls.Add(btnCancel);
-            flowButtons.Location = new Point(12, 400);
-            flowButtons.Name = "flowButtons";
-            flowButtons.Size = new Size(360, 44);
-            flowButtons.TabIndex = 2;
+            lblPublisherCode.AutoSize = true;
+            lblPublisherCode.Location = new Point(15, 235);
+            lblPublisherCode.Name = "lblPublisherCode";
+            lblPublisherCode.Size = new Size(86, 20);
+            lblPublisherCode.TabIndex = 12;
+            lblPublisherCode.Text = "Mã NXB (#):";
+            // 
+            // txtPublisherCode
+            // 
+            txtPublisherCode.Location = new Point(110, 232);
+            txtPublisherCode.Name = "txtPublisherCode";
+            txtPublisherCode.ReadOnly = true;
+            txtPublisherCode.Size = new Size(230, 27);
+            txtPublisherCode.TabIndex = 13;
+            // 
+            // lblPublisherName
+            // 
+            lblPublisherName.AutoSize = true;
+            lblPublisherName.Location = new Point(15, 275);
+            lblPublisherName.Name = "lblPublisherName";
+            lblPublisherName.Size = new Size(78, 20);
+            lblPublisherName.TabIndex = 14;
+            lblPublisherName.Text = "Tên NXB:";
+            // 
+            // txtPublisherName
+            // 
+            txtPublisherName.BackColor = SystemColors.ControlLight;
+            txtPublisherName.Location = new Point(110, 272);
+            txtPublisherName.Name = "txtPublisherName";
+            txtPublisherName.ReadOnly = true;
+            txtPublisherName.Size = new Size(230, 27);
+            txtPublisherName.TabIndex = 15;
+            txtPublisherName.TabStop = false;
+            // 
+            // buttonPanel
+            // 
+            buttonPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            buttonPanel.ColumnCount = 5;
+            buttonPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            buttonPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            buttonPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            buttonPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            buttonPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            buttonPanel.Controls.Add(btnAdd, 0, 0);
+            buttonPanel.Controls.Add(btnEdit, 1, 0);
+            buttonPanel.Controls.Add(btnDelete, 2, 0);
+            buttonPanel.Controls.Add(btnSave, 3, 0);
+            buttonPanel.Controls.Add(btnCancel, 4, 0);
+            buttonPanel.Location = new Point(12, 410);
+            buttonPanel.Name = "buttonPanel";
+            buttonPanel.RowCount = 1;
+            buttonPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            buttonPanel.Size = new Size(360, 44);
+            buttonPanel.TabIndex = 2;
             // 
             // btnAdd
             // 
@@ -252,9 +281,10 @@ namespace DoAnDemoUI
             btnAdd.ForeColor = Color.White;
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.FlatAppearance.BorderSize = 0;
-            btnAdd.Location = new Point(3, 3);
+            btnAdd.Dock = DockStyle.Fill;
+            btnAdd.Margin = new Padding(5, 0, 5, 0);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(65, 34);
+            btnAdd.Size = new Size(62, 44);
             btnAdd.TabIndex = 0;
             btnAdd.Text = "➕ Thêm";
             btnAdd.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
@@ -267,9 +297,10 @@ namespace DoAnDemoUI
             btnEdit.ForeColor = Color.White;
             btnEdit.FlatStyle = FlatStyle.Flat;
             btnEdit.FlatAppearance.BorderSize = 0;
-            btnEdit.Location = new Point(74, 3);
+            btnEdit.Dock = DockStyle.Fill;
+            btnEdit.Margin = new Padding(5, 0, 5, 0);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(65, 34);
+            btnEdit.Size = new Size(62, 44);
             btnEdit.TabIndex = 1;
             btnEdit.Text = "✏️ Sửa";
             btnEdit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
@@ -282,9 +313,10 @@ namespace DoAnDemoUI
             btnDelete.ForeColor = Color.White;
             btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.FlatAppearance.BorderSize = 0;
-            btnDelete.Location = new Point(145, 3);
+            btnDelete.Dock = DockStyle.Fill;
+            btnDelete.Margin = new Padding(5, 0, 5, 0);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(65, 34);
+            btnDelete.Size = new Size(62, 44);
             btnDelete.TabIndex = 2;
             btnDelete.Text = "🗑️ Xóa";
             btnDelete.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
@@ -298,9 +330,10 @@ namespace DoAnDemoUI
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.FlatAppearance.BorderSize = 0;
             btnSave.Enabled = false;
-            btnSave.Location = new Point(216, 3);
+            btnSave.Dock = DockStyle.Fill;
+            btnSave.Margin = new Padding(5, 0, 5, 0);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(65, 34);
+            btnSave.Size = new Size(62, 44);
             btnSave.TabIndex = 3;
             btnSave.Text = "💾 Lưu";
             btnSave.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
@@ -313,9 +346,10 @@ namespace DoAnDemoUI
             btnCancel.FlatStyle = FlatStyle.Flat;
             btnCancel.FlatAppearance.BorderSize = 0;
             btnCancel.Enabled = false;
-            btnCancel.Location = new Point(287, 3);
+            btnCancel.Dock = DockStyle.Fill;
+            btnCancel.Margin = new Padding(5, 0, 5, 0);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(65, 34);
+            btnCancel.Size = new Size(63, 44);
             btnCancel.TabIndex = 4;
             btnCancel.Text = "✖️ Hủy";
             btnCancel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
@@ -375,7 +409,7 @@ namespace DoAnDemoUI
             ClientSize = new Size(1000, 520);
             Controls.Add(topPanel);
             Controls.Add(grpDetails);
-            Controls.Add(flowButtons);
+            Controls.Add(buttonPanel);
             Controls.Add(txtSearch);
             Controls.Add(btnSearch);
             Controls.Add(btnReload);
@@ -388,7 +422,7 @@ namespace DoAnDemoUI
             topPanel.ResumeLayout(false);
             grpDetails.ResumeLayout(false);
             grpDetails.PerformLayout();
-            flowButtons.ResumeLayout(false);
+            buttonPanel.ResumeLayout(false);
             ((ISupportInitialize)dgvBooks).EndInit();
             ((ISupportInitialize)bindingSourceBooks).EndInit();
             ResumeLayout(false);

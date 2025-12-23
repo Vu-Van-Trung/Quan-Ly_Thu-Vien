@@ -23,6 +23,8 @@ namespace DoAnDemoUI
             this.FormClosing += form1_FormClosing;
             txtPassword.PasswordChar = '*';
             this.AcceptButton = btnLogin;
+            // Đặt con trỏ vào ô Username khi form load
+            this.ActiveControl = txtUsername;
         }
 
         public static string HashPassword(string password)
