@@ -68,7 +68,6 @@ namespace DoAnDemoUI
             // 
             // lblTitle
             // 
-            lblTitle.Anchor = AnchorStyles.Top;
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblTitle.ForeColor = Color.FromArgb(33, 150, 243);
@@ -80,7 +79,6 @@ namespace DoAnDemoUI
             // 
             // grpPersonal
             // 
-            grpPersonal.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             grpPersonal.Controls.Add(lblMemberId);
             grpPersonal.Controls.Add(txtMemberId);
             grpPersonal.Controls.Add(lblFullName);
@@ -197,7 +195,6 @@ namespace DoAnDemoUI
             // 
             // grpContact
             // 
-            grpContact.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             grpContact.Controls.Add(lblDiaChi);
             grpContact.Controls.Add(txtDiaChi);
             grpContact.Controls.Add(lblPhoneNumber);
@@ -269,7 +266,6 @@ namespace DoAnDemoUI
             // 
             // grpMembership
             // 
-            grpMembership.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             grpMembership.Controls.Add(lblNgayDangKy);
             grpMembership.Controls.Add(dtpNgayDangKy);
             grpMembership.Controls.Add(lblNgayHetHan);
@@ -365,7 +361,6 @@ namespace DoAnDemoUI
             // 
             // grpDanhSach
             // 
-            grpDanhSach.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             grpDanhSach.Controls.Add(dgvMembers);
             grpDanhSach.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             grpDanhSach.ForeColor = Color.FromArgb(33, 150, 243);
@@ -419,7 +414,6 @@ namespace DoAnDemoUI
             // 
             // grpChucNang
             // 
-            grpChucNang.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             grpChucNang.Controls.Add(btnThem);
             grpChucNang.Controls.Add(btnSua);
             grpChucNang.Controls.Add(btnXoa);
@@ -547,8 +541,6 @@ namespace DoAnDemoUI
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(250, 250, 250);
             ClientSize = new Size(1370, 640);
-            MinimumSize = new Size(1200, 700);
-            WindowState = FormWindowState.Maximized;
             Controls.Add(lblTitle);
             Controls.Add(grpPersonal);
             Controls.Add(grpContact);
