@@ -124,7 +124,10 @@ namespace DoAnDemoUI
         private void Login_Load(object sender, EventArgs e) { }
         private void guna2TextBox1_TextChanged(object sender, EventArgs e) { }
         private void guna2TextBox2_TextChanged(object sender, EventArgs e) { }
+
         private void guna2CircleButton1_Click(object sender, EventArgs e) => this.WindowState = FormWindowState.Minimized;
         private void lnkForgot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => MessageBox.Show("Liên hệ Admin.");
+
+
     }
 }
