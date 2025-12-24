@@ -1,4 +1,4 @@
-using System.Drawing;
+ï»¿using System.Drawing;
 using System.Windows.Forms;
 
 namespace DoAnDemoUI
@@ -67,7 +67,7 @@ namespace DoAnDemoUI
             // 
             // grpInfo
             // 
-            this.grpInfo.Text = "?? Thông Tin Nhà Xu?t B?n";
+            this.grpInfo.Text = "?? ThÃ´ng Tin NhÃ  Xu?t B?n";
             this.grpInfo.Location = new Point(20, 340);
             this.grpInfo.Size = new Size(960, 200);
             this.grpInfo.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
@@ -77,7 +77,7 @@ namespace DoAnDemoUI
             // 
             // lblPublisherId
             // 
-            this.lblPublisherId.Text = "Mã NXB:";
+            this.lblPublisherId.Text = "MÃ£ NXB:";
             this.lblPublisherId.Location = new Point(20, grpY);
             this.lblPublisherId.Size = new Size(130, 25);
             this.lblPublisherId.Font = new Font("Segoe UI", 10F);
@@ -94,7 +94,7 @@ namespace DoAnDemoUI
             // 
             // lblTenNXB
             // 
-            this.lblTenNXB.Text = "Tên NXB: *";
+            this.lblTenNXB.Text = "TÃªn NXB: *";
             this.lblTenNXB.Location = new Point(530, grpY);
             this.lblTenNXB.Size = new Size(100, 25);
             this.lblTenNXB.Font = new Font("Segoe UI", 10F);
@@ -172,7 +172,7 @@ namespace DoAnDemoUI
             int btnWidth = 110;
             int btnHeight = 40;
             int btnGap = 10;
-            this.btnAdd.Text = "? Thêm";
+            this.btnAdd.Text = "+ ThÃªm";
             this.btnAdd.Location = new Point(btnX, btnY);
             this.btnAdd.Size = new Size(btnWidth, btnHeight);
             this.btnAdd.BackColor = Color.FromArgb(76, 175, 80);
@@ -182,7 +182,7 @@ namespace DoAnDemoUI
             this.btnAdd.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             this.btnAdd.Cursor = Cursors.Hand;
             this.btnAdd.Click += BtnAdd_Click;
-            this.btnEdit.Text = "?? S?a";
+            this.btnEdit.Text = "?? Sá»­a";
             this.btnEdit.Location = new Point(btnX + (btnWidth + btnGap), btnY);
             this.btnEdit.Size = new Size(btnWidth, btnHeight);
             this.btnEdit.BackColor = Color.FromArgb(33, 150, 243);
@@ -192,7 +192,7 @@ namespace DoAnDemoUI
             this.btnEdit.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             this.btnEdit.Cursor = Cursors.Hand;
             this.btnEdit.Click += BtnEdit_Click;
-            this.btnDelete.Text = "??? Xóa";
+            this.btnDelete.Text = "??? XÃ³a";
             this.btnDelete.Location = new Point(btnX + (btnWidth + btnGap) * 2, btnY);
             this.btnDelete.Size = new Size(btnWidth, btnHeight);
             this.btnDelete.BackColor = Color.FromArgb(244, 67, 54);
@@ -222,7 +222,7 @@ namespace DoAnDemoUI
             this.btnCancel.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             this.btnCancel.Cursor = Cursors.Hand;
             this.btnCancel.Click += BtnCancel_Click;
-            this.btnRefresh.Text = "?? Làm m?i";
+            this.btnRefresh.Text = "?? LÃ m má»›i";
             this.btnRefresh.Location = new Point(btnX + (btnWidth + btnGap) * 5, btnY);
             this.btnRefresh.Size = new Size(btnWidth, btnHeight);
             this.btnRefresh.BackColor = Color.FromArgb(96, 125, 139);
@@ -244,7 +244,7 @@ namespace DoAnDemoUI
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnRefresh);
-            this.Text = "Qu?n Lý Nhà Xu?t B?n";
+            this.Text = "Qu?n LÃ½ NhÃ  Xu?t B?n";
             this.StartPosition = FormStartPosition.CenterScreen;
             this.BackColor = Color.FromArgb(250, 250, 250);
             this.Font = new Font("Segoe UI", 9F);

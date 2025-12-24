@@ -29,6 +29,8 @@ namespace DoAnDemoUI
 
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             tabControl = new TabControl();
             tabMostBorrowed = new TabPage();
             tabActiveMembers = new TabPage();
@@ -43,6 +45,8 @@ namespace DoAnDemoUI
             lblFrom = new Label();
             lblTo = new Label();
             lblTotal = new Label();
+            lblTitle = new Label();
+            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             tabControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvReport).BeginInit();
             SuspendLayout();
@@ -54,10 +58,10 @@ namespace DoAnDemoUI
             tabControl.Controls.Add(tabCategoryStats);
             tabControl.Controls.Add(tabFineRevenue);
             tabControl.Controls.Add(tabInventory);
-            tabControl.Location = new Point(20, 20);
+            tabControl.Location = new Point(1, 82);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
-            tabControl.Size = new Size(760, 50);
+            tabControl.Size = new Size(1310, 50);
             tabControl.TabIndex = 0;
             tabControl.SelectedIndexChanged += TabControl_SelectedIndexChanged;
             // 
@@ -65,7 +69,7 @@ namespace DoAnDemoUI
             // 
             tabMostBorrowed.Location = new Point(4, 29);
             tabMostBorrowed.Name = "tabMostBorrowed";
-            tabMostBorrowed.Size = new Size(752, 17);
+            tabMostBorrowed.Size = new Size(1302, 17);
             tabMostBorrowed.TabIndex = 0;
             tabMostBorrowed.Text = "Sách Mượn Nhiều";
             // 
@@ -105,17 +109,17 @@ namespace DoAnDemoUI
             // 
             dgvReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvReport.ColumnHeadersHeight = 29;
-            dgvReport.Location = new Point(20, 120);
+            dgvReport.Location = new Point(12, 192);
             dgvReport.Name = "dgvReport";
             dgvReport.ReadOnly = true;
             dgvReport.RowHeadersWidth = 51;
             dgvReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvReport.Size = new Size(760, 380);
+            dgvReport.Size = new Size(1286, 539);
             dgvReport.TabIndex = 7;
             // 
             // btnGenerate
             // 
-            btnGenerate.Location = new Point(510, 75);
+            btnGenerate.Location = new Point(794, 139);
             btnGenerate.Name = "btnGenerate";
             btnGenerate.Size = new Size(100, 30);
             btnGenerate.TabIndex = 5;
@@ -124,7 +128,7 @@ namespace DoAnDemoUI
             // 
             // btnExport
             // 
-            btnExport.Location = new Point(620, 75);
+            btnExport.Location = new Point(904, 139);
             btnExport.Name = "btnExport";
             btnExport.Size = new Size(100, 30);
             btnExport.TabIndex = 6;
@@ -134,7 +138,7 @@ namespace DoAnDemoUI
             // dtpFrom
             // 
             dtpFrom.Format = DateTimePickerFormat.Short;
-            dtpFrom.Location = new Point(90, 77);
+            dtpFrom.Location = new Point(374, 141);
             dtpFrom.Name = "dtpFrom";
             dtpFrom.Size = new Size(150, 27);
             dtpFrom.TabIndex = 2;
@@ -142,7 +146,7 @@ namespace DoAnDemoUI
             // dtpTo
             // 
             dtpTo.Format = DateTimePickerFormat.Short;
-            dtpTo.Location = new Point(340, 77);
+            dtpTo.Location = new Point(624, 141);
             dtpTo.Name = "dtpTo";
             dtpTo.Size = new Size(150, 27);
             dtpTo.TabIndex = 4;
@@ -150,7 +154,7 @@ namespace DoAnDemoUI
             // lblFrom
             // 
             lblFrom.AutoSize = true;
-            lblFrom.Location = new Point(20, 80);
+            lblFrom.Location = new Point(304, 144);
             lblFrom.Name = "lblFrom";
             lblFrom.Size = new Size(65, 20);
             lblFrom.TabIndex = 1;
@@ -159,7 +163,7 @@ namespace DoAnDemoUI
             // lblTo
             // 
             lblTo.AutoSize = true;
-            lblTo.Location = new Point(260, 80);
+            lblTo.Location = new Point(544, 144);
             lblTo.Name = "lblTo";
             lblTo.Size = new Size(75, 20);
             lblTo.TabIndex = 3;
@@ -169,14 +173,47 @@ namespace DoAnDemoUI
             // 
             lblTotal.AutoSize = true;
             lblTotal.Font = new Font("Arial", 10F, FontStyle.Bold);
-            lblTotal.Location = new Point(20, 510);
+            lblTotal.Location = new Point(187, 566);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(0, 19);
             lblTotal.TabIndex = 8;
             // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 22F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.FromArgb(255, 128, 128);
+            lblTitle.Location = new Point(374, 9);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(530, 50);
+            lblTitle.TabIndex = 9;
+            lblTitle.Text = "📚 DANH SÁCH PHIẾU PHẠT";
+            // 
+            // guna2Button1
+            // 
+            guna2Button1.CustomizableEdges = customizableEdges1;
+            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button1.FillColor = SystemColors.ButtonFace;
+            guna2Button1.Font = new Font("Segoe UI", 9F);
+            guna2Button1.ForeColor = Color.White;
+            guna2Button1.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
+            guna2Button1.ImageSize = new Size(40, 40);
+            guna2Button1.Location = new Point(1254, 9);
+            guna2Button1.Name = "guna2Button1";
+            guna2Button1.PressedColor = SystemColors.ButtonFace;
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2Button1.Size = new Size(44, 36);
+            guna2Button1.TabIndex = 12;
+            guna2Button1.Click += guna2Button1_Click;
+            // 
             // FormReport
             // 
-            ClientSize = new Size(800, 550);
+            ClientSize = new Size(1310, 743);
+            Controls.Add(guna2Button1);
+            Controls.Add(lblTitle);
             Controls.Add(tabControl);
             Controls.Add(lblFrom);
             Controls.Add(dtpFrom);
@@ -186,6 +223,7 @@ namespace DoAnDemoUI
             Controls.Add(btnExport);
             Controls.Add(dgvReport);
             Controls.Add(lblTotal);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FormReport";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Báo Cáo và Thống Kê";
@@ -195,7 +233,7 @@ namespace DoAnDemoUI
             ResumeLayout(false);
             PerformLayout();
         }
-        
+
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             dgvReport.DataSource = null;
@@ -442,11 +480,18 @@ namespace DoAnDemoUI
         private DateTimePicker dtpTo;
         private Label lblFrom;
         private Label lblTo;
+        private Label lblTitle;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Label lblTotal;
 
         private void FormReport_Load_1(object? sender, EventArgs e)
         {
 
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

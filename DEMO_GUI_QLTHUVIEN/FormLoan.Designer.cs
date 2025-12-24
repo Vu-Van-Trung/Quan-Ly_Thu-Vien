@@ -20,6 +20,8 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblTitle = new Label();
             gbThongTin = new GroupBox();
             dtpNgayTra = new DateTimePicker();
@@ -46,6 +48,7 @@
             btnDau = new Button();
             gbChiTiet = new GroupBox();
             dgvChiTiet = new DataGridView();
+            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             gbThongTin.SuspendLayout();
             gbDanhSach.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSachMuon).BeginInit();
@@ -169,7 +172,7 @@
             gbDanhSach.Margin = new Padding(3, 4, 3, 4);
             gbDanhSach.Name = "gbDanhSach";
             gbDanhSach.Padding = new Padding(3, 4, 3, 4);
-            gbDanhSach.Size = new Size(803, 300);
+            gbDanhSach.Size = new Size(780, 300);
             gbDanhSach.TabIndex = 2;
             gbDanhSach.TabStop = false;
             gbDanhSach.Text = "📊 Danh Sách Phiếu Mượn";
@@ -206,7 +209,7 @@
             dgvSachMuon.RowHeadersWidth = 51;
             dgvSachMuon.RowTemplate.Height = 35;
             dgvSachMuon.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSachMuon.Size = new Size(797, 269);
+            dgvSachMuon.Size = new Size(774, 269);
             dgvSachMuon.TabIndex = 0;
             dgvSachMuon.CellContentClick += dgvSachMuon_CellContentClick;
             // 
@@ -321,7 +324,7 @@
             gbDieuKhien.Controls.Add(btnSau);
             gbDieuKhien.Controls.Add(btnTruoc);
             gbDieuKhien.Controls.Add(btnDau);
-            gbDieuKhien.Location = new Point(507, 692);
+            gbDieuKhien.Location = new Point(484, 620);
             gbDieuKhien.Margin = new Padding(3, 4, 3, 4);
             gbDieuKhien.Name = "gbDieuKhien";
             gbDieuKhien.Padding = new Padding(3, 4, 3, 4);
@@ -391,7 +394,7 @@
             gbChiTiet.ForeColor = Color.Red;
             gbChiTiet.Location = new Point(507, 400);
             gbChiTiet.Name = "gbChiTiet";
-            gbChiTiet.Size = new Size(803, 280);
+            gbChiTiet.Size = new Size(780, 208);
             gbChiTiet.TabIndex = 10;
             gbChiTiet.TabStop = false;
             gbChiTiet.Text = "📕 Chi Tiết Sách Đang Mượn";
@@ -407,25 +410,46 @@
             dgvChiTiet.ReadOnly = true;
             dgvChiTiet.RowHeadersWidth = 51;
             dgvChiTiet.RowTemplate.Height = 30;
-            dgvChiTiet.Size = new Size(797, 251);
+            dgvChiTiet.Size = new Size(774, 179);
             dgvChiTiet.TabIndex = 0;
             dgvChiTiet.CellContentClick += dgvChiTiet_CellContentClick;
             // 
+            // guna2Button1
+            // 
+            guna2Button1.CustomizableEdges = customizableEdges1;
+            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button1.FillColor = SystemColors.ButtonFace;
+            guna2Button1.Font = new Font("Segoe UI", 9F);
+            guna2Button1.ForeColor = Color.White;
+            guna2Button1.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
+            guna2Button1.ImageSize = new Size(40, 40);
+            guna2Button1.Location = new Point(1254, 14);
+            guna2Button1.Name = "guna2Button1";
+            guna2Button1.PressedColor = SystemColors.ButtonFace;
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2Button1.Size = new Size(44, 36);
+            guna2Button1.TabIndex = 11;
+            guna2Button1.Click += guna2Button1_Click;
+            // 
             // FormLoan
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1333, 815);
+            AutoScaleMode = AutoScaleMode.Inherit;
+            ClientSize = new Size(1310, 743);
+            Controls.Add(guna2Button1);
             Controls.Add(gbChiTiet);
             Controls.Add(gbDieuKhien);
             Controls.Add(gbXuLy);
             Controls.Add(gbDanhSach);
             Controls.Add(gbThongTin);
             Controls.Add(lblTitle);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "FormLoan";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Quản Lý Mượn Trả";
+            Text = "v";
             Load += FormLoan_Load;
             gbThongTin.ResumeLayout(false);
             gbThongTin.PerformLayout();
@@ -467,6 +491,7 @@
         private System.Windows.Forms.GroupBox gbChiTiet;
         private System.Windows.Forms.DataGridView dgvChiTiet;
         private System.Windows.Forms.TextBox txtIndex;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
 
         // ... existing controls ...
     }

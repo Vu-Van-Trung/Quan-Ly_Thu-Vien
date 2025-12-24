@@ -30,8 +30,12 @@ namespace LibraryManagement.Data
         // Cấu hình chuỗi kết nối
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
+            if (!optionsBuilder.IsConfigured) 
             {
+                // Connection string đến database QuanLyThuVien
+                optionsBuilder.UseSqlServer(
+                    "Server=.\\SQLEXPRESS;Database=QuanLyThuVien;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
+                );
                 // Đọc chuỗi kết nối từ App.config
                 string? connectionString = ConfigurationManager.ConnectionStrings["LibraryDb"]?.ConnectionString;
                 
