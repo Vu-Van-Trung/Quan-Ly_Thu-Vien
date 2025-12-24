@@ -449,7 +449,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "FormLoan";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Quản Lý Mượn Trả";
+            Text = "v";
             Load += FormLoan_Load;
             gbThongTin.ResumeLayout(false);
             gbThongTin.PerformLayout();
