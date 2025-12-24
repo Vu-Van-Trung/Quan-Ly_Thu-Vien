@@ -79,6 +79,7 @@ namespace DoAnDemoUI
             txtPassword.ForeColor = Color.Black;
             txtPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             errorProvider1.SetIconAlignment(txtPassword, ErrorIconAlignment.TopRight);
+            txtPassword.IconLeft = DEMO_GUI_QLTHUVIEN.Properties.Resources.lock_25px;
             txtPassword.IconLeftOffset = new Point(15, 0);
             txtPassword.IconLeftSize = new Size(30, 30);
             txtPassword.Location = new Point(621, 218);
@@ -109,6 +110,7 @@ namespace DoAnDemoUI
             txtUsername.ForeColor = Color.Black;
             txtUsername.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             errorProvider1.SetIconAlignment(txtUsername, ErrorIconAlignment.MiddleLeft);
+            txtUsername.IconLeft = DEMO_GUI_QLTHUVIEN.Properties.Resources.user_25px;
             txtUsername.IconLeftOffset = new Point(15, 0);
             txtUsername.IconLeftSize = new Size(30, 30);
             txtUsername.Location = new Point(621, 127);

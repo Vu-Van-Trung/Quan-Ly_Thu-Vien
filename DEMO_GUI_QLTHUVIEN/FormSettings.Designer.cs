@@ -18,97 +18,127 @@ namespace DoAnDemoUI
 
         private void InitializeComponent()
         {
-            this.grpData = new System.Windows.Forms.GroupBox();
-            this.btnRestore = new System.Windows.Forms.Button();
-            this.btnBackup = new System.Windows.Forms.Button();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.btnThoat = new System.Windows.Forms.Button();
-            this.grpData.SuspendLayout();
-            this.SuspendLayout();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            grpData = new GroupBox();
+            btnRestore = new Button();
+            btnBackup = new Button();
+            lblTitle = new Label();
+            btnThoat = new Button();
+            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            grpData.SuspendLayout();
+            SuspendLayout();
             // 
             // grpData
             // 
-            this.grpData.Controls.Add(this.btnRestore);
-            this.grpData.Controls.Add(this.btnBackup);
-            this.grpData.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.grpData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
-            this.grpData.Location = new System.Drawing.Point(30, 80);
-            this.grpData.Name = "grpData";
-            this.grpData.Size = new System.Drawing.Size(500, 150);
-            this.grpData.TabIndex = 0;
-            this.grpData.TabStop = false;
-            this.grpData.Text = "📁 Quản Lý Dữ Liệu";
+            grpData.Controls.Add(btnRestore);
+            grpData.Controls.Add(btnBackup);
+            grpData.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            grpData.ForeColor = Color.FromArgb(33, 150, 243);
+            grpData.Location = new Point(370, 200);
+            grpData.Margin = new Padding(3, 4, 3, 4);
+            grpData.Name = "grpData";
+            grpData.Padding = new Padding(3, 4, 3, 4);
+            grpData.Size = new Size(500, 188);
+            grpData.TabIndex = 0;
+            grpData.TabStop = false;
+            grpData.Text = "📁 Quản Lý Dữ Liệu";
             // 
             // btnRestore
             // 
-            this.btnRestore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(67)))), ((int)(((byte)(54)))));
-            this.btnRestore.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRestore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRestore.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnRestore.ForeColor = System.Drawing.Color.White;
-            this.btnRestore.Location = new System.Drawing.Point(260, 50);
-            this.btnRestore.Name = "btnRestore";
-            this.btnRestore.Size = new System.Drawing.Size(200, 50);
-            this.btnRestore.TabIndex = 1;
-            this.btnRestore.Text = "🔄 Phục hồi dữ liệu";
-            this.btnRestore.UseVisualStyleBackColor = false;
-            this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
+            btnRestore.BackColor = Color.FromArgb(244, 67, 54);
+            btnRestore.Cursor = Cursors.Hand;
+            btnRestore.FlatStyle = FlatStyle.Flat;
+            btnRestore.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnRestore.ForeColor = Color.White;
+            btnRestore.Location = new Point(260, 62);
+            btnRestore.Margin = new Padding(3, 4, 3, 4);
+            btnRestore.Name = "btnRestore";
+            btnRestore.Size = new Size(200, 62);
+            btnRestore.TabIndex = 1;
+            btnRestore.Text = "🔄 Phục hồi dữ liệu";
+            btnRestore.UseVisualStyleBackColor = false;
+            btnRestore.Click += btnRestore_Click;
             // 
             // btnBackup
             // 
-            this.btnBackup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(175)))), ((int)(((byte)(80)))));
-            this.btnBackup.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBackup.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnBackup.ForeColor = System.Drawing.Color.White;
-            this.btnBackup.Location = new System.Drawing.Point(40, 50);
-            this.btnBackup.Name = "btnBackup";
-            this.btnBackup.Size = new System.Drawing.Size(200, 50);
-            this.btnBackup.TabIndex = 0;
-            this.btnBackup.Text = "💾 Sao lưu dữ liệu";
-            this.btnBackup.UseVisualStyleBackColor = false;
-            this.btnBackup.Click += new System.EventHandler(this.btnBackup_Click);
+            btnBackup.BackColor = Color.FromArgb(76, 175, 80);
+            btnBackup.Cursor = Cursors.Hand;
+            btnBackup.FlatStyle = FlatStyle.Flat;
+            btnBackup.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnBackup.ForeColor = Color.White;
+            btnBackup.Location = new Point(40, 62);
+            btnBackup.Margin = new Padding(3, 4, 3, 4);
+            btnBackup.Name = "btnBackup";
+            btnBackup.Size = new Size(200, 62);
+            btnBackup.TabIndex = 0;
+            btnBackup.Text = "💾 Sao lưu dữ liệu";
+            btnBackup.UseVisualStyleBackColor = false;
+            btnBackup.Click += btnBackup_Click;
             // 
             // lblTitle
             // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
-            this.lblTitle.Location = new System.Drawing.Point(180, 20);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(193, 41);
-            this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = "⚙️ CÀI ĐẶT";
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.FromArgb(33, 150, 243);
+            lblTitle.Location = new Point(551, 28);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(187, 41);
+            lblTitle.TabIndex = 1;
+            lblTitle.Text = "⚙️ CÀI ĐẶT";
             // 
             // btnThoat
             // 
-            this.btnThoat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(158)))), ((int)(((byte)(158)))));
-            this.btnThoat.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnThoat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThoat.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnThoat.ForeColor = System.Drawing.Color.White;
-            this.btnThoat.Location = new System.Drawing.Point(220, 250);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(120, 40);
-            this.btnThoat.TabIndex = 2;
-            this.btnThoat.Text = "Đóng";
-            this.btnThoat.UseVisualStyleBackColor = false;
-            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
+            btnThoat.BackColor = Color.FromArgb(158, 158, 158);
+            btnThoat.Cursor = Cursors.Hand;
+            btnThoat.FlatStyle = FlatStyle.Flat;
+            btnThoat.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnThoat.ForeColor = Color.White;
+            btnThoat.Location = new Point(542, 437);
+            btnThoat.Margin = new Padding(3, 4, 3, 4);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(120, 50);
+            btnThoat.TabIndex = 2;
+            btnThoat.Text = "Đóng";
+            btnThoat.UseVisualStyleBackColor = false;
+            btnThoat.Click += btnThoat_Click;
+            // 
+            // guna2Button1
+            // 
+            guna2Button1.CustomizableEdges = customizableEdges1;
+            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button1.FillColor = SystemColors.ButtonFace;
+            guna2Button1.Font = new Font("Segoe UI", 9F);
+            guna2Button1.ForeColor = Color.White;
+            guna2Button1.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
+            guna2Button1.ImageSize = new Size(40, 40);
+            guna2Button1.Location = new Point(1254, 12);
+            guna2Button1.Name = "guna2Button1";
+            guna2Button1.PressedColor = SystemColors.ButtonFace;
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2Button1.Size = new Size(44, 36);
+            guna2Button1.TabIndex = 13;
+            guna2Button1.Click += guna2Button1_Click;
             // 
             // FormSettings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 320);
-            this.Controls.Add(this.btnThoat);
-            this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.grpData);
-            this.Name = "FormSettings";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cài đặt";
-            this.grpData.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleMode = AutoScaleMode.Inherit;
+            ClientSize = new Size(1310, 743);
+            Controls.Add(guna2Button1);
+            Controls.Add(btnThoat);
+            Controls.Add(lblTitle);
+            Controls.Add(grpData);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "FormSettings";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Cài đặt";
+            grpData.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -119,5 +149,6 @@ namespace DoAnDemoUI
         private System.Windows.Forms.Button btnBackup;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnThoat;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
     }
 }

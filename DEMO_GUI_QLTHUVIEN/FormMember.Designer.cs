@@ -20,6 +20,8 @@ namespace DoAnDemoUI
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblTitle = new Label();
             grpPersonal = new GroupBox();
             lblMemberId = new Label();
@@ -58,6 +60,7 @@ namespace DoAnDemoUI
             btnHuy = new Button();
             txtTimKiem = new TextBox();
             btnTimKiem = new Button();
+            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             grpPersonal.SuspendLayout();
             grpContact.SuspendLayout();
             grpMembership.SuspendLayout();
@@ -205,7 +208,7 @@ namespace DoAnDemoUI
             grpContact.ForeColor = Color.FromArgb(33, 150, 243);
             grpContact.Location = new Point(480, 60);
             grpContact.Name = "grpContact";
-            grpContact.Size = new Size(440, 170);
+            grpContact.Size = new Size(376, 170);
             grpContact.TabIndex = 2;
             grpContact.TabStop = false;
             grpContact.Text = "📞 Thông Tin Liên Hệ";
@@ -225,7 +228,7 @@ namespace DoAnDemoUI
             txtDiaChi.Font = new Font("Segoe UI", 9.5F);
             txtDiaChi.Location = new Point(90, 28);
             txtDiaChi.Name = "txtDiaChi";
-            txtDiaChi.Size = new Size(335, 29);
+            txtDiaChi.Size = new Size(265, 29);
             txtDiaChi.TabIndex = 1;
             // 
             // lblPhoneNumber
@@ -261,7 +264,7 @@ namespace DoAnDemoUI
             txtEmail.Font = new Font("Segoe UI", 9.5F);
             txtEmail.Location = new Point(90, 98);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(335, 29);
+            txtEmail.Size = new Size(265, 29);
             txtEmail.TabIndex = 5;
             // 
             // grpMembership
@@ -276,7 +279,7 @@ namespace DoAnDemoUI
             grpMembership.Controls.Add(txtGhiChu);
             grpMembership.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             grpMembership.ForeColor = Color.FromArgb(33, 150, 243);
-            grpMembership.Location = new Point(935, 60);
+            grpMembership.Location = new Point(878, 60);
             grpMembership.Name = "grpMembership";
             grpMembership.Size = new Size(420, 170);
             grpMembership.TabIndex = 3;
@@ -366,7 +369,7 @@ namespace DoAnDemoUI
             grpDanhSach.ForeColor = Color.FromArgb(33, 150, 243);
             grpDanhSach.Location = new Point(15, 240);
             grpDanhSach.Name = "grpDanhSach";
-            grpDanhSach.Size = new Size(1135, 380);
+            grpDanhSach.Size = new Size(1045, 483);
             grpDanhSach.TabIndex = 4;
             grpDanhSach.TabStop = false;
             grpDanhSach.Text = "📊 Danh Sách Độc Giả";
@@ -408,7 +411,7 @@ namespace DoAnDemoUI
             dgvMembers.RowHeadersWidth = 51;
             dgvMembers.RowTemplate.Height = 30;
             dgvMembers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvMembers.Size = new Size(1129, 351);
+            dgvMembers.Size = new Size(1039, 454);
             dgvMembers.TabIndex = 0;
             dgvMembers.CellContentClick += dgvMembers_CellContentClick;
             // 
@@ -423,7 +426,7 @@ namespace DoAnDemoUI
             grpChucNang.Controls.Add(btnTimKiem);
             grpChucNang.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             grpChucNang.ForeColor = Color.FromArgb(33, 150, 243);
-            grpChucNang.Location = new Point(1163, 248);
+            grpChucNang.Location = new Point(1087, 240);
             grpChucNang.Name = "grpChucNang";
             grpChucNang.Size = new Size(195, 380);
             grpChucNang.TabIndex = 5;
@@ -464,7 +467,6 @@ namespace DoAnDemoUI
             // 
             btnXoa.BackColor = Color.FromArgb(244, 67, 54);
             btnXoa.Cursor = Cursors.Hand;
-
             btnXoa.FlatAppearance.BorderSize = 0;
             btnXoa.FlatStyle = FlatStyle.Flat;
             btnXoa.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -474,8 +476,6 @@ namespace DoAnDemoUI
             btnXoa.Size = new Size(165, 40);
             btnXoa.TabIndex = 2;
             btnXoa.Text = "🗑️ Xóa";
-
-
             btnXoa.UseVisualStyleBackColor = false;
             // 
             // btnLuu
@@ -523,7 +523,6 @@ namespace DoAnDemoUI
             // 
             btnTimKiem.BackColor = Color.FromArgb(96, 125, 139);
             btnTimKiem.Cursor = Cursors.Hand;
-
             btnTimKiem.FlatAppearance.BorderSize = 0;
             btnTimKiem.FlatStyle = FlatStyle.Flat;
             btnTimKiem.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
@@ -535,12 +534,32 @@ namespace DoAnDemoUI
             btnTimKiem.Text = "🔍 Tìm Kiếm";
             btnTimKiem.UseVisualStyleBackColor = false;
             // 
+            // guna2Button1
+            // 
+            guna2Button1.CustomizableEdges = customizableEdges1;
+            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button1.FillColor = SystemColors.ButtonHighlight;
+            guna2Button1.Font = new Font("Segoe UI", 9F);
+            guna2Button1.ForeColor = Color.White;
+            guna2Button1.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
+            guna2Button1.ImageSize = new Size(40, 40);
+            guna2Button1.Location = new Point(1254, 10);
+            guna2Button1.Name = "guna2Button1";
+            guna2Button1.PressedColor = SystemColors.ButtonFace;
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2Button1.Size = new Size(44, 36);
+            guna2Button1.TabIndex = 6;
+            guna2Button1.Click += guna2Button1_Click;
+            // 
             // FormMember
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.Inherit;
             BackColor = Color.FromArgb(250, 250, 250);
-            ClientSize = new Size(1370, 640);
+            ClientSize = new Size(1310, 743);
+            Controls.Add(guna2Button1);
             Controls.Add(lblTitle);
             Controls.Add(grpPersonal);
             Controls.Add(grpContact);
@@ -548,6 +567,7 @@ namespace DoAnDemoUI
             Controls.Add(grpDanhSach);
             Controls.Add(grpChucNang);
             Font = new Font("Segoe UI", 9F);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FormMember";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản Lý Độc Giả";
@@ -600,5 +620,6 @@ namespace DoAnDemoUI
         // Buttons
         private System.Windows.Forms.Button btnThem, btnSua, btnXoa, btnLuu, btnHuy, btnTimKiem;
         private System.Windows.Forms.TextBox txtTimKiem;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
     }
 }

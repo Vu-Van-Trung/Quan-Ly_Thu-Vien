@@ -28,11 +28,11 @@ namespace DoAnDemoUI
             btnBackup.Enabled = isAdmin;
             btnRestore.Enabled = isAdmin;
             grpData.Visible = isAdmin; // Ẩn luôn nếu không phải Admin, hoặc chỉ Disable tùy ý user. Chọn ẩn cho gọn.
-            
+
             if (!isAdmin)
             {
-               MessageBox.Show("Bạn không có quyền truy cập vào các cài đặt nâng cao này.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-               this.Close(); // Đóng form nếu không có quyền gì cả (hiện tại form chỉ có Data)
+                MessageBox.Show("Bạn không có quyền truy cập vào các cài đặt nâng cao này.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close(); // Đóng form nếu không có quyền gì cả (hiện tại form chỉ có Data)
             }
         }
 
@@ -64,7 +64,7 @@ namespace DoAnDemoUI
 
         private void btnRestore_Click(object sender, EventArgs e)
         {
-             if (MessageBox.Show("Cảnh báo: Phục hồi dữ liệu sẽ ghi đè toàn bộ dữ liệu hiện tại. Bạn có chắc chắn muốn tiếp tục?", "Xác nhận phục hồi", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+            if (MessageBox.Show("Cảnh báo: Phục hồi dữ liệu sẽ ghi đè toàn bộ dữ liệu hiện tại. Bạn có chắc chắn muốn tiếp tục?", "Xác nhận phục hồi", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
             {
                 return;
             }
@@ -101,6 +101,11 @@ namespace DoAnDemoUI
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
