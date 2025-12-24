@@ -34,7 +34,7 @@ namespace LibraryManagement.Data
             {
                 // Connection string đến database QuanLyThuVien
                 optionsBuilder.UseSqlServer(
-                    "Server=.\\SQLEXPRESS;Database=QuanLyThuVien;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
+                    "Server=NATSUME\\SQLEXPRESS;Database=QuanLyThuVien;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
                 );
                 // Đọc chuỗi kết nối từ App.config
                 string? connectionString = ConfigurationManager.ConnectionStrings["LibraryDb"]?.ConnectionString;

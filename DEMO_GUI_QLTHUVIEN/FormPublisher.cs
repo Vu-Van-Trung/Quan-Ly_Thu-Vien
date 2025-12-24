@@ -28,14 +28,18 @@ namespace DoAnDemoUI
             db = new LibraryContext();
             LoadData();
             SetControlState(false);
+            // Xóa dữ liệu mẫu khi chạy thật
+            ClearInputs();
         }
 
         private void LoadData()
         {
             try
             {
+                // QUAN TRỌNG: Chặn code tự động sinh cột để dùng cột đã tạo trong Designer
+                dgvPublishers.AutoGenerateColumns = false;
+
                 // Sử dụng AsEnumerable() để giải mã dữ liệu trong bộ nhớ RAM
-                // CryptoHelper sẽ tự động dùng RSA để mở khóa AES key trước khi giải mã
                 var publishers = db.Publishers.AsEnumerable()
                     .Select(p => new
                     {
@@ -48,14 +52,9 @@ namespace DoAnDemoUI
                     .ToList();
 
                 dgvPublishers.DataSource = publishers;
-                dgvPublishers.Columns["PublisherId"].HeaderText = "Mã NXB";
-                dgvPublishers.Columns["TenNhaXuatBan"].HeaderText = "Tên Nhà Xuất Bản";
-                dgvPublishers.Columns["DiaChi"].HeaderText = "Địa Chỉ";
-                dgvPublishers.Columns["SoDienThoai"].HeaderText = "Số Điện Thoại";
-                dgvPublishers.Columns["Email"].HeaderText = "Email";
 
-                dgvPublishers.Columns["PublisherId"].Width = 80;
-                dgvPublishers.Columns["SoDienThoai"].Width = 120;
+                // Vì đã định nghĩa cột ở Designer, ta chỉ cần set lại Width nếu cần
+                // Các dòng set HeaderText ở đây không cần thiết nữa nhưng để lại cũng không sao
             }
             catch (Exception ex)
             {
@@ -69,11 +68,11 @@ namespace DoAnDemoUI
             {
                 var row = dgvPublishers.CurrentRow;
                 // Dữ liệu trên Grid đã được giải mã từ hàm LoadData()
-                txtPublisherId.Text = row.Cells["PublisherId"].Value?.ToString();
-                txtTenNhaXuatBan.Text = row.Cells["TenNhaXuatBan"].Value?.ToString();
-                txtDiaChi.Text = row.Cells["DiaChi"].Value?.ToString();
-                txtSoDienThoai.Text = row.Cells["SoDienThoai"].Value?.ToString();
-                txtEmail.Text = row.Cells["Email"].Value?.ToString();
+                txtPublisherId.Text = row.Cells["colId"].Value?.ToString(); // Lưu ý: dùng tên biến cột colId hoặc DataPropertyName
+                txtTenNhaXuatBan.Text = row.Cells["colTen"].Value?.ToString();
+                txtDiaChi.Text = row.Cells["colDiaChi"].Value?.ToString();
+                txtSoDienThoai.Text = row.Cells["colSDT"].Value?.ToString();
+                txtEmail.Text = row.Cells["colEmail"].Value?.ToString();
             }
         }
 
@@ -102,8 +101,9 @@ namespace DoAnDemoUI
         {
             if (dgvPublishers.CurrentRow == null) return;
 
-            int publisherId = Convert.ToInt32(dgvPublishers.CurrentRow.Cells["PublisherId"].Value);
-            string name = dgvPublishers.CurrentRow.Cells["TenNhaXuatBan"].Value.ToString();
+            // Lấy ID từ cột ẩn hoặc DataBoundItem
+            int publisherId = Convert.ToInt32(dgvPublishers.CurrentRow.Cells["colId"].Value);
+            string name = dgvPublishers.CurrentRow.Cells["colTen"].Value.ToString();
 
             if (MessageBox.Show($"Bạn có chắc muốn xóa nhà xuất bản '{name}'?", "Xác nhận",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
@@ -138,12 +138,10 @@ namespace DoAnDemoUI
 
             try
             {
-                // Kiểm tra trạng thái demo nếu cần (CryptoHelper.IsEncryptionEnabled)
                 if (txtPublisherId.Text == "(Tự động)" || string.IsNullOrEmpty(txtPublisherId.Text))
                 {
                     var newPublisher = new Publisher
                     {
-                        // MÃ HÓA AES TRƯỚC KHI LƯU
                         TenNhaXuatBan = CryptoHelper.Encrypt(txtTenNhaXuatBan.Text.Trim()),
                         DiaChi = CryptoHelper.Encrypt(txtDiaChi.Text.Trim()),
                         SoDienThoai = CryptoHelper.Encrypt(txtSoDienThoai.Text.Trim()),
@@ -159,7 +157,6 @@ namespace DoAnDemoUI
                     var publisher = db.Publishers.Find(publisherId);
                     if (publisher != null)
                     {
-                        // CẬP NHẬT VÀ MÃ HÓA LẠI
                         publisher.TenNhaXuatBan = CryptoHelper.Encrypt(txtTenNhaXuatBan.Text.Trim());
                         publisher.DiaChi = CryptoHelper.Encrypt(txtDiaChi.Text.Trim());
                         publisher.SoDienThoai = CryptoHelper.Encrypt(txtSoDienThoai.Text.Trim());
@@ -176,7 +173,8 @@ namespace DoAnDemoUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ Lỗi bảo mật khi lưu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var detail = ex.InnerException?.GetBaseException()?.Message ?? ex.Message;
+                MessageBox.Show("Lỗi khi lưu: " + detail, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -184,7 +182,8 @@ namespace DoAnDemoUI
         {
             isEditing = false;
             SetControlState(false);
-            // DgvPublishers_SelectionChanged(null, null);
+            // Nếu muốn sau khi hủy thì quay lại dòng đang chọn:
+            DgvPublishers_SelectionChanged(null, null);
         }
 
         private void SetControlState(bool editing)
@@ -212,6 +211,12 @@ namespace DoAnDemoUI
             {
                 grpInfo.ForeColor = Color.FromArgb(33, 150, 243);
             }
+        }
+
+        private void BtnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadData();
+            ClearInputs();
         }
 
         private void ClearInputs()

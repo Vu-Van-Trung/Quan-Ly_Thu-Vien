@@ -16,19 +16,19 @@ namespace LibraryManagement.Models
         public int PublisherId { get; set; }
 
         [Required]
-        [MaxLength(200)]
+        [MaxLength(512)]
         [Column("TenNhaXuatBan")]
         public string TenNhaXuatBan { get; set; }
 
-        [MaxLength(300)]
+        [MaxLength(512)]
         [Column("DiaChi")]
         public string? DiaChi { get; set; }
 
-        [MaxLength(15)]
+        [MaxLength(512)]
         [Column("SoDienThoai")]
         public string? SoDienThoai { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(512)]
         [Column("Email")]
         public string? Email { get; set; }
 
