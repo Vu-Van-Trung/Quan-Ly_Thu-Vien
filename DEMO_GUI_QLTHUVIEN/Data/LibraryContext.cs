@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using LibraryManagement.Models;
 using DoAnDemoUI.Model;
+using System.Configuration;
 
 namespace LibraryManagement.Data
 {
@@ -31,10 +32,23 @@ namespace LibraryManagement.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
+<<<<<<< HEAD
                 // Connection string đến database QuanLyThuVien
                 optionsBuilder.UseSqlServer(
                     "Server=.;Database=QuanLyThuVien;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
                 );
+=======
+                // Đọc chuỗi kết nối từ App.config
+                string? connectionString = ConfigurationManager.ConnectionStrings["LibraryDb"]?.ConnectionString;
+                
+                if (string.IsNullOrEmpty(connectionString))
+                {
+                    // Fallback hoặc báo lỗi nếu không tìm thấy chuỗi kết nối
+                    throw new System.Exception("Connection string 'LibraryDb' not found in App.config.");
+                }
+
+                optionsBuilder.UseSqlServer(connectionString);
+>>>>>>> acb08f248f48a1a9968081ddcd75cd8b43136ca4
             }
         }
 
