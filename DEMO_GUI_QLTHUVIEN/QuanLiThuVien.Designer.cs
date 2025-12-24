@@ -89,10 +89,10 @@ namespace DoAnDemoUI
             guna2CustomGradientPanel1.Controls.Add(btnMinimize);
             guna2CustomGradientPanel1.Controls.Add(btnCancel);
             guna2CustomGradientPanel1.CustomizableEdges = customizableEdges5;
-            guna2CustomGradientPanel1.Location = new Point(260, 0);
+            guna2CustomGradientPanel1.Location = new Point(259, 0);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
             guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            guna2CustomGradientPanel1.Size = new Size(1597, 77);
+            guna2CustomGradientPanel1.Size = new Size(1604, 77);
             guna2CustomGradientPanel1.TabIndex = 2;
             // 
             // label1
@@ -100,7 +100,7 @@ namespace DoAnDemoUI
             label1.AutoSize = true;
             label1.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Coral;
-            label1.Location = new Point(400, 15);
+            label1.Location = new Point(402, 15);
             label1.Name = "label1";
             label1.Size = new Size(393, 41);
             label1.TabIndex = 24;
