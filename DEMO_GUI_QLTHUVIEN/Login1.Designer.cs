@@ -33,13 +33,13 @@ namespace DoAnDemoUI
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             ComponentResourceManager resources = new ComponentResourceManager(typeof(Login1));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             errorProvider1 = new ErrorProvider(components);
             txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
@@ -50,10 +50,10 @@ namespace DoAnDemoUI
             loginError = new Label();
             label2 = new Label();
             Login = new Guna.UI2.WinForms.Guna2Panel();
-            btnMinimize = new Guna.UI2.WinForms.Guna2CircleButton();
             label4 = new Label();
             label3 = new Label();
             guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
+            btnMinimize = new Guna.UI2.WinForms.Guna2CircleButton();
             btnCancel = new Guna.UI2.WinForms.Guna2CircleButton();
             ((ISupportInitialize)errorProvider1).BeginInit();
             Login.SuspendLayout();
@@ -82,7 +82,7 @@ namespace DoAnDemoUI
             txtPassword.IconLeft = DEMO_GUI_QLTHUVIEN.Properties.Resources.lock_25px;
             txtPassword.IconLeftOffset = new Point(15, 0);
             txtPassword.IconLeftSize = new Size(30, 30);
-            txtPassword.Location = new Point(621, 218);
+            txtPassword.Location = new Point(634, 261);
             txtPassword.Margin = new Padding(4);
             txtPassword.Name = "txtPassword";
             txtPassword.PlaceholderText = "Mật khẩu";
@@ -113,7 +113,7 @@ namespace DoAnDemoUI
             txtUsername.IconLeft = DEMO_GUI_QLTHUVIEN.Properties.Resources.user_25px;
             txtUsername.IconLeftOffset = new Point(15, 0);
             txtUsername.IconLeftSize = new Size(30, 30);
-            txtUsername.Location = new Point(621, 127);
+            txtUsername.Location = new Point(634, 170);
             txtUsername.Margin = new Padding(4);
             txtUsername.Name = "txtUsername";
             txtUsername.PlaceholderText = "Tên đăng nhập";
@@ -130,7 +130,7 @@ namespace DoAnDemoUI
             // 
             lnkForgot.AutoSize = true;
             lnkForgot.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lnkForgot.Location = new Point(617, 402);
+            lnkForgot.Location = new Point(630, 445);
             lnkForgot.Name = "lnkForgot";
             lnkForgot.Size = new Size(142, 25);
             lnkForgot.TabIndex = 6;
@@ -143,7 +143,7 @@ namespace DoAnDemoUI
             dktk.AutoSize = true;
             dktk.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dktk.ForeColor = Color.Blue;
-            dktk.Location = new Point(890, 401);
+            dktk.Location = new Point(903, 444);
             dktk.Name = "dktk";
             dktk.Size = new Size(158, 25);
             dktk.TabIndex = 9;
@@ -154,7 +154,7 @@ namespace DoAnDemoUI
             // 
             label.AutoSize = true;
             label.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label.Location = new Point(747, 60);
+            label.Location = new Point(760, 103);
             label.Name = "label";
             label.Size = new Size(179, 41);
             label.TabIndex = 13;
@@ -170,7 +170,7 @@ namespace DoAnDemoUI
             btnLogin.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnLogin.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(642, 331);
+            btnLogin.Location = new Point(655, 374);
             btnLogin.Name = "btnLogin";
             btnLogin.ShadowDecoration.CustomizableEdges = customizableEdges3;
             btnLogin.Size = new Size(380, 56);
@@ -182,7 +182,7 @@ namespace DoAnDemoUI
             // 
             loginError.AutoSize = true;
             loginError.ForeColor = Color.Red;
-            loginError.Location = new Point(699, 297);
+            loginError.Location = new Point(712, 340);
             loginError.Name = "loginError";
             loginError.Size = new Size(238, 20);
             loginError.TabIndex = 17;
@@ -194,7 +194,7 @@ namespace DoAnDemoUI
             label2.AutoSize = true;
             label2.Font = new Font("Calibri Light", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.MediumTurquoise;
-            label2.Location = new Point(354, 500);
+            label2.Location = new Point(374, 607);
             label2.Name = "label2";
             label2.Size = new Size(447, 22);
             label2.TabIndex = 18;
@@ -203,7 +203,6 @@ namespace DoAnDemoUI
             // Login
             // 
             Login.BackColor = Color.White;
-            Login.Controls.Add(btnMinimize);
             Login.Controls.Add(label4);
             Login.Controls.Add(label3);
             Login.Controls.Add(label2);
@@ -213,41 +212,21 @@ namespace DoAnDemoUI
             Login.Controls.Add(txtUsername);
             Login.Controls.Add(label);
             Login.Controls.Add(guna2PictureBox1);
-            Login.Controls.Add(btnCancel);
             Login.Controls.Add(dktk);
             Login.Controls.Add(lnkForgot);
-            Login.CustomizableEdges = customizableEdges11;
-            Login.Location = new Point(251, 68);
+            Login.CustomizableEdges = customizableEdges10;
+            Login.Location = new Point(142, 68);
             Login.Name = "Login";
-            Login.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            Login.Size = new Size(1112, 550);
+            Login.ShadowDecoration.CustomizableEdges = customizableEdges11;
+            Login.Size = new Size(1221, 667);
             Login.TabIndex = 11;
-            // 
-            // btnMinimize
-            // 
-            btnMinimize.DisabledState.BorderColor = Color.DarkGray;
-            btnMinimize.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnMinimize.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnMinimize.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnMinimize.FillColor = Color.White;
-            btnMinimize.Font = new Font("Segoe UI", 9F);
-            btnMinimize.ForeColor = Color.White;
-            btnMinimize.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources._786263;
-            btnMinimize.ImageSize = new Size(50, 50);
-            btnMinimize.Location = new Point(77, 14);
-            btnMinimize.Name = "btnMinimize";
-            btnMinimize.ShadowDecoration.CustomizableEdges = customizableEdges1;
-            btnMinimize.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            btnMinimize.Size = new Size(55, 52);
-            btnMinimize.TabIndex = 21;
-            btnMinimize.Click += guna2CircleButton1_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Red;
-            label4.Location = new Point(372, 83);
+            label4.Location = new Point(385, 126);
             label4.Name = "label4";
             label4.Size = new Size(73, 41);
             label4.TabIndex = 20;
@@ -258,7 +237,7 @@ namespace DoAnDemoUI
             label3.AutoSize = true;
             label3.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Magenta;
-            label3.Location = new Point(253, 83);
+            label3.Location = new Point(266, 126);
             label3.Name = "label3";
             label3.Size = new Size(166, 41);
             label3.TabIndex = 19;
@@ -271,13 +250,32 @@ namespace DoAnDemoUI
             guna2PictureBox1.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources._174951701726937611;
             guna2PictureBox1.ImageRotate = 0F;
             guna2PictureBox1.InitialImage = DEMO_GUI_QLTHUVIEN.Properties.Resources._174951701726937611;
-            guna2PictureBox1.Location = new Point(160, 127);
+            guna2PictureBox1.Location = new Point(173, 170);
             guna2PictureBox1.Name = "guna2PictureBox1";
             guna2PictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges9;
             guna2PictureBox1.Size = new Size(330, 295);
             guna2PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             guna2PictureBox1.TabIndex = 11;
             guna2PictureBox1.TabStop = false;
+            // 
+            // btnMinimize
+            // 
+            btnMinimize.DisabledState.BorderColor = Color.DarkGray;
+            btnMinimize.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnMinimize.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnMinimize.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnMinimize.FillColor = Color.White;
+            btnMinimize.Font = new Font("Segoe UI", 9F);
+            btnMinimize.ForeColor = Color.White;
+            btnMinimize.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources._786263;
+            btnMinimize.ImageSize = new Size(50, 50);
+            btnMinimize.Location = new Point(1396, 14);
+            btnMinimize.Name = "btnMinimize";
+            btnMinimize.ShadowDecoration.CustomizableEdges = customizableEdges1;
+            btnMinimize.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            btnMinimize.Size = new Size(55, 52);
+            btnMinimize.TabIndex = 21;
+            btnMinimize.Click += guna2CircleButton1_Click;
             // 
             // btnCancel
             // 
@@ -290,9 +288,9 @@ namespace DoAnDemoUI
             btnCancel.ForeColor = Color.White;
             btnCancel.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
             btnCancel.ImageSize = new Size(60, 60);
-            btnCancel.Location = new Point(16, 14);
+            btnCancel.Location = new Point(1468, 14);
             btnCancel.Name = "btnCancel";
-            btnCancel.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btnCancel.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btnCancel.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnCancel.Size = new Size(55, 52);
             btnCancel.TabIndex = 10;
@@ -301,7 +299,9 @@ namespace DoAnDemoUI
             // Login1
             // 
             ClientSize = new Size(1866, 808);
+            Controls.Add(btnMinimize);
             Controls.Add(Login);
+            Controls.Add(btnCancel);
             Font = new Font("Segoe UI", 9F);
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;

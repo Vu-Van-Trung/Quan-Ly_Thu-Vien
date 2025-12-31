@@ -227,5 +227,15 @@ namespace DoAnDemoUI
             txtSoDienThoai.Clear();
             txtEmail.Clear();
         }
+
+        private void FormPublisher_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

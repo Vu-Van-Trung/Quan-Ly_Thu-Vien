@@ -20,358 +20,393 @@ namespace DoAnDemoUI
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dgvPublishers = new System.Windows.Forms.DataGridView();
-            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDiaChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSDT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grpInfo = new System.Windows.Forms.GroupBox();
-            this.lblPublisherId = new System.Windows.Forms.Label();
-            this.txtPublisherId = new System.Windows.Forms.TextBox();
-            this.lblTenNXB = new System.Windows.Forms.Label();
-            this.txtTenNhaXuatBan = new System.Windows.Forms.TextBox();
-            this.lblDiaChi = new System.Windows.Forms.Label();
-            this.txtDiaChi = new System.Windows.Forms.TextBox();
-            this.lblSoDienThoai = new System.Windows.Forms.Label();
-            this.txtSoDienThoai = new System.Windows.Forms.TextBox();
-            this.lblEmail = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPublishers)).BeginInit();
-            this.grpInfo.SuspendLayout();
-            this.SuspendLayout();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            dgvPublishers = new DataGridView();
+            colId = new DataGridViewTextBoxColumn();
+            colTen = new DataGridViewTextBoxColumn();
+            colDiaChi = new DataGridViewTextBoxColumn();
+            colSDT = new DataGridViewTextBoxColumn();
+            colEmail = new DataGridViewTextBoxColumn();
+            grpInfo = new GroupBox();
+            lblPublisherId = new Label();
+            txtPublisherId = new TextBox();
+            lblTenNXB = new Label();
+            txtTenNhaXuatBan = new TextBox();
+            lblDiaChi = new Label();
+            txtDiaChi = new TextBox();
+            lblSoDienThoai = new Label();
+            txtSoDienThoai = new TextBox();
+            lblEmail = new Label();
+            txtEmail = new TextBox();
+            btnAdd = new Button();
+            btnEdit = new Button();
+            btnDelete = new Button();
+            btnSave = new Button();
+            btnCancel = new Button();
+            btnRefresh = new Button();
+            lblTitle = new Label();
+            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            ((System.ComponentModel.ISupportInitialize)dgvPublishers).BeginInit();
+            grpInfo.SuspendLayout();
+            SuspendLayout();
             // 
             // dgvPublishers
             // 
-            this.dgvPublishers.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.dgvPublishers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvPublishers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvPublishers.BackgroundColor = System.Drawing.Color.White;
-            this.dgvPublishers.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPublishers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvPublishers.ColumnHeadersHeight = 40;
-            this.dgvPublishers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colId,
-            this.colTen,
-            this.colDiaChi,
-            this.colSDT,
-            this.colEmail});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPublishers.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvPublishers.EnableHeadersVisualStyles = false;
-            this.dgvPublishers.Location = new System.Drawing.Point(20, 20);
-            this.dgvPublishers.MultiSelect = false;
-            this.dgvPublishers.Name = "dgvPublishers";
-            this.dgvPublishers.ReadOnly = true;
-            this.dgvPublishers.RowHeadersWidth = 51;
-            this.dgvPublishers.RowTemplate.Height = 35;
-            this.dgvPublishers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPublishers.Size = new System.Drawing.Size(960, 300);
-            this.dgvPublishers.TabIndex = 0;
-            this.dgvPublishers.SelectionChanged += new System.EventHandler(this.DgvPublishers_SelectionChanged);
+            dgvPublishers.AllowUserToAddRows = false;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(245, 245, 245);
+            dgvPublishers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgvPublishers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvPublishers.BackgroundColor = Color.White;
+            dgvPublishers.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(33, 150, 243);
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvPublishers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dgvPublishers.ColumnHeadersHeight = 40;
+            dgvPublishers.Columns.AddRange(new DataGridViewColumn[] { colId, colTen, colDiaChi, colSDT, colEmail });
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(100, 181, 246);
+            dataGridViewCellStyle6.SelectionForeColor = Color.White;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dgvPublishers.DefaultCellStyle = dataGridViewCellStyle6;
+            dgvPublishers.EnableHeadersVisualStyles = false;
+            dgvPublishers.Location = new Point(29, 74);
+            dgvPublishers.MultiSelect = false;
+            dgvPublishers.Name = "dgvPublishers";
+            dgvPublishers.ReadOnly = true;
+            dgvPublishers.RowHeadersWidth = 51;
+            dgvPublishers.RowTemplate.Height = 35;
+            dgvPublishers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvPublishers.Size = new Size(1249, 362);
+            dgvPublishers.TabIndex = 0;
+            dgvPublishers.SelectionChanged += DgvPublishers_SelectionChanged;
             // 
             // colId
             // 
-            this.colId.DataPropertyName = "PublisherId";
-            this.colId.HeaderText = "Mã NXB";
-            this.colId.MinimumWidth = 6;
-            this.colId.Name = "colId";
-            this.colId.ReadOnly = true;
+            colId.DataPropertyName = "PublisherId";
+            colId.HeaderText = "Mã NXB";
+            colId.MinimumWidth = 6;
+            colId.Name = "colId";
+            colId.ReadOnly = true;
             // 
             // colTen
             // 
-            this.colTen.DataPropertyName = "TenNhaXuatBan";
-            this.colTen.HeaderText = "Tên Nhà Xuất Bản";
-            this.colTen.MinimumWidth = 6;
-            this.colTen.Name = "colTen";
-            this.colTen.ReadOnly = true;
+            colTen.DataPropertyName = "TenNhaXuatBan";
+            colTen.HeaderText = "Tên Nhà Xuất Bản";
+            colTen.MinimumWidth = 6;
+            colTen.Name = "colTen";
+            colTen.ReadOnly = true;
             // 
             // colDiaChi
             // 
-            this.colDiaChi.DataPropertyName = "DiaChi";
-            this.colDiaChi.HeaderText = "Địa Chỉ";
-            this.colDiaChi.MinimumWidth = 6;
-            this.colDiaChi.Name = "colDiaChi";
-            this.colDiaChi.ReadOnly = true;
+            colDiaChi.DataPropertyName = "DiaChi";
+            colDiaChi.HeaderText = "Địa Chỉ";
+            colDiaChi.MinimumWidth = 6;
+            colDiaChi.Name = "colDiaChi";
+            colDiaChi.ReadOnly = true;
             // 
             // colSDT
             // 
-            this.colSDT.DataPropertyName = "SoDienThoai";
-            this.colSDT.HeaderText = "Số Điện Thoại";
-            this.colSDT.MinimumWidth = 6;
-            this.colSDT.Name = "colSDT";
-            this.colSDT.ReadOnly = true;
+            colSDT.DataPropertyName = "SoDienThoai";
+            colSDT.HeaderText = "Số Điện Thoại";
+            colSDT.MinimumWidth = 6;
+            colSDT.Name = "colSDT";
+            colSDT.ReadOnly = true;
             // 
             // colEmail
             // 
-            this.colEmail.DataPropertyName = "Email";
-            this.colEmail.HeaderText = "Email";
-            this.colEmail.MinimumWidth = 6;
-            this.colEmail.Name = "colEmail";
-            this.colEmail.ReadOnly = true;
+            colEmail.DataPropertyName = "Email";
+            colEmail.HeaderText = "Email";
+            colEmail.MinimumWidth = 6;
+            colEmail.Name = "colEmail";
+            colEmail.ReadOnly = true;
             // 
             // grpInfo
             // 
-            this.grpInfo.Controls.Add(this.lblPublisherId);
-            this.grpInfo.Controls.Add(this.txtPublisherId);
-            this.grpInfo.Controls.Add(this.lblTenNXB);
-            this.grpInfo.Controls.Add(this.txtTenNhaXuatBan);
-            this.grpInfo.Controls.Add(this.lblDiaChi);
-            this.grpInfo.Controls.Add(this.txtDiaChi);
-            this.grpInfo.Controls.Add(this.lblSoDienThoai);
-            this.grpInfo.Controls.Add(this.txtSoDienThoai);
-            this.grpInfo.Controls.Add(this.lblEmail);
-            this.grpInfo.Controls.Add(this.txtEmail);
-            this.grpInfo.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.grpInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
-            this.grpInfo.Location = new System.Drawing.Point(20, 340);
-            this.grpInfo.Name = "grpInfo";
-            this.grpInfo.Size = new System.Drawing.Size(960, 200);
-            this.grpInfo.TabIndex = 1;
-            this.grpInfo.TabStop = false;
-            this.grpInfo.Text = "📝 Thông Tin Nhà Xuất Bản";
+            grpInfo.Controls.Add(lblPublisherId);
+            grpInfo.Controls.Add(txtPublisherId);
+            grpInfo.Controls.Add(lblTenNXB);
+            grpInfo.Controls.Add(txtTenNhaXuatBan);
+            grpInfo.Controls.Add(lblDiaChi);
+            grpInfo.Controls.Add(txtDiaChi);
+            grpInfo.Controls.Add(lblSoDienThoai);
+            grpInfo.Controls.Add(txtSoDienThoai);
+            grpInfo.Controls.Add(lblEmail);
+            grpInfo.Controls.Add(txtEmail);
+            grpInfo.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            grpInfo.ForeColor = Color.FromArgb(33, 150, 243);
+            grpInfo.Location = new Point(29, 456);
+            grpInfo.Name = "grpInfo";
+            grpInfo.Size = new Size(1249, 200);
+            grpInfo.TabIndex = 1;
+            grpInfo.TabStop = false;
+            grpInfo.Text = "📝 Thông Tin Nhà Xuất Bản";
             // 
             // lblPublisherId
             // 
-            this.lblPublisherId.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblPublisherId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.lblPublisherId.Location = new System.Drawing.Point(6, 32);
-            this.lblPublisherId.Name = "lblPublisherId";
-            this.lblPublisherId.Size = new System.Drawing.Size(130, 25);
-            this.lblPublisherId.TabIndex = 0;
-            this.lblPublisherId.Text = "Mã NXB:";
+            lblPublisherId.Font = new Font("Segoe UI", 10F);
+            lblPublisherId.ForeColor = Color.FromArgb(66, 66, 66);
+            lblPublisherId.Location = new Point(90, 32);
+            lblPublisherId.Name = "lblPublisherId";
+            lblPublisherId.Size = new Size(130, 25);
+            lblPublisherId.TabIndex = 0;
+            lblPublisherId.Text = "Mã NXB:";
             // 
             // txtPublisherId
             // 
-            this.txtPublisherId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.txtPublisherId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPublisherId.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtPublisherId.Location = new System.Drawing.Point(156, 30);
-            this.txtPublisherId.Name = "txtPublisherId";
-            this.txtPublisherId.ReadOnly = true;
-            this.txtPublisherId.Size = new System.Drawing.Size(350, 30);
-            this.txtPublisherId.TabIndex = 1;
-            this.txtPublisherId.Text = "1";
+            txtPublisherId.BackColor = Color.FromArgb(240, 240, 240);
+            txtPublisherId.BorderStyle = BorderStyle.FixedSingle;
+            txtPublisherId.Font = new Font("Segoe UI", 10F);
+            txtPublisherId.Location = new Point(240, 30);
+            txtPublisherId.Name = "txtPublisherId";
+            txtPublisherId.ReadOnly = true;
+            txtPublisherId.Size = new Size(329, 30);
+            txtPublisherId.TabIndex = 1;
+            txtPublisherId.Text = "1";
             // 
             // lblTenNXB
             // 
-            this.lblTenNXB.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblTenNXB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.lblTenNXB.Location = new System.Drawing.Point(530, 35);
-            this.lblTenNXB.Name = "lblTenNXB";
-            this.lblTenNXB.Size = new System.Drawing.Size(100, 25);
-            this.lblTenNXB.TabIndex = 2;
-            this.lblTenNXB.Text = "Tên NXB: *";
+            lblTenNXB.Font = new Font("Segoe UI", 10F);
+            lblTenNXB.ForeColor = Color.FromArgb(66, 66, 66);
+            lblTenNXB.Location = new Point(600, 32);
+            lblTenNXB.Name = "lblTenNXB";
+            lblTenNXB.Size = new Size(100, 25);
+            lblTenNXB.TabIndex = 2;
+            lblTenNXB.Text = "Tên NXB: *";
             // 
             // txtTenNhaXuatBan
             // 
-            this.txtTenNhaXuatBan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTenNhaXuatBan.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtTenNhaXuatBan.Location = new System.Drawing.Point(636, 30);
-            this.txtTenNhaXuatBan.Name = "txtTenNhaXuatBan";
-            this.txtTenNhaXuatBan.Size = new System.Drawing.Size(300, 30);
-            this.txtTenNhaXuatBan.TabIndex = 3;
-            this.txtTenNhaXuatBan.Text = "NXB Trẻ";
+            txtTenNhaXuatBan.BorderStyle = BorderStyle.FixedSingle;
+            txtTenNhaXuatBan.Font = new Font("Segoe UI", 10F);
+            txtTenNhaXuatBan.Location = new Point(706, 30);
+            txtTenNhaXuatBan.Name = "txtTenNhaXuatBan";
+            txtTenNhaXuatBan.Size = new Size(520, 30);
+            txtTenNhaXuatBan.TabIndex = 3;
+            txtTenNhaXuatBan.Text = "NXB Trẻ";
             // 
             // lblDiaChi
             // 
-            this.lblDiaChi.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblDiaChi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.lblDiaChi.Location = new System.Drawing.Point(6, 90);
-            this.lblDiaChi.Name = "lblDiaChi";
-            this.lblDiaChi.Size = new System.Drawing.Size(130, 25);
-            this.lblDiaChi.TabIndex = 4;
-            this.lblDiaChi.Text = "Địa chỉ:";
+            lblDiaChi.Font = new Font("Segoe UI", 10F);
+            lblDiaChi.ForeColor = Color.FromArgb(66, 66, 66);
+            lblDiaChi.Location = new Point(90, 86);
+            lblDiaChi.Name = "lblDiaChi";
+            lblDiaChi.Size = new Size(130, 25);
+            lblDiaChi.TabIndex = 4;
+            lblDiaChi.Text = "Địa chỉ:";
             // 
             // txtDiaChi
             // 
-            this.txtDiaChi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDiaChi.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtDiaChi.Location = new System.Drawing.Point(156, 85);
-            this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(780, 30);
-            this.txtDiaChi.TabIndex = 5;
-            this.txtDiaChi.Text = "161B Lý Chính Thắng, Q.3, TP.HCM";
+            txtDiaChi.BorderStyle = BorderStyle.FixedSingle;
+            txtDiaChi.Font = new Font("Segoe UI", 10F);
+            txtDiaChi.Location = new Point(240, 81);
+            txtDiaChi.Name = "txtDiaChi";
+            txtDiaChi.Size = new Size(986, 30);
+            txtDiaChi.TabIndex = 5;
+            txtDiaChi.Text = "161B Lý Chính Thắng, Q.3, TP.HCM";
             // 
             // lblSoDienThoai
             // 
-            this.lblSoDienThoai.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblSoDienThoai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.lblSoDienThoai.Location = new System.Drawing.Point(6, 135);
-            this.lblSoDienThoai.Name = "lblSoDienThoai";
-            this.lblSoDienThoai.Size = new System.Drawing.Size(130, 25);
-            this.lblSoDienThoai.TabIndex = 6;
-            this.lblSoDienThoai.Text = "Số ĐT:";
+            lblSoDienThoai.Font = new Font("Segoe UI", 10F);
+            lblSoDienThoai.ForeColor = Color.FromArgb(66, 66, 66);
+            lblSoDienThoai.Location = new Point(90, 142);
+            lblSoDienThoai.Name = "lblSoDienThoai";
+            lblSoDienThoai.Size = new Size(130, 25);
+            lblSoDienThoai.TabIndex = 6;
+            lblSoDienThoai.Text = "Số ĐT:";
             // 
             // txtSoDienThoai
             // 
-            this.txtSoDienThoai.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSoDienThoai.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtSoDienThoai.Location = new System.Drawing.Point(156, 130);
-            this.txtSoDienThoai.Name = "txtSoDienThoai";
-            this.txtSoDienThoai.Size = new System.Drawing.Size(200, 30);
-            this.txtSoDienThoai.TabIndex = 7;
-            this.txtSoDienThoai.Text = "028-39316211";
+            txtSoDienThoai.BorderStyle = BorderStyle.FixedSingle;
+            txtSoDienThoai.Font = new Font("Segoe UI", 10F);
+            txtSoDienThoai.Location = new Point(240, 137);
+            txtSoDienThoai.Name = "txtSoDienThoai";
+            txtSoDienThoai.Size = new Size(329, 30);
+            txtSoDienThoai.TabIndex = 7;
+            txtSoDienThoai.Text = "028-39316211";
             // 
             // lblEmail
             // 
-            this.lblEmail.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.lblEmail.Location = new System.Drawing.Point(375, 132);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(70, 25);
-            this.lblEmail.TabIndex = 8;
-            this.lblEmail.Text = "Email:";
+            lblEmail.Font = new Font("Segoe UI", 10F);
+            lblEmail.ForeColor = Color.FromArgb(66, 66, 66);
+            lblEmail.Location = new Point(600, 139);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(70, 25);
+            lblEmail.TabIndex = 8;
+            lblEmail.Text = "Email:";
             // 
             // txtEmail
             // 
-            this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtEmail.Location = new System.Drawing.Point(451, 130);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(485, 30);
-            this.txtEmail.TabIndex = 9;
-            this.txtEmail.Text = "info@nxbtre.com.vn";
+            txtEmail.BorderStyle = BorderStyle.FixedSingle;
+            txtEmail.Font = new Font("Segoe UI", 10F);
+            txtEmail.Location = new Point(706, 137);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(520, 30);
+            txtEmail.TabIndex = 9;
+            txtEmail.Text = "info@nxbtre.com.vn";
             // 
             // btnAdd
             // 
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(175)))), ((int)(((byte)(80)))));
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(20, 560);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(110, 40);
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.Text = "+ Thêm";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            btnAdd.BackColor = Color.FromArgb(76, 175, 80);
+            btnAdd.Cursor = Cursors.Hand;
+            btnAdd.FlatAppearance.BorderSize = 0;
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnAdd.ForeColor = Color.White;
+            btnAdd.Location = new Point(29, 676);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(110, 40);
+            btnAdd.TabIndex = 2;
+            btnAdd.Text = "+ Thêm";
+            btnAdd.UseVisualStyleBackColor = false;
+            btnAdd.Click += BtnAdd_Click;
             // 
             // btnEdit
             // 
-            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
-            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEdit.FlatAppearance.BorderSize = 0;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnEdit.ForeColor = System.Drawing.Color.White;
-            this.btnEdit.Location = new System.Drawing.Point(140, 560);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(110, 40);
-            this.btnEdit.TabIndex = 3;
-            this.btnEdit.Text = "✎ Sửa";
-            this.btnEdit.UseVisualStyleBackColor = false;
-            this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
+            btnEdit.BackColor = Color.FromArgb(33, 150, 243);
+            btnEdit.Cursor = Cursors.Hand;
+            btnEdit.FlatAppearance.BorderSize = 0;
+            btnEdit.FlatStyle = FlatStyle.Flat;
+            btnEdit.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnEdit.ForeColor = Color.White;
+            btnEdit.Location = new Point(149, 676);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(110, 40);
+            btnEdit.TabIndex = 3;
+            btnEdit.Text = "✎ Sửa";
+            btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += BtnEdit_Click;
             // 
             // btnDelete
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(67)))), ((int)(((byte)(54)))));
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.FlatAppearance.BorderSize = 0;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(260, 560);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(110, 40);
-            this.btnDelete.TabIndex = 4;
-            this.btnDelete.Text = "🗑 Xóa";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            btnDelete.BackColor = Color.FromArgb(244, 67, 54);
+            btnDelete.Cursor = Cursors.Hand;
+            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnDelete.ForeColor = Color.White;
+            btnDelete.Location = new Point(269, 676);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(110, 40);
+            btnDelete.TabIndex = 4;
+            btnDelete.Text = "🗑 Xóa";
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += BtnDelete_Click;
             // 
             // btnSave
             // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSave.FlatAppearance.BorderSize = 0;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(380, 560);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(110, 40);
-            this.btnSave.TabIndex = 5;
-            this.btnSave.Text = "💾 Lưu";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            btnSave.BackColor = Color.FromArgb(0, 150, 136);
+            btnSave.Cursor = Cursors.Hand;
+            btnSave.FlatAppearance.BorderSize = 0;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnSave.ForeColor = Color.White;
+            btnSave.Location = new Point(389, 676);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(110, 40);
+            btnSave.TabIndex = 5;
+            btnSave.Text = "💾 Lưu";
+            btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += BtnSave_Click;
             // 
             // btnCancel
             // 
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(158)))), ((int)(((byte)(158)))));
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(500, 560);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(110, 40);
-            this.btnCancel.TabIndex = 6;
-            this.btnCancel.Text = "🚫 Hủy";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            btnCancel.BackColor = Color.FromArgb(158, 158, 158);
+            btnCancel.Cursor = Cursors.Hand;
+            btnCancel.FlatAppearance.BorderSize = 0;
+            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnCancel.ForeColor = Color.White;
+            btnCancel.Location = new Point(509, 676);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(110, 40);
+            btnCancel.TabIndex = 6;
+            btnCancel.Text = "🚫 Hủy";
+            btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Click += BtnCancel_Click;
             // 
             // btnRefresh
             // 
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(125)))), ((int)(((byte)(139)))));
-            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRefresh.FlatAppearance.BorderSize = 0;
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(620, 560);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(110, 40);
-            this.btnRefresh.TabIndex = 7;
-            this.btnRefresh.Text = "🔄 Làm mới";
-            this.btnRefresh.UseVisualStyleBackColor = false;
-            this.btnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
+            btnRefresh.BackColor = Color.FromArgb(96, 125, 139);
+            btnRefresh.Cursor = Cursors.Hand;
+            btnRefresh.FlatAppearance.BorderSize = 0;
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnRefresh.ForeColor = Color.White;
+            btnRefresh.Location = new Point(629, 676);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(110, 40);
+            btnRefresh.TabIndex = 7;
+            btnRefresh.Text = "🔄 Làm mới";
+            btnRefresh.UseVisualStyleBackColor = false;
+            btnRefresh.Click += BtnRefresh_Click;
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.FromArgb(33, 150, 243);
+            lblTitle.Location = new Point(459, 9);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(492, 46);
+            lblTitle.TabIndex = 8;
+            lblTitle.Text = "👥 QUẢN LÝ NHÀ XUẤT BẢN";
+            // 
+            // guna2Button1
+            // 
+            guna2Button1.CustomizableEdges = customizableEdges1;
+            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button1.FillColor = SystemColors.ButtonHighlight;
+            guna2Button1.Font = new Font("Segoe UI", 9F);
+            guna2Button1.ForeColor = Color.White;
+            guna2Button1.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
+            guna2Button1.ImageSize = new Size(40, 40);
+            guna2Button1.Location = new Point(1254, 12);
+            guna2Button1.Name = "guna2Button1";
+            guna2Button1.PressedColor = SystemColors.ButtonFace;
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2Button1.Size = new Size(44, 36);
+            guna2Button1.TabIndex = 9;
+            guna2Button1.Click += guna2Button1_Click;
             // 
             // FormPublisher
             // 
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            this.ClientSize = new System.Drawing.Size(1000, 630);
-            this.Controls.Add(this.dgvPublishers);
-            this.Controls.Add(this.grpInfo);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.btnEdit);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnRefresh);
-            this.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.Name = "FormPublisher";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Quản Lý Nhà Xuất Bản";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPublishers)).EndInit();
-            this.grpInfo.ResumeLayout(false);
-            this.grpInfo.PerformLayout();
-            this.ResumeLayout(false);
+            BackColor = Color.FromArgb(250, 250, 250);
+            ClientSize = new Size(1310, 743);
+            Controls.Add(guna2Button1);
+            Controls.Add(lblTitle);
+            Controls.Add(dgvPublishers);
+            Controls.Add(grpInfo);
+            Controls.Add(btnAdd);
+            Controls.Add(btnEdit);
+            Controls.Add(btnDelete);
+            Controls.Add(btnSave);
+            Controls.Add(btnCancel);
+            Controls.Add(btnRefresh);
+            Font = new Font("Segoe UI", 9F);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "FormPublisher";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Quản Lý Nhà Xuất Bản";
+            Load += FormPublisher_Load_1;
+            ((System.ComponentModel.ISupportInitialize)dgvPublishers).EndInit();
+            grpInfo.ResumeLayout(false);
+            grpInfo.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -400,5 +435,7 @@ namespace DoAnDemoUI
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnRefresh;
+        private Label lblTitle;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
     }
 }

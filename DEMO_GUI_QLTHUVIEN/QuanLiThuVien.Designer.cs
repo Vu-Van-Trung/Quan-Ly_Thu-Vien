@@ -137,7 +137,7 @@ namespace DoAnDemoUI
             btnMinimize.ForeColor = Color.White;
             btnMinimize.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources._786263;
             btnMinimize.ImageSize = new Size(50, 50);
-            btnMinimize.Location = new Point(1272, 0);
+            btnMinimize.Location = new Point(1325, 0);
             btnMinimize.Name = "btnMinimize";
             btnMinimize.ShadowDecoration.CustomizableEdges = customizableEdges3;
             btnMinimize.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -156,7 +156,7 @@ namespace DoAnDemoUI
             btnCancel.ForeColor = Color.White;
             btnCancel.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
             btnCancel.ImageSize = new Size(60, 60);
-            btnCancel.Location = new Point(1361, 0);
+            btnCancel.Location = new Point(1401, 0);
             btnCancel.Name = "btnCancel";
             btnCancel.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnCancel.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
