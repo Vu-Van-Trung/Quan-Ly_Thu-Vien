@@ -118,25 +118,97 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="user_25px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\user_25px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cancel_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cancel_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="174951701726937611" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\174951701726937611.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="786263" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\786263.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="user_25px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user_25px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1_202501041300311053" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1_202501041300311053.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pngegg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pngegg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="user_25px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user_25px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="images3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\images3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="newyear2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\newyear2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="background-tet-2_7afa200e8ee54ed7962102f32ffe44aa_1024x10241" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\background-tet-2_7afa200e8ee54ed7962102f32ffe44aa_1024x10241.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="images2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\images2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pngegg (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pngegg (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="background-tet-2_7afa200e8ee54ed7962102f32ffe44aa_1024x10242" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\background-tet-2_7afa200e8ee54ed7962102f32ffe44aa_1024x10242.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pngegg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pngegg1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="background-tet-2_7afa200e8ee54ed7962102f32ffe44aa_1024x1024" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\background-tet-2_7afa200e8ee54ed7962102f32ffe44aa_1024x1024.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="lock_25px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lock_25px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="pngegg (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pngegg (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="newyear15" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\newyear15.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="images" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\images.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="images1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\images1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="newyear13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\newyear13.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="786263" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\786263.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pngtree-happy-chinese-new-year-2026-of-the-goat-vector-png-image_184639321" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pngtree-happy-chinese-new-year-2026-of-the-goat-vector-png-image_184639321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="newyear14" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\newyear14.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cancel_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cancel_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="background-tet-2_7afa200e8ee54ed7962102f32ffe44aa_1024x10243" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\background-tet-2_7afa200e8ee54ed7962102f32ffe44aa_1024x10243.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="newyear12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\newyear12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pngegg (2)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pngegg (2)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="lock_25px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lock_25px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pngtree-happy-chinese-new-year-2026-of-the-goat-vector-png-image_18463932" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pngtree-happy-chinese-new-year-2026-of-the-goat-vector-png-image_18463932.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="newyear1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\newyear1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="newyear11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\newyear11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pngtree-happy-chinese-new-year-2026-of-the-goat-vector-png-image_184639322" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pngtree-happy-chinese-new-year-2026-of-the-goat-vector-png-image_184639322.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -97,12 +97,12 @@ namespace DoAnDemoUI
         // --- CÁC SỰ KIỆN KHÁC GIỮ NGUYÊN ---
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
-        //    if (MessageBox.Show("Bạn có chắc muốn thoát?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
-        //    {
-        //        exitConfirmed = true;
-        //        Application.Exit();
-        //    }
-        this.Close();
+            //    if (MessageBox.Show("Bạn có chắc muốn thoát?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            //    {
+            //        exitConfirmed = true;
+            //        Application.Exit();
+            //    }
+            this.Close();
         }
 
         private void form1_FormClosing(object? sender, FormClosingEventArgs e)
@@ -130,6 +130,19 @@ namespace DoAnDemoUI
         private void guna2CircleButton1_Click(object sender, EventArgs e) => this.WindowState = FormWindowState.Minimized;
         private void lnkForgot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => MessageBox.Show("Liên hệ Admin.");
 
+        private void guna2PictureBox2_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

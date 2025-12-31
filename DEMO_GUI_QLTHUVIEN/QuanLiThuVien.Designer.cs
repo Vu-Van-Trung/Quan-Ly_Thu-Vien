@@ -22,18 +22,18 @@ namespace DoAnDemoUI
 
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             pnlLeft = new Panel();
+            btnLogout = new Guna.UI2.WinForms.Guna2Button();
             lstMenu = new ListBox();
             lblMenuHeader = new Label();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             label1 = new Label();
-            btnLogout = new Guna.UI2.WinForms.Guna2Button();
             btnMinimize = new Guna.UI2.WinForms.Guna2CircleButton();
             btnCancel = new Guna.UI2.WinForms.Guna2CircleButton();
             pnlLeft.SuspendLayout();
@@ -43,6 +43,7 @@ namespace DoAnDemoUI
             // pnlLeft
             // 
             pnlLeft.BackColor = Color.FromArgb(44, 62, 80);
+            pnlLeft.Controls.Add(btnLogout);
             pnlLeft.Controls.Add(lstMenu);
             pnlLeft.Controls.Add(lblMenuHeader);
             pnlLeft.Dock = DockStyle.Left;
@@ -52,13 +53,31 @@ namespace DoAnDemoUI
             pnlLeft.Size = new Size(260, 761);
             pnlLeft.TabIndex = 0;
             // 
+            // btnLogout
+            // 
+            btnLogout.CustomizableEdges = customizableEdges1;
+            btnLogout.DisabledState.BorderColor = Color.DarkGray;
+            btnLogout.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnLogout.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnLogout.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnLogout.FillColor = Color.FromArgb(255, 192, 192);
+            btnLogout.Font = new Font("Comic Sans MS", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogout.ForeColor = Color.White;
+            btnLogout.Location = new Point(0, 355);
+            btnLogout.Name = "btnLogout";
+            btnLogout.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnLogout.Size = new Size(260, 63);
+            btnLogout.TabIndex = 2;
+            btnLogout.Text = "Đăng Xuất";
+            btnLogout.Click += btnLogout_Click_1;
+            // 
             // lstMenu
             // 
-            lstMenu.BackColor = Color.Gray;
+            lstMenu.BackColor = Color.Salmon;
             lstMenu.BorderStyle = BorderStyle.FixedSingle;
             lstMenu.Dock = DockStyle.Fill;
-            lstMenu.Font = new Font("Segoe UI", 11F);
-            lstMenu.ForeColor = Color.WhiteSmoke;
+            lstMenu.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lstMenu.ForeColor = Color.White;
             lstMenu.FormattingEnabled = true;
             lstMenu.IntegralHeight = false;
             lstMenu.Location = new Point(0, 77);
@@ -70,9 +89,9 @@ namespace DoAnDemoUI
             // 
             // lblMenuHeader
             // 
-            lblMenuHeader.BackColor = Color.FromArgb(52, 73, 94);
+            lblMenuHeader.BackColor = Color.Red;
             lblMenuHeader.Dock = DockStyle.Top;
-            lblMenuHeader.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblMenuHeader.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblMenuHeader.ForeColor = Color.White;
             lblMenuHeader.Location = new Point(0, 0);
             lblMenuHeader.Name = "lblMenuHeader";
@@ -85,7 +104,6 @@ namespace DoAnDemoUI
             // guna2CustomGradientPanel1
             // 
             guna2CustomGradientPanel1.Controls.Add(label1);
-            guna2CustomGradientPanel1.Controls.Add(btnLogout);
             guna2CustomGradientPanel1.Controls.Add(btnMinimize);
             guna2CustomGradientPanel1.Controls.Add(btnCancel);
             guna2CustomGradientPanel1.CustomizableEdges = customizableEdges5;
@@ -98,36 +116,17 @@ namespace DoAnDemoUI
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Coral;
-            label1.Location = new Point(402, 15);
+            label1.Font = new Font("Comic Sans MS", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Red;
+            label1.Location = new Point(550, 15);
             label1.Name = "label1";
-            label1.Size = new Size(393, 41);
+            label1.Size = new Size(450, 48);
             label1.TabIndex = 24;
             label1.Text = "Quản Lý Thư Viện (Beta)";
             // 
-            // btnLogout
-            // 
-            btnLogout.BorderRadius = 18;
-            btnLogout.BorderStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
-            btnLogout.CustomizableEdges = customizableEdges1;
-            btnLogout.DisabledState.BorderColor = Color.DarkGray;
-            btnLogout.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnLogout.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnLogout.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnLogout.FillColor = Color.Lime;
-            btnLogout.Font = new Font("Century Gothic", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogout.ForeColor = Color.White;
-            btnLogout.Location = new Point(1065, 13);
-            btnLogout.Name = "btnLogout";
-            btnLogout.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnLogout.Size = new Size(186, 52);
-            btnLogout.TabIndex = 23;
-            btnLogout.Text = "Log Out";
-            btnLogout.Click += btnLogout_Click;
-            // 
             // btnMinimize
             // 
+            btnMinimize.BackColor = Color.Transparent;
             btnMinimize.DisabledState.BorderColor = Color.DarkGray;
             btnMinimize.DisabledState.CustomBorderColor = Color.DarkGray;
             btnMinimize.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -147,6 +146,9 @@ namespace DoAnDemoUI
             // 
             // btnCancel
             // 
+            btnCancel.BackColor = Color.Transparent;
+            btnCancel.BorderColor = Color.Transparent;
+            btnCancel.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
             btnCancel.DisabledState.BorderColor = Color.DarkGray;
             btnCancel.DisabledState.CustomBorderColor = Color.DarkGray;
             btnCancel.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -189,9 +191,9 @@ namespace DoAnDemoUI
         }
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
         private Guna.UI2.WinForms.Guna2CircleButton btnCancel;
-        private Guna.UI2.WinForms.Guna2Button btnLogout;
         private Guna.UI2.WinForms.Guna2CircleButton btnMinimize;
         private Label lblMenuHeader;
         private Label label1;
+        private Guna.UI2.WinForms.Guna2Button btnLogout;
     }
 }

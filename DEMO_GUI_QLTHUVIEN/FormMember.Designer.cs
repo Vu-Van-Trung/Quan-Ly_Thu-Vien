@@ -566,6 +566,7 @@ namespace DoAnDemoUI
             Controls.Add(grpMembership);
             Controls.Add(grpDanhSach);
             Controls.Add(grpChucNang);
+            DoubleBuffered = true;
             Font = new Font("Segoe UI", 9F);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormMember";

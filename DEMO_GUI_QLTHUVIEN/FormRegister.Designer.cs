@@ -70,7 +70,7 @@
             guna2Panel1.Controls.Add(txtNewUsername);
             guna2Panel1.Controls.Add(label1);
             guna2Panel1.CustomizableEdges = customizableEdges11;
-            guna2Panel1.Location = new Point(546, 192);
+            guna2Panel1.Location = new Point(417, 267);
             guna2Panel1.Margin = new Padding(3, 4, 3, 4);
             guna2Panel1.Name = "guna2Panel1";
             guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges12;
@@ -180,6 +180,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = DEMO_GUI_QLTHUVIEN.Properties.Resources.background_tet_2_7afa200e8ee54ed7962102f32ffe44aa_1024x10243;
             ClientSize = new Size(1866, 1010);
             Controls.Add(guna2Panel1);
             FormBorderStyle = FormBorderStyle.None;
