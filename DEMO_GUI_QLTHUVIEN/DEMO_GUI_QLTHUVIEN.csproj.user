@@ -37,5 +37,8 @@
     <Compile Update="QuanLiThuVien.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="QuanLyTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

@@ -31,20 +31,30 @@ namespace DoAnDemoUI
             {
                 a.AuthorId,
                 a.Name,
-                a.QuocTich,
                 NgaySinh = a.NgaySinh?.ToString("dd/MM/yyyy"),
+                a.QuocTich,
                 a.Bio
             }).ToList();
 
-            // Hide the ID column for cleaner UI
-            if (dgvAuthors.Columns.Contains("AuthorId"))
-                dgvAuthors.Columns["AuthorId"].Visible = false;
+            // Configure Columns
+            dgvAuthors.Columns["AuthorId"].HeaderText = "Mã Tác Giả";
+            dgvAuthors.Columns["Name"].HeaderText = "Tên Tác Giả";
+            dgvAuthors.Columns["NgaySinh"].HeaderText = "Ngày Sinh";
+            dgvAuthors.Columns["QuocTich"].HeaderText = "Quốc Tịch";
+            dgvAuthors.Columns["Bio"].HeaderText = "Tiểu Sử";
+
+            dgvAuthors.Columns["AuthorId"].DisplayIndex = 0;
+            dgvAuthors.Columns["Name"].DisplayIndex = 1;
+            dgvAuthors.Columns["NgaySinh"].DisplayIndex = 2;
+            dgvAuthors.Columns["QuocTich"].DisplayIndex = 3;
+            dgvAuthors.Columns["Bio"].DisplayIndex = 4;
         }
 
         private void dgvAuthors_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
             var row = dgvAuthors.Rows[e.RowIndex];
+            txtMa.Text = row.Cells["AuthorId"].Value?.ToString();
             txtName.Text = row.Cells["Name"].Value?.ToString();
             txtQuocTich.Text = row.Cells["QuocTich"].Value?.ToString();
             // Parse the date string using the exact format we used when displaying it
@@ -111,6 +121,7 @@ namespace DoAnDemoUI
 
         private void ClearInputs()
         {
+            txtMa.Clear();
             txtName.Clear();
             txtQuocTich.Clear();
             dtpNgaySinh.Value = DateTime.Now;
@@ -121,6 +132,21 @@ namespace DoAnDemoUI
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dgvAuthors_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void txtMa_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTen_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
