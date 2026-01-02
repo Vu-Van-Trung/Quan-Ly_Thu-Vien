@@ -117,5 +117,10 @@ namespace DoAnDemoUI
             txtBio.Clear();
             dgvAuthors.ClearSelection();
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
