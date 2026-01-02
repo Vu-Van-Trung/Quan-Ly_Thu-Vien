@@ -21,13 +21,17 @@ namespace DoAnDemoUI
         private Label lblPublishedYear;
         private TextBox txtPublishedYear;
         private Label lblAuthor;
-        private TextBox txtAuthor;
+        private ComboBox cboAuthor;
         private Label lblCategory;
-        private TextBox txtCategory;
-        private Label lblPublisherCode;
-        private TextBox txtPublisherCode;
-        private Label lblPublisherName;
-        private TextBox txtPublisherName;
+        private ComboBox cboCategory;
+        private Label lblPublisher;
+        private ComboBox cboPublisher;
+        private Label lblLocation;
+        private TextBox txtLocation;
+        private Label lblQuantity;
+        private NumericUpDown numQuantity;
+        private Label lblPrice;
+        private NumericUpDown numPrice;
 
         private TextBox txtSearch;
         private Button btnSearch;
@@ -64,13 +68,19 @@ namespace DoAnDemoUI
             lblPublishedYear = new Label();
             txtPublishedYear = new TextBox();
             lblAuthor = new Label();
-            txtAuthor = new TextBox();
+            cboAuthor = new ComboBox();
             lblCategory = new Label();
-            txtCategory = new TextBox();
-            lblPublisherCode = new Label();
-            txtPublisherCode = new TextBox();
-            lblPublisherName = new Label();
-            txtPublisherName = new TextBox();
+            cboCategory = new ComboBox();
+            lblPublisher = new Label();
+            cboPublisher = new ComboBox();
+            lblLocation = new Label();
+            txtLocation = new TextBox();
+            lblQuantity = new Label();
+            numQuantity = new NumericUpDown();
+            lblPrice = new Label();
+            numPrice = new NumericUpDown();
+            ((ISupportInitialize)numQuantity).BeginInit();
+            ((ISupportInitialize)numPrice).BeginInit();
             txtSearch = new TextBox();
             btnSearch = new Button();
             btnReload = new Button();
@@ -141,18 +151,22 @@ namespace DoAnDemoUI
             grpDetails.Controls.Add(lblPublishedYear);
             grpDetails.Controls.Add(txtPublishedYear);
             grpDetails.Controls.Add(lblAuthor);
-            grpDetails.Controls.Add(txtAuthor);
+            grpDetails.Controls.Add(cboAuthor);
             grpDetails.Controls.Add(lblCategory);
-            grpDetails.Controls.Add(txtCategory);
-            grpDetails.Controls.Add(lblPublisherCode);
-            grpDetails.Controls.Add(txtPublisherCode);
-            grpDetails.Controls.Add(lblPublisherName);
-            grpDetails.Controls.Add(txtPublisherName);
+            grpDetails.Controls.Add(cboCategory);
+            grpDetails.Controls.Add(lblPublisher);
+            grpDetails.Controls.Add(cboPublisher);
+            grpDetails.Controls.Add(lblLocation);
+            grpDetails.Controls.Add(txtLocation);
+            grpDetails.Controls.Add(lblQuantity);
+            grpDetails.Controls.Add(numQuantity);
+            grpDetails.Controls.Add(lblPrice);
+            grpDetails.Controls.Add(numPrice);
             grpDetails.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             grpDetails.ForeColor = Color.FromArgb(33, 150, 243);
             grpDetails.Location = new Point(12, 70);
             grpDetails.Name = "grpDetails";
-            grpDetails.Size = new Size(360, 330);
+            grpDetails.Size = new Size(360, 450);
             grpDetails.TabIndex = 1;
             grpDetails.TabStop = false;
             grpDetails.Text = "📚 Thông Tin Sách";
@@ -216,12 +230,13 @@ namespace DoAnDemoUI
             lblAuthor.TabIndex = 8;
             lblAuthor.Text = "Tác Giả:";
             // 
-            // txtAuthor
+            // cboAuthor
             // 
-            txtAuthor.Location = new Point(110, 152);
-            txtAuthor.Name = "txtAuthor";
-            txtAuthor.Size = new Size(230, 30);
-            txtAuthor.TabIndex = 9;
+            cboAuthor.Location = new Point(110, 152);
+            cboAuthor.Name = "cboAuthor";
+            cboAuthor.Size = new Size(230, 30);
+            cboAuthor.TabIndex = 9;
+            cboAuthor.DropDownStyle = ComboBoxStyle.DropDownList;
             // 
             // lblCategory
             // 
@@ -232,48 +247,80 @@ namespace DoAnDemoUI
             lblCategory.TabIndex = 10;
             lblCategory.Text = "Thể Loại:";
             // 
-            // txtCategory
+            // cboCategory
             // 
-            txtCategory.Location = new Point(110, 192);
-            txtCategory.Name = "txtCategory";
-            txtCategory.Size = new Size(230, 30);
-            txtCategory.TabIndex = 11;
+            cboCategory.Location = new Point(110, 192);
+            cboCategory.Name = "cboCategory";
+            cboCategory.Size = new Size(230, 30);
+            cboCategory.TabIndex = 11;
+            cboCategory.DropDownStyle = ComboBoxStyle.DropDownList;
             // 
-            // lblPublisherCode
+            // lblPublisher
             // 
-            lblPublisherCode.AutoSize = true;
-            lblPublisherCode.Location = new Point(15, 235);
-            lblPublisherCode.Name = "lblPublisherCode";
-            lblPublisherCode.Size = new Size(107, 23);
-            lblPublisherCode.TabIndex = 12;
-            lblPublisherCode.Text = "Mã NXB (#):";
+            lblPublisher.AutoSize = true;
+            lblPublisher.Location = new Point(15, 235);
+            lblPublisher.Name = "lblPublisher";
+            lblPublisher.Size = new Size(107, 23);
+            lblPublisher.TabIndex = 12;
+            lblPublisher.Text = "Nhà XB:";
             // 
-            // txtPublisherCode
+            // cboPublisher
             // 
-            txtPublisherCode.Location = new Point(110, 232);
-            txtPublisherCode.Name = "txtPublisherCode";
-            txtPublisherCode.ReadOnly = true;
-            txtPublisherCode.Size = new Size(230, 30);
-            txtPublisherCode.TabIndex = 13;
+            cboPublisher.Location = new Point(110, 232);
+            cboPublisher.Name = "cboPublisher";
+            cboPublisher.Size = new Size(230, 30);
+            cboPublisher.TabIndex = 13;
+            cboPublisher.DropDownStyle = ComboBoxStyle.DropDownList;
             // 
-            // lblPublisherName
+            // lblLocation
             // 
-            lblPublisherName.AutoSize = true;
-            lblPublisherName.Location = new Point(15, 275);
-            lblPublisherName.Name = "lblPublisherName";
-            lblPublisherName.Size = new Size(82, 23);
-            lblPublisherName.TabIndex = 14;
-            lblPublisherName.Text = "Tên NXB:";
+            lblLocation.AutoSize = true;
+            lblLocation.Location = new Point(15, 275);
+            lblLocation.Name = "lblLocation";
+            lblLocation.Size = new Size(60, 23);
+            lblLocation.TabIndex = 14;
+            lblLocation.Text = "Vị Trí:";
             // 
-            // txtPublisherName
+            // txtLocation
             // 
-            txtPublisherName.BackColor = SystemColors.ControlLight;
-            txtPublisherName.Location = new Point(110, 272);
-            txtPublisherName.Name = "txtPublisherName";
-            txtPublisherName.ReadOnly = true;
-            txtPublisherName.Size = new Size(230, 30);
-            txtPublisherName.TabIndex = 15;
-            txtPublisherName.TabStop = false;
+            txtLocation.Location = new Point(110, 272);
+            txtLocation.Name = "txtLocation";
+            txtLocation.Size = new Size(230, 30);
+            txtLocation.TabIndex = 15;
+            // 
+            // lblQuantity
+            // 
+            lblQuantity.AutoSize = true;
+            lblQuantity.Location = new Point(15, 315);
+            lblQuantity.Name = "lblQuantity";
+            lblQuantity.Size = new Size(95, 23);
+            lblQuantity.TabIndex = 16;
+            lblQuantity.Text = "Số Lượng:";
+            // 
+            // numQuantity
+            // 
+            numQuantity.Location = new Point(110, 312);
+            numQuantity.Name = "numQuantity";
+            numQuantity.Size = new Size(230, 30);
+            numQuantity.TabIndex = 17;
+            // 
+            // lblPrice
+            // 
+            lblPrice.AutoSize = true;
+            lblPrice.Location = new Point(15, 355);
+            lblPrice.Name = "lblPrice";
+            lblPrice.Size = new Size(80, 23);
+            lblPrice.TabIndex = 18;
+            lblPrice.Text = "Giá Tiền:";
+            // 
+            // numPrice
+            // 
+            numPrice.Location = new Point(110, 352);
+            numPrice.Name = "numPrice";
+            numPrice.Size = new Size(230, 30);
+            numPrice.TabIndex = 19;
+            numPrice.Maximum = 1000000000;
+            numPrice.ThousandsSeparator = true;
             // 
             // txtSearch
             // 
@@ -436,7 +483,7 @@ namespace DoAnDemoUI
             buttonPanel.Controls.Add(btnDelete, 2, 0);
             buttonPanel.Controls.Add(btnSave, 3, 0);
             buttonPanel.Controls.Add(btnCancel, 4, 0);
-            buttonPanel.Location = new Point(12, 433);
+            buttonPanel.Location = new Point(12, 530);
             buttonPanel.Name = "buttonPanel";
             buttonPanel.RowCount = 1;
             buttonPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));

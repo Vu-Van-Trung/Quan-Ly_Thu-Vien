@@ -312,10 +312,5 @@ namespace DoAnDemoUI
 
         private void lblTitle_Click(object sender, EventArgs e) { }
         private void dgvMembers_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
-
-        private void guna2Button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
     }
 }

@@ -28,14 +28,30 @@ namespace DoAnDemoUI
             btnSearch.Click += BtnSearch_Click;
             btnReload.Click += (s, e) => { LoadData(); txtSearch.Clear(); };
             dgvBooks.SelectionChanged += DgvBooks_SelectionChanged;
-            txtPublisherCode.Leave += TxtPublisherCode_Leave;
+
         }
 
         private void QuanLiSach_Load(object sender, EventArgs e)
         {
             db = new LibraryContext();
+            LoadComboBoxes();
             LoadData();
             SetControlState(false);
+        }
+
+        private void LoadComboBoxes()
+        {
+            cboAuthor.DataSource = db.Authors.ToList();
+            cboAuthor.DisplayMember = "Name";
+            cboAuthor.ValueMember = "AuthorId";
+
+            cboCategory.DataSource = db.Categories.ToList();
+            cboCategory.DisplayMember = "Name";
+            cboCategory.ValueMember = "CategoryId";
+
+            cboPublisher.DataSource = db.Publishers.ToList();
+            cboPublisher.DisplayMember = "TenNhaXuatBan";
+            cboPublisher.ValueMember = "PublisherId";
         }
 
         private void LoadData()
@@ -57,7 +73,10 @@ namespace DoAnDemoUI
                         PublisherName = b.Publisher.TenNhaXuatBan,
                         b.AuthorId,
                         b.CategoryId,
-                        b.PublisherId
+                        b.PublisherId,
+                        b.ViTri,
+                        b.SoLuongTon,
+                        b.GiaTien
                     })
                     .ToList();
 
@@ -69,6 +88,10 @@ namespace DoAnDemoUI
                 dgvBooks.Columns["AuthorName"].HeaderText = "Tác Giả";
                 dgvBooks.Columns["CategoryName"].HeaderText = "Thể Loại";
                 dgvBooks.Columns["PublisherName"].HeaderText = "NXB";
+                dgvBooks.Columns["ViTri"].HeaderText = "Vị Trí";
+                dgvBooks.Columns["SoLuongTon"].HeaderText = "Số Lượng";
+                dgvBooks.Columns["GiaTien"].HeaderText = "Giá Tiền";
+                dgvBooks.Columns["GiaTien"].DefaultCellStyle.Format = "N0";
 
                 dgvBooks.Columns["AuthorId"].Visible = false;
                 dgvBooks.Columns["CategoryId"].Visible = false;
@@ -90,11 +113,29 @@ namespace DoAnDemoUI
                 txtTitle.Text = row.Cells["Title"].Value?.ToString();
                 txtPublishedYear.Text = row.Cells["PublishedYear"].Value?.ToString();
 
-                // Hiển thị tên Tác giả và Thể loại vào TextBox
-                txtAuthor.Text = row.Cells["AuthorName"].Value?.ToString();
-                txtCategory.Text = row.Cells["CategoryName"].Value?.ToString();
-                txtPublisherCode.Text = row.Cells["PublisherId"].Value?.ToString();
-                txtPublisherName.Text = row.Cells["PublisherName"].Value?.ToString();
+                // Bind ComboBoxes
+                if (row.Cells["AuthorId"].Value != null)
+                    cboAuthor.SelectedValue = row.Cells["AuthorId"].Value;
+                
+                if (row.Cells["CategoryId"].Value != null)
+                    cboCategory.SelectedValue = row.Cells["CategoryId"].Value;
+
+                if (row.Cells["PublisherId"].Value != null)
+                    cboPublisher.SelectedValue = row.Cells["PublisherId"].Value;
+
+                // Bind new fields
+                txtLocation.Text = row.Cells["ViTri"].Value?.ToString();
+                
+                if (row.Cells["SoLuongTon"].Value != null && int.TryParse(row.Cells["SoLuongTon"].Value.ToString(), out int qty))
+                    numQuantity.Value = qty;
+                else
+                    numQuantity.Value = 0;
+
+                if (row.Cells["GiaTien"].Value != null && decimal.TryParse(row.Cells["GiaTien"].Value.ToString(), out decimal price))
+                    numPrice.Value = price;
+                else
+                    numPrice.Value = 0;
+
             }
         }
 
@@ -147,39 +188,7 @@ namespace DoAnDemoUI
         }
 
         // --- HÀM QUAN TRỌNG: LẤY HOẶC TẠO ID MỚI ---
-        private int GetOrCreateAuthorId(string authorName)
-        {
-            authorName = authorName.Trim();
-            var author = db.Authors.FirstOrDefault(a => a.Name == authorName);
-            if (author != null)
-            {
-                return author.AuthorId;
-            }
-            else
-            {
-                var newAuthor = new Author { Name = authorName };
-                db.Authors.Add(newAuthor);
-                db.SaveChanges();
-                return newAuthor.AuthorId;
-            }
-        }
 
-        private int GetOrCreateCategoryId(string categoryName)
-        {
-            categoryName = categoryName.Trim();
-            var category = db.Categories.FirstOrDefault(c => c.Name == categoryName);
-            if (category != null)
-            {
-                return category.CategoryId;
-            }
-            else
-            {
-                var newCategory = new Category { Name = categoryName };
-                db.Categories.Add(newCategory);
-                db.SaveChanges();
-                return newCategory.CategoryId;
-            }
-        }
 
         // Hàm tạo mã sách tự động
         private string GenerateBookId()
@@ -207,36 +216,30 @@ namespace DoAnDemoUI
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtTitle.Text) ||
-                string.IsNullOrWhiteSpace(txtAuthor.Text) ||
-                string.IsNullOrWhiteSpace(txtCategory.Text))
+            if (string.IsNullOrWhiteSpace(txtTitle.Text))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ Tên sách, Tác giả và Thể loại!");
+                MessageBox.Show("Vui lòng nhập Tên sách!");
+                return;
+            }
+            if (cboAuthor.SelectedIndex == -1 || cboCategory.SelectedIndex == -1 || cboPublisher.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng chọn Tác giả, Thể loại và Nhà xuất bản!");
                 return;
             }
 
-            if (!TryGetPublisher(out var publisher))
-            {
-                return;
-            }
-
-            var publisherId = publisher.PublisherId;
+            // Get IDs
+            int authorId = (int)cboAuthor.SelectedValue;
+            int categoryId = (int)cboCategory.SelectedValue;
+            int publisherId = (int)cboPublisher.SelectedValue;
 
             int? pubYear = null;
-            if (!string.IsNullOrWhiteSpace(txtPublishedYear.Text))
+            if (int.TryParse(txtPublishedYear.Text, out int year))
             {
-                if (int.TryParse(txtPublishedYear.Text, out int year))
-                {
-                    pubYear = year;
-                }
+                pubYear = year;
             }
 
             try
             {
-                // 1. Xử lý Tác giả và Thể loại (Tìm hoặc Tạo mới)
-                int authorId = GetOrCreateAuthorId(txtAuthor.Text);
-                int categoryId = GetOrCreateCategoryId(txtCategory.Text);
-
                 // 2. Lưu Sách
                 // THÊM MỚI
                 if (txtBookId.Text == "(Tự động)" || string.IsNullOrEmpty(txtBookId.Text))
@@ -251,8 +254,11 @@ namespace DoAnDemoUI
                         AuthorId = authorId,
                         CategoryId = categoryId,
                         PublisherId = publisherId,
-                        SoLuongTon = 0,
-                        TrangThai = "Có sẵn"
+                        ViTri = txtLocation.Text.Trim(),
+                        SoLuongTon = (int)numQuantity.Value,
+                        GiaTien = numPrice.Value,
+                        TrangThai = "Có sẵn",
+                        NgayNhap = DateTime.Now
                     };
 
                     db.Books.Add(newBook);
@@ -271,6 +277,9 @@ namespace DoAnDemoUI
                         book.AuthorId = authorId;
                         book.CategoryId = categoryId;
                         book.PublisherId = publisherId;
+                        book.ViTri = txtLocation.Text.Trim();
+                        book.SoLuongTon = (int)numQuantity.Value;
+                        book.GiaTien = numPrice.Value;
 
                         db.SaveChanges();
                         MessageBox.Show("Cập nhật thành công!");
@@ -330,10 +339,14 @@ namespace DoAnDemoUI
         {
             txtTitle.ReadOnly = !editing;
             txtPublishedYear.ReadOnly = !editing;
-            txtAuthor.ReadOnly = !editing;
-            txtCategory.ReadOnly = !editing;
-            txtPublisherCode.ReadOnly = !editing;
-            txtPublisherName.ReadOnly = true;
+            
+            cboAuthor.Enabled = editing;
+            cboCategory.Enabled = editing;
+            cboPublisher.Enabled = editing;
+
+            txtLocation.ReadOnly = !editing;
+            numQuantity.Enabled = editing;
+            numPrice.Enabled = editing;
 
             btnAdd.Enabled = !editing;
             btnEdit.Enabled = !editing;
@@ -350,10 +363,12 @@ namespace DoAnDemoUI
             txtBookId.Clear();
             txtTitle.Clear();
             txtPublishedYear.Clear();
-            txtAuthor.Clear();
-            txtCategory.Clear();
-            txtPublisherCode.Clear();
-            txtPublisherName.Clear();
+            if (cboAuthor.Items.Count > 0) cboAuthor.SelectedIndex = 0;
+            if (cboCategory.Items.Count > 0) cboCategory.SelectedIndex = 0;
+            if (cboPublisher.Items.Count > 0) cboPublisher.SelectedIndex = 0;
+            txtLocation.Clear();
+            numQuantity.Value = 0;
+            numPrice.Value = 0;
         }
 
         private void QuanLiSach_Load_1(object sender, EventArgs e)
@@ -361,57 +376,7 @@ namespace DoAnDemoUI
 
         }
 
-        private void TxtPublisherCode_Leave(object sender, EventArgs e)
-        {
-            if (!isEditing)
-            {
-                return;
-            }
 
-            TryGetPublisher(out _, showErrorMessages: false);
-        }
-
-        private bool TryGetPublisher(out Publisher publisher, bool showErrorMessages = true)
-        {
-            publisher = null;
-
-            if (string.IsNullOrWhiteSpace(txtPublisherCode.Text))
-            {
-                txtPublisherName.Clear();
-                if (showErrorMessages)
-                {
-                    MessageBox.Show("Vui lòng nhập mã nhà xuất bản!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtPublisherCode.Focus();
-                }
-                return false;
-            }
-
-            if (!int.TryParse(txtPublisherCode.Text.Trim(), out var publisherId))
-            {
-                txtPublisherName.Clear();
-                if (showErrorMessages)
-                {
-                    MessageBox.Show("Mã nhà xuất bản phải là số nguyên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtPublisherCode.Focus();
-                }
-                return false;
-            }
-
-            publisher = db.Publishers.AsNoTracking().FirstOrDefault(p => p.PublisherId == publisherId);
-            if (publisher == null)
-            {
-                txtPublisherName.Clear();
-                if (showErrorMessages)
-                {
-                    MessageBox.Show($"Không tìm thấy nhà xuất bản với mã {publisherId}.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtPublisherCode.Focus();
-                }
-                return false;
-            }
-
-            txtPublisherName.Text = publisher.TenNhaXuatBan;
-            return true;
-        }
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
