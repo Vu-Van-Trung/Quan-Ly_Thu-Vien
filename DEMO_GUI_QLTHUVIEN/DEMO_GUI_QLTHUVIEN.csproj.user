@@ -31,6 +31,9 @@
     <Compile Update="Login1.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="QuanLiTacGia.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="QuanLiThuVien.cs">
       <SubType>Form</SubType>
     </Compile>

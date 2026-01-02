@@ -71,6 +71,7 @@ namespace DoAnDemoUI
                 iconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Resources", "ModernIcons");
             }
 
+            // Existing menu actions
             AddMenuAction("ManageBooks", "Quản lý Sách", "books_v2.png", () => OpenOrActivateChild(typeof(QuanLiSach)));
             AddMenuAction("ManageMembers", "Quản lý Độc giả", "member_v2.png", () => OpenOrActivateChild(typeof(FormMember)));
             AddMenuAction("ManageLoans", "Quản lý Mượn/Trả", "loan_v2.png", () => OpenOrActivateChild(typeof(FormLoan)));
@@ -78,6 +79,8 @@ namespace DoAnDemoUI
             AddMenuAction("ManagePublishers", "Quản lý Nhà XB", "publisher_v2.png", () => OpenOrActivateChild(typeof(FormPublisher)));
             AddMenuAction("Reports", "Báo cáo & Thống kê", "report_v2.png", () => OpenOrActivateChild(typeof(FormReport)));
             AddMenuAction("ManageFines", "Phiếu Phạt & Trả Sách", "fine_v2.png", () => OpenOrActivateChild(typeof(FormFine)));
+            // New Author Management
+            AddMenuAction("ManageAuthors", "Quản lý Tác Giả", "author_v2.png", () => OpenOrActivateChild(typeof(QuanLiTacGia)));
             AddMenuAction("Settings", "Cài đặt & Dữ liệu", "settings_v2.png", ShowSettingsForm);
         }
 
