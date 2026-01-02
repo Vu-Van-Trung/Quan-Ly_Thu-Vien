@@ -105,7 +105,7 @@ namespace DoAnDemoUI
             this.Close();
         }
 
-        private void form1_FormClosing(object? sender, FormClosingEventArgs e)
+        private void form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!exitConfirmed && MessageBox.Show("Thoát ứng dụng?", "Xác nhận", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 e.Cancel = true;

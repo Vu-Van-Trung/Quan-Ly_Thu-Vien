@@ -195,7 +195,7 @@ namespace DoAnDemoUI
             return $"S{maxNumber + 1:D3}";
         }
 
-        private static int ParseBookNumber(string? bookId)
+        private static int ParseBookNumber(string bookId)
         {
             if (string.IsNullOrWhiteSpace(bookId) || bookId.Length <= 1)
             {
@@ -287,7 +287,7 @@ namespace DoAnDemoUI
             }
         }
 
-        private void BtnCancel_Click(object? sender, EventArgs e)
+        private void BtnCancel_Click(object sender, EventArgs e)
         {
             isEditing = false;
             SetControlState(false);
@@ -371,7 +371,7 @@ namespace DoAnDemoUI
             TryGetPublisher(out _, showErrorMessages: false);
         }
 
-        private bool TryGetPublisher(out Publisher? publisher, bool showErrorMessages = true)
+        private bool TryGetPublisher(out Publisher publisher, bool showErrorMessages = true)
         {
             publisher = null;
 

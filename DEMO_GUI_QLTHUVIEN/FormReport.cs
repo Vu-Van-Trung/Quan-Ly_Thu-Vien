@@ -484,7 +484,7 @@ namespace DoAnDemoUI
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Label lblTotal;
 
-        private void FormReport_Load_1(object? sender, EventArgs e)
+        private void FormReport_Load_1(object sender, EventArgs e)
         {
 
         }

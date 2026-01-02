@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Guna.UI2.WinForms;
+using System.IO;
 
 namespace DoAnDemoUI
 {
@@ -20,17 +22,39 @@ namespace DoAnDemoUI
             // QUAN TRỌNG: Đặt Form này làm Form cha (MDI Container)
             this.IsMdiContainer = true;
 
-            // Cấu hình hiển thị cho ListBox Menu
-            lstMenu.DisplayMember = nameof(MenuAction.DisplayName);
-            lstMenu.ValueMember = nameof(MenuAction.Key);
-
-            // Gán sự kiện cho ListBox
-            lstMenu.DoubleClick += lstMenu_DoubleClick;
-            lstMenu.KeyDown += lstMenu_KeyDown;
-
             // Khởi tạo danh sách menu
             SetupDefaultMenuActions();
-            RefreshMenuList();
+            BuildModernMenu();
+            SetupLogoutButton();
+        }
+
+        private void SetupLogoutButton()
+        {
+            try
+            {
+                string resourcePath = Path.Combine(Application.StartupPath, "Resources", "ModernIcons", "logout_v2.png");
+                if (!File.Exists(resourcePath))
+                    resourcePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Resources", "ModernIcons", "logout_v2.png");
+
+                if (File.Exists(resourcePath))
+                {
+                    btnLogout.Image = Image.FromFile(resourcePath);
+                    btnLogout.ImageSize = new Size(32, 32);
+                    btnLogout.ImageAlign = HorizontalAlignment.Left;
+                    btnLogout.ImageOffset = new Point(10, 0);
+                    btnLogout.TextOffset = new Point(15, 0);
+                }
+                
+                // Style updates
+                btnLogout.BorderRadius = 12;
+                btnLogout.FillColor = Color.FromArgb(231, 76, 60);
+                btnLogout.CustomBorderThickness = new Padding(4, 0, 0, 0);
+                btnLogout.BorderColor = Color.Transparent;
+                
+                btnLogout.HoverState.FillColor = Color.FromArgb(192, 57, 43);
+                btnLogout.HoverState.CustomBorderColor = Color.White;
+            }
+            catch { }
         }
 
         private void SetupDefaultMenuActions()
@@ -39,18 +63,22 @@ namespace DoAnDemoUI
 
             // --- ĐÃ CẬP NHẬT MENU ĐỂ KHỚP VỚI MODEL ---
 
-            AddMenuAction("ManageBooks", "Quản lý Sách", () => OpenOrActivateChild(typeof(QuanLiSach)));
-            //AddMenuAction("ManageAuthors", "Quản lý Tác giả", () => OpenOrActivateChild(typeof(FormAuthor)));
-            //AddMenuAction("ManageCategories", "Quản lý Thể loại", () => OpenOrActivateChild(typeof(FormCategory)));
-            AddMenuAction("ManageMembers", "Quản lý Độc giả", () => OpenOrActivateChild(typeof(FormMember)));
-            AddMenuAction("ManageLoans", "Quản lý Mượn/Trả", () => OpenOrActivateChild(typeof(FormLoan)));
-            AddMenuAction("ManageStaff", "Quản lý Nhân viên", () => OpenOrActivateChild(typeof(FormStaff)));
-            AddMenuAction("ManagePublishers", "Quản lý Nhà XB", () => OpenOrActivateChild(typeof(FormPublisher)));
-            AddMenuAction("Reports", "Báo cáo & Thống kê", () => OpenOrActivateChild(typeof(FormReport)));
-            AddMenuAction("ManageFines", "Phiếu Phạt & Trả Sách", () => OpenOrActivateChild(typeof(FormFine)));
+            string iconPath = Path.Combine(Application.StartupPath, "Resources", "ModernIcons");
+            // Lưu ý: Nếu chạy trong debug, Application.StartupPath có thể là bin/Debug. 
+            // Chúng ta sẽ thử cả đường dẫn tương đối từ project nếu không thấy.
+            if (!Directory.Exists(iconPath)) 
+            {
+                iconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Resources", "ModernIcons");
+            }
 
-            // Thêm mục Cài đặt (chung cho mọi người, nhưng FormSettings sẽ tự kiểm tra quyền)
-            AddMenuAction("Settings", "Cài đặt & Dữ liệu", ShowSettingsForm);
+            AddMenuAction("ManageBooks", "Quản lý Sách", "books_v2.png", () => OpenOrActivateChild(typeof(QuanLiSach)));
+            AddMenuAction("ManageMembers", "Quản lý Độc giả", "member_v2.png", () => OpenOrActivateChild(typeof(FormMember)));
+            AddMenuAction("ManageLoans", "Quản lý Mượn/Trả", "loan_v2.png", () => OpenOrActivateChild(typeof(FormLoan)));
+            AddMenuAction("ManageStaff", "Quản lý Nhân viên", "staff_v2.png", () => OpenOrActivateChild(typeof(FormStaff)));
+            AddMenuAction("ManagePublishers", "Quản lý Nhà XB", "publisher_v2.png", () => OpenOrActivateChild(typeof(FormPublisher)));
+            AddMenuAction("Reports", "Báo cáo & Thống kê", "report_v2.png", () => OpenOrActivateChild(typeof(FormReport)));
+            AddMenuAction("ManageFines", "Phiếu Phạt & Trả Sách", "fine_v2.png", () => OpenOrActivateChild(typeof(FormFine)));
+            AddMenuAction("Settings", "Cài đặt & Dữ liệu", "settings_v2.png", ShowSettingsForm);
         }
 
         private void ShowSettingsForm()
@@ -75,58 +103,80 @@ namespace DoAnDemoUI
 
         // --- CÁC HÀM HỖ TRỢ XỬ LÝ MENU ---
 
-        public void AddMenuAction(string key, string displayName, Action action)
+        public void AddMenuAction(string key, string displayName, string iconFileName, Action action)
         {
             if (string.IsNullOrWhiteSpace(key)) throw new ArgumentNullException(nameof(key));
             if (_menuActions.Any(a => string.Equals(a.Key, key, StringComparison.OrdinalIgnoreCase))) return;
 
-            _menuActions.Add(new MenuAction { Key = key, DisplayName = displayName ?? key, Action = action });
-            RefreshMenuList();
+            _menuActions.Add(new MenuAction 
+            { 
+                Key = key, 
+                DisplayName = displayName ?? key, 
+                IconFileName = iconFileName,
+                Action = action 
+            });
         }
 
-        private void RefreshMenuList()
+        private void BuildModernMenu()
         {
-            var selectedKey = (lstMenu.SelectedItem as MenuAction)?.Key;
-            lstMenu.DataSource = null;
-            lstMenu.DataSource = _menuActions.ToList();
-            lstMenu.DisplayMember = nameof(MenuAction.DisplayName);
-            lstMenu.ValueMember = nameof(MenuAction.Key);
+            pnlMenuContainer.Controls.Clear();
 
-            if (!string.IsNullOrEmpty(selectedKey))
+            foreach (var item in _menuActions)
             {
-                var toSelect = _menuActions.FirstOrDefault(a => string.Equals(a.Key, selectedKey, StringComparison.OrdinalIgnoreCase));
-                if (toSelect != null) lstMenu.SelectedItem = toSelect;
-            }
-        }
+                Guna2Button btn = new Guna2Button();
+                btn.Text = item.DisplayName;
+                btn.Tag = item;
+                btn.Width = pnlMenuContainer.Width - 30;
+                btn.Height = 55;
+                btn.Margin = new Padding(15, 10, 15, 10); // Better spacing
+                btn.FillColor = Color.Transparent;
+                btn.ForeColor = Color.White;
+                btn.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+                btn.TextAlign = HorizontalAlignment.Left;
+                btn.TextOffset = new Point(15, 0);
+                btn.BorderRadius = 12; // Rounded corners 12px
+                btn.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+                
+                // Hiệu ứng Indicator (Đường kẻ bên trái)
+                btn.CustomBorderThickness = new Padding(5, 0, 0, 0);
+                btn.BorderColor = Color.Transparent; // Mặc định không hiện
+                
+                btn.CheckedState.CustomBorderColor = Color.White;
+                btn.CheckedState.FillColor = Color.FromArgb(192, 57, 43); // Darker Red for active
+                
+                // Hover Effects
+                btn.HoverState.FillColor = Color.FromArgb(231, 76, 60);   // Brighter Red for hover
+                btn.HoverState.CustomBorderColor = Color.FromArgb(255, 200, 200);
+                
+                btn.Cursor = Cursors.Hand;
 
-        private void ExecuteSelectedAction()
-        {
-            var sel = lstMenu.SelectedItem as MenuAction;
-            if (sel == null) return;
+                // Load Icon
+                try
+                {
+                    string resourcePath = Path.Combine(Application.StartupPath, "Resources", "ModernIcons", item.IconFileName);
+                    if (!File.Exists(resourcePath))
+                    {
+                        // Fallback for development/debug environments
+                        resourcePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Resources", "ModernIcons", item.IconFileName);
+                    }
 
-            try
-            {
-                sel.Action?.Invoke();
-            }
-            catch (Exception ex)
-            {
-                // Thông báo lỗi nếu chưa tạo Form con
-                MessageBox.Show($"Chức năng '{sel.DisplayName}' chưa được cài đặt hoặc Form chưa được tạo!\nChi tiết: {ex.Message}",
-                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
+                    if (File.Exists(resourcePath))
+                    {
+                        btn.Image = Image.FromFile(resourcePath);
+                        btn.ImageSize = new Size(35, 35);
+                        btn.ImageAlign = HorizontalAlignment.Left;
+                        btn.ImageOffset = new Point(5, 0);
+                        btn.TextOffset = new Point(15, 0);
+                    }
+                }
+                catch { /* Ignore icon load errors */ }
 
-        private void lstMenu_DoubleClick(object sender, EventArgs e)
-        {
-            ExecuteSelectedAction();
-        }
+                btn.Click += (s, e) => 
+                {
+                    item.Action?.Invoke();
+                };
 
-        private void lstMenu_KeyDown(object? sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                ExecuteSelectedAction();
-                e.Handled = true;
+                pnlMenuContainer.Controls.Add(btn);
             }
         }
 
@@ -201,6 +251,7 @@ namespace DoAnDemoUI
         {
             public string Key { get; set; }
             public string DisplayName { get; set; }
+            public string IconFileName { get; set; }
             public Action Action { get; set; }
 
             public override string ToString() => DisplayName;
@@ -208,12 +259,7 @@ namespace DoAnDemoUI
 
         private void lstMenu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!lstMenu.Focused)
-            {
-                return;
-            }
-
-            // future: preview info based on selection
+            // Removed - using buttons now
         }
 
         private void btnLogout_Click(object sender, EventArgs e)

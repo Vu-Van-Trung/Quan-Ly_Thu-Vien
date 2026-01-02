@@ -9,7 +9,7 @@ namespace DoAnDemoUI
         private IContainer components = null;
 
         private Panel pnlLeft;
-        private ListBox lstMenu;
+        private FlowLayoutPanel pnlMenuContainer;
 
         protected override void Dispose(bool disposing)
         {
@@ -30,7 +30,7 @@ namespace DoAnDemoUI
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             pnlLeft = new Panel();
             btnLogout = new Guna.UI2.WinForms.Guna2Button();
-            lstMenu = new ListBox();
+            pnlMenuContainer = new FlowLayoutPanel();
             lblMenuHeader = new Label();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             label1 = new Label();
@@ -44,7 +44,7 @@ namespace DoAnDemoUI
             // 
             pnlLeft.BackColor = Color.FromArgb(44, 62, 80);
             pnlLeft.Controls.Add(btnLogout);
-            pnlLeft.Controls.Add(lstMenu);
+            pnlLeft.Controls.Add(pnlMenuContainer);
             pnlLeft.Controls.Add(lblMenuHeader);
             pnlLeft.Dock = DockStyle.Left;
             pnlLeft.Location = new Point(0, 0);
@@ -60,32 +60,32 @@ namespace DoAnDemoUI
             btnLogout.DisabledState.CustomBorderColor = Color.DarkGray;
             btnLogout.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnLogout.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnLogout.FillColor = Color.FromArgb(255, 192, 192);
-            btnLogout.Font = new Font("Comic Sans MS", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogout.FillColor = Color.FromArgb(231, 76, 60);
+            btnLogout.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLogout.ForeColor = Color.White;
-            btnLogout.Location = new Point(0, 355);
+            btnLogout.Location = new Point(0, 0);
             btnLogout.Name = "btnLogout";
+            btnLogout.Dock = DockStyle.Bottom;
             btnLogout.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnLogout.Size = new Size(260, 63);
+            btnLogout.Size = new Size(260, 60);
             btnLogout.TabIndex = 2;
             btnLogout.Text = "Đăng Xuất";
+            btnLogout.BorderRadius = 15;
+            btnLogout.Margin = new Padding(10);
             btnLogout.Click += btnLogout_Click_1;
             // 
-            // lstMenu
+            // pnlMenuContainer
             // 
-            lstMenu.BackColor = Color.Salmon;
-            lstMenu.BorderStyle = BorderStyle.FixedSingle;
-            lstMenu.Dock = DockStyle.Fill;
-            lstMenu.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lstMenu.ForeColor = Color.White;
-            lstMenu.FormattingEnabled = true;
-            lstMenu.IntegralHeight = false;
-            lstMenu.Location = new Point(0, 77);
-            lstMenu.Margin = new Padding(3, 4, 3, 4);
-            lstMenu.Name = "lstMenu";
-            lstMenu.Size = new Size(260, 684);
-            lstMenu.TabIndex = 0;
-            lstMenu.SelectedIndexChanged += lstMenu_SelectedIndexChanged;
+            pnlMenuContainer.BackColor = Color.Salmon;
+            pnlMenuContainer.Dock = DockStyle.Fill;
+            pnlMenuContainer.Location = new Point(0, 77);
+            pnlMenuContainer.Name = "pnlMenuContainer";
+            pnlMenuContainer.Size = new Size(260, 684);
+            pnlMenuContainer.TabIndex = 0;
+            pnlMenuContainer.AutoScroll = true;
+            pnlMenuContainer.FlowDirection = FlowDirection.TopDown;
+            pnlMenuContainer.WrapContents = false;
+            pnlMenuContainer.Padding = new Padding(0, 10, 0, 0);
             // 
             // lblMenuHeader
             // 
@@ -112,6 +112,7 @@ namespace DoAnDemoUI
             guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges6;
             guna2CustomGradientPanel1.Size = new Size(1604, 77);
             guna2CustomGradientPanel1.TabIndex = 2;
+            guna2CustomGradientPanel1.BorderRadius = 12;
             // 
             // label1
             // 
