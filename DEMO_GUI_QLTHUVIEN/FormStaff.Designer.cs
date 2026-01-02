@@ -347,6 +347,18 @@ namespace DoAnDemoUI
             txtEmail.Size = new Size(180, 30);
             txtEmail.TabIndex = 13;
             txtEmail.Text = "nhanvien@example.com";
+            // lblThongBao
+            // 
+            lblThongBao = new Label();
+            lblThongBao.AutoSize = true;
+            lblThongBao.Font = new Font("Segoe UI", 8F);
+            lblThongBao.ForeColor = Color.Red;
+            lblThongBao.Location = new Point(145, 160); // Below cboTrangThai in grpWork
+            lblThongBao.Name = "lblThongBao";
+            lblThongBao.Size = new Size(0, 19);
+            lblThongBao.TabIndex = 14;
+            // 
+
             // 
             // grpWork
             // 
@@ -356,6 +368,7 @@ namespace DoAnDemoUI
             grpWork.Controls.Add(dtpNgayVaoLam);
             grpWork.Controls.Add(lblTrangThai);
             grpWork.Controls.Add(cboTrangThai);
+            grpWork.Controls.Add(lblThongBao);
             grpWork.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             grpWork.ForeColor = Color.FromArgb(33, 150, 243);
             grpWork.Location = new Point(656, 404);
@@ -623,5 +636,8 @@ namespace DoAnDemoUI
         private System.Windows.Forms.Button btnRefresh;
         private Label lblTitle;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        
+        // Validation Labels
+        private System.Windows.Forms.Label lblThongBao;
     }
 }

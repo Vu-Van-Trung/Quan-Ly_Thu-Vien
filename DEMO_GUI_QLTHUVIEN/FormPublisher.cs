@@ -21,6 +21,18 @@ namespace DoAnDemoUI
         {
             InitializeComponent();
             this.Load += FormPublisher_Load;
+
+            txtSoDienThoai.KeyPress += txtSoDienThoai_KeyPress;
+            txtSoDienThoai.MaxLength = 11;
+            
+            txtTenNhaXuatBan.TextChanged += txtTenNhaXuatBan_TextChanged;
+            txtTenNhaXuatBan.Leave += txtTenNhaXuatBan_Leave;
+
+            txtEmail.TextChanged += txtEmail_TextChanged;
+            txtEmail.Leave += txtEmail_Leave;
+
+            txtDiaChi.TextChanged += txtDiaChi_TextChanged;
+            txtDiaChi.Leave += txtDiaChi_Leave;
         }
 
         private void FormPublisher_Load(object sender, EventArgs e)
@@ -130,9 +142,30 @@ namespace DoAnDemoUI
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtTenNhaXuatBan.Text))
+            if (string.IsNullOrWhiteSpace(txtTenNhaXuatBan.Text) || string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtDiaChi.Text))
             {
-                MessageBox.Show("⚠️ Vui lòng nhập tên nhà xuất bản!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng nhập đầy đủ tên, email và địa chỉ!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validation Name (Regex)
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtTenNhaXuatBan.Text.Trim(), @"^[\p{L}\s]+$"))
+            {
+                MessageBox.Show("Tên nhà xuất bản không được chứa số hoặc ký tự đặc biệt", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validation Email
+            if (!KiemTraEmail(txtEmail.Text))
+            {
+                 MessageBox.Show("Email không đúng định dạng", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                 return;
+            }
+
+            // Validation Address
+            if (!KiemTraDiaChi(txtDiaChi.Text))
+            {
+                MessageBox.Show("Địa chỉ không hợp lệ", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -236,6 +269,102 @@ namespace DoAnDemoUI
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        // ===== Helper Methods =====
+        bool KiemTraEmail(string email)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(
+                email.Trim(),
+                @"^[^@\s]+@[^@\s]+\.[^@\s]+$"
+            );
+        }
+
+        bool KiemTraDiaChi(string diaChi)
+        {
+             return System.Text.RegularExpressions.Regex.IsMatch(
+                diaChi.Trim(),
+                @"^[\p{L}0-9\s,./\-]{5,}$"
+            );
+        }
+
+        // ===== Event Handlers =====
+        private void txtSoDienThoai_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+            if (txtEmail.Text.Length > 0 && !KiemTraEmail(txtEmail.Text))
+                lblThongBao.Text = "Email không đúng định dạng";
+            else if (lblThongBao.Text == "Email không đúng định dạng")
+                lblThongBao.Text = "";
+        }
+
+        private void txtEmail_Leave(object sender, EventArgs e)
+        {
+            if (txtEmail.Text.Length > 0 && !KiemTraEmail(txtEmail.Text))
+            {
+                lblThongBao.Text = "Email không đúng định dạng";
+                lblThongBao.ForeColor = System.Drawing.Color.Red;
+            }
+        }
+
+        private void txtDiaChi_TextChanged(object sender, EventArgs e)
+        {
+            if (txtDiaChi.Text.Length > 0 && !KiemTraDiaChi(txtDiaChi.Text))
+                lblThongBao.Text = "Địa chỉ chứa ký tự không hợp lệ";
+            else if (lblThongBao.Text == "Địa chỉ chứa ký tự không hợp lệ")
+                lblThongBao.Text = "";
+        }
+
+        private void txtDiaChi_Leave(object sender, EventArgs e)
+        {
+            if (txtDiaChi.Text.Length > 0 && !KiemTraDiaChi(txtDiaChi.Text))
+            {
+                 lblThongBao.Text = "Địa chỉ không hợp lệ (phải từ 5 ký tự)";
+                 lblThongBao.ForeColor = System.Drawing.Color.Red;
+            }
+        }
+
+        private void txtTenNhaXuatBan_TextChanged(object sender, EventArgs e)
+        {
+            string name = txtTenNhaXuatBan.Text.Trim();
+            if (name.Length > 0)
+            {
+                 // Clear "empty" error if typing
+                 if (lblThongBao.Text == "Tên nhà xuất bản không được để trống")
+                     lblThongBao.Text = "";
+
+                 // Check regex
+                 if (!System.Text.RegularExpressions.Regex.IsMatch(name, @"^[\p{L}\s]+$"))
+                 {
+                     lblThongBao.Text = "Tên nhà xuất bản không được chứa số hoặc ký tự đặc biệt";
+                 }
+                 else if (lblThongBao.Text == "Tên nhà xuất bản không được chứa số hoặc ký tự đặc biệt")
+                 {
+                     lblThongBao.Text = "";
+                 }
+            }
+        }
+
+        private void txtTenNhaXuatBan_Leave(object sender, EventArgs e)
+        {
+            string name = txtTenNhaXuatBan.Text.Trim();
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                lblThongBao.Text = "Tên nhà xuất bản không được để trống";
+                lblThongBao.ForeColor = System.Drawing.Color.Red;
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(name, @"^[\p{L}\s]+$"))
+            {
+                lblThongBao.Text = "Tên nhà xuất bản không được chứa số hoặc ký tự đặc biệt";
+                lblThongBao.ForeColor = System.Drawing.Color.Red;
+            }
         }
     }
 }

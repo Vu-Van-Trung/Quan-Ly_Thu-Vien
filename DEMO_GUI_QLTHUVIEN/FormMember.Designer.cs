@@ -39,6 +39,9 @@ namespace DoAnDemoUI
             txtPhoneNumber = new TextBox();
             lblEmail = new Label();
             txtEmail = new TextBox();
+            lblLoiHoTen = new Label();
+            lblLoiEmail = new Label();
+            lblLoiDiaChi = new Label();
             grpMembership = new GroupBox();
             lblNgayDangKy = new Label();
             dtpNgayDangKy = new DateTimePicker();
@@ -89,6 +92,7 @@ namespace DoAnDemoUI
             grpPersonal.Controls.Add(cboGioiTinh);
             grpPersonal.Controls.Add(lblCMND);
             grpPersonal.Controls.Add(txtCMND);
+            grpPersonal.Controls.Add(lblLoiHoTen);
             grpPersonal.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             grpPersonal.ForeColor = Color.FromArgb(33, 150, 243);
             grpPersonal.Location = new Point(15, 60);
@@ -135,6 +139,16 @@ namespace DoAnDemoUI
             txtFullName.Name = "txtFullName";
             txtFullName.Size = new Size(155, 29);
             txtFullName.TabIndex = 3;
+            // 
+            // lblLoiHoTen
+            // 
+            lblLoiHoTen.AutoSize = true;
+            lblLoiHoTen.Font = new Font("Segoe UI", 8F);
+            lblLoiHoTen.ForeColor = Color.Red;
+            lblLoiHoTen.Location = new Point(100, 135);
+            lblLoiHoTen.Name = "lblLoiHoTen";
+            lblLoiHoTen.Size = new Size(0, 19);
+            lblLoiHoTen.TabIndex = 10;
             // 
             // lblNgaySinh
             // 
@@ -201,11 +215,13 @@ namespace DoAnDemoUI
             grpContact.Controls.Add(txtPhoneNumber);
             grpContact.Controls.Add(lblEmail);
             grpContact.Controls.Add(txtEmail);
+            grpContact.Controls.Add(lblLoiEmail);
+            grpContact.Controls.Add(lblLoiDiaChi);
             grpContact.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             grpContact.ForeColor = Color.FromArgb(33, 150, 243);
             grpContact.Location = new Point(480, 60);
             grpContact.Name = "grpContact";
-            grpContact.Size = new Size(440, 170);
+            grpContact.Size = new Size(440, 190);
             grpContact.TabIndex = 2;
             grpContact.TabStop = false;
             grpContact.Text = "📞 Thông Tin Liên Hệ";
@@ -227,6 +243,17 @@ namespace DoAnDemoUI
             txtDiaChi.Name = "txtDiaChi";
             txtDiaChi.Size = new Size(335, 29);
             txtDiaChi.TabIndex = 1;
+            // 
+            // lblLoiDiaChi
+            // 
+            lblLoiDiaChi.AutoSize = true;
+            lblLoiDiaChi.Font = new Font("Segoe UI", 8F);
+            lblLoiDiaChi.ForeColor = Color.Red;
+            lblLoiDiaChi.Location = new Point(90, 155); // Below lblLoiEmail
+            lblLoiDiaChi.Name = "lblLoiDiaChi";
+            lblLoiDiaChi.Size = new Size(0, 19);
+            lblLoiDiaChi.TabIndex = 7;
+            //
             // 
             // lblPhoneNumber
             // 
@@ -263,6 +290,15 @@ namespace DoAnDemoUI
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(335, 29);
             txtEmail.TabIndex = 5;
+            // 
+            // lblLoiEmail
+            // 
+            lblLoiEmail.AutoSize = true;
+            lblLoiEmail.Font = new Font("Segoe UI", 8F);
+            lblLoiEmail.Location = new Point(90, 135);
+            lblLoiEmail.Name = "lblLoiEmail";
+            lblLoiEmail.Size = new Size(0, 19);
+            lblLoiEmail.TabIndex = 6;
             // 
             // grpMembership
             // 
@@ -587,6 +623,10 @@ namespace DoAnDemoUI
         // Contact Info
         private System.Windows.Forms.Label lblDiaChi, lblPhoneNumber, lblEmail;
         private System.Windows.Forms.TextBox txtDiaChi, txtPhoneNumber, txtEmail;
+        
+        // Validation Labels
+        private System.Windows.Forms.Label lblLoiHoTen, lblLoiEmail, lblLoiDiaChi;
+
 
         // Membership Info
         private System.Windows.Forms.Label lblNgayDangKy, lblNgayHetHan, lblTrangThai, lblGhiChu;

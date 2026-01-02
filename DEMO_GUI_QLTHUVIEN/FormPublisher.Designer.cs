@@ -20,9 +20,9 @@ namespace DoAnDemoUI
 
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             dgvPublishers = new DataGridView();
@@ -42,6 +42,7 @@ namespace DoAnDemoUI
             txtSoDienThoai = new TextBox();
             lblEmail = new Label();
             txtEmail = new TextBox();
+            lblThongBao = new Label();
             btnAdd = new Button();
             btnEdit = new Button();
             btnDelete = new Button();
@@ -57,29 +58,29 @@ namespace DoAnDemoUI
             // dgvPublishers
             // 
             dgvPublishers.AllowUserToAddRows = false;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(245, 245, 245);
-            dgvPublishers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(245, 245, 245);
+            dgvPublishers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvPublishers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPublishers.BackgroundColor = Color.White;
             dgvPublishers.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(33, 150, 243);
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvPublishers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(33, 150, 243);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvPublishers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvPublishers.ColumnHeadersHeight = 40;
             dgvPublishers.Columns.AddRange(new DataGridViewColumn[] { colId, colTen, colDiaChi, colSDT, colEmail });
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Window;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(100, 181, 246);
-            dataGridViewCellStyle6.SelectionForeColor = Color.White;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dgvPublishers.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(100, 181, 246);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvPublishers.DefaultCellStyle = dataGridViewCellStyle3;
             dgvPublishers.EnableHeadersVisualStyles = false;
             dgvPublishers.Location = new Point(29, 74);
             dgvPublishers.MultiSelect = false;
@@ -144,11 +145,12 @@ namespace DoAnDemoUI
             grpInfo.Controls.Add(txtSoDienThoai);
             grpInfo.Controls.Add(lblEmail);
             grpInfo.Controls.Add(txtEmail);
+            grpInfo.Controls.Add(lblThongBao);
             grpInfo.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             grpInfo.ForeColor = Color.FromArgb(33, 150, 243);
             grpInfo.Location = new Point(29, 456);
             grpInfo.Name = "grpInfo";
-            grpInfo.Size = new Size(1249, 200);
+            grpInfo.Size = new Size(1249, 210);
             grpInfo.TabIndex = 1;
             grpInfo.TabStop = false;
             grpInfo.Text = "📝 Thông Tin Nhà Xuất Bản";
@@ -254,6 +256,16 @@ namespace DoAnDemoUI
             txtEmail.Size = new Size(520, 30);
             txtEmail.TabIndex = 9;
             txtEmail.Text = "info@nxbtre.com.vn";
+            // 
+            // lblThongBao
+            // 
+            lblThongBao.AutoSize = true;
+            lblThongBao.Font = new Font("Segoe UI", 8F);
+            lblThongBao.ForeColor = Color.Red;
+            lblThongBao.Location = new Point(706, 175);
+            lblThongBao.Name = "lblThongBao";
+            lblThongBao.Size = new Size(0, 19);
+            lblThongBao.TabIndex = 11;
             // 
             // btnAdd
             // 
@@ -437,5 +449,8 @@ namespace DoAnDemoUI
         private System.Windows.Forms.Button btnRefresh;
         private Label lblTitle;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        
+        // Validation Labels
+        private System.Windows.Forms.Label lblThongBao;
     }
 }

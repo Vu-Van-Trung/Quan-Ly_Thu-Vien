@@ -29,6 +29,140 @@ namespace DoAnDemoUI
             dgvMembers.SelectionChanged += DgvMembers_SelectionChanged;
 
             txtMemberId.ReadOnly = true;
+            
+            // Đăng ký sự kiện
+            txtPhoneNumber.KeyPress += TxtPhoneNumber_KeyPress;
+            txtCMND.KeyPress += TxtCCCD_KeyPress;
+            
+            txtFullName.KeyPress += txtHoTen_KeyPress;
+            txtFullName.TextChanged += txtHoTen_TextChanged;
+            txtFullName.Leave += txtHoTen_Leave;
+
+            txtEmail.TextChanged += txtEmail_TextChanged;
+            txtEmail.Leave += txtEmail_Leave;
+
+            txtDiaChi.TextChanged += txtDiaChi_TextChanged;
+            txtDiaChi.Leave += txtDiaChi_Leave;
+
+            txtPhoneNumber.MaxLength = 11;
+            txtCMND.MaxLength = 12;
+        }
+
+        private void TxtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Chỉ cho phép số và phím điều khiển (Backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TxtCCCD_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.Handled = true;
+        }
+        
+        // ===== SỰ KIỆN VALIDATION MỚI =====
+        private void txtHoTen_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Cho phép chữ cái, khoảng trắng và phím điều khiển
+            if (!char.IsLetter(e.KeyChar) &&
+                !char.IsWhiteSpace(e.KeyChar) &&
+                !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+
+                lblLoiHoTen.Text = "Họ tên chỉ được chứa chữ cái";
+                lblLoiHoTen.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                lblLoiHoTen.Text = "";
+            }
+        }
+
+        private void txtHoTen_TextChanged(object sender, EventArgs e)
+        {
+            if (txtFullName.Text.Trim().Length < 3)
+            {
+                lblLoiHoTen.Text = "Họ tên phải từ 3 ký tự";
+                lblLoiHoTen.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                lblLoiHoTen.Text = "";
+            }
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+            string email = txtEmail.Text.Trim();
+
+            if (email.Length == 0)
+            {
+                lblLoiEmail.Text = "";
+                return;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                lblLoiEmail.Text = "Email không đúng định dạng";
+                lblLoiEmail.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                lblLoiEmail.Text = "";
+            }
+        }
+
+        private void txtHoTen_Leave(object sender, EventArgs e)
+        {
+            if (txtFullName.Text.Trim().Length < 3 && !string.IsNullOrEmpty(txtFullName.Text))
+            {
+                lblLoiHoTen.Text = "Họ tên phải từ 3 ký tự";
+                lblLoiHoTen.ForeColor = System.Drawing.Color.Red;
+            }
+        }
+
+        private void txtEmail_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtEmail.Text) && !System.Text.RegularExpressions.Regex.IsMatch(txtEmail.Text.Trim(), @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                lblLoiEmail.Text = "Email không đúng định dạng";
+                lblLoiEmail.ForeColor = System.Drawing.Color.Red;
+            }
+        }
+
+        private void txtDiaChi_TextChanged(object sender, EventArgs e)
+        {
+            string diaChi = txtDiaChi.Text.Trim();
+
+            if (diaChi.Length == 0)
+            {
+                lblLoiDiaChi.Text = "Địa chỉ không được để trống";
+                lblLoiDiaChi.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+            if (!KiemTraDiaChi(diaChi))
+            {
+                lblLoiDiaChi.Text = "Địa chỉ chứa ký tự không hợp lệ";
+                lblLoiDiaChi.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                lblLoiDiaChi.Text = "";
+            }
+        }
+
+        private void txtDiaChi_Leave(object sender, EventArgs e)
+        {
+             if (!KiemTraDiaChi(txtDiaChi.Text))
+            {
+                 lblLoiDiaChi.Text = "Địa chỉ không hợp lệ (phải từ 5 ký tự)";
+                 lblLoiDiaChi.ForeColor = System.Drawing.Color.Red;
+            }
         }
 
         private void FormMember_Load(object sender, EventArgs e)
@@ -177,9 +311,54 @@ namespace DoAnDemoUI
         // ===== LƯU DỮ LIỆU & MÃ HÓA =====
         private void BtnLuu_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtFullName.Text))
+            // 1. Kiểm tra nhập đầy đủ thông tin
+            if (string.IsNullOrWhiteSpace(txtFullName.Text) ||
+                string.IsNullOrWhiteSpace(txtCMND.Text) ||
+                string.IsNullOrWhiteSpace(txtDiaChi.Text) ||
+                string.IsNullOrWhiteSpace(txtPhoneNumber.Text) ||
+                string.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                MessageBox.Show("⚠️ Vui lòng nhập họ tên!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("⚠️ Vui lòng nhập đầy đủ các trường bắt buộc (Họ tên, CMND, Địa chỉ, SĐT, Email)!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2. Kiểm tra tên
+            string fullName = txtFullName.Text.Trim();
+            if (!System.Text.RegularExpressions.Regex.IsMatch(fullName, @"^[\p{L}\s]+$"))
+            {
+                lblLoiHoTen.Text = "Họ tên không được chứa ký tự đặc biệt hoặc số";
+                lblLoiHoTen.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+            // 3. Kiểm tra số điện thoại
+            string phone = txtPhoneNumber.Text.Trim();
+            if (!long.TryParse(phone, out _) || phone.Length < 9 || phone.Length > 11)
+            {
+                MessageBox.Show("⚠️ Số điện thoại phải là một số nguyên và có độ dài từ 9 đến 11 số!", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            
+            // 4. Kiểm tra Email
+            if (!KiemTraEmail(txtEmail.Text))
+            {
+                lblLoiEmail.Text = "Email không đúng định dạng";
+                lblLoiEmail.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+            // 5. Kiểm tra Địa chỉ
+            if (!KiemTraDiaChi(txtDiaChi.Text))
+            {
+                lblLoiDiaChi.Text = "Địa chỉ không hợp lệ";
+                lblLoiDiaChi.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+            // 6. Kiểm tra Ngày sinh (trên 15 tuổi)
+            if (!KiemTraNgaySinh(dtpNgaySinh.Value))
+            {
+                MessageBox.Show("⚠️ Độc giả phải từ 15 tuổi trở lên!", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -201,11 +380,11 @@ namespace DoAnDemoUI
                 if (member != null)
                 {
                     // Thực hiện mã hóa tất cả các trường thông tin cá nhân nhạy cảm
-                    member.FullName = CryptoHelper.Encrypt(txtFullName.Text.Trim());
-                    member.CMND = string.IsNullOrWhiteSpace(txtCMND.Text) ? null : CryptoHelper.Encrypt(txtCMND.Text.Trim());
-                    member.DiaChi = string.IsNullOrWhiteSpace(txtDiaChi.Text) ? null : CryptoHelper.Encrypt(txtDiaChi.Text.Trim());
-                    member.PhoneNumber = string.IsNullOrWhiteSpace(txtPhoneNumber.Text) ? null : CryptoHelper.Encrypt(txtPhoneNumber.Text.Trim());
-                    member.Email = string.IsNullOrWhiteSpace(txtEmail.Text) ? null : CryptoHelper.Encrypt(txtEmail.Text.Trim());
+                    member.FullName = CryptoHelper.Encrypt(fullName);
+                    member.CMND = CryptoHelper.Encrypt(txtCMND.Text.Trim());
+                    member.DiaChi = CryptoHelper.Encrypt(txtDiaChi.Text.Trim());
+                    member.PhoneNumber = CryptoHelper.Encrypt(phone);
+                    member.Email = CryptoHelper.Encrypt(txtEmail.Text.Trim());
 
                     member.NgaySinh = dtpNgaySinh.Value;
                     member.GioiTinh = cboGioiTinh.Text;
@@ -312,5 +491,31 @@ namespace DoAnDemoUI
 
         private void lblTitle_Click(object sender, EventArgs e) { }
         private void dgvMembers_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+
+        // ===== CÁC HÀM KIỂM TRA DỮ LIỆU =====
+        bool KiemTraEmail(string email)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(
+                email.Trim(),
+                @"^[^@\s]+@[^@\s]+\.[^@\s]+$"
+            );
+        }
+
+        bool KiemTraDiaChi(string diaChi)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(
+                diaChi.Trim(),
+                @"^[\p{L}0-9\s,./\-]{5,}$"
+            );
+        }
+
+        bool KiemTraNgaySinh(DateTime ngaySinh)
+        {
+            int tuoi = DateTime.Now.Year - ngaySinh.Year;
+            if (DateTime.Now < ngaySinh.AddYears(tuoi))
+                tuoi--;
+
+            return ngaySinh < DateTime.Now && tuoi >= 15;
+        }
     }
 }

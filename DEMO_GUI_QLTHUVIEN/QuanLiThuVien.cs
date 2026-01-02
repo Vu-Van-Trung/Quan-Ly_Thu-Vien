@@ -77,15 +77,24 @@ namespace DoAnDemoUI
             AddMenuAction("ManageLoans", "Quản lý Mượn/Trả", "loan_v2.png", () => OpenOrActivateChild(typeof(FormLoan)));
             AddMenuAction("ManageStaff", "Quản lý Nhân viên", "staff_v2.png", () => OpenOrActivateChild(typeof(FormStaff)));
             AddMenuAction("ManagePublishers", "Quản lý Nhà XB", "publisher_v2.png", () => OpenOrActivateChild(typeof(FormPublisher)));
-            AddMenuAction("Reports", "Báo cáo & Thống kê", "report_v2.png", () => OpenOrActivateChild(typeof(FormReport)));
-            AddMenuAction("ManageFines", "Phiếu Phạt & Trả Sách", "fine_v2.png", () => OpenOrActivateChild(typeof(FormFine)));
-            // New Author Management
             AddMenuAction("ManageAuthors", "Quản lý Tác Giả", "author_v2.png", () => OpenOrActivateChild(typeof(QuanLiTacGia)));
+            AddMenuAction("ManageFines", "Phiếu Phạt & Trả Sách", "fine_v2.png", () => OpenOrActivateChild(typeof(FormFine)));
+            AddMenuAction("Reports", "Báo cáo & Thống kê", "report_v2.png", () => OpenOrActivateChild(typeof(FormReport)));
             AddMenuAction("Settings", "Cài đặt & Dữ liệu", "settings_v2.png", ShowSettingsForm);
         }
 
         private void ShowSettingsForm()
+
         {
+            // Close other forms
+            foreach (var child in this.MdiChildren)
+            {
+                if (!(child is FormSettings))
+                {
+                    child.Close();
+                }
+            }
+
             foreach (var child in this.MdiChildren)
             {
                 if (child is FormSettings)
@@ -186,7 +195,16 @@ namespace DoAnDemoUI
         // --- HÀM MỞ FORM CON (QUAN TRỌNG) ---
         private void OpenOrActivateChild(Type childType)
         {
-            // 1. Kiểm tra xem Form đó đã mở chưa (để tránh mở nhiều lần)
+            // 1. Đóng tất cả các form con khác
+            foreach (var child in this.MdiChildren)
+            {
+                if (child.GetType() != childType)
+                {
+                    child.Close();
+                }
+            }
+
+            // 2. Kiểm tra xem Form cần mở dã tồn tại chưa (sau khi đã đóng các form khác)
             foreach (var child in this.MdiChildren)
             {
                 if (child.GetType() == childType)
@@ -198,13 +216,10 @@ namespace DoAnDemoUI
                 }
             }
 
-            // 2. Nếu chưa mở thì khởi tạo mới
-            // Sử dụng Activator.CreateInstance để tạo form động mà không cần if/else quá dài
+            // 3. Nếu chưa mở thì khởi tạo mới
             try
             {
                 Form frm = (Form)Activator.CreateInstance(childType);
-
-                // Thiết lập Form cha
                 frm.MdiParent = this;
                 frm.StartPosition = FormStartPosition.CenterScreen;
                 frm.Show();
