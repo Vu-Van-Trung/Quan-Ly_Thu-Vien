@@ -529,5 +529,11 @@ namespace DoAnDemoUI
 
             return ngaySinh < DateTime.Now && tuoi >= 15;
         }
+
+        // Đóng form
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
