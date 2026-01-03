@@ -273,7 +273,7 @@ namespace DoAnDemoUI
         {
             if (MessageBox.Show("Bạn có chắc muốn thoát ứng dụng?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                Application.Exit();
+               this.Close();
             }
         }
 

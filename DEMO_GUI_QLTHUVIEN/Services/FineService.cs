@@ -118,5 +118,9 @@ namespace LibraryManagement.Services
                 _context.SaveChanges();
             }
         }
+        public List<string> GetAllLoanIds()
+        {
+            return _context.Loans.Select(l => l.LoanId).ToList();
+        }
     }
 }

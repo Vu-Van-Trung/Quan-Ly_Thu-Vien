@@ -14,6 +14,7 @@ namespace DoAnDemoUI
         private LibraryContext db;
         private BindingSource bindingSource;
         private int defaultStaffId = 1; // ID nhân viên mặc định - thay đổi theo nhu cầu
+        private System.Collections.IEnumerable _originalData;
 
         public FormLoan()
         {
@@ -56,8 +57,45 @@ namespace DoAnDemoUI
             }).ToList();
 
             cbMaDocGia.DataSource = memberDisplayList;
-            cbMaDocGia.DisplayMember = "DisplayName"; // Sử dụng tên thuộc tính mới đã giải mã
+            cbMaDocGia.DisplayMember = "MemberId"; // Display ID instead of Name
             cbMaDocGia.ValueMember = "MemberId";
+            
+            cbMaDocGia.SelectedIndexChanged += CbMaDocGia_SelectedIndexChanged;
+        }
+
+        private void CbMaDocGia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbMaDocGia.SelectedItem != null)
+            {
+                // Retrieve DisplayName via reflection from the anonymous type
+                dynamic item = cbMaDocGia.SelectedItem;
+                string name = item.GetType().GetProperty("DisplayName")?.GetValue(item, null)?.ToString();
+                txtTenDocGia.Text = name;
+            }
+            else
+            {
+                txtTenDocGia.Clear();
+            }
+            ApplyFilter();
+        }
+
+        private void ApplyFilter()
+        {
+            if (_originalData == null) return;
+
+            if (cbMaDocGia.SelectedIndex != -1 && cbMaDocGia.SelectedValue != null)
+            {
+                string selectedId = cbMaDocGia.SelectedValue.ToString();
+                // Filter data by MemberId
+                var list = ((System.Collections.IEnumerable)_originalData).Cast<dynamic>()
+                           .Where(x => x.MemberId == selectedId).ToList();
+                bindingSource.DataSource = list;
+            }
+            else
+            {
+                bindingSource.DataSource = _originalData;
+            }
+            UpdateIndex();
         }
 
         public void LoadData()
@@ -76,6 +114,7 @@ namespace DoAnDemoUI
                 var data = rawData.Select(l => new
                 {
                     l.LoanId,
+                    l.MemberId,
                     MemberName = CryptoHelper.Decrypt(l.Member.FullName),
                     l.LoanDate,
                     l.DueDate,
@@ -85,8 +124,8 @@ namespace DoAnDemoUI
                     .OrderBy(x => x.MemberName) // Sort by decrypted name
                     .ToList();
 
-                bindingSource.DataSource = data;
-                UpdateIndex();
+                _originalData = data;
+                ApplyFilter();
             }
             catch (Exception ex)
             {
@@ -184,6 +223,48 @@ namespace DoAnDemoUI
                 string memberId = cbMaDocGia.SelectedValue.ToString();
                 string bookId = cbMaSach.SelectedValue.ToString();
 
+                // --- 1. KIỂM TRA TRẠNG THÁI ĐỘC GIẢ ---
+                var member = db.Members.FirstOrDefault(m => m.MemberId == memberId);
+                if (member == null || member.TrangThai != "Hoạt động")
+                {
+                    MessageBox.Show("Thẻ độc giả đang bị khóa hoặc không hoạt động. Không thể mượn sách!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (member.NgayHetHan != null && member.NgayHetHan < DateTime.Now)
+                {
+                    MessageBox.Show($"Thẻ độc giả đã hết hạn vào ngày {member.NgayHetHan:dd/MM/yyyy}. Vui lòng gia hạn!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // --- 1.5. KIỂM TRA PHẠT CHƯA THANH TOÁN ---
+                // Chỉ chọn Phat từ các Loan của MemberId này
+                // (Giả sử có bảng Fines có LoanId, Loan có MemberId)
+                bool hasUnpaidFines = db.Fines.Any(f => f.Loan.MemberId == memberId && f.TrangThaiThanhToan == "Chưa thanh toán");
+                if (hasUnpaidFines)
+                {
+                    MessageBox.Show("Độc giả có khoản phạt chưa thanh toán. Vui lòng đóng phạt trước khi mượn sách mới!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // --- 2. KIỂM TRA SÁCH QUÁ HẠN ---
+                bool hasOverdueBooks = db.Loans.Any(l => l.MemberId == memberId 
+                                                      && l.DueDate < DateTime.Now 
+                                                      && l.LoanDetails.Any(ld => ld.NgayTra == null));
+                if (hasOverdueBooks)
+                {
+                    MessageBox.Show("Độc giả đang có sách quá hạn chưa trả. Vui lòng trả sách quá hạn trước khi mượn thêm!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // --- 3. KIỂM TRA GIỚI HẠN SỐ LƯỢNG (MAX 5) ---
+                int currentBorrowedCount = db.LoanDetails.Count(ld => ld.Loan.MemberId == memberId && ld.NgayTra == null);
+                if (currentBorrowedCount >= 5)
+                {
+                    MessageBox.Show($"Độc giả đã đạt giới hạn mượn 5 cuốn sách (Đang mượn: {currentBorrowedCount}).\nVui lòng trả bớt sách trước khi mượn thêm.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 // Check for existing active loan for this member
                 var existingLoan = db.Loans
                     .Include(l => l.LoanDetails)
@@ -250,6 +331,13 @@ namespace DoAnDemoUI
             }
             catch (Exception ex)
             {
+                // Fix: Clear tracking state to prevent "Instance already tracked" error on retry
+                // If using EF Core 5+:
+                try { db.ChangeTracker.Clear(); } catch { } 
+                
+                // Fallback for older EF Core if Clear() missing:
+                // foreach (var entry in db.ChangeTracker.Entries().ToList()) entry.State = EntityState.Detached;
+
                 MessageBox.Show("Lỗi thêm: " + ex.Message + "\n" + ex.InnerException?.Message);
             }
         }
@@ -257,43 +345,61 @@ namespace DoAnDemoUI
         // Hàm tạo mã phiếu mượn tự động
         private string GenerateLoanId()
         {
-            var lastLoan = db.Loans.OrderByDescending(l => l.LoanId).FirstOrDefault();
-            if (lastLoan == null)
+            // Lấy tất cả mã phiếu hiện có để xử lý chính xác (tránh lỗi sắp xếp chuỗi "PM9" > "PM10")
+            var allIds = db.Loans.Select(l => l.LoanId).ToList();
+            
+            int maxId = 0;
+            foreach (var id in allIds)
             {
-                return "PM001";
+                // Giả sử định dạng PMxxx
+                if (id.Length > 2 && id.StartsWith("PM") && int.TryParse(id.Substring(2), out int num))
+                {
+                    if (num > maxId) maxId = num;
+                }
             }
-
-            // Lấy số từ mã cuối cùng và tăng lên 1
-            string lastId = lastLoan.LoanId;
-            int number = int.Parse(lastId.Substring(2)) + 1;
-            return $"PM{number:D3}";
+            
+            // Tăng số lớn nhất lên 1
+            return $"PM{maxId + 1:D3}";
         }
 
         // --- 4. CHỨC NĂNG SỬA ---
+        // --- 4. CHỨC NĂNG SỬA ---
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (dgvSachMuon.CurrentRow == null || dgvSachMuon.CurrentRow.Cells["LoanId"].Value == null)
+            try
             {
-                MessageBox.Show("Vui lòng chọn phiếu mượn cần sửa!");
-                return;
+                if (dgvSachMuon.CurrentRow == null || dgvSachMuon.CurrentRow.Cells["LoanId"].Value == null)
+                {
+                    MessageBox.Show("Vui lòng chọn phiếu mượn cần sửa!");
+                    return;
+                }
+
+                string loanId = dgvSachMuon.CurrentRow.Cells["LoanId"].Value.ToString();
+
+                var loan = db.Loans.Find(loanId);
+                if (loan != null)
+                {
+                    loan.MemberId = cbMaDocGia.SelectedValue.ToString();
+                    loan.LoanDate = dtpNgayMuon.Value;
+                    
+                    // Cập nhật hạn trả = ngày mượn + 14 ngày
+                    loan.DueDate = loan.LoanDate.AddDays(14);
+                    // Update UI to reflect calculated date
+                    dtpNgayTra.Value = loan.DueDate;
+
+                    db.SaveChanges();
+                    
+                    // Log
+                    Services.Logger.Log("Quản lý Mượn Trả", "Cập nhật", $"Cập nhật phiếu mượn {loan.LoanId}");
+
+                    LoadData();
+                    MessageBox.Show("Cập nhật thành công!");
+                }
             }
-
-            string loanId = dgvSachMuon.CurrentRow.Cells["LoanId"].Value.ToString();
-
-            var loan = db.Loans.Find(loanId);
-            if (loan != null)
+            catch (Exception ex)
             {
-                loan.MemberId = cbMaDocGia.SelectedValue.ToString();
-                loan.LoanDate = dtpNgayMuon.Value;
-                loan.DueDate = dtpNgayTra.Value;
-
-                db.SaveChanges();
-                
-                // Log
-                Services.Logger.Log("Quản lý Mượn Trả", "Cập nhật", $"Cập nhật phiếu mượn {loan.LoanId}");
-
-                LoadData();
-                MessageBox.Show("Cập nhật thành công!");
+                try { db.ChangeTracker.Clear(); } catch { }
+                MessageBox.Show("Lỗi cập nhật: " + ex.Message);
             }
         }
 
@@ -381,10 +487,7 @@ namespace DoAnDemoUI
 
         }
 
-        private void cbMaDocGia_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
 
         private void dgvChiTiet_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

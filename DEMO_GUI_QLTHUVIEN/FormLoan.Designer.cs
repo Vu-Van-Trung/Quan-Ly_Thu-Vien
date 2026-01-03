@@ -24,6 +24,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblTitle = new Label();
             gbThongTin = new GroupBox();
+            txtTenDocGia = new TextBox();
+            labelTenDG = new Label();
             dtpNgayTra = new DateTimePicker();
             dtpNgayMuon = new DateTimePicker();
             cbMaDocGia = new ComboBox();
@@ -71,6 +73,8 @@
             // 
             // gbThongTin
             // 
+            gbThongTin.Controls.Add(txtTenDocGia);
+            gbThongTin.Controls.Add(labelTenDG);
             gbThongTin.Controls.Add(dtpNgayTra);
             gbThongTin.Controls.Add(dtpNgayMuon);
             gbThongTin.Controls.Add(cbMaDocGia);
@@ -85,15 +89,33 @@
             gbThongTin.Margin = new Padding(3, 4, 3, 4);
             gbThongTin.Name = "gbThongTin";
             gbThongTin.Padding = new Padding(3, 4, 3, 4);
-            gbThongTin.Size = new Size(467, 325);
+            gbThongTin.Size = new Size(467, 360);
             gbThongTin.TabIndex = 1;
             gbThongTin.TabStop = false;
             gbThongTin.Text = "📄 Thông Tin Phiếu Mượn";
             // 
+            // 
+            // txtTenDocGia
+            // 
+            txtTenDocGia.Location = new Point(152, 165);
+            txtTenDocGia.Name = "txtTenDocGia";
+            txtTenDocGia.ReadOnly = true;
+            txtTenDocGia.Size = new Size(284, 30);
+            txtTenDocGia.TabIndex = 10;
+            // 
+            // labelTenDG
+            // 
+            labelTenDG.AutoSize = true;
+            labelTenDG.Location = new Point(27, 168);
+            labelTenDG.Name = "labelTenDG";
+            labelTenDG.Size = new Size(100, 23);
+            labelTenDG.TabIndex = 11;
+            labelTenDG.Text = "Tên ĐG:";
+            // 
             // dtpNgayTra
             // 
             dtpNgayTra.Format = DateTimePickerFormat.Short;
-            dtpNgayTra.Location = new Point(152, 250);
+            dtpNgayTra.Location = new Point(152, 290);
             dtpNgayTra.Margin = new Padding(3, 4, 3, 4);
             dtpNgayTra.Name = "dtpNgayTra";
             dtpNgayTra.Size = new Size(284, 30);
@@ -102,7 +124,7 @@
             // dtpNgayMuon
             // 
             dtpNgayMuon.Format = DateTimePickerFormat.Short;
-            dtpNgayMuon.Location = new Point(152, 182);
+            dtpNgayMuon.Location = new Point(152, 225);
             dtpNgayMuon.Margin = new Padding(3, 4, 3, 4);
             dtpNgayMuon.Name = "dtpNgayMuon";
             dtpNgayMuon.Size = new Size(284, 30);
@@ -129,7 +151,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(27, 256);
+            label5.Location = new Point(27, 296);
             label5.Name = "label5";
             label5.Size = new Size(126, 23);
             label5.TabIndex = 4;
@@ -138,7 +160,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(27, 189);
+            label4.Location = new Point(27, 229);
             label4.Name = "label4";
             label4.Size = new Size(110, 23);
             label4.TabIndex = 3;
@@ -222,7 +244,7 @@
             gbXuLy.Controls.Add(btnTraSach);
             gbXuLy.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             gbXuLy.ForeColor = Color.FromArgb(33, 150, 243);
-            gbXuLy.Location = new Point(16, 438);
+            gbXuLy.Location = new Point(16, 460);
             gbXuLy.Margin = new Padding(3, 4, 3, 4);
             gbXuLy.Name = "gbXuLy";
             gbXuLy.Padding = new Padding(3, 4, 3, 4);
@@ -491,6 +513,8 @@
         private System.Windows.Forms.GroupBox gbChiTiet;
         private System.Windows.Forms.DataGridView dgvChiTiet;
         private System.Windows.Forms.TextBox txtIndex;
+        private System.Windows.Forms.TextBox txtTenDocGia;
+        private System.Windows.Forms.Label labelTenDG;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
 
         // ... existing controls ...

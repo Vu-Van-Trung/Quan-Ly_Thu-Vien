@@ -33,8 +33,10 @@ namespace DoAnDemoUI
         private Label lblTitle;
         private Guna.UI2.WinForms.Guna2Button btnPrint;
         private Guna.UI2.WinForms.Guna2Button btnReset;
-        private Guna.UI2.WinForms.Guna2Button btnSearch;
-        private Guna.UI2.WinForms.Guna2TextBox txtLoanId2;
+
+        // private Guna.UI2.WinForms.Guna2Button btnSearch; // REMOVED
+        // private Guna.UI2.WinForms.Guna2TextBox txtLoanId2; // REMOVED
+        private ComboBox cboLoanId; // ADDED
         private Label lblTotalFine;
 
         public FormFine()
@@ -42,13 +44,14 @@ namespace DoAnDemoUI
             InitializeComponent();
             _fineService = new FineService();
             SetupEvents();
+            this.Load += FormFine_Load;
         }
 
         // New Constuctor for linking
         public FormFine(string loanId) : this()
         {
-            txtLoanId2.Text = loanId;
-            LoadLoanDetails(loanId);
+            // Will be handled in Load
+            this.Tag = loanId; 
         }
 
         private void InitializeComponent()
@@ -69,8 +72,11 @@ namespace DoAnDemoUI
             btnCalculateFine = new Button();
             lblLoanId = new Label();
             grpDetails = new GroupBox();
-            btnSearch = new Guna.UI2.WinForms.Guna2Button();
-            txtLoanId2 = new Guna.UI2.WinForms.Guna2TextBox();
+            lblLoanId = new Label();
+            grpDetails = new GroupBox();
+            // btnSearch = new Guna.UI2.WinForms.Guna2Button(); // REMOVED
+            // txtLoanId2 = new Guna.UI2.WinForms.Guna2TextBox(); // REMOVED
+            cboLoanId = new ComboBox(); // ADDED
             lblTotalFine = new Label();
             btnReturn = new Button();
             grpFines = new GroupBox();
@@ -91,7 +97,7 @@ namespace DoAnDemoUI
             // 
             grpSearch.Controls.Add(dgvBooks);
             grpSearch.Controls.Add(btnPay);
-            grpSearch.Controls.Add(btnCalculateFine);
+            // btnCalculateFine removed
             grpSearch.Location = new Point(25, 143);
             grpSearch.Name = "grpSearch";
             grpSearch.Size = new Size(1273, 264);
@@ -101,6 +107,7 @@ namespace DoAnDemoUI
             // 
             // dgvBooks
             // 
+            dgvBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvBooks.ColumnHeadersHeight = 29;
             dgvBooks.Location = new Point(26, 26);
             dgvBooks.Name = "dgvBooks";
@@ -115,12 +122,11 @@ namespace DoAnDemoUI
             btnPay.Name = "btnPay";
             btnPay.Size = new Size(81, 31);
             btnPay.TabIndex = 1;
-            btnPay.Text = "Trả Tiền";
+            btnPay.Text = "Trả Sách";
             btnPay.UseVisualStyleBackColor = false;
             // 
-            // btnCalculateFine
+            // btnCalculateFine (Removed)
             // 
-            btnCalculateFine.BackColor = Color.FromArgb(255, 192, 192);
             btnCalculateFine.Location = new Point(1015, 227);
             btnCalculateFine.Name = "btnCalculateFine";
             btnCalculateFine.Size = new Size(103, 31);
@@ -139,9 +145,12 @@ namespace DoAnDemoUI
             // 
             // grpDetails
             // 
-            grpDetails.Controls.Add(btnSearch);
+            // grpDetails
+            // 
+            // grpDetails.Controls.Add(btnSearch); // REMOVED
             grpDetails.Controls.Add(lblLoanId);
-            grpDetails.Controls.Add(txtLoanId2);
+            // grpDetails.Controls.Add(txtLoanId2); // REMOVED
+            grpDetails.Controls.Add(cboLoanId);
             grpDetails.Location = new Point(35, 65);
             grpDetails.Name = "grpDetails";
             grpDetails.Size = new Size(1273, 72);
@@ -149,53 +158,22 @@ namespace DoAnDemoUI
             grpDetails.TabStop = false;
             grpDetails.Text = "Tìm kiếm phiếu mượn";
             // 
-            // btnSearch
             // 
-            btnSearch.BorderRadius = 18;
-            btnSearch.CustomizableEdges = customizableEdges11;
-            btnSearch.DisabledState.BorderColor = Color.DarkGray;
-            btnSearch.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnSearch.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnSearch.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnSearch.FillColor = Color.FromArgb(128, 255, 255);
-            btnSearch.Font = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSearch.ForeColor = Color.Black;
-            btnSearch.Location = new Point(688, 25);
-            btnSearch.Name = "btnSearch";
-            btnSearch.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            btnSearch.Size = new Size(120, 34);
-            btnSearch.TabIndex = 3;
-            btnSearch.Text = "Tìm kiếm";
-            btnSearch.Click += BtnSearch_Click;
+            // cboLoanId
             // 
-            // txtLoanId2
+            cboLoanId.Font = new Font("Segoe UI", 12F);
+            cboLoanId.FormattingEnabled = true;
+            cboLoanId.Location = new Point(309, 28);
+            cboLoanId.Name = "cboLoanId";
+            cboLoanId.Size = new Size(363, 36);
+            cboLoanId.TabIndex = 15;
+            cboLoanId.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cboLoanId.AutoCompleteSource = AutoCompleteSource.ListItems;
             // 
-            txtLoanId2.BorderRadius = 9;
-            txtLoanId2.Cursor = Cursors.WaitCursor;
-            txtLoanId2.CustomizableEdges = customizableEdges13;
-            txtLoanId2.DefaultText = "";
-            txtLoanId2.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtLoanId2.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtLoanId2.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtLoanId2.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtLoanId2.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtLoanId2.Font = new Font("Segoe UI", 10.8F);
-            txtLoanId2.ForeColor = Color.Black;
-            txtLoanId2.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtLoanId2.IconLeftOffset = new Point(15, 0);
-            txtLoanId2.IconLeftSize = new Size(30, 30);
-            txtLoanId2.Location = new Point(309, 23);
-            txtLoanId2.Margin = new Padding(4);
-            txtLoanId2.Name = "txtLoanId2";
-            txtLoanId2.PlaceholderText = "...";
-            txtLoanId2.RightToLeft = RightToLeft.No;
-            txtLoanId2.SelectedText = "";
-            txtLoanId2.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            txtLoanId2.Size = new Size(363, 36);
-            txtLoanId2.TabIndex = 15;
-            txtLoanId2.TextOffset = new Point(30, 0);
-            txtLoanId2.UseWaitCursor = true;
-            txtLoanId2.TextChanged += guna2TextBox1_TextChanged;
+            // btnSearch (Code removed)
+            // 
+            // txtLoanId2 (Code removed)
+            //
             // 
             // lblTotalFine
             // 
@@ -214,7 +192,6 @@ namespace DoAnDemoUI
             btnReturn.TabIndex = 1;
             btnReturn.Text = "Thanh toán";
             btnReturn.UseVisualStyleBackColor = false;
-            btnReturn.Click += btnReturn_Click_1;
             // 
             // grpFines
             // 
@@ -239,6 +216,7 @@ namespace DoAnDemoUI
             // 
             // dgvFines
             // 
+            dgvFines.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvFines.ColumnHeadersHeight = 29;
             dgvFines.Location = new Point(10, 26);
             dgvFines.Name = "dgvFines";
@@ -340,21 +318,28 @@ namespace DoAnDemoUI
 
         private void SetupEvents()
         {
-            btnSearch.Click += BtnSearch_Click;
-            btnReturn.Click += BtnReturn_Click;
-            btnCalculateFine.Click += BtnCalculateFine_Click;
-            btnPay.Click += BtnPay_Click;
+
+            
+            // Fix: btnPay (in Books Group) should trigger Return Book logic
+            btnPay.Click += BtnReturn_Click; 
+            
+            // btnCalculateFine.Click += BtnCalculateFine_Click; // REMOVED
+            
+            // Fix: btnReturn (in Fines Group) should trigger Pay Fine logic
+            btnReturn.Click += BtnPay_Click; 
+            
             btnWaiver.Click += BtnWaiver_Click;
             btnReset.Click += BtnReset_Click;
-            btnReset.Click += BtnReset_Click;
             btnPrint.Click += BtnPrint_Click;
-            btnPrint.Click += BtnPrint_Click;
+            
             dgvBooks.CellDoubleClick += DgvBooks_CellDoubleClick;
             dgvFines.CellDoubleClick += DgvFines_CellDoubleClick; // Quick Pay by Double Click
 
             // Print Configuration
             printDocument1.PrintPage += PrintDocument1_PrintPage;
             printPreviewDialog1.Document = printDocument1;
+            
+            cboLoanId.SelectedIndexChanged += CboLoanId_SelectedIndexChanged;
         }
 
         private void DgvFines_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -419,13 +404,32 @@ namespace DoAnDemoUI
             ProcessReturnForRows(new[] { row }); // Helper method to reuse logic
         }
 
-        private void BtnSearch_Click(object sender, EventArgs e)
+        private void FormFine_Load(object sender, EventArgs e)
         {
-            string loanId = txtLoanId2.Text.Trim();
-            if (string.IsNullOrEmpty(loanId)) return;
+            LoadLoanIds();
 
+            // Handle passed LoanId from Link
+            if (this.Tag != null && this.Tag is string passedLoanId)
+            {
+                cboLoanId.SelectedItem = passedLoanId;
+            }
+        }
+
+        private void LoadLoanIds()
+        {
+            var loanIds = _fineService.GetAllLoanIds();
+            cboLoanId.DataSource = loanIds;
+            cboLoanId.SelectedIndex = -1; // Default no selection
+        }
+
+        private void CboLoanId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboLoanId.SelectedItem == null) return;
+            string loanId = cboLoanId.SelectedItem.ToString();
             LoadLoanDetails(loanId);
         }
+
+        // REMOVED BtnSearch_Click and LoadLoanDetails(txtLoanId2.Text) call
 
         private void LoadLoanDetails(string loanId)
         {
@@ -504,17 +508,41 @@ namespace DoAnDemoUI
                 string bookName = row.Cells["pBookName"].Value.ToString();
                 string condition = "Tốt"; // Default
 
-                // Check condition sequence
-                if (MessageBox.Show($"Sách '{bookName}' có bị hư hỏng không?", "Kiểm tra tình trạng Hư hỏng", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                // Use FormConditionCheck Dialog
+                using (var frmCondition = new FormConditionCheck(bookName))
                 {
-                    condition = "Hư hỏng";
-                }
-                else if (MessageBox.Show($"Sách '{bookName}' có bị mất không?", "Kiểm tra tình trạng Mất", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    condition = "Mất";
+                    if (frmCondition.ShowDialog() == DialogResult.OK)
+                    {
+                        condition = frmCondition.SelectedCondition;
+                    }
+                    else
+                    {
+                         // Cancelled whole operation or just skip this book? 
+                         // Let's assume skip this row if cancelled
+                         continue; 
+                    }
                 }
 
                 _fineService.ReturnBook(detailId, condition);
+                
+                // Auto calculate overdue fine if applicable (Logic inside FineService or here?)
+                // Assuming ReturnBook handles condition fines, let's explicitly add Overdue Logic here also if simpler
+                // Or ensure FineService.ReturnBook handles it. Code view shows FineService only handles Condition Fine.
+                // We should add logic to calculate OVERDUE fine automatically upon return here.
+                
+                // Check Overdue
+                var loanDetail = _currentLoan.LoanDetails.FirstOrDefault(ld => ld.LoanDetailId == detailId);
+                // Note: detail object might be stale if _fineService.ReturnBook commits updates. 
+                // However, dates shouldn't change.
+                if (DateTime.Now > _currentLoan.DueDate)
+                {
+                     decimal overdueAmount = _fineService.CalculateFineAmount(_currentLoan.DueDate, DateTime.Now);
+                     if (overdueAmount > 0)
+                     {
+                         _fineService.CreateOverdueFine(_currentLoan.LoanId, overdueAmount, $"Quá hạn sách {bookName}");
+                     }
+                }
+                
                 successCount++;
             }
 
@@ -530,39 +558,7 @@ namespace DoAnDemoUI
             }
         }
 
-        private void BtnCalculateFine_Click(object sender, EventArgs e)
-        {
-            if (_currentLoan == null) return;
 
-            bool anyFine = false;
-            foreach (var detail in _currentLoan.LoanDetails)
-            {
-                if (detail.NgayTra == null) continue; // Only calc for returned items
-
-                // Overdue Check
-                if (detail.NgayTra.Value > _currentLoan.DueDate)
-                {
-                    decimal amount = _fineService.CalculateFineAmount(_currentLoan.DueDate, detail.NgayTra.Value);
-                    if (amount > 0)
-                    {
-                        var fine = _fineService.CreateOverdueFine(_currentLoan.LoanId, amount, $"Quá hạn sách {detail.BookId} ({detail.Book?.Title ?? "N/A"})");
-                        if (fine != null) anyFine = true;
-                    }
-                }
-            }
-
-            if (anyFine)
-            {
-                MessageBox.Show("Đã tính toán và tạo phiếu phạt mới!");
-                // Reload to show fines
-                _currentLoan = _fineService.GetLoanWithDetails(_currentLoan.LoanId); // Refresh context
-                LoadFines();
-            }
-            else
-            {
-                MessageBox.Show("Không có khoản phạt mới (hoặc đã tồn tại).");
-            }
-        }
 
         private void BtnWaiver_Click(object sender, EventArgs e)
         {
@@ -592,7 +588,7 @@ namespace DoAnDemoUI
 
         private void BtnReset_Click(object sender, EventArgs e)
         {
-            txtLoanId2.Clear();
+            cboLoanId.SelectedIndex = -1; // Reset Combo
             dgvBooks.DataSource = null;
             dgvFines.DataSource = null;
             _currentLoan = null;
