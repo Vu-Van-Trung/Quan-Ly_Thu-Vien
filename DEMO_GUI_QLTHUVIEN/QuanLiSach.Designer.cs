@@ -32,8 +32,11 @@ namespace DoAnDemoUI
         private NumericUpDown numQuantity;
         private Label lblPrice;
         private NumericUpDown numPrice;
+        private Label lblStatus;
+        private ComboBox cboStatus;
 
         private TextBox txtSearch;
+        private Label lblError;
         private Button btnSearch;
         private Button btnReload;
 
@@ -79,6 +82,9 @@ namespace DoAnDemoUI
             numQuantity = new NumericUpDown();
             lblPrice = new Label();
             numPrice = new NumericUpDown();
+            lblError = new Label();
+            lblStatus = new Label();
+            cboStatus = new ComboBox();
             ((ISupportInitialize)numQuantity).BeginInit();
             ((ISupportInitialize)numPrice).BeginInit();
             txtSearch = new TextBox();
@@ -162,6 +168,9 @@ namespace DoAnDemoUI
             grpDetails.Controls.Add(numQuantity);
             grpDetails.Controls.Add(lblPrice);
             grpDetails.Controls.Add(numPrice);
+            grpDetails.Controls.Add(lblStatus);
+            grpDetails.Controls.Add(cboStatus);
+            grpDetails.Controls.Add(lblError);
             grpDetails.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             grpDetails.ForeColor = Color.FromArgb(33, 150, 243);
             grpDetails.Location = new Point(12, 70);
@@ -321,6 +330,34 @@ namespace DoAnDemoUI
             numPrice.TabIndex = 19;
             numPrice.Maximum = 1000000000;
             numPrice.ThousandsSeparator = true;
+            // 
+            // lblStatus
+            // 
+            lblStatus.AutoSize = true;
+            lblStatus.Location = new Point(15, 395);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(110, 23);
+            lblStatus.TabIndex = 21;
+            lblStatus.Text = "Trạng Thái:";
+            // 
+            // cboStatus
+            // 
+            cboStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboStatus.FormattingEnabled = true;
+            cboStatus.Location = new Point(110, 392);
+            cboStatus.Name = "cboStatus";
+            cboStatus.Size = new Size(230, 31);
+            cboStatus.TabIndex = 22;
+            // 
+            // lblError
+            // 
+            lblError.AutoSize = true;
+            lblError.ForeColor = Color.Red;
+            lblError.Location = new Point(15, 430);
+            lblError.MaximumSize = new Size(330, 0);
+            lblError.Name = "lblError";
+            lblError.Size = new Size(0, 23);
+            lblError.TabIndex = 20;
             // 
             // txtSearch
             // 

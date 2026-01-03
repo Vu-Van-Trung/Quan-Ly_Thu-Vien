@@ -37,7 +37,18 @@ namespace DoAnDemoUI
             LoadComboBoxes();
             LoadData();
             SetControlState(false);
+
+            // Hook up validation events
+            txtTitle.TextChanged += (s, ev) => ValidateForm(false);
+            txtPublishedYear.TextChanged += (s, ev) => ValidateForm(false);
+            cboAuthor.SelectedIndexChanged += (s, ev) => ValidateForm(false);
+            cboCategory.SelectedIndexChanged += (s, ev) => ValidateForm(false);
+            cboPublisher.SelectedIndexChanged += (s, ev) => ValidateForm(false);
+            txtLocation.TextChanged += (s, ev) => ValidateForm(false);
+            numQuantity.ValueChanged += (s, ev) => ValidateForm(false);
+            numPrice.ValueChanged += (s, ev) => ValidateForm(false);
         }
+
 
         private void LoadComboBoxes()
         {
@@ -52,6 +63,13 @@ namespace DoAnDemoUI
             cboPublisher.DataSource = db.Publishers.ToList();
             cboPublisher.DisplayMember = "TenNhaXuatBan";
             cboPublisher.ValueMember = "PublisherId";
+
+            // Status
+            cboStatus.Items.Clear();
+            cboStatus.Items.Add("Có sẵn");
+            cboStatus.Items.Add("Hết sách");
+            cboStatus.Items.Add("Ngừng lưu hành");
+            cboStatus.SelectedIndex = 0;
         }
 
         private void LoadData()
@@ -76,7 +94,8 @@ namespace DoAnDemoUI
                         b.PublisherId,
                         b.ViTri,
                         b.SoLuongTon,
-                        b.GiaTien
+                        b.GiaTien,
+                        b.TrangThai
                     })
                     .ToList();
 
@@ -91,6 +110,7 @@ namespace DoAnDemoUI
                 dgvBooks.Columns["ViTri"].HeaderText = "Vị Trí";
                 dgvBooks.Columns["SoLuongTon"].HeaderText = "Số Lượng";
                 dgvBooks.Columns["GiaTien"].HeaderText = "Giá Tiền";
+                dgvBooks.Columns["TrangThai"].HeaderText = "Trạng Thái";
                 dgvBooks.Columns["GiaTien"].DefaultCellStyle.Format = "N0";
 
                 dgvBooks.Columns["AuthorId"].Visible = false;
@@ -136,6 +156,9 @@ namespace DoAnDemoUI
                 else
                     numPrice.Value = 0;
 
+                if (row.Cells["TrangThai"].Value != null)
+                    cboStatus.SelectedItem = row.Cells["TrangThai"].Value.ToString();
+
             }
         }
 
@@ -176,6 +199,10 @@ namespace DoAnDemoUI
                     {
                         db.Books.Remove(book);
                         db.SaveChanges();
+                        
+                        // Log
+                        Services.Logger.Log("Quản lý Sách", "Xóa", $"Xóa sách: {book.Title} ({book.BookId})");
+
                         LoadData();
                         MessageBox.Show("Xóa thành công!");
                     }
@@ -214,19 +241,65 @@ namespace DoAnDemoUI
             return int.TryParse(bookId.Substring(1), out var number) ? number : 0;
         }
 
-        private void BtnSave_Click(object sender, EventArgs e)
+        private bool ValidateForm(bool showMessageBox)
         {
+            lblError.Text = "";
+            string error = "";
+
+            // 1. Tên sách
             if (string.IsNullOrWhiteSpace(txtTitle.Text))
+                error = "Tên sách là bắt buộc!";
+            else if (txtTitle.Text.Length < 3 || txtTitle.Text.Length > 200)
+                error = "Tên sách phải từ 3 đến 200 ký tự!";
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(txtTitle.Text, @"^[\p{L}\p{N}\s]+$"))
+                error = "Tên sách chỉ được chứa chữ, số và khoảng trắng!";
+
+            // 2. Tác giả
+            else if (cboAuthor.SelectedIndex == -1)
+                error = "Vui lòng chọn tác giả!";
+
+            // 3. Thể loại
+            else if (cboCategory.SelectedIndex == -1)
+                error = "Vui lòng chọn thể loại!";
+
+            // 4. Nhà xuất bản
+            else if (cboPublisher.SelectedIndex == -1)
+                error = "Vui lòng chọn nhà xuất bản!";
+
+            // 5. Năm xuất bản
+            else if (!int.TryParse(txtPublishedYear.Text, out int year))
+                 error = "Năm xuất bản không hợp lệ!";
+            else if (year > DateTime.Now.Year + 1)
+                error = "Năm xuất bản không được lớn hơn năm sau!";
+            else if (year < 1000)
+                error = "Năm xuất bản phải lớn hơn hoặc bằng 1000!";
+
+            // 6. Số lượng tồn
+            else if (numQuantity.Value < 0)
+                error = "Số lượng tồn không được âm!";
+
+            // 7. Vị trí
+            else if (!string.IsNullOrEmpty(txtLocation.Text) && !System.Text.RegularExpressions.Regex.IsMatch(txtLocation.Text, @"^[\p{L}\p{N}]+$"))
+                error = "Vị trí chỉ được chứa chữ và số!";
+
+            // 8. Giá tiền
+            else if (numPrice.Value < 0)
+                 error = "Giá tiền không được âm!";
+
+            if (!string.IsNullOrEmpty(error))
             {
-                MessageBox.Show("Vui lòng nhập Tên sách!");
-                return;
-            }
-            if (cboAuthor.SelectedIndex == -1 || cboCategory.SelectedIndex == -1 || cboPublisher.SelectedIndex == -1)
-            {
-                MessageBox.Show("Vui lòng chọn Tác giả, Thể loại và Nhà xuất bản!");
-                return;
+                lblError.Text = error;
+                if (showMessageBox) MessageBox.Show(error, "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
 
+            return true;
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            if (!ValidateForm(true)) return;
+            
             // Get IDs
             int authorId = (int)cboAuthor.SelectedValue;
             int categoryId = (int)cboCategory.SelectedValue;
@@ -237,6 +310,8 @@ namespace DoAnDemoUI
             {
                 pubYear = year;
             }
+
+            string selectedStatus = cboStatus.SelectedItem?.ToString() ?? "Có sẵn";
 
             try
             {
@@ -257,12 +332,15 @@ namespace DoAnDemoUI
                         ViTri = txtLocation.Text.Trim(),
                         SoLuongTon = (int)numQuantity.Value,
                         GiaTien = numPrice.Value,
-                        TrangThai = "Có sẵn",
+                        TrangThai = selectedStatus,
                         NgayNhap = DateTime.Now
                     };
 
                     db.Books.Add(newBook);
                     db.SaveChanges();
+                    
+                    // Log
+                    Services.Logger.Log("Quản lý Sách", "Thêm mới", $"Thêm sách: {newBook.Title} ({newBook.BookId})");
                     MessageBox.Show("Thêm sách thành công!");
                 }
                 // CẬP NHẬT
@@ -280,8 +358,12 @@ namespace DoAnDemoUI
                         book.ViTri = txtLocation.Text.Trim();
                         book.SoLuongTon = (int)numQuantity.Value;
                         book.GiaTien = numPrice.Value;
+                        book.TrangThai = selectedStatus;
 
                         db.SaveChanges();
+
+                        // Log
+                        Services.Logger.Log("Quản lý Sách", "Cập nhật", $"Cập nhật sách: {book.Title} ({book.BookId})");
                         MessageBox.Show("Cập nhật thành công!");
                     }
                 }
@@ -347,10 +429,13 @@ namespace DoAnDemoUI
             txtLocation.ReadOnly = !editing;
             numQuantity.Enabled = editing;
             numPrice.Enabled = editing;
+            cboStatus.Enabled = editing;
 
-            btnAdd.Enabled = !editing;
-            btnEdit.Enabled = !editing;
-            btnDelete.Enabled = !editing;
+            bool isStaff = DoAnDemoUI.Services.Session.CurrentRole == DoAnDemoUI.Security.AccessControl.RoleStaff;
+
+            btnAdd.Enabled = !editing && !isStaff;
+            btnEdit.Enabled = !editing && !isStaff;
+            btnDelete.Enabled = !editing && !isStaff;
 
             btnSave.Enabled = editing;
             btnCancel.Enabled = editing;
@@ -369,6 +454,7 @@ namespace DoAnDemoUI
             txtLocation.Clear();
             numQuantity.Value = 0;
             numPrice.Value = 0;
+            if (cboStatus.Items.Count > 0) cboStatus.SelectedIndex = 0;
         }
 
         private void QuanLiSach_Load_1(object sender, EventArgs e)

@@ -15,7 +15,7 @@ namespace DoAnDemoUI
         private bool exitConfirmed = false;
 
         // Cấu hình bật/tắt mã hóa: Phải trùng với cấu hình bên FormRegister
-        private const bool USE_HASH = false;
+        private const bool USE_HASH = true;
 
         public Login1()
         {
@@ -68,6 +68,14 @@ namespace DoAnDemoUI
                         // Cập nhật thời gian đăng nhập cuối (nếu cần)
                         user.LanDangNhapCuoi = DateTime.Now;
                         context.SaveChanges();
+
+                        // Cập nhật thông tin Session
+                        Services.Session.CurrentUserId = user.Id;
+                        Services.Session.CurrentUsername = user.Username;
+                        Services.Session.CurrentRole = user.Role;
+
+                        // Log đăng nhập
+                        Services.Logger.Log("Hệ thống", "Đăng nhập", $"Người dùng {user.Username} đã đăng nhập.");
 
                         QuanLiThuVien mainForm = new QuanLiThuVien(user.Role);
                         this.Hide();

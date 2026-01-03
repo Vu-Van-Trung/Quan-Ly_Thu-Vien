@@ -162,6 +162,10 @@ namespace DoAnDemoUI
                     {
                         db.Staff.Remove(staff);
                         db.SaveChanges();
+                        
+                        // Log
+                        DoAnDemoUI.Services.Logger.Log("Quản lý Nhân Viên", "Xóa", $"Xóa nhân viên: {name} (ID: {staffId})");
+
                         LoadData();
                         ClearInputs();
                         MessageBox.Show("✅ Xóa thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -254,8 +258,19 @@ namespace DoAnDemoUI
                     staff.NgayVaoLam = dtpNgayVaoLam.Value;
                     staff.TrangThai = cboTrangThai.Text;
 
-                    if (isNew) db.Staff.Add(staff);
-                    db.SaveChanges();
+                    if (isNew) 
+                    {
+                        db.Staff.Add(staff);
+                        db.SaveChanges();
+                         // Log
+                        DoAnDemoUI.Services.Logger.Log("Quản lý Nhân Viên", "Thêm mới", $"Thêm nhân viên: {fullName} (SĐT: {phone})");
+                    }
+                    else
+                    {
+                        db.SaveChanges();
+                         // Log
+                        DoAnDemoUI.Services.Logger.Log("Quản lý Nhân Viên", "Cập nhật", $"Cập nhật nhân viên: {fullName} (ID: {staff.StaffId})");
+                    }
 
                     MessageBox.Show("✅ Đã mã hóa và lưu dữ liệu thành công!", "Bảo mật", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

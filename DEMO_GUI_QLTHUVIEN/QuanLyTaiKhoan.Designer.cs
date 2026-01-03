@@ -20,6 +20,7 @@ namespace DEMO_GUI_QLTHUVIEN
         private Guna2Button btnKhoa;
         private Guna2Button btnMoKhoa;
         private Guna2Button btnDoiMatKhau;
+        private Guna2Button btnHuy;
         private Guna2Button btnClose;
         
         private Label lblTitle;
@@ -59,7 +60,12 @@ namespace DEMO_GUI_QLTHUVIEN
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             dgvTaiKhoan = new Guna2DataGridView();
             txtTenDangNhap = new Guna2TextBox();
             cbNhanVien = new Guna2ComboBox();
@@ -70,6 +76,7 @@ namespace DEMO_GUI_QLTHUVIEN
             btnKhoa = new Guna2Button();
             btnMoKhoa = new Guna2Button();
             btnDoiMatKhau = new Guna2Button();
+            btnHuy = new Guna2Button();
             btnClose = new Guna2Button();
             lblTitle = new Label();
             grpInfo = new GroupBox();
@@ -77,7 +84,6 @@ namespace DEMO_GUI_QLTHUVIEN
             lblNhanVien = new Label();
             lblQuyenHan = new Label();
             lblTrangThai = new Label();
-            
             ((ISupportInitialize)dgvTaiKhoan).BeginInit();
             grpInfo.SuspendLayout();
             SuspendLayout();
@@ -264,8 +270,6 @@ namespace DEMO_GUI_QLTHUVIEN
             // 
             // btnDoiMatKhau
             // 
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             btnDoiMatKhau.CustomizableEdges = customizableEdges17;
             btnDoiMatKhau.FillColor = Color.FromArgb(158, 158, 158);
             btnDoiMatKhau.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -273,10 +277,44 @@ namespace DEMO_GUI_QLTHUVIEN
             btnDoiMatKhau.Location = new Point(509, 676);
             btnDoiMatKhau.Name = "btnDoiMatKhau";
             btnDoiMatKhau.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            btnDoiMatKhau.Size = new Size(130, 40);
+            btnDoiMatKhau.Size = new Size(177, 40);
             btnDoiMatKhau.TabIndex = 7;
             btnDoiMatKhau.Text = "🔑 Đổi mật khẩu";
             btnDoiMatKhau.Click += btnDoiMatKhau_Click;
+            // 
+            // btnHuy
+            // 
+            btnHuy.CustomizableEdges = customizableEdges19;
+            btnHuy.FillColor = Color.FromArgb(100, 100, 100);
+            btnHuy.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnHuy.ForeColor = Color.White;
+            btnHuy.Location = new Point(709, 676);
+            btnHuy.Name = "btnHuy";
+            btnHuy.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            btnHuy.Size = new Size(110, 40);
+            btnHuy.TabIndex = 8;
+            btnHuy.Text = "↻ Hủy";
+            btnHuy.Click += btnHuy_Click;
+            // 
+            // btnClose
+            // 
+            btnClose.CustomizableEdges = customizableEdges21;
+            btnClose.DisabledState.BorderColor = Color.DarkGray;
+            btnClose.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnClose.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnClose.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnClose.FillColor = SystemColors.ButtonHighlight;
+            btnClose.Font = new Font("Segoe UI", 9F);
+            btnClose.ForeColor = Color.White;
+            btnClose.Image = Properties.Resources.cancel_50px;
+            btnClose.ImageSize = new Size(40, 40);
+            btnClose.Location = new Point(1254, 12);
+            btnClose.Name = "btnClose";
+            btnClose.PressedColor = SystemColors.ButtonFace;
+            btnClose.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            btnClose.Size = new Size(44, 36);
+            btnClose.TabIndex = 10;
+            btnClose.Click += btnClose_Click;
             // 
             // lblTitle
             // 
@@ -285,7 +323,7 @@ namespace DEMO_GUI_QLTHUVIEN
             lblTitle.ForeColor = Color.FromArgb(33, 150, 243);
             lblTitle.Location = new Point(459, 9);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(390, 46);
+            lblTitle.Size = new Size(420, 46);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "👤 QUẢN LÝ TÀI KHOẢN";
             // 
@@ -348,28 +386,6 @@ namespace DEMO_GUI_QLTHUVIEN
             lblTrangThai.TabIndex = 6;
             lblTrangThai.Text = "Trạng thái:";
             // 
-            // btnClose
-            // 
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            btnClose.CustomizableEdges = customizableEdges19;
-            btnClose.DisabledState.BorderColor = Color.DarkGray;
-            btnClose.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnClose.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnClose.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnClose.FillColor = SystemColors.ButtonHighlight;
-            btnClose.Font = new Font("Segoe UI", 9F);
-            btnClose.ForeColor = Color.White;
-            btnClose.Image = Properties.Resources.cancel_50px;
-            btnClose.ImageSize = new Size(40, 40);
-            btnClose.Location = new Point(1254, 12);
-            btnClose.Name = "btnClose";
-            btnClose.PressedColor = SystemColors.ButtonFace;
-            btnClose.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            btnClose.Size = new Size(44, 36);
-            btnClose.TabIndex = 10;
-            btnClose.Click += btnClose_Click;
-            // 
             // QuanLyTaiKhoan
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -385,6 +401,7 @@ namespace DEMO_GUI_QLTHUVIEN
             Controls.Add(btnKhoa);
             Controls.Add(btnMoKhoa);
             Controls.Add(btnDoiMatKhau);
+            Controls.Add(btnHuy);
             FormBorderStyle = FormBorderStyle.None;
             Name = "QuanLyTaiKhoan";
             StartPosition = FormStartPosition.CenterScreen;

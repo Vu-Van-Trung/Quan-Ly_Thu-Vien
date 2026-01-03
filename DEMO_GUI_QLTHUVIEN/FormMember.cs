@@ -290,8 +290,15 @@ namespace DoAnDemoUI
                     var member = db.Members.Find(memberId);
                     if (member != null)
                     {
+                        // decrypt name for log
+                        string memberName = DecryptOrEmpty(member.FullName);
+                        
                         db.Members.Remove(member);
                         db.SaveChanges();
+                        
+                        // Log
+                        Services.Logger.Log("Quản lý Độc giả", "Xóa", $"Xóa độc giả: {memberName} ({memberId})");
+
                         LoadData();
                         ClearInputs();
                     }
@@ -394,6 +401,11 @@ namespace DoAnDemoUI
                     member.GhiChu = txtGhiChu.Text.Trim();
 
                     db.SaveChanges();
+                    
+                    // Log
+                    string actionType = isNew ? "Thêm mới" : "Cập nhật";
+                    Services.Logger.Log("Quản lý Độc giả", actionType, $"{actionType} độc giả: {fullName} ({member.MemberId})");
+
                     MessageBox.Show(isNew ? "✅ Thêm thành công!" : "✅ Cập nhật thành công!", "Thông báo");
 
                     isEditing = false;

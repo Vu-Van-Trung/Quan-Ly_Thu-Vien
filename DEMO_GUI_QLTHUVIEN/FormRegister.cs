@@ -14,7 +14,7 @@ namespace DoAnDemoUI
 {
     public partial class FormRegister : Form
     {
-        private const bool USE_HASH = false; // Theo yêu cầu hiện tại của bạn
+        private const bool USE_HASH = true; // Theo yêu cầu hiện tại của bạn
 
         public FormRegister()
         {
@@ -89,6 +89,9 @@ namespace DoAnDemoUI
 
                     context.Users.Add(newUser);
                     await context.SaveChangesAsync();
+
+                    // Log
+                    DoAnDemoUI.Services.Logger.Log("Hệ Thống", "Đăng ký", $"Đăng ký tài khoản mới: {username}");
 
                     MessageBox.Show("Đăng ký thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();

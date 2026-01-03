@@ -207,6 +207,10 @@ namespace DoAnDemoUI
                     };
                     db.LoanDetails.Add(loanDetail);
                     db.SaveChanges();
+                    
+                    // Log
+                    Services.Logger.Log("Quản lý Mượn Trả", "Thêm sách", $"Thêm sách {bookId} vào phiếu {existingLoan.LoanId}");
+
                     MessageBox.Show($"Đã thêm sách vào phiếu mượn hiện tại ({existingLoan.LoanId})!");
                 }
                 else
@@ -235,6 +239,10 @@ namespace DoAnDemoUI
                     };
                     db.LoanDetails.Add(loanDetail);
                     db.SaveChanges();
+
+                    // Log
+                    Services.Logger.Log("Quản lý Mượn Trả", "Tạo phiếu mượn", $"Tạo phiếu mượn mới {newLoanId} cho độc giả {memberId}");
+
                     MessageBox.Show("Tạo phiếu mượn mới thành công!");
                 }
 
@@ -280,6 +288,10 @@ namespace DoAnDemoUI
                 loan.DueDate = dtpNgayTra.Value;
 
                 db.SaveChanges();
+                
+                // Log
+                Services.Logger.Log("Quản lý Mượn Trả", "Cập nhật", $"Cập nhật phiếu mượn {loan.LoanId}");
+
                 LoadData();
                 MessageBox.Show("Cập nhật thành công!");
             }
@@ -319,6 +331,9 @@ namespace DoAnDemoUI
 
                         db.Loans.Remove(loan);
                         db.SaveChanges();
+
+                        // Log
+                        Services.Logger.Log("Quản lý Mượn Trả", "Xóa", $"Xóa phiếu mượn {loanId}");
 
                         LoadData();
                         MessageBox.Show("✅ Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -29,6 +29,7 @@ namespace DoAnDemoUI
         private Label lblQuocTich;
         private Label lblNgaySinh;
         private Label lblBio;
+        private Label lblError; // New Error Label
         private Guna2Button btnClose;
 
         protected override void Dispose(bool disposing)
@@ -82,6 +83,7 @@ namespace DoAnDemoUI
             lblQuocTich = new Label();
             lblNgaySinh = new Label();
             lblBio = new Label();
+            lblError = new Label();
             btnClose = new Guna2Button();
             ((ISupportInitialize)dgvAuthors).BeginInit();
             grpInfo.SuspendLayout();
@@ -162,7 +164,8 @@ namespace DoAnDemoUI
             txtMa.Location = new Point(240, 35);
             txtMa.Margin = new Padding(3, 4, 3, 4);
             txtMa.Name = "txtMa";
-            txtMa.PlaceholderText = "";
+            txtMa.PlaceholderText = "Tự động";
+            txtMa.Enabled = false;
             txtMa.ReadOnly = true;
             txtMa.SelectedText = "";
             txtMa.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -315,6 +318,7 @@ namespace DoAnDemoUI
             grpInfo.Controls.Add(dtpNgaySinh);
             grpInfo.Controls.Add(lblBio);
             grpInfo.Controls.Add(txtBio);
+
             grpInfo.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             grpInfo.ForeColor = Color.FromArgb(33, 150, 243);
             grpInfo.Location = new Point(29, 456);
@@ -364,6 +368,18 @@ namespace DoAnDemoUI
             lblBio.Size = new Size(130, 25);
             lblBio.TabIndex = 6;
             lblBio.Text = "Tiểu sử:";
+            // 
+            // lblError
+            // 
+            lblError.AutoSize = true;
+            lblError.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblError.ForeColor = Color.Red;
+            lblError.Location = new Point(520, 685); 
+            lblError.Name = "lblError";
+            lblError.Size = new Size(0, 20);
+            lblError.TabIndex = 8;
+            //
+            Controls.Add(lblError);
             // 
             // btnClose
             // 

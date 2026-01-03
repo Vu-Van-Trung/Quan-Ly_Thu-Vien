@@ -127,6 +127,9 @@ namespace DoAnDemoUI
                     {
                         db.Publishers.Remove(publisher);
                         db.SaveChanges();
+                         // Log
+                        DoAnDemoUI.Services.Logger.Log("Quản lý Nhà Xuất Bản", "Xóa", $"Xóa NXB: {name} (ID: {publisherId})");
+
                         LoadData();
                         ClearInputs();
                         MessageBox.Show("✅ Xóa thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -182,6 +185,10 @@ namespace DoAnDemoUI
                     };
                     db.Publishers.Add(newPublisher);
                     db.SaveChanges();
+                    
+                    // Log
+                    DoAnDemoUI.Services.Logger.Log("Quản lý Nhà Xuất Bản", "Thêm mới", $"Thêm NXB: {txtTenNhaXuatBan.Text.Trim()}");
+
                     MessageBox.Show("✅ Thêm và mã hóa dữ liệu thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -196,6 +203,9 @@ namespace DoAnDemoUI
                         publisher.Email = CryptoHelper.Encrypt(txtEmail.Text.Trim());
 
                         db.SaveChanges();
+                         // Log
+                        DoAnDemoUI.Services.Logger.Log("Quản lý Nhà Xuất Bản", "Cập nhật", $"Cập nhật NXB: {txtTenNhaXuatBan.Text.Trim()} (ID: {publisherId})");
+
                         MessageBox.Show("✅ Cập nhật dữ liệu mã hóa thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }

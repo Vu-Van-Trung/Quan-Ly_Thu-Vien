@@ -19,6 +19,9 @@
     <Compile Update="FormStaff.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="QuanLiNhatKy.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="QuanLiSach.cs">
       <SubType>Form</SubType>
     </Compile>

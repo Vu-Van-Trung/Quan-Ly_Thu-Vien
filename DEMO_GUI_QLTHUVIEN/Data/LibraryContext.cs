@@ -26,6 +26,7 @@ namespace LibraryManagement.Data
         public DbSet<Loan> Loans { get; set; }
         public DbSet<LoanDetail> LoanDetails { get; set; }
         public DbSet<Fine> Fines { get; set; }
+        public DbSet<SystemLog> SystemLogs { get; set; }
 
         // Cấu hình chuỗi kết nối
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
