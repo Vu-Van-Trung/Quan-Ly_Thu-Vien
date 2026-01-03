@@ -33,7 +33,13 @@ namespace DoAnDemoUI
             dgvSachMuon.DataSource = bindingSource;
 
             // Xử lý sự kiện khi chọn dòng trên lưới
+            // Xử lý sự kiện khi chọn dòng trên lưới
             dgvSachMuon.SelectionChanged += DgvSachMuon_SelectionChanged;
+
+            // Auto-update Due Date event
+            dtpNgayMuon.ValueChanged += dtpNgayMuon_ValueChanged;
+            // Force initial calculation
+            dtpNgayMuon_ValueChanged(null, null);
 
             // Load ComboBox Sách và Độc Giả
             LoadComboBoxes();
@@ -303,11 +309,19 @@ namespace DoAnDemoUI
                         LoanId = newLoanId,
                         MemberId = memberId,
                         StaffId = defaultStaffId,
+
                         LoanDate = dtpNgayMuon.Value,
-                        DueDate = dtpNgayTra.Value,
+                        DueDate = dtpNgayMuon.Value.AddDays(14), // Auto set due date
                         NgayTraThucTe = null,
                         TrangThai = "Đang mượn"
                     };
+                    
+                    // Validate StaffId
+                    if (!db.Staff.Any(s => s.StaffId == newLoan.StaffId))
+                    {
+                        var firstStaff = db.Staff.FirstOrDefault();
+                        if (firstStaff != null) newLoan.StaffId = firstStaff.StaffId;
+                    }
 
                     db.Loans.Add(newLoan);
 
@@ -360,6 +374,11 @@ namespace DoAnDemoUI
             
             // Tăng số lớn nhất lên 1
             return $"PM{maxId + 1:D3}";
+        }
+
+        private void dtpNgayMuon_ValueChanged(object sender, EventArgs e)
+        {
+            dtpNgayTra.Value = dtpNgayMuon.Value.AddDays(14);
         }
 
         // --- 4. CHỨC NĂNG SỬA ---
