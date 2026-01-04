@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace DoAnDemoUI
 {
-    public partial class FormMember : Form
+    public partial class    FormMember : Form
     {
         private LibraryContext db;
         private bool isEditing = false;
@@ -29,11 +29,11 @@ namespace DoAnDemoUI
             dgvMembers.SelectionChanged += DgvMembers_SelectionChanged;
 
             txtMemberId.ReadOnly = true;
-            
+
             // Đăng ký sự kiện
             txtPhoneNumber.KeyPress += TxtPhoneNumber_KeyPress;
             txtCMND.KeyPress += TxtCCCD_KeyPress;
-            
+
             txtFullName.KeyPress += txtHoTen_KeyPress;
             txtFullName.TextChanged += txtHoTen_TextChanged;
             txtFullName.Leave += txtHoTen_Leave;
@@ -62,7 +62,7 @@ namespace DoAnDemoUI
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.Handled = true;
         }
-        
+
         // ===== SỰ KIỆN VALIDATION MỚI =====
         private void txtHoTen_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -158,10 +158,10 @@ namespace DoAnDemoUI
 
         private void txtDiaChi_Leave(object sender, EventArgs e)
         {
-             if (!KiemTraDiaChi(txtDiaChi.Text))
+            if (!KiemTraDiaChi(txtDiaChi.Text))
             {
-                 lblLoiDiaChi.Text = "Địa chỉ không hợp lệ (phải từ 5 ký tự)";
-                 lblLoiDiaChi.ForeColor = System.Drawing.Color.Red;
+                lblLoiDiaChi.Text = "Địa chỉ không hợp lệ (phải từ 5 ký tự)";
+                lblLoiDiaChi.ForeColor = System.Drawing.Color.Red;
             }
         }
 
@@ -227,7 +227,9 @@ namespace DoAnDemoUI
             SetHeader("PhoneNumber", "SĐT", 100);
             SetHeader("Email", "Email", 150);
             SetHeader("JoinDate", "Ngày ĐK", 90);
+            SetHeader("NgayHetHan", "Ngày Hết Hạn", 110);
             SetHeader("TrangThai", "Trạng Thái", 90);
+            SetHeader("GhiChu", "Ghi Chú", 200);
         }
 
         private void DgvMembers_SelectionChanged(object sender, EventArgs e)
@@ -258,6 +260,11 @@ namespace DoAnDemoUI
 
         private void BtnThem_Click(object sender, EventArgs e)
         {
+            if (Services.Session.CurrentRole == Security.AccessControl.RoleStaff)
+            {
+                MessageBox.Show("⛔ TỪ CHỐI TRUY CẬP\n\nNhân viên chỉ được phép tra cứu, không có quyền Thêm dữ liệu.", "Phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             isEditing = true;
             SetControlState(true);
             ClearInputs();
@@ -267,6 +274,11 @@ namespace DoAnDemoUI
 
         private void BtnSua_Click(object sender, EventArgs e)
         {
+            if (Services.Session.CurrentRole == Security.AccessControl.RoleStaff)
+            {
+                MessageBox.Show("⛔ TỪ CHỐI TRUY CẬP\n\nNhân viên chỉ được phép tra cứu, không có quyền Sửa dữ liệu.", "Phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (dgvMembers.CurrentRow == null)
             {
                 MessageBox.Show("Vui lòng chọn độc giả cần sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -279,6 +291,11 @@ namespace DoAnDemoUI
 
         private void BtnXoa_Click(object sender, EventArgs e)
         {
+            if (Services.Session.CurrentRole == Security.AccessControl.RoleStaff)
+            {
+                MessageBox.Show("⛔ TỪ CHỐI TRUY CẬP\n\nNhân viên chỉ được phép tra cứu, không có quyền Xóa dữ liệu.", "Phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (dgvMembers.CurrentRow == null) return;
             var memberId = dgvMembers.CurrentRow.Cells["MemberId"].Value?.ToString();
             if (string.IsNullOrEmpty(memberId)) return;
@@ -292,10 +309,10 @@ namespace DoAnDemoUI
                     {
                         // decrypt name for log
                         string memberName = DecryptOrEmpty(member.FullName);
-                        
+
                         db.Members.Remove(member);
                         db.SaveChanges();
-                        
+
                         // Log
                         Services.Logger.Log("Quản lý Độc giả", "Xóa", $"Xóa độc giả: {memberName} ({memberId})");
 
@@ -345,7 +362,7 @@ namespace DoAnDemoUI
                 MessageBox.Show("⚠️ Số điện thoại phải là một số nguyên và có độ dài từ 9 đến 11 số!", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            
+
             // 4. Kiểm tra Email
             if (!KiemTraEmail(txtEmail.Text))
             {
@@ -401,7 +418,7 @@ namespace DoAnDemoUI
                     member.GhiChu = txtGhiChu.Text.Trim();
 
                     db.SaveChanges();
-                    
+
                     // Log
                     string actionType = isNew ? "Thêm mới" : "Cập nhật";
                     Services.Logger.Log("Quản lý Độc giả", actionType, $"{actionType} độc giả: {fullName} ({member.MemberId})");
@@ -534,6 +551,16 @@ namespace DoAnDemoUI
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dtpNgayHetHan_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormMember_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

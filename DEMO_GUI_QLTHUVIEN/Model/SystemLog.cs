@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,18 +14,18 @@ namespace LibraryManagement.Models
 
         [Required]
         [StringLength(50)]
-        public string TenDangNhap { get; set; }
+        public string TenDangNhap { get; set; } = null!;
 
         [Required]
         [StringLength(100)]
-        public string ChucNang { get; set; }
+        public string ChucNang { get; set; } = null!;
 
         [Required]
         [StringLength(100)]
-        public string HanhDong { get; set; }
+        public string HanhDong { get; set; } = null!;
 
         [StringLength(500)]
-        public string NoiDung { get; set; }
+        public string NoiDung { get; set; } = null!;
 
         public DateTime ThoiGian { get; set; } = DateTime.Now;
     }

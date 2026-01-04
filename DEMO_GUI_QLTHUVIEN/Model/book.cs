@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,12 +15,12 @@ namespace LibraryManagement.Models
         [Key]
         [MaxLength(20)]
         [Column("MaSach")]
-        public string BookId { get; set; }
+        public string BookId { get; set; } = null!;
 
         [Required]
         [MaxLength(200)]
         [Column("TenSach")]
-        public string Title { get; set; }
+        public string Title { get; set; } = null!;
 
         [Required]
         [Column("MaTacGia")]
@@ -61,13 +62,13 @@ namespace LibraryManagement.Models
 
         // Navigation properties
         [ForeignKey("AuthorId")]
-        public virtual Author Author { get; set; }
+        public virtual Author Author { get; set; } = null!;
 
         [ForeignKey("CategoryId")]
-        public virtual Category Category { get; set; }
+        public virtual Category Category { get; set; } = null!;
 
         [ForeignKey("PublisherId")]
-        public virtual Publisher Publisher { get; set; }
+        public virtual Publisher Publisher { get; set; } = null!;
 
         public virtual ICollection<LoanDetail>? LoanDetails { get; set; }
        // public object ISBN { get; internal set; }

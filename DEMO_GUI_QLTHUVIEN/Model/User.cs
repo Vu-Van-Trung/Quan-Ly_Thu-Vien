@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,12 +18,14 @@ namespace DoAnDemoUI.Model
         [Required]
         [MaxLength(50)]
         [Column("TenDangNhap")]
-        public string Username { get; set; }
+        public string Username { get; set; } = null!;
 
         [Required]
         [MaxLength(255)]
         [Column("MatKhau")]
-        public string Password { get; set; }
+        public string Password { get; set; } = null!;
+
+
 
         [Required]
         [Column("MaNhanVien")]
@@ -44,6 +47,6 @@ namespace DoAnDemoUI.Model
 
         // Navigation property
         [ForeignKey("StaffId")]
-        public virtual LibraryManagement.Models.Staff Staff { get; set; }
+        public virtual LibraryManagement.Models.Staff Staff { get; set; } = null!;
     }
 }

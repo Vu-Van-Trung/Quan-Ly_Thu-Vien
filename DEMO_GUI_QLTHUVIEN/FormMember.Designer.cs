@@ -22,26 +22,9 @@ namespace DoAnDemoUI
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-
             lblTitle = new Label();
             dgvMembers = new DataGridView();
-            
-            // Định nghĩa các cột cho DataGridView
-            colMemberId = new DataGridViewTextBoxColumn();
-            colFullName = new DataGridViewTextBoxColumn();
-            colNgaySinh = new DataGridViewTextBoxColumn();
-            colGioiTinh = new DataGridViewTextBoxColumn();
-            colCMND = new DataGridViewTextBoxColumn();
-            colDiaChi = new DataGridViewTextBoxColumn();
-            colPhoneNumber = new DataGridViewTextBoxColumn();
-            colEmail = new DataGridViewTextBoxColumn();
-            colJoinDate = new DataGridViewTextBoxColumn();
-            colNgayHetHan = new DataGridViewTextBoxColumn();
-            colTrangThai = new DataGridViewTextBoxColumn();
-            
             grpInfo = new GroupBox();
-            
-            // Thông tin cá nhân
             lblMemberId = new Label();
             txtMemberId = new TextBox();
             lblFullName = new Label();
@@ -52,16 +35,12 @@ namespace DoAnDemoUI
             cboGioiTinh = new ComboBox();
             lblCMND = new Label();
             txtCMND = new TextBox();
-            
-            // Thông tin liên hệ
             lblDiaChi = new Label();
             txtDiaChi = new TextBox();
             lblPhoneNumber = new Label();
             txtPhoneNumber = new TextBox();
             lblEmail = new Label();
             txtEmail = new TextBox();
-            
-            // Thông tin thẻ
             lblNgayDangKy = new Label();
             dtpNgayDangKy = new DateTimePicker();
             lblNgayHetHan = new Label();
@@ -70,13 +49,9 @@ namespace DoAnDemoUI
             cboTrangThai = new ComboBox();
             lblGhiChu = new Label();
             txtGhiChu = new TextBox();
-            
-            // Validation Labels
             lblLoiHoTen = new Label();
             lblLoiEmail = new Label();
             lblLoiDiaChi = new Label();
-            
-            // Buttons
             btnThem = new Button();
             btnSua = new Button();
             btnXoa = new Button();
@@ -84,14 +59,10 @@ namespace DoAnDemoUI
             btnHuy = new Button();
             btnTimKiem = new Button();
             txtTimKiem = new TextBox();
-            
-            // Close button
             btnClose = new Guna.UI2.WinForms.Guna2Button();
-
             ((System.ComponentModel.ISupportInitialize)dgvMembers).BeginInit();
             grpInfo.SuspendLayout();
             SuspendLayout();
-
             // 
             // lblTitle
             // 
@@ -103,7 +74,6 @@ namespace DoAnDemoUI
             lblTitle.Size = new Size(373, 46);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "👥 QUẢN LÝ ĐỘC GIẢ";
-
             // 
             // dgvMembers
             // 
@@ -116,7 +86,6 @@ namespace DoAnDemoUI
             dgvMembers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvMembers.BackgroundColor = Color.White;
             dgvMembers.BorderStyle = BorderStyle.None;
-            dgvMembers.ScrollBars = ScrollBars.Both;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(33, 150, 243);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -126,10 +95,6 @@ namespace DoAnDemoUI
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dgvMembers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvMembers.ColumnHeadersHeight = 40;
-            dgvMembers.Columns.AddRange(new DataGridViewColumn[] { 
-                colMemberId, colFullName, colNgaySinh, colGioiTinh, colCMND, 
-                colDiaChi, colPhoneNumber, colEmail, colJoinDate, colNgayHetHan, colTrangThai 
-            });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = SystemColors.Window;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.5F);
@@ -147,120 +112,9 @@ namespace DoAnDemoUI
             dgvMembers.RowHeadersWidth = 51;
             dgvMembers.RowTemplate.Height = 35;
             dgvMembers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvMembers.Size = new Size(1249, 320);
+            dgvMembers.Size = new Size(1304, 320);
             dgvMembers.TabIndex = 1;
             dgvMembers.CellContentClick += dgvMembers_CellContentClick;
-
-            // 
-            // colMemberId
-            // 
-            colMemberId.DataPropertyName = "MemberId";
-            colMemberId.HeaderText = "Mã ĐG";
-            colMemberId.MinimumWidth = 6;
-            colMemberId.Name = "MemberId";
-            colMemberId.ReadOnly = true;
-            colMemberId.Resizable = DataGridViewTriState.False;
-
-            // 
-            // colFullName
-            // 
-            colFullName.DataPropertyName = "FullName";
-            colFullName.HeaderText = "Họ Tên";
-            colFullName.MinimumWidth = 6;
-            colFullName.Name = "FullName";
-            colFullName.ReadOnly = true;
-            colFullName.Resizable = DataGridViewTriState.False;
-
-            // 
-            // colNgaySinh
-            // 
-            colNgaySinh.DataPropertyName = "NgaySinh";
-            colNgaySinh.HeaderText = "Ngày Sinh";
-            colNgaySinh.MinimumWidth = 6;
-            colNgaySinh.Name = "NgaySinh";
-            colNgaySinh.ReadOnly = true;
-            colNgaySinh.Resizable = DataGridViewTriState.False;
-
-            // 
-            // colGioiTinh
-            // 
-            colGioiTinh.DataPropertyName = "GioiTinh";
-            colGioiTinh.HeaderText = "Giới Tính";
-            colGioiTinh.MinimumWidth = 6;
-            colGioiTinh.Name = "GioiTinh";
-            colGioiTinh.ReadOnly = true;
-            colGioiTinh.Resizable = DataGridViewTriState.False;
-
-            // 
-            // colCMND
-            // 
-            colCMND.DataPropertyName = "CMND";
-            colCMND.HeaderText = "CCCD/CMND";
-            colCMND.MinimumWidth = 6;
-            colCMND.Name = "CMND";
-            colCMND.ReadOnly = true;
-            colCMND.Resizable = DataGridViewTriState.False;
-
-            // 
-            // colDiaChi
-            // 
-            colDiaChi.DataPropertyName = "DiaChi";
-            colDiaChi.HeaderText = "Địa Chỉ";
-            colDiaChi.MinimumWidth = 6;
-            colDiaChi.Name = "DiaChi";
-            colDiaChi.ReadOnly = true;
-            colDiaChi.Resizable = DataGridViewTriState.False;
-
-            // 
-            // colPhoneNumber
-            // 
-            colPhoneNumber.DataPropertyName = "PhoneNumber";
-            colPhoneNumber.HeaderText = "SĐT";
-            colPhoneNumber.MinimumWidth = 6;
-            colPhoneNumber.Name = "PhoneNumber";
-            colPhoneNumber.ReadOnly = true;
-            colPhoneNumber.Resizable = DataGridViewTriState.False;
-
-            // 
-            // colEmail
-            // 
-            colEmail.DataPropertyName = "Email";
-            colEmail.HeaderText = "Email";
-            colEmail.MinimumWidth = 6;
-            colEmail.Name = "Email";
-            colEmail.ReadOnly = true;
-            colEmail.Resizable = DataGridViewTriState.False;
-
-            // 
-            // colJoinDate
-            // 
-            colJoinDate.DataPropertyName = "JoinDate";
-            colJoinDate.HeaderText = "Ngày ĐK";
-            colJoinDate.MinimumWidth = 6;
-            colJoinDate.Name = "JoinDate";
-            colJoinDate.ReadOnly = true;
-            colJoinDate.Resizable = DataGridViewTriState.False;
-
-            // 
-            // colNgayHetHan
-            // 
-            colNgayHetHan.DataPropertyName = "NgayHetHan";
-            colNgayHetHan.HeaderText = "NgàyHếtHạn";
-            colNgayHetHan.MinimumWidth = 6;
-            colNgayHetHan.Name = "NgayHetHan";
-            colNgayHetHan.ReadOnly = true;
-            colNgayHetHan.Resizable = DataGridViewTriState.False;
-
-            // 
-            // colTrangThai
-            // 
-            colTrangThai.DataPropertyName = "TrangThai";
-            colTrangThai.HeaderText = "Trạng Thái";
-            colTrangThai.MinimumWidth = 6;
-            colTrangThai.Name = "TrangThai";
-            colTrangThai.ReadOnly = true;
-            colTrangThai.Resizable = DataGridViewTriState.False;
-
             // 
             // grpInfo
             // 
@@ -295,15 +149,13 @@ namespace DoAnDemoUI
             grpInfo.ForeColor = Color.FromArgb(33, 150, 243);
             grpInfo.Location = new Point(29, 410);
             grpInfo.Name = "grpInfo";
-            grpInfo.Size = new Size(1249, 260);
+            grpInfo.Size = new Size(1304, 260);
             grpInfo.TabIndex = 2;
             grpInfo.TabStop = false;
             grpInfo.Text = "� Thông Tin Độc Giả";
-
-            // 
-            // Row 1: Mã ĐG, Họ tên, Ngày sinh, Giới tính
             // 
             // lblMemberId
+            // 
             lblMemberId.Font = new Font("Segoe UI", 10F);
             lblMemberId.ForeColor = Color.FromArgb(66, 66, 66);
             lblMemberId.Location = new Point(30, 35);
@@ -311,8 +163,9 @@ namespace DoAnDemoUI
             lblMemberId.Size = new Size(60, 25);
             lblMemberId.TabIndex = 0;
             lblMemberId.Text = "Mã ĐG:";
-
+            // 
             // txtMemberId
+            // 
             txtMemberId.BackColor = Color.FromArgb(240, 240, 240);
             txtMemberId.BorderStyle = BorderStyle.FixedSingle;
             txtMemberId.Font = new Font("Segoe UI", 10F);
@@ -321,8 +174,9 @@ namespace DoAnDemoUI
             txtMemberId.ReadOnly = true;
             txtMemberId.Size = new Size(100, 30);
             txtMemberId.TabIndex = 1;
-
+            // 
             // lblFullName
+            // 
             lblFullName.Font = new Font("Segoe UI", 10F);
             lblFullName.ForeColor = Color.FromArgb(66, 66, 66);
             lblFullName.Location = new Point(210, 35);
@@ -330,16 +184,18 @@ namespace DoAnDemoUI
             lblFullName.Size = new Size(70, 25);
             lblFullName.TabIndex = 2;
             lblFullName.Text = "Họ tên: *";
-
+            // 
             // txtFullName
+            // 
             txtFullName.BorderStyle = BorderStyle.FixedSingle;
             txtFullName.Font = new Font("Segoe UI", 10F);
             txtFullName.Location = new Point(285, 32);
             txtFullName.Name = "txtFullName";
             txtFullName.Size = new Size(350, 30);
             txtFullName.TabIndex = 3;
-
+            // 
             // lblNgaySinh
+            // 
             lblNgaySinh.Font = new Font("Segoe UI", 10F);
             lblNgaySinh.ForeColor = Color.FromArgb(66, 66, 66);
             lblNgaySinh.Location = new Point(650, 35);
@@ -347,16 +203,18 @@ namespace DoAnDemoUI
             lblNgaySinh.Size = new Size(80, 25);
             lblNgaySinh.TabIndex = 4;
             lblNgaySinh.Text = "Ngày sinh:";
-
+            // 
             // dtpNgaySinh
+            // 
             dtpNgaySinh.Font = new Font("Segoe UI", 10F);
             dtpNgaySinh.Format = DateTimePickerFormat.Short;
             dtpNgaySinh.Location = new Point(735, 32);
             dtpNgaySinh.Name = "dtpNgaySinh";
             dtpNgaySinh.Size = new Size(130, 30);
             dtpNgaySinh.TabIndex = 5;
-
+            // 
             // lblGioiTinh
+            // 
             lblGioiTinh.Font = new Font("Segoe UI", 10F);
             lblGioiTinh.ForeColor = Color.FromArgb(66, 66, 66);
             lblGioiTinh.Location = new Point(880, 35);
@@ -364,8 +222,9 @@ namespace DoAnDemoUI
             lblGioiTinh.Size = new Size(70, 25);
             lblGioiTinh.TabIndex = 6;
             lblGioiTinh.Text = "Giới tính:";
-
+            // 
             // cboGioiTinh
+            // 
             cboGioiTinh.DropDownStyle = ComboBoxStyle.DropDownList;
             cboGioiTinh.Font = new Font("Segoe UI", 10F);
             cboGioiTinh.Items.AddRange(new object[] { "Nam", "Nữ", "Khác" });
@@ -373,11 +232,9 @@ namespace DoAnDemoUI
             cboGioiTinh.Name = "cboGioiTinh";
             cboGioiTinh.Size = new Size(270, 31);
             cboGioiTinh.TabIndex = 7;
-
-            // 
-            // Row 2: CMND, Địa chỉ
             // 
             // lblCMND
+            // 
             lblCMND.Font = new Font("Segoe UI", 10F);
             lblCMND.ForeColor = Color.FromArgb(66, 66, 66);
             lblCMND.Location = new Point(30, 75);
@@ -385,16 +242,18 @@ namespace DoAnDemoUI
             lblCMND.Size = new Size(60, 25);
             lblCMND.TabIndex = 8;
             lblCMND.Text = "CMND:";
-
+            // 
             // txtCMND
+            // 
             txtCMND.BorderStyle = BorderStyle.FixedSingle;
             txtCMND.Font = new Font("Segoe UI", 10F);
             txtCMND.Location = new Point(95, 72);
             txtCMND.Name = "txtCMND";
             txtCMND.Size = new Size(200, 30);
             txtCMND.TabIndex = 9;
-
+            // 
             // lblDiaChi
+            // 
             lblDiaChi.Font = new Font("Segoe UI", 10F);
             lblDiaChi.ForeColor = Color.FromArgb(66, 66, 66);
             lblDiaChi.Location = new Point(310, 75);
@@ -402,19 +261,18 @@ namespace DoAnDemoUI
             lblDiaChi.Size = new Size(60, 25);
             lblDiaChi.TabIndex = 10;
             lblDiaChi.Text = "Địa chỉ:";
-
+            // 
             // txtDiaChi
+            // 
             txtDiaChi.BorderStyle = BorderStyle.FixedSingle;
             txtDiaChi.Font = new Font("Segoe UI", 10F);
             txtDiaChi.Location = new Point(375, 72);
             txtDiaChi.Name = "txtDiaChi";
             txtDiaChi.Size = new Size(850, 30);
             txtDiaChi.TabIndex = 11;
-
-            // 
-            // Row 3: SĐT, Email
             // 
             // lblPhoneNumber
+            // 
             lblPhoneNumber.Font = new Font("Segoe UI", 10F);
             lblPhoneNumber.ForeColor = Color.FromArgb(66, 66, 66);
             lblPhoneNumber.Location = new Point(30, 115);
@@ -422,16 +280,18 @@ namespace DoAnDemoUI
             lblPhoneNumber.Size = new Size(60, 25);
             lblPhoneNumber.TabIndex = 12;
             lblPhoneNumber.Text = "SĐT:";
-
+            // 
             // txtPhoneNumber
+            // 
             txtPhoneNumber.BorderStyle = BorderStyle.FixedSingle;
             txtPhoneNumber.Font = new Font("Segoe UI", 10F);
             txtPhoneNumber.Location = new Point(95, 112);
             txtPhoneNumber.Name = "txtPhoneNumber";
             txtPhoneNumber.Size = new Size(200, 30);
             txtPhoneNumber.TabIndex = 13;
-
+            // 
             // lblEmail
+            // 
             lblEmail.Font = new Font("Segoe UI", 10F);
             lblEmail.ForeColor = Color.FromArgb(66, 66, 66);
             lblEmail.Location = new Point(310, 115);
@@ -439,19 +299,18 @@ namespace DoAnDemoUI
             lblEmail.Size = new Size(60, 25);
             lblEmail.TabIndex = 14;
             lblEmail.Text = "Email:";
-
+            // 
             // txtEmail
+            // 
             txtEmail.BorderStyle = BorderStyle.FixedSingle;
             txtEmail.Font = new Font("Segoe UI", 10F);
             txtEmail.Location = new Point(375, 112);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(850, 30);
             txtEmail.TabIndex = 15;
-
-            // 
-            // Row 4: Ngày ĐK, Hết hạn, Trạng thái, Ghi chú
             // 
             // lblNgayDangKy
+            // 
             lblNgayDangKy.Font = new Font("Segoe UI", 10F);
             lblNgayDangKy.ForeColor = Color.FromArgb(66, 66, 66);
             lblNgayDangKy.Location = new Point(30, 155);
@@ -459,16 +318,18 @@ namespace DoAnDemoUI
             lblNgayDangKy.Size = new Size(60, 25);
             lblNgayDangKy.TabIndex = 16;
             lblNgayDangKy.Text = "Ngày:";
-
+            // 
             // dtpNgayDangKy
+            // 
             dtpNgayDangKy.Font = new Font("Segoe UI", 10F);
             dtpNgayDangKy.Format = DateTimePickerFormat.Short;
             dtpNgayDangKy.Location = new Point(95, 152);
             dtpNgayDangKy.Name = "dtpNgayDangKy";
             dtpNgayDangKy.Size = new Size(130, 30);
             dtpNgayDangKy.TabIndex = 17;
-
+            // 
             // lblNgayHetHan
+            // 
             lblNgayHetHan.Font = new Font("Segoe UI", 10F);
             lblNgayHetHan.ForeColor = Color.FromArgb(66, 66, 66);
             lblNgayHetHan.Location = new Point(240, 155);
@@ -476,16 +337,19 @@ namespace DoAnDemoUI
             lblNgayHetHan.Size = new Size(35, 25);
             lblNgayHetHan.TabIndex = 18;
             lblNgayHetHan.Text = "Hết:";
-
+            // 
             // dtpNgayHetHan
+            // 
             dtpNgayHetHan.Font = new Font("Segoe UI", 10F);
             dtpNgayHetHan.Format = DateTimePickerFormat.Short;
             dtpNgayHetHan.Location = new Point(280, 152);
             dtpNgayHetHan.Name = "dtpNgayHetHan";
             dtpNgayHetHan.Size = new Size(130, 30);
             dtpNgayHetHan.TabIndex = 19;
-
+            dtpNgayHetHan.ValueChanged += dtpNgayHetHan_ValueChanged;
+            // 
             // lblTrangThai
+            // 
             lblTrangThai.Font = new Font("Segoe UI", 10F);
             lblTrangThai.ForeColor = Color.FromArgb(66, 66, 66);
             lblTrangThai.Location = new Point(425, 155);
@@ -493,8 +357,9 @@ namespace DoAnDemoUI
             lblTrangThai.Size = new Size(55, 25);
             lblTrangThai.TabIndex = 20;
             lblTrangThai.Text = "Trạng:";
-
+            // 
             // cboTrangThai
+            // 
             cboTrangThai.DropDownStyle = ComboBoxStyle.DropDownList;
             cboTrangThai.Font = new Font("Segoe UI", 10F);
             cboTrangThai.Items.AddRange(new object[] { "Hoạt động", "Hết hạn", "Bị khóa" });
@@ -502,8 +367,9 @@ namespace DoAnDemoUI
             cboTrangThai.Name = "cboTrangThai";
             cboTrangThai.Size = new Size(130, 31);
             cboTrangThai.TabIndex = 21;
-
+            // 
             // lblGhiChu
+            // 
             lblGhiChu.Font = new Font("Segoe UI", 10F);
             lblGhiChu.ForeColor = Color.FromArgb(66, 66, 66);
             lblGhiChu.Location = new Point(630, 155);
@@ -511,19 +377,18 @@ namespace DoAnDemoUI
             lblGhiChu.Size = new Size(35, 25);
             lblGhiChu.TabIndex = 22;
             lblGhiChu.Text = "Ghi:";
-
+            // 
             // txtGhiChu
+            // 
             txtGhiChu.BorderStyle = BorderStyle.FixedSingle;
             txtGhiChu.Font = new Font("Segoe UI", 10F);
             txtGhiChu.Location = new Point(670, 152);
             txtGhiChu.Name = "txtGhiChu";
             txtGhiChu.Size = new Size(555, 30);
             txtGhiChu.TabIndex = 23;
-
-            // 
-            // Validation Labels
             // 
             // lblLoiHoTen
+            // 
             lblLoiHoTen.AutoSize = true;
             lblLoiHoTen.Font = new Font("Segoe UI", 8F);
             lblLoiHoTen.ForeColor = Color.Red;
@@ -531,8 +396,9 @@ namespace DoAnDemoUI
             lblLoiHoTen.Name = "lblLoiHoTen";
             lblLoiHoTen.Size = new Size(0, 19);
             lblLoiHoTen.TabIndex = 24;
-
+            // 
             // lblLoiEmail
+            // 
             lblLoiEmail.AutoSize = true;
             lblLoiEmail.Font = new Font("Segoe UI", 8F);
             lblLoiEmail.ForeColor = Color.Red;
@@ -540,8 +406,9 @@ namespace DoAnDemoUI
             lblLoiEmail.Name = "lblLoiEmail";
             lblLoiEmail.Size = new Size(0, 19);
             lblLoiEmail.TabIndex = 25;
-
+            // 
             // lblLoiDiaChi
+            // 
             lblLoiDiaChi.AutoSize = true;
             lblLoiDiaChi.Font = new Font("Segoe UI", 8F);
             lblLoiDiaChi.ForeColor = Color.Red;
@@ -549,11 +416,9 @@ namespace DoAnDemoUI
             lblLoiDiaChi.Name = "lblLoiDiaChi";
             lblLoiDiaChi.Size = new Size(0, 19);
             lblLoiDiaChi.TabIndex = 26;
-
-            // 
-            // Buttons - Horizontal layout at bottom
             // 
             // btnThem
+            // 
             btnThem.BackColor = Color.FromArgb(76, 175, 80);
             btnThem.Cursor = Cursors.Hand;
             btnThem.FlatAppearance.BorderSize = 0;
@@ -566,8 +431,9 @@ namespace DoAnDemoUI
             btnThem.TabIndex = 3;
             btnThem.Text = "+ Thêm";
             btnThem.UseVisualStyleBackColor = false;
-
+            // 
             // btnSua
+            // 
             btnSua.BackColor = Color.FromArgb(33, 150, 243);
             btnSua.Cursor = Cursors.Hand;
             btnSua.FlatAppearance.BorderSize = 0;
@@ -580,8 +446,9 @@ namespace DoAnDemoUI
             btnSua.TabIndex = 4;
             btnSua.Text = "✎ Sửa";
             btnSua.UseVisualStyleBackColor = false;
-
+            // 
             // btnXoa
+            // 
             btnXoa.BackColor = Color.FromArgb(244, 67, 54);
             btnXoa.Cursor = Cursors.Hand;
             btnXoa.FlatAppearance.BorderSize = 0;
@@ -594,8 +461,9 @@ namespace DoAnDemoUI
             btnXoa.TabIndex = 5;
             btnXoa.Text = "🗑 Xóa";
             btnXoa.UseVisualStyleBackColor = false;
-
+            // 
             // btnLuu
+            // 
             btnLuu.BackColor = Color.FromArgb(0, 150, 136);
             btnLuu.Cursor = Cursors.Hand;
             btnLuu.Enabled = false;
@@ -609,8 +477,9 @@ namespace DoAnDemoUI
             btnLuu.TabIndex = 6;
             btnLuu.Text = "💾 Lưu";
             btnLuu.UseVisualStyleBackColor = false;
-
+            // 
             // btnHuy
+            // 
             btnHuy.BackColor = Color.FromArgb(158, 158, 158);
             btnHuy.Cursor = Cursors.Hand;
             btnHuy.Enabled = false;
@@ -624,30 +493,31 @@ namespace DoAnDemoUI
             btnHuy.TabIndex = 7;
             btnHuy.Text = "🚫 Hủy";
             btnHuy.UseVisualStyleBackColor = false;
-
-            // txtTimKiem
-            txtTimKiem.BorderStyle = BorderStyle.FixedSingle;
-            txtTimKiem.Font = new Font("Segoe UI", 10F);
-            txtTimKiem.Location = new Point(900, 690);
-            txtTimKiem.Name = "txtTimKiem";
-            txtTimKiem.PlaceholderText = "Tìm theo tên, SĐT...";
-            txtTimKiem.Size = new Size(230, 30);
-            txtTimKiem.TabIndex = 8;
-
+            // 
             // btnTimKiem
+            // 
             btnTimKiem.BackColor = Color.FromArgb(96, 125, 139);
             btnTimKiem.Cursor = Cursors.Hand;
             btnTimKiem.FlatAppearance.BorderSize = 0;
             btnTimKiem.FlatStyle = FlatStyle.Flat;
             btnTimKiem.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnTimKiem.ForeColor = Color.White;
-            btnTimKiem.Location = new Point(1140, 686);
+            btnTimKiem.Location = new Point(1195, 683);
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(138, 40);
             btnTimKiem.TabIndex = 9;
             btnTimKiem.Text = "� Tìm Kiếm";
             btnTimKiem.UseVisualStyleBackColor = false;
-
+            // 
+            // txtTimKiem
+            // 
+            txtTimKiem.BorderStyle = BorderStyle.FixedSingle;
+            txtTimKiem.Font = new Font("Segoe UI", 10F);
+            txtTimKiem.Location = new Point(959, 690);
+            txtTimKiem.Name = "txtTimKiem";
+            txtTimKiem.PlaceholderText = "Tìm theo tên, SĐT...";
+            txtTimKiem.Size = new Size(230, 30);
+            txtTimKiem.TabIndex = 8;
             // 
             // btnClose
             // 
@@ -661,21 +531,20 @@ namespace DoAnDemoUI
             btnClose.ForeColor = Color.White;
             btnClose.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
             btnClose.ImageSize = new Size(40, 40);
-            btnClose.Location = new Point(1254, 12);
+            btnClose.Location = new Point(1354, 12);
             btnClose.Name = "btnClose";
             btnClose.PressedColor = SystemColors.ButtonFace;
             btnClose.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btnClose.Size = new Size(44, 36);
             btnClose.TabIndex = 10;
             btnClose.Click += btnClose_Click;
-
             // 
             // FormMember
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(250, 250, 250);
-            ClientSize = new Size(1310, 743);
+            ClientSize = new Size(1426, 863);
             Controls.Add(btnClose);
             Controls.Add(lblTitle);
             Controls.Add(dgvMembers);
@@ -692,6 +561,7 @@ namespace DoAnDemoUI
             Name = "FormMember";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản Lý Độc Giả";
+            Load += FormMember_Load_1;
             ((System.ComponentModel.ISupportInitialize)dgvMembers).EndInit();
             grpInfo.ResumeLayout(false);
             grpInfo.PerformLayout();
@@ -706,19 +576,6 @@ namespace DoAnDemoUI
 
         // DataGridView
         private System.Windows.Forms.DataGridView dgvMembers;
-        
-        // DataGridView Columns
-        private System.Windows.Forms.DataGridViewTextBoxColumn colMemberId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colFullName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colNgaySinh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colGioiTinh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCMND;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDiaChi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPhoneNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEmail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colJoinDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colNgayHetHan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTrangThai;
 
         // GroupBox
         private System.Windows.Forms.GroupBox grpInfo;

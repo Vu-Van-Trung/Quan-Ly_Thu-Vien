@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,7 +19,7 @@ namespace LibraryManagement.Models
         [Required]
         [MaxLength(512)]
         [Column("TenNhaXuatBan")]
-        public string TenNhaXuatBan { get; set; }
+        public string TenNhaXuatBan { get; set; } = null!;
 
         [MaxLength(512)]
         [Column("DiaChi")]

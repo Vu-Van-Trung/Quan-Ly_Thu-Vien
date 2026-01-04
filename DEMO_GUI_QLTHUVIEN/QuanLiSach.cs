@@ -164,6 +164,11 @@ namespace DoAnDemoUI
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
+            if (Services.Session.CurrentRole == Security.AccessControl.RoleStaff)
+            {
+                MessageBox.Show("⛔ TỪ CHỐI TRUY CẬP\n\nNhân viên chỉ được phép tra cứu, không có quyền Thêm dữ liệu.", "Phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             isEditing = true;
             SetControlState(true);
             ClearInputs();
@@ -173,6 +178,11 @@ namespace DoAnDemoUI
 
         private void BtnEdit_Click(object sender, EventArgs e)
         {
+            if (Services.Session.CurrentRole == Security.AccessControl.RoleStaff)
+            {
+                MessageBox.Show("⛔ TỪ CHỐI TRUY CẬP\n\nNhân viên chỉ được phép tra cứu, không có quyền Sửa dữ liệu.", "Phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (dgvBooks.CurrentRow == null)
             {
                 MessageBox.Show("Vui lòng chọn sách cần sửa!");
@@ -185,6 +195,11 @@ namespace DoAnDemoUI
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
+            if (Services.Session.CurrentRole == Security.AccessControl.RoleStaff)
+            {
+                MessageBox.Show("⛔ TỪ CHỐI TRUY CẬP\n\nNhân viên chỉ được phép tra cứu, không có quyền Xóa dữ liệu.", "Phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (dgvBooks.CurrentRow == null) return;
 
             string bookId = dgvBooks.CurrentRow.Cells["BookId"].Value.ToString();
@@ -279,8 +294,8 @@ namespace DoAnDemoUI
                 error = "Số lượng tồn không được âm!";
 
             // 7. Vị trí
-            else if (!string.IsNullOrEmpty(txtLocation.Text) && !System.Text.RegularExpressions.Regex.IsMatch(txtLocation.Text, @"^[\p{L}\p{N}]+$"))
-                error = "Vị trí chỉ được chứa chữ và số!";
+            else if (!string.IsNullOrEmpty(txtLocation.Text) && !System.Text.RegularExpressions.Regex.IsMatch(txtLocation.Text, @"^[\p{L}\p{N}\-]+$"))
+                error = "Vị trí chỉ được chứa chữ, số và ký tự '-'!";
 
             // 8. Giá tiền
             else if (numPrice.Value < 0)
@@ -431,11 +446,9 @@ namespace DoAnDemoUI
             numPrice.Enabled = editing;
             cboStatus.Enabled = editing;
 
-            bool isStaff = DoAnDemoUI.Services.Session.CurrentRole == DoAnDemoUI.Security.AccessControl.RoleStaff;
-
-            btnAdd.Enabled = !editing && !isStaff;
-            btnEdit.Enabled = !editing && !isStaff;
-            btnDelete.Enabled = !editing && !isStaff;
+            btnAdd.Enabled = !editing;
+            btnEdit.Enabled = !editing;
+            btnDelete.Enabled = !editing;
 
             btnSave.Enabled = editing;
             btnCancel.Enabled = editing;

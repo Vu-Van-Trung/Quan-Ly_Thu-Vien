@@ -1,3 +1,4 @@
+#nullable enable
 using DoAnDemoUI.Model;
 using System;
 using System.Collections.Generic;
@@ -19,12 +20,12 @@ namespace LibraryManagement.Models
         [Required]
         [MaxLength(100)]
         [Column("HoTen")]
-        public string HoTen { get; set; }
+        public string HoTen { get; set; } = null!;
 
         [Required]
         [MaxLength(50)]
         [Column("ChucVu")]
-        public string ChucVu { get; set; }
+        public string ChucVu { get; set; } = null!;
 
         [Column("NgaySinh")]
         public DateTime? NgaySinh { get; set; }

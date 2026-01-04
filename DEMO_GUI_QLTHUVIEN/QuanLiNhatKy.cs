@@ -89,7 +89,8 @@ namespace DoAnDemoUI
                         "Trả sách", 
                         "Gia hạn", 
                         "Lập phiếu phạt", 
-                        "Thanh toán tiền phạt" 
+                        "Thanh toán tiền phạt",
+                        "Quản lý Sách"
                     };
                     query = query.Where(x => allowedFunctions.Contains(x.ChucNang));
                 }

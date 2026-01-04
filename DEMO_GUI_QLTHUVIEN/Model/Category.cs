@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,7 +19,7 @@ namespace LibraryManagement.Models
         [Required]
         [MaxLength(100)]
         [Column("TenTheLoai")]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         [MaxLength(500)]
         [Column("MoTa")]

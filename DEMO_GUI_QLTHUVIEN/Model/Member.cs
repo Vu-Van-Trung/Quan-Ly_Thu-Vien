@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,12 +15,12 @@ namespace LibraryManagement.Models
         [Key]
         [MaxLength(20)]
         [Column("MaDocGia")]
-        public string MemberId { get; set; }
+        public string MemberId { get; set; } = null!;
 
         [Required]
         [MaxLength(300)]
         [Column("HoTen")]
-        public string FullName { get; set; }
+        public string FullName { get; set; } = null!;
 
         [Column("NgaySinh")]
         public DateTime? NgaySinh { get; set; }

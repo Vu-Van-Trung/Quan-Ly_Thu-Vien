@@ -224,6 +224,11 @@ namespace DoAnDemoUI
         // --- 3. CHỨC NĂNG THÊM ---
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if (Services.Session.CurrentRole == Security.AccessControl.RoleStaff)
+            {
+                MessageBox.Show("⛔ TỪ CHỐI TRUY CẬP\n\nNhân viên chỉ được phép tra cứu, không có quyền Lập phiếu mượn.", "Phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             try
             {
                 string memberId = cbMaDocGia.SelectedValue.ToString();
@@ -385,6 +390,11 @@ namespace DoAnDemoUI
         // --- 4. CHỨC NĂNG SỬA ---
         private void btnSua_Click(object sender, EventArgs e)
         {
+            if (Services.Session.CurrentRole == Security.AccessControl.RoleStaff)
+            {
+                MessageBox.Show("⛔ TỪ CHỐI TRUY CẬP\n\nNhân viên chỉ được phép tra cứu, không có quyền Sửa phiếu mượn.", "Phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             try
             {
                 if (dgvSachMuon.CurrentRow == null || dgvSachMuon.CurrentRow.Cells["LoanId"].Value == null)
@@ -425,6 +435,11 @@ namespace DoAnDemoUI
         // --- 5. CHỨC NĂNG XÓA ---
         private void btnXoa_Click(object sender, EventArgs e)
         {
+            if (Services.Session.CurrentRole == Security.AccessControl.RoleStaff)
+            {
+                MessageBox.Show("⛔ TỪ CHỐI TRUY CẬP\n\nNhân viên chỉ được phép tra cứu, không có quyền Xóa phiếu mượn.", "Phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (dgvSachMuon.CurrentRow == null || dgvSachMuon.CurrentRow.Cells["LoanId"].Value == null)
             {
                 MessageBox.Show("Vui lòng chọn phiếu mượn cần xóa!");

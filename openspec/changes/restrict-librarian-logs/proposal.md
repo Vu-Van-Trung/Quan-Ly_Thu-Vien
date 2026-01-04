@@ -13,6 +13,7 @@ The user wants to restrict the visibility of the "Activity Log" (Nhật ký ho�
         - "Gia hạn"
         - "Lập phiếu phạt"
         - "Thanh toán tiền phạt"
+        - "Quản lý Sách"
 - **UI**: No direct UI changes, just data filtering.
 
 ## Impact

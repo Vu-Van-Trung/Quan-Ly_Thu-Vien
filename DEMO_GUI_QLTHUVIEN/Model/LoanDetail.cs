@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,12 +18,12 @@ namespace LibraryManagement.Models
         [Required]
         [MaxLength(20)]
         [Column("MaPhieuMuon")]
-        public string LoanId { get; set; }
+        public string LoanId { get; set; } = null!;
 
         [Required]
         [MaxLength(20)]
         [Column("MaSach")]
-        public string BookId { get; set; }
+        public string BookId { get; set; } = null!;
 
         [Column("SoLuong")]
         public int SoLuong { get; set; } = 1;
@@ -40,9 +41,9 @@ namespace LibraryManagement.Models
 
         // Navigation properties
         [ForeignKey("LoanId")]
-        public virtual Loan Loan { get; set; }
+        public virtual Loan Loan { get; set; } = null!;
 
         [ForeignKey("BookId")]
-        public virtual Book Book { get; set; }
+        public virtual Book Book { get; set; } = null!;
     }
 }
