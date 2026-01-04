@@ -108,20 +108,15 @@ namespace DoAnDemoUI
             loginError.ForeColor = Color.Red;
         }
 
-        // --- CÁC SỰ KIỆN KHÁC GIỮ NGUYÊN ---
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
-            //if (MessageBox.Show("Bạn có chắc muốn thoát?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            //{
-            //    this.Close();
-            //}
            this.Close();
-            
-
         }
 
         private void form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (e.CloseReason == CloseReason.ApplicationExitCall) return;
+
             if (!exitConfirmed && MessageBox.Show("Thoát ứng dụng?", "Xác nhận", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 e.Cancel = true;
         }

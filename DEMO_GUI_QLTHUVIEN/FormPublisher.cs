@@ -145,7 +145,7 @@ namespace DoAnDemoUI
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtTenNhaXuatBan.Text) || string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtDiaChi.Text))
+            if (string.IsNullOrWhiteSpace(txtTenNhaXuatBan.Text.Trim()) || string.IsNullOrWhiteSpace(txtEmail.Text.Trim()) || string.IsNullOrWhiteSpace(txtDiaChi.Text.Trim()))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ tên, email và địa chỉ!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -159,14 +159,14 @@ namespace DoAnDemoUI
             }
 
             // Validation Email
-            if (!KiemTraEmail(txtEmail.Text))
+            if (!KiemTraEmail(txtEmail.Text.Trim()))
             {
                  MessageBox.Show("Email không đúng định dạng", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                  return;
             }
 
             // Validation Address
-            if (!KiemTraDiaChi(txtDiaChi.Text))
+            if (!KiemTraDiaChi(txtDiaChi.Text.Trim()))
             {
                 MessageBox.Show("Địa chỉ không hợp lệ", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -309,7 +309,7 @@ namespace DoAnDemoUI
 
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
-            if (txtEmail.Text.Length > 0 && !KiemTraEmail(txtEmail.Text))
+            if (txtEmail.Text.Length > 0 && !KiemTraEmail(txtEmail.Text.Trim()))
                 lblThongBao.Text = "Email không đúng định dạng";
             else if (lblThongBao.Text == "Email không đúng định dạng")
                 lblThongBao.Text = "";
@@ -317,7 +317,7 @@ namespace DoAnDemoUI
 
         private void txtEmail_Leave(object sender, EventArgs e)
         {
-            if (txtEmail.Text.Length > 0 && !KiemTraEmail(txtEmail.Text))
+            if (txtEmail.Text.Length > 0 && !KiemTraEmail(txtEmail.Text.Trim()))
             {
                 lblThongBao.Text = "Email không đúng định dạng";
                 lblThongBao.ForeColor = System.Drawing.Color.Red;
@@ -326,7 +326,7 @@ namespace DoAnDemoUI
 
         private void txtDiaChi_TextChanged(object sender, EventArgs e)
         {
-            if (txtDiaChi.Text.Length > 0 && !KiemTraDiaChi(txtDiaChi.Text))
+            if (txtDiaChi.Text.Length > 0 && !KiemTraDiaChi(txtDiaChi.Text.Trim()))
                 lblThongBao.Text = "Địa chỉ chứa ký tự không hợp lệ";
             else if (lblThongBao.Text == "Địa chỉ chứa ký tự không hợp lệ")
                 lblThongBao.Text = "";
@@ -334,7 +334,7 @@ namespace DoAnDemoUI
 
         private void txtDiaChi_Leave(object sender, EventArgs e)
         {
-            if (txtDiaChi.Text.Length > 0 && !KiemTraDiaChi(txtDiaChi.Text))
+            if (txtDiaChi.Text.Length > 0 && !KiemTraDiaChi(txtDiaChi.Text.Trim()))
             {
                  lblThongBao.Text = "Địa chỉ không hợp lệ (phải từ 5 ký tự)";
                  lblThongBao.ForeColor = System.Drawing.Color.Red;

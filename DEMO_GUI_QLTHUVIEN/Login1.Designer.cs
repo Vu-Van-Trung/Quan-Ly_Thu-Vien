@@ -27,19 +27,19 @@ namespace DoAnDemoUI
         private void InitializeComponent()
         {
             components = new Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             ComponentResourceManager resources = new ComponentResourceManager(typeof(Login1));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             errorProvider1 = new ErrorProvider(components);
             txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
@@ -72,7 +72,7 @@ namespace DoAnDemoUI
             // 
             txtPassword.BorderRadius = 18;
             txtPassword.Cursor = Cursors.IBeam;
-            txtPassword.CustomizableEdges = customizableEdges6;
+            txtPassword.CustomizableEdges = customizableEdges18;
             txtPassword.DefaultText = "";
             txtPassword.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtPassword.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -92,7 +92,7 @@ namespace DoAnDemoUI
             txtPassword.PlaceholderText = "Mật khẩu";
             txtPassword.RightToLeft = RightToLeft.No;
             txtPassword.SelectedText = "";
-            txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges7;
+            txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges19;
             txtPassword.Size = new Size(415, 67);
             txtPassword.TabIndex = 15;
             txtPassword.TextOffset = new Point(30, 0);
@@ -103,7 +103,7 @@ namespace DoAnDemoUI
             // 
             txtUsername.BorderRadius = 18;
             txtUsername.Cursor = Cursors.WaitCursor;
-            txtUsername.CustomizableEdges = customizableEdges8;
+            txtUsername.CustomizableEdges = customizableEdges20;
             txtUsername.DefaultText = "";
             txtUsername.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtUsername.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -123,7 +123,7 @@ namespace DoAnDemoUI
             txtUsername.PlaceholderText = "Tên đăng nhập";
             txtUsername.RightToLeft = RightToLeft.No;
             txtUsername.SelectedText = "";
-            txtUsername.ShadowDecoration.CustomizableEdges = customizableEdges9;
+            txtUsername.ShadowDecoration.CustomizableEdges = customizableEdges21;
             txtUsername.Size = new Size(415, 67);
             txtUsername.TabIndex = 14;
             txtUsername.TextOffset = new Point(30, 0);
@@ -168,7 +168,7 @@ namespace DoAnDemoUI
             // btnLogin
             // 
             btnLogin.BorderRadius = 18;
-            btnLogin.CustomizableEdges = customizableEdges4;
+            btnLogin.CustomizableEdges = customizableEdges16;
             btnLogin.DisabledState.BorderColor = Color.DarkGray;
             btnLogin.DisabledState.CustomBorderColor = Color.DarkGray;
             btnLogin.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -177,7 +177,7 @@ namespace DoAnDemoUI
             btnLogin.ForeColor = Color.White;
             btnLogin.Location = new Point(644, 406);
             btnLogin.Name = "btnLogin";
-            btnLogin.ShadowDecoration.CustomizableEdges = customizableEdges5;
+            btnLogin.ShadowDecoration.CustomizableEdges = customizableEdges17;
             btnLogin.Size = new Size(380, 56);
             btnLogin.TabIndex = 16;
             btnLogin.Text = "Đăng Nhập";
@@ -222,10 +222,10 @@ namespace DoAnDemoUI
             Login.Controls.Add(label);
             Login.Controls.Add(dktk);
             Login.Controls.Add(lnkForgot);
-            Login.CustomizableEdges = customizableEdges10;
+            Login.CustomizableEdges = customizableEdges22;
             Login.Location = new Point(141, 103);
             Login.Name = "Login";
-            Login.ShadowDecoration.CustomizableEdges = customizableEdges11;
+            Login.ShadowDecoration.CustomizableEdges = customizableEdges23;
             Login.Size = new Size(1222, 632);
             Login.TabIndex = 11;
             // 
@@ -241,14 +241,14 @@ namespace DoAnDemoUI
             // 
             // guna2PictureBox2
             // 
-            guna2PictureBox2.CustomizableEdges = customizableEdges2;
+            guna2PictureBox2.CustomizableEdges = customizableEdges14;
             guna2PictureBox2.ErrorImage = (Image)resources.GetObject("guna2PictureBox2.ErrorImage");
             guna2PictureBox2.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources._174951701726937611;
             guna2PictureBox2.ImageRotate = 0F;
             guna2PictureBox2.InitialImage = DEMO_GUI_QLTHUVIEN.Properties.Resources._174951701726937611;
             guna2PictureBox2.Location = new Point(277, 264);
             guna2PictureBox2.Name = "guna2PictureBox2";
-            guna2PictureBox2.ShadowDecoration.CustomizableEdges = customizableEdges3;
+            guna2PictureBox2.ShadowDecoration.CustomizableEdges = customizableEdges15;
             guna2PictureBox2.Size = new Size(226, 198);
             guna2PictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             guna2PictureBox2.TabIndex = 22;
@@ -300,7 +300,7 @@ namespace DoAnDemoUI
             btnMinimize.ImageSize = new Size(50, 50);
             btnMinimize.Location = new Point(1396, 14);
             btnMinimize.Name = "btnMinimize";
-            btnMinimize.ShadowDecoration.CustomizableEdges = customizableEdges1;
+            btnMinimize.ShadowDecoration.CustomizableEdges = customizableEdges13;
             btnMinimize.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnMinimize.Size = new Size(55, 52);
             btnMinimize.TabIndex = 21;
@@ -321,7 +321,7 @@ namespace DoAnDemoUI
             btnCancel.ImageSize = new Size(60, 60);
             btnCancel.Location = new Point(1468, 14);
             btnCancel.Name = "btnCancel";
-            btnCancel.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            btnCancel.ShadowDecoration.CustomizableEdges = customizableEdges24;
             btnCancel.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnCancel.Size = new Size(55, 52);
             btnCancel.TabIndex = 10;
@@ -342,7 +342,7 @@ namespace DoAnDemoUI
             Name = "Login1";
             Padding = new Padding(20);
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "it ";
+            Text = "Đăng nhập - Thư Viện Tết";
             WindowState = FormWindowState.Maximized;
             Load += Login_Load;
             ((ISupportInitialize)errorProvider1).EndInit();

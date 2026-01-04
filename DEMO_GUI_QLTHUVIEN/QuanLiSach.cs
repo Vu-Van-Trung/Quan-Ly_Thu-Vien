@@ -262,11 +262,11 @@ namespace DoAnDemoUI
             string error = "";
 
             // 1. Tên sách
-            if (string.IsNullOrWhiteSpace(txtTitle.Text))
+            if (string.IsNullOrWhiteSpace(txtTitle.Text.Trim()))
                 error = "Tên sách là bắt buộc!";
-            else if (txtTitle.Text.Length < 3 || txtTitle.Text.Length > 200)
+            else if (txtTitle.Text.Trim().Length < 3 || txtTitle.Text.Trim().Length > 200)
                 error = "Tên sách phải từ 3 đến 200 ký tự!";
-            else if (!System.Text.RegularExpressions.Regex.IsMatch(txtTitle.Text, @"^[\p{L}\p{N}\s]+$"))
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(txtTitle.Text.Trim(), @"^[\p{L}\p{N}\s]+$"))
                 error = "Tên sách chỉ được chứa chữ, số và khoảng trắng!";
 
             // 2. Tác giả
@@ -294,7 +294,7 @@ namespace DoAnDemoUI
                 error = "Số lượng tồn không được âm!";
 
             // 7. Vị trí
-            else if (!string.IsNullOrEmpty(txtLocation.Text) && !System.Text.RegularExpressions.Regex.IsMatch(txtLocation.Text, @"^[\p{L}\p{N}\-]+$"))
+            else if (!string.IsNullOrEmpty(txtLocation.Text) && !System.Text.RegularExpressions.Regex.IsMatch(txtLocation.Text.Trim(), @"^[\p{L}\p{N}\-]+$"))
                 error = "Vị trí chỉ được chứa chữ, số và ký tự '-'!";
 
             // 8. Giá tiền

@@ -28,6 +28,7 @@ namespace DoAnDemoUI
             BuildModernMenu();
 
             this.FormClosed += QuanLiThuVien_FormClosed;
+            this.FormClosing += QuanLiThuVien_FormClosing;
         }
 
         private void QuanLiThuVien_FormClosed(object sender, FormClosedEventArgs e)
@@ -35,6 +36,17 @@ namespace DoAnDemoUI
             if (!_isLoggingOut)
             {
                 Application.Exit();
+            }
+        }
+
+        private void QuanLiThuVien_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!_isLoggingOut)
+            {
+                if (MessageBox.Show("Bạn có chắc muốn thoát ứng dụng?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                {
+                    e.Cancel = true;
+                }
             }
         }
 
@@ -254,10 +266,7 @@ namespace DoAnDemoUI
 
         private void mniThoat_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có chắc muốn thoát ứng dụng?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                this.Close();
-            }
+            this.Close();
         }
 
         private void QuanLiThuVien_Load_1(object sender, EventArgs e)

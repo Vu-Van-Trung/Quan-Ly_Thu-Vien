@@ -39,8 +39,8 @@ namespace DoAnDemoUI
             string name = txtName.Text.Trim();
             if (string.IsNullOrEmpty(name))
             {
-                // errorMsg = "Tên tác giả không được để trống."; // Only show if interacting?
-                // For real-time feedback, usually we show nothing if empty unless triggered by save
+                errorMsg = "Tên tác giả không được để trống.";
+                isValid = false;
             }
             else if (!System.Text.RegularExpressions.Regex.IsMatch(name, @"^[\p{L}\s]+$"))
             {
@@ -50,9 +50,14 @@ namespace DoAnDemoUI
 
             // 2. Quốc tịch
             string quocTich = txtQuocTich.Text.Trim();
-            if (isValid && !string.IsNullOrEmpty(quocTich))
+            if (isValid)
             {
-                if (!System.Text.RegularExpressions.Regex.IsMatch(quocTich, @"^[\p{L}\s]+$"))
+                if (string.IsNullOrEmpty(quocTich))
+                {
+                    errorMsg = "Quốc tịch không được để trống.";
+                    isValid = false;
+                }
+                else if (!System.Text.RegularExpressions.Regex.IsMatch(quocTich, @"^[\p{L}\s]+$"))
                 {
                     errorMsg = "Quốc tịch chỉ được chứa chữ cái và khoảng trắng.";
                     isValid = false;
@@ -86,7 +91,7 @@ namespace DoAnDemoUI
             }
 
             // 4. Tiểu sử
-            if (isValid && txtBio.Text.Length > 2000)
+            if (isValid && txtBio.Text.Trim().Length > 2000)
             {
                 errorMsg = "Tiểu sử không được quá 2000 ký tự.";
                 isValid = false;

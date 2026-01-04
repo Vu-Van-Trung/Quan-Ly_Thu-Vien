@@ -1,0 +1,6 @@
+- [x] Update `QuanLiSach.cs` to trim inputs (Title, Location, etc.) before validation. <!-- id: 0 -->
+- [x] Update `QuanLiTacGia.cs` to trim inputs (Name, Nationality, Bio). <!-- id: 1 -->
+- [x] Update `FormMember.cs` to trim inputs (Name, Email, Phone, Address). <!-- id: 2 -->
+- [x] Update `FormStaff.cs` to trim inputs (Name, Email, Phone, Address). <!-- id: 3 -->
+- [x] Update `FormPublisher.cs` to trim inputs (Name, Email, Phone, Address). <!-- id: 4 -->
+- [x] Verify validation logic still holds (e.g., ensure trimmed empty strings trigger "Required" errors). <!-- id: 5 -->

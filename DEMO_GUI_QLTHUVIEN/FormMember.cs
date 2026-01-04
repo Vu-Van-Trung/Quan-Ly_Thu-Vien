@@ -158,7 +158,7 @@ namespace DoAnDemoUI
 
         private void txtDiaChi_Leave(object sender, EventArgs e)
         {
-            if (!KiemTraDiaChi(txtDiaChi.Text))
+            if (!KiemTraDiaChi(txtDiaChi.Text.Trim()))
             {
                 lblLoiDiaChi.Text = "Địa chỉ không hợp lệ (phải từ 5 ký tự)";
                 lblLoiDiaChi.ForeColor = System.Drawing.Color.Red;
@@ -340,7 +340,7 @@ namespace DoAnDemoUI
                 string.IsNullOrWhiteSpace(txtCMND.Text) ||
                 string.IsNullOrWhiteSpace(txtDiaChi.Text) ||
                 string.IsNullOrWhiteSpace(txtPhoneNumber.Text) ||
-                string.IsNullOrWhiteSpace(txtEmail.Text))
+                string.IsNullOrWhiteSpace(txtEmail.Text.Trim()))
             {
                 MessageBox.Show("⚠️ Vui lòng nhập đầy đủ các trường bắt buộc (Họ tên, CMND, Địa chỉ, SĐT, Email)!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -364,7 +364,7 @@ namespace DoAnDemoUI
             }
 
             // 4. Kiểm tra Email
-            if (!KiemTraEmail(txtEmail.Text))
+            if (!KiemTraEmail(txtEmail.Text.Trim()))
             {
                 lblLoiEmail.Text = "Email không đúng định dạng";
                 lblLoiEmail.ForeColor = System.Drawing.Color.Red;
@@ -372,7 +372,7 @@ namespace DoAnDemoUI
             }
 
             // 5. Kiểm tra Địa chỉ
-            if (!KiemTraDiaChi(txtDiaChi.Text))
+            if (!KiemTraDiaChi(txtDiaChi.Text.Trim()))
             {
                 lblLoiDiaChi.Text = "Địa chỉ không hợp lệ";
                 lblLoiDiaChi.ForeColor = System.Drawing.Color.Red;

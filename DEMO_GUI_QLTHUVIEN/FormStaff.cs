@@ -183,7 +183,7 @@ namespace DoAnDemoUI
             if (string.IsNullOrWhiteSpace(txtHoTen.Text) ||
                 string.IsNullOrWhiteSpace(txtSoDienThoai.Text) ||
                 string.IsNullOrWhiteSpace(txtEmail.Text) ||
-                string.IsNullOrWhiteSpace(txtDiaChi.Text))
+                string.IsNullOrWhiteSpace(txtDiaChi.Text.Trim()))
             {
                 MessageBox.Show("⚠️ Vui lòng nhập đầy đủ thông tin!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -206,14 +206,14 @@ namespace DoAnDemoUI
             }
 
             // 4. Kiểm tra Email
-            if (!KiemTraEmail(txtEmail.Text))
+            if (!KiemTraEmail(txtEmail.Text.Trim()))
             {
                 MessageBox.Show("Email không đúng định dạng", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             // 5. Kiểm tra Địa chỉ
-            if (!KiemTraDiaChi(txtDiaChi.Text))
+            if (!KiemTraDiaChi(txtDiaChi.Text.Trim()))
             {
                 MessageBox.Show("Địa chỉ không được để trống", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -439,7 +439,7 @@ namespace DoAnDemoUI
 
         private void txtEmail_Leave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtEmail.Text) && !KiemTraEmail(txtEmail.Text))
+            if (!string.IsNullOrEmpty(txtEmail.Text) && !KiemTraEmail(txtEmail.Text.Trim()))
             {
                 lblThongBao.Text = "Email không đúng định dạng";
                 lblThongBao.ForeColor = System.Drawing.Color.Red;
@@ -466,7 +466,7 @@ namespace DoAnDemoUI
 
         private void txtDiaChi_Leave(object sender, EventArgs e)
         {
-             if (!KiemTraDiaChi(txtDiaChi.Text))
+             if (!KiemTraDiaChi(txtDiaChi.Text.Trim()))
             {
                  lblThongBao.Text = "Địa chỉ không hợp lệ (phải từ 5 ký tự)";
                  lblThongBao.ForeColor = System.Drawing.Color.Red;
