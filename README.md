@@ -90,7 +90,7 @@ Hệ thống cung cấp **5 loại báo cáo** chuyên sâu:
 
 ### 8. Quản Lý Nhân Viên (`FormStaff.cs`)
 - ✅ Quản lý thông tin nhân viên
-- ✅ Chức vụ: Quản trị viên, Thủ thư trưởng, Thủ thư, Nhân viên, Thực tập sinh
+- ✅ Chức vụ: Quản trị viên, Thủ thư, Nhân viên, Thực tập sinh
 - ✅ Thông tin: Họ tên, ngày sinh, giới tính, địa chỉ, SĐT, email
 - ✅ Theo dõi ngày vào làm
 
