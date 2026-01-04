@@ -406,5 +406,5 @@ Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
 
 **Phiên bản**: 1.0  
 **Ngày tạo**: 19/12/2025  
-**Tác giả**: Vũ Văn Trung  
+**Tác giả**: LowKeyLifeeeee  
 **Trạng thái**: Draft - Chờ phê duyệt
