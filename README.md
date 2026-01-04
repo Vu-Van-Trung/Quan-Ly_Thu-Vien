@@ -96,7 +96,7 @@ Hệ thống cung cấp **5 loại báo cáo** chuyên sâu:
 
 ### 9. Quản Lý Tài Khoản (`QuanLyTaiKhoan.cs`)
 - ✅ **Tạo tài khoản**: Liên kết với nhân viên
-- ✅ **Phân quyền**: 5 cấp độ quyền hạn
+- ✅ **Phân quyền**: 3 cấp độ quyền hạn
 - ✅ **Mã hóa mật khẩu**: Hash password an toàn
 - ✅ **Đổi mật khẩu**: Cho phép người dùng đổi mật khẩu
 - ✅ **Khóa/Mở khóa**: Quản lý trạng thái tài khoản
@@ -122,18 +122,16 @@ Hệ thống 5 cấp độ quyền hạn:
 | Quyền Hạn | Mô Tả | Chức Năng |
 |-----------|-------|-----------|
 | **Quản trị viên** | Toàn quyền | Tất cả chức năng |
-| **Thủ thư trưởng** | Quản lý cấp cao | Mọi chức năng trừ quản trị hệ thống |
 | **Thủ thư** | Nghiệp vụ chính | Quản lý sách, mượn/trả, phạt, báo cáo |
 | **Nhân viên** | Nghiệp vụ cơ bản | Mượn/trả sách, quản lý độc giả |
-| **Thực tập sinh** | Hạn chế | Xem và nhập liệu cơ bản |
 
 **Quyền hạn chi tiết**:
 - `ManageAccounts`: Chỉ Admin
 - `Settings`: Chỉ Admin
 - `ManageStaff`: Chỉ Admin
-- `ManageFines`: Admin, Thủ thư trưởng, Thủ thư
-- `Reports`: Admin, Thủ thư trưởng, Thủ thư
-- `ViewLogs`: Admin, Thủ thư trưởng, Thủ thư
+- `ManageFines`: Admin, Thủ thư
+- `Reports`: Admin, Thủ thư
+- `ViewLogs`: Admin, Thủ thư
 - `ManageBooks`: Tất cả
 - `ManageLoans`: Tất cả
 - `ManageMembers`: Tất cả
@@ -276,7 +274,6 @@ Sau khi import dữ liệu mẫu, bạn có thể đăng nhập với các tài 
 | Tên đăng nhập | Mật khẩu | Quyền hạn | Mô tả |
 |---------------|----------|-----------|-------|
 | `admin` | `123456` | Quản trị viên | Toàn quyền |
-| `thuthutruong` | `123456` | Thủ thư trưởng | Quản lý cấp cao |
 | `thuthu01` | `123456` | Thủ thư | Nghiệp vụ chính |
 | `nhanvien01` | `123456` | Nhân viên | Nghiệp vụ cơ bản |
 
@@ -570,10 +567,8 @@ connectionString="...;Connection Timeout=60;"
 
 ### Quyền Hạn
 - ✅ **Admin**: Toàn quyền hệ thống
-- ✅ **Thủ thư trưởng**: Quản lý nghiệp vụ + phê duyệt
 - ✅ **Thủ thư**: Quản lý sách, mượn/trả, phạt, báo cáo
 - ✅ **Nhân viên**: Mượn/trả, quản lý độc giả
-- ✅ **Thực tập sinh**: Xem và nhập liệu
 
 ## 🤝 Đóng Góp
 
@@ -608,6 +603,7 @@ Dự án này được phát hành theo giấy phép **MIT License**. Xem file [
 
 - **Vũ Văn Trung** - [GitHub](https://github.com/Vu-Van-Trung)
 - **LowKeyLifeeee** - [GitHub](https://github.com/LowKeyLifeeee)
+- KoliangFish - [GitHub](https://github.com/KoliangFish)
 
 ## 🙏 Lời Cảm Ơn
 
@@ -620,7 +616,7 @@ Dự án này được phát hành theo giấy phép **MIT License**. Xem file [
 
 Nếu có câu hỏi, góp ý hoặc cần hỗ trợ:
 
-- 📧 Email: admin@thuvien.vn
+- 📧 Email: thangminhnt20@gmail.com
 - 🐛 Issues: [GitHub Issues](https://github.com/Vu-Van-Trung/Quan-Ly_Thu-Vien/issues)
 - 💬 Discussions: [GitHub Discussions](https://github.com/Vu-Van-Trung/Quan-Ly_Thu-Vien/discussions)
 
