@@ -22,20 +22,19 @@ namespace DoAnDemoUI
 
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             pnlLeft = new Panel();
-            btnLogout = new Guna.UI2.WinForms.Guna2Button();
             pnlMenuContainer = new FlowLayoutPanel();
             lblMenuHeader = new Label();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             label1 = new Label();
             btnMinimize = new Guna.UI2.WinForms.Guna2CircleButton();
             btnCancel = new Guna.UI2.WinForms.Guna2CircleButton();
+            btnLogout = new Guna.UI2.WinForms.Guna2CircleButton();
             pnlLeft.SuspendLayout();
             guna2CustomGradientPanel1.SuspendLayout();
             SuspendLayout();
@@ -43,49 +42,27 @@ namespace DoAnDemoUI
             // pnlLeft
             // 
             pnlLeft.BackColor = Color.FromArgb(44, 62, 80);
-            pnlLeft.Controls.Add(btnLogout);
             pnlLeft.Controls.Add(pnlMenuContainer);
             pnlLeft.Controls.Add(lblMenuHeader);
             pnlLeft.Dock = DockStyle.Left;
             pnlLeft.Location = new Point(0, 0);
             pnlLeft.Margin = new Padding(3, 4, 3, 4);
             pnlLeft.Name = "pnlLeft";
-            pnlLeft.Size = new Size(260, 761);
+            pnlLeft.Size = new Size(260, 808);
             pnlLeft.TabIndex = 0;
-            // 
-            // btnLogout
-            // 
-            btnLogout.CustomizableEdges = customizableEdges1;
-            btnLogout.DisabledState.BorderColor = Color.DarkGray;
-            btnLogout.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnLogout.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnLogout.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnLogout.FillColor = Color.FromArgb(231, 76, 60);
-            btnLogout.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogout.ForeColor = Color.White;
-            btnLogout.Location = new Point(0, 0);
-            btnLogout.Name = "btnLogout";
-            btnLogout.Dock = DockStyle.Bottom;
-            btnLogout.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnLogout.Size = new Size(260, 60);
-            btnLogout.TabIndex = 2;
-            btnLogout.Text = "Đăng Xuất";
-            btnLogout.BorderRadius = 15;
-            btnLogout.Margin = new Padding(10);
-            btnLogout.Click += btnLogout_Click_1;
             // 
             // pnlMenuContainer
             // 
+            pnlMenuContainer.AutoScroll = true;
             pnlMenuContainer.BackColor = Color.Salmon;
             pnlMenuContainer.Dock = DockStyle.Fill;
+            pnlMenuContainer.FlowDirection = FlowDirection.TopDown;
             pnlMenuContainer.Location = new Point(0, 77);
             pnlMenuContainer.Name = "pnlMenuContainer";
-            pnlMenuContainer.Size = new Size(260, 684);
-            pnlMenuContainer.TabIndex = 0;
-            pnlMenuContainer.AutoScroll = true;
-            pnlMenuContainer.FlowDirection = FlowDirection.TopDown;
-            pnlMenuContainer.WrapContents = false;
             pnlMenuContainer.Padding = new Padding(0, 10, 0, 0);
+            pnlMenuContainer.Size = new Size(260, 731);
+            pnlMenuContainer.TabIndex = 0;
+            pnlMenuContainer.WrapContents = false;
             // 
             // lblMenuHeader
             // 
@@ -103,23 +80,24 @@ namespace DoAnDemoUI
             // 
             // guna2CustomGradientPanel1
             // 
+            guna2CustomGradientPanel1.BorderRadius = 12;
+            guna2CustomGradientPanel1.Controls.Add(btnLogout);
             guna2CustomGradientPanel1.Controls.Add(label1);
             guna2CustomGradientPanel1.Controls.Add(btnMinimize);
             guna2CustomGradientPanel1.Controls.Add(btnCancel);
-            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges5;
+            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges4;
             guna2CustomGradientPanel1.Location = new Point(259, 0);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
-            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges5;
             guna2CustomGradientPanel1.Size = new Size(1604, 77);
             guna2CustomGradientPanel1.TabIndex = 2;
-            guna2CustomGradientPanel1.BorderRadius = 12;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Comic Sans MS", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Red;
-            label1.Location = new Point(550, 15);
+            label1.Location = new Point(422, 14);
             label1.Name = "label1";
             label1.Size = new Size(450, 48);
             label1.TabIndex = 24;
@@ -137,9 +115,9 @@ namespace DoAnDemoUI
             btnMinimize.ForeColor = Color.White;
             btnMinimize.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources._786263;
             btnMinimize.ImageSize = new Size(50, 50);
-            btnMinimize.Location = new Point(1325, 0);
+            btnMinimize.Location = new Point(1133, 0);
             btnMinimize.Name = "btnMinimize";
-            btnMinimize.ShadowDecoration.CustomizableEdges = customizableEdges3;
+            btnMinimize.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btnMinimize.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnMinimize.Size = new Size(83, 77);
             btnMinimize.TabIndex = 22;
@@ -159,20 +137,39 @@ namespace DoAnDemoUI
             btnCancel.ForeColor = Color.White;
             btnCancel.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
             btnCancel.ImageSize = new Size(60, 60);
-            btnCancel.Location = new Point(1401, 0);
+            btnCancel.Location = new Point(1209, 0);
             btnCancel.Name = "btnCancel";
-            btnCancel.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnCancel.ShadowDecoration.CustomizableEdges = customizableEdges3;
             btnCancel.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnCancel.Size = new Size(88, 77);
             btnCancel.TabIndex = 11;
             btnCancel.Click += btnCancel_Click;
             // 
+            // btnLogout
+            // 
+            btnLogout.BackColor = Color.Transparent;
+            btnLogout.DisabledState.BorderColor = Color.DarkGray;
+            btnLogout.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnLogout.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnLogout.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnLogout.FillColor = Color.White;
+            btnLogout.Font = new Font("Segoe UI", 9F);
+            btnLogout.ForeColor = Color.White;
+            btnLogout.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.Check_out_50px1;
+            btnLogout.ImageSize = new Size(80, 80);
+            btnLogout.Location = new Point(1054, 3);
+            btnLogout.Name = "btnLogout";
+            btnLogout.ShadowDecoration.CustomizableEdges = customizableEdges1;
+            btnLogout.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            btnLogout.Size = new Size(83, 77);
+            btnLogout.TabIndex = 25;
+            btnLogout.Click += btnLogout_Click_2;
+            // 
             // QuanLiThuVien
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.Inherit;
             BackColor = Color.White;
-            ClientSize = new Size(1848, 761);
+            ClientSize = new Size(1866, 808);
             Controls.Add(guna2CustomGradientPanel1);
             Controls.Add(pnlLeft);
             Font = new Font("Segoe UI", 9F);
@@ -195,6 +192,6 @@ namespace DoAnDemoUI
         private Guna.UI2.WinForms.Guna2CircleButton btnMinimize;
         private Label lblMenuHeader;
         private Label label1;
-        private Guna.UI2.WinForms.Guna2Button btnLogout;
+        private Guna.UI2.WinForms.Guna2CircleButton btnLogout;
     }
 }

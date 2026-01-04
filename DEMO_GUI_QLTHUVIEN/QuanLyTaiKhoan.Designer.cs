@@ -388,8 +388,7 @@ namespace DEMO_GUI_QLTHUVIEN
             // 
             // QuanLyTaiKhoan
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.Inherit;
             BackColor = Color.FromArgb(250, 250, 250);
             ClientSize = new Size(1310, 743);
             Controls.Add(btnClose);

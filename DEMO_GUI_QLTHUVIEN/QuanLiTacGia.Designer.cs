@@ -160,12 +160,12 @@ namespace DoAnDemoUI
             txtMa.Cursor = Cursors.IBeam;
             txtMa.CustomizableEdges = customizableEdges1;
             txtMa.DefaultText = "";
+            txtMa.Enabled = false;
             txtMa.Font = new Font("Segoe UI", 10F);
             txtMa.Location = new Point(240, 35);
             txtMa.Margin = new Padding(3, 4, 3, 4);
             txtMa.Name = "txtMa";
             txtMa.PlaceholderText = "Tự động";
-            txtMa.Enabled = false;
             txtMa.ReadOnly = true;
             txtMa.SelectedText = "";
             txtMa.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -318,7 +318,6 @@ namespace DoAnDemoUI
             grpInfo.Controls.Add(dtpNgaySinh);
             grpInfo.Controls.Add(lblBio);
             grpInfo.Controls.Add(txtBio);
-
             grpInfo.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             grpInfo.ForeColor = Color.FromArgb(33, 150, 243);
             grpInfo.Location = new Point(29, 456);
@@ -374,12 +373,10 @@ namespace DoAnDemoUI
             lblError.AutoSize = true;
             lblError.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblError.ForeColor = Color.Red;
-            lblError.Location = new Point(520, 685); 
+            lblError.Location = new Point(520, 685);
             lblError.Name = "lblError";
             lblError.Size = new Size(0, 20);
             lblError.TabIndex = 8;
-            //
-            Controls.Add(lblError);
             // 
             // btnClose
             // 
@@ -403,10 +400,10 @@ namespace DoAnDemoUI
             // 
             // QuanLiTacGia
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.Inherit;
             BackColor = Color.FromArgb(250, 250, 250);
             ClientSize = new Size(1310, 743);
+            Controls.Add(lblError);
             Controls.Add(btnClose);
             Controls.Add(lblTitle);
             Controls.Add(dgvAuthors);

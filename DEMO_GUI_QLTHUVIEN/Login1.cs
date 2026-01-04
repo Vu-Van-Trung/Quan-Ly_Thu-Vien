@@ -114,9 +114,9 @@ namespace DoAnDemoUI
             //    if (MessageBox.Show("Bạn có chắc muốn thoát?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
             //    {
             //        exitConfirmed = true;
-            //        Application.Exit();
-            //    }
-            this.Close();
+        Application.Exit();
+
+
         }
 
         private void form1_FormClosing(object sender, FormClosingEventArgs e)

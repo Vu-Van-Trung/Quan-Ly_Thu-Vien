@@ -25,36 +25,6 @@ namespace DoAnDemoUI
             // Khởi tạo danh sách menu
             SetupDefaultMenuActions();
             BuildModernMenu();
-            SetupLogoutButton();
-        }
-
-        private void SetupLogoutButton()
-        {
-            try
-            {
-                string resourcePath = Path.Combine(Application.StartupPath, "Resources", "ModernIcons", "logout_v2.png");
-                if (!File.Exists(resourcePath))
-                    resourcePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Resources", "ModernIcons", "logout_v2.png");
-
-                if (File.Exists(resourcePath))
-                {
-                    btnLogout.Image = Image.FromFile(resourcePath);
-                    btnLogout.ImageSize = new Size(32, 32);
-                    btnLogout.ImageAlign = HorizontalAlignment.Left;
-                    btnLogout.ImageOffset = new Point(10, 0);
-                    btnLogout.TextOffset = new Point(15, 0);
-                }
-                
-                // Style updates
-                btnLogout.BorderRadius = 12;
-                btnLogout.FillColor = Color.FromArgb(231, 76, 60);
-                btnLogout.CustomBorderThickness = new Padding(4, 0, 0, 0);
-                btnLogout.BorderColor = Color.Transparent;
-                
-                btnLogout.HoverState.FillColor = Color.FromArgb(192, 57, 43);
-                btnLogout.HoverState.CustomBorderColor = Color.White;
-            }
-            catch { }
         }
 
         private void SetupDefaultMenuActions()
@@ -66,44 +36,44 @@ namespace DoAnDemoUI
             string iconPath = Path.Combine(Application.StartupPath, "Resources", "ModernIcons");
             // Lưu ý: Nếu chạy trong debug, Application.StartupPath có thể là bin/Debug. 
             // Chúng ta sẽ thử cả đường dẫn tương đối từ project nếu không thấy.
-            if (!Directory.Exists(iconPath)) 
+            if (!Directory.Exists(iconPath))
             {
                 iconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Resources", "ModernIcons");
             }
 
-        // Existing menu actions
+            // Existing menu actions
             // Use Security.AccessControl to filter
-            
+
             if (Security.AccessControl.CanAccess("ManageBooks", _userRole))
                 AddMenuAction("ManageBooks", "Quản lý Sách", "books_v2.png", () => OpenOrActivateChild(typeof(QuanLiSach)));
-            
+
             if (Security.AccessControl.CanAccess("ManageMembers", _userRole))
                 AddMenuAction("ManageMembers", "Quản lý Độc giả", "member_v2.png", () => OpenOrActivateChild(typeof(FormMember)));
-            
+
             if (Security.AccessControl.CanAccess("ManageLoans", _userRole))
                 AddMenuAction("ManageLoans", "Quản lý Mượn/Trả", "loan_v2.png", () => OpenOrActivateChild(typeof(FormLoan)));
-            
+
             if (Security.AccessControl.CanAccess("ManageStaff", _userRole))
                 AddMenuAction("ManageStaff", "Quản lý Nhân viên", "staff_v2.png", () => OpenOrActivateChild(typeof(FormStaff)));
-            
+
             if (Security.AccessControl.CanAccess("ManagePublishers", _userRole))
                 AddMenuAction("ManagePublishers", "Quản lý Nhà XB", "publisher_v2.png", () => OpenOrActivateChild(typeof(FormPublisher)));
-            
+
             if (Security.AccessControl.CanAccess("ManageAuthors", _userRole))
                 AddMenuAction("ManageAuthors", "Quản lý Tác Giả", "author_v2.png", () => OpenOrActivateChild(typeof(QuanLiTacGia)));
-            
+
             if (Security.AccessControl.CanAccess("ManageFines", _userRole))
                 AddMenuAction("ManageFines", "Phiếu Phạt & Trả Sách", "fine_v2.png", () => OpenOrActivateChild(typeof(FormFine)));
-            
+
             if (Security.AccessControl.CanAccess("Reports", _userRole))
                 AddMenuAction("Reports", "Báo cáo & Thống kê", "report_v2.png", () => OpenOrActivateChild(typeof(FormReport)));
-            
+
             if (Security.AccessControl.CanAccess("ManageAccounts", _userRole))
                 AddMenuAction("ManageAccounts", "Quản lý Tài Khoản", "account_v2.png", () => OpenOrActivateChild(typeof(DEMO_GUI_QLTHUVIEN.QuanLyTaiKhoan)));
-            
+
             if (Security.AccessControl.CanAccess("ViewLogs", _userRole))
                 AddMenuAction("ViewLogs", "Nhật Ký Hệ Thống", "log_v2.png", () => OpenOrActivateChild(typeof(QuanLiNhatKy)));
-            
+
             if (Security.AccessControl.CanAccess("Settings", _userRole))
                 AddMenuAction("Settings", "Cài đặt & Dữ liệu", "settings_v2.png", ShowSettingsForm);
         }
@@ -145,12 +115,12 @@ namespace DoAnDemoUI
             if (string.IsNullOrWhiteSpace(key)) throw new ArgumentNullException(nameof(key));
             if (_menuActions.Any(a => string.Equals(a.Key, key, StringComparison.OrdinalIgnoreCase))) return;
 
-            _menuActions.Add(new MenuAction 
-            { 
-                Key = key, 
-                DisplayName = displayName ?? key, 
+            _menuActions.Add(new MenuAction
+            {
+                Key = key,
+                DisplayName = displayName ?? key,
                 IconFileName = iconFileName,
-                Action = action 
+                Action = action
             });
         }
 
@@ -173,18 +143,18 @@ namespace DoAnDemoUI
                 btn.TextOffset = new Point(15, 0);
                 btn.BorderRadius = 12; // Rounded corners 12px
                 btn.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-                
+
                 // Hiệu ứng Indicator (Đường kẻ bên trái)
                 btn.CustomBorderThickness = new Padding(5, 0, 0, 0);
                 btn.BorderColor = Color.Transparent; // Mặc định không hiện
-                
+
                 btn.CheckedState.CustomBorderColor = Color.White;
                 btn.CheckedState.FillColor = Color.FromArgb(192, 57, 43); // Darker Red for active
-                
+
                 // Hover Effects
                 btn.HoverState.FillColor = Color.FromArgb(231, 76, 60);   // Brighter Red for hover
                 btn.HoverState.CustomBorderColor = Color.FromArgb(255, 200, 200);
-                
+
                 btn.Cursor = Cursors.Hand;
 
                 // Load Icon
@@ -208,7 +178,7 @@ namespace DoAnDemoUI
                 }
                 catch { /* Ignore icon load errors */ }
 
-                btn.Click += (s, e) => 
+                btn.Click += (s, e) =>
                 {
                     item.Action?.Invoke();
                 };
@@ -273,7 +243,7 @@ namespace DoAnDemoUI
         {
             if (MessageBox.Show("Bạn có chắc muốn thoát ứng dụng?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-               this.Close();
+                this.Close();
             }
         }
 
@@ -319,7 +289,7 @@ namespace DoAnDemoUI
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-           this.Close();
+            Application.Exit();
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
@@ -336,6 +306,34 @@ namespace DoAnDemoUI
                 Login1 loginForm = new Login1();
                 loginForm.Show();
                 this.Close(); // Đóng form chính
+            }
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            {
+                var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    // Mở lại form đăng nhập
+                    Login1 loginForm = new Login1();
+                    loginForm.Show();
+                    this.Close(); // Đóng form chính
+                }
+            }
+        }
+
+        private void btnLogout_Click_2(object sender, EventArgs e)
+        {
+            {
+                var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    // Mở lại form đăng nhập
+                    Login1 loginForm = new Login1();
+                    loginForm.Show();
+                    this.Close(); // Đóng form chính
+                }
             }
         }
     }

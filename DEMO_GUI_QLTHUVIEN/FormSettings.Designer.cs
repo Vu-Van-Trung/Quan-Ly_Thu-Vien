@@ -20,10 +20,7 @@ namespace DoAnDemoUI
         {
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             grpData = new GroupBox();
-            btnLogout = new Guna.UI2.WinForms.Guna2Button();
             btnRestore = new Button();
             btnBackup = new Button();
             lblTitle = new Label();
@@ -34,7 +31,6 @@ namespace DoAnDemoUI
             // 
             // grpData
             // 
-            grpData.Controls.Add(btnLogout);
             grpData.Controls.Add(btnRestore);
             grpData.Controls.Add(btnBackup);
             grpData.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -48,25 +44,6 @@ namespace DoAnDemoUI
             grpData.TabStop = false;
             grpData.Text = "📁 Quản Lý Dữ Liệu";
             // 
-            // btnLogout
-            // 
-            btnLogout.BorderStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
-            btnLogout.CustomizableEdges = customizableEdges1;
-            btnLogout.DisabledState.BorderColor = Color.DarkGray;
-            btnLogout.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnLogout.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnLogout.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnLogout.FillColor = Color.Lime;
-            btnLogout.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnLogout.ForeColor = Color.White;
-            btnLogout.Location = new Point(487, 62);
-            btnLogout.Name = "btnLogout";
-            btnLogout.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnLogout.Size = new Size(200, 62);
-            btnLogout.TabIndex = 24;
-            btnLogout.Text = "Log Out";
-            btnLogout.Click += btnLogout_Click;
-            // 
             // btnRestore
             // 
             btnRestore.BackColor = Color.FromArgb(244, 67, 54);
@@ -74,7 +51,7 @@ namespace DoAnDemoUI
             btnRestore.FlatStyle = FlatStyle.Flat;
             btnRestore.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnRestore.ForeColor = Color.White;
-            btnRestore.Location = new Point(260, 62);
+            btnRestore.Location = new Point(399, 62);
             btnRestore.Margin = new Padding(3, 4, 3, 4);
             btnRestore.Name = "btnRestore";
             btnRestore.Size = new Size(200, 62);
@@ -90,7 +67,7 @@ namespace DoAnDemoUI
             btnBackup.FlatStyle = FlatStyle.Flat;
             btnBackup.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnBackup.ForeColor = Color.White;
-            btnBackup.Location = new Point(40, 62);
+            btnBackup.Location = new Point(130, 62);
             btnBackup.Margin = new Padding(3, 4, 3, 4);
             btnBackup.Name = "btnBackup";
             btnBackup.Size = new Size(200, 62);
@@ -128,7 +105,7 @@ namespace DoAnDemoUI
             // 
             // guna2Button1
             // 
-            guna2Button1.CustomizableEdges = customizableEdges3;
+            guna2Button1.CustomizableEdges = customizableEdges1;
             guna2Button1.DisabledState.BorderColor = Color.DarkGray;
             guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -141,7 +118,7 @@ namespace DoAnDemoUI
             guna2Button1.Location = new Point(1254, 12);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.PressedColor = SystemColors.ButtonFace;
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2Button1.Size = new Size(44, 36);
             guna2Button1.TabIndex = 13;
             guna2Button1.Click += guna2Button1_Click;
@@ -173,6 +150,5 @@ namespace DoAnDemoUI
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnThoat;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Guna.UI2.WinForms.Guna2Button btnLogout;
     }
 }

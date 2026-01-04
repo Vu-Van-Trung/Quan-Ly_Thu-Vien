@@ -115,10 +115,66 @@ namespace DoAnDemoUI
             var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                // Mở lại form đăng nhập
+                // 1. Khởi tạo và hiện form Login lên trước để trải nghiệm mượt mà
                 Login1 loginForm = new Login1();
                 loginForm.Show();
-                this.Close(); // Đóng form chính
+
+                // 2. Tìm form QuanLyThuVien đang mở để ẩn nó đi
+                // Chúng ta duyệt qua danh sách các form đang mở (Application.OpenForms)
+                Form mainForm = null;
+                foreach (Form f in Application.OpenForms)
+                {
+                    // Kiểm tra dựa trên Tên Class hoặc Tên Form (giả sử form chính tên là QuanLyThuVien)
+                    if (f.Name == "QuanLyThuVien" || f.GetType().Name == "QuanLyThuVien")
+                    {
+                        mainForm = f;
+                        break;
+                    }
+                }
+
+                if (mainForm != null)
+                {
+                    // Dùng Hide() thay vì Close() để tránh tắt toàn bộ ứng dụng nếu đây là Form khởi chạy (Startup Form)
+                    mainForm.Hide();
+                }
+
+                // 3. Đóng form Settings hiện tại
+                this.Close();
+            }
+        }
+
+        private void btnLogout_Click_1(object sender, EventArgs e)
+        {
+            {
+                var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    // 1. Khởi tạo và hiện form Login lên trước để trải nghiệm mượt mà
+                    Login1 loginForm = new Login1();
+                    loginForm.Show();
+
+                    // 2. Tìm form QuanLyThuVien đang mở để ẩn nó đi
+                    // Chúng ta duyệt qua danh sách các form đang mở (Application.OpenForms)
+                    Form mainForm = null;
+                    foreach (Form f in Application.OpenForms)
+                    {
+                        // Kiểm tra dựa trên Tên Class hoặc Tên Form (giả sử form chính tên là QuanLyThuVien)
+                        if (f.Name == "QuanLyThuVien" || f.GetType().Name == "QuanLyThuVien")
+                        {
+                            mainForm = f;
+                            break;
+                        }
+                    }
+
+                    if (mainForm != null)
+                    {
+                        // Dùng Hide() thay vì Close() để tránh tắt toàn bộ ứng dụng nếu đây là Form khởi chạy (Startup Form)
+                        mainForm.Hide();
+                    }
+
+                    // 3. Đóng form Settings hiện tại
+                    this.Close();
+                }
             }
         }
     }
