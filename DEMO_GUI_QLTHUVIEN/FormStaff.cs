@@ -51,10 +51,10 @@ namespace DoAnDemoUI
             cboChucVu.Items.AddRange(new string[]
             {
                 "Quản trị viên",
-                "Thủ thư trưởng",
+       
                 "Thủ thư",
                 "Nhân viên",
-                "Thực tập sinh"
+               
             });
         }
 
