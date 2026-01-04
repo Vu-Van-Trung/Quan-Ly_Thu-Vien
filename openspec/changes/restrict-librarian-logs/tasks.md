@@ -1,0 +1,3 @@
+- [x] Update `QuanLiNhatKy.cs` to import `DoAnDemoUI.Services`. <!-- id: 0 -->
+- [x] Modify `LoadData` in `QuanLiNhatKy.cs` to check `Session.CurrentRole`. <!-- id: 1 -->
+- [x] Implement the whitelist filtering logic for "Thủ thư". <!-- id: 2 -->

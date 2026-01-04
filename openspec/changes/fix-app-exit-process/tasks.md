@@ -1,0 +1,4 @@
+- [x] Add `_isLoggingOut` field to `QuanLiThuVien.cs`. <!-- id: 0 -->
+- [x] Update Logout methods (`mniDangXuat_Click`, `btnLogout_Click`, etc.) to set `_isLoggingOut = true`. <!-- id: 1 -->
+- [x] Implement `FormClosed` event handler to call `Application.Exit()` if not logging out. <!-- id: 2 -->
+- [x] Wire up `FormClosed` event in the Constructor. <!-- id: 3 -->

@@ -13,6 +13,7 @@ namespace DoAnDemoUI
         // Danh sách lưu trữ các chức năng menu
         private readonly List<MenuAction> _menuActions = new List<MenuAction>();
         private string _userRole;
+        private bool _isLoggingOut = false;
 
         public QuanLiThuVien(string userRole = "Nhân viên")
         {
@@ -25,6 +26,16 @@ namespace DoAnDemoUI
             // Khởi tạo danh sách menu
             SetupDefaultMenuActions();
             BuildModernMenu();
+
+            this.FormClosed += QuanLiThuVien_FormClosed;
+        }
+
+        private void QuanLiThuVien_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (!_isLoggingOut)
+            {
+                Application.Exit();
+            }
         }
 
         private void SetupDefaultMenuActions()
@@ -232,6 +243,7 @@ namespace DoAnDemoUI
             var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+                _isLoggingOut = true;
                 // Mở lại form đăng nhập
                 Login1 loginForm = new Login1();
                 loginForm.Show();
@@ -280,6 +292,7 @@ namespace DoAnDemoUI
             var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+                _isLoggingOut = true;
                 // Mở lại form đăng nhập
                 Login1 loginForm = new Login1();
                 loginForm.Show();
@@ -289,7 +302,7 @@ namespace DoAnDemoUI
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
@@ -302,6 +315,7 @@ namespace DoAnDemoUI
             var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+                _isLoggingOut = true;
                 // Mở lại form đăng nhập
                 Login1 loginForm = new Login1();
                 loginForm.Show();
@@ -315,6 +329,7 @@ namespace DoAnDemoUI
                 var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
+                    _isLoggingOut = true;
                     // Mở lại form đăng nhập
                     Login1 loginForm = new Login1();
                     loginForm.Show();
@@ -329,6 +344,7 @@ namespace DoAnDemoUI
                 var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
+                    _isLoggingOut = true;
                     // Mở lại form đăng nhập
                     Login1 loginForm = new Login1();
                     loginForm.Show();

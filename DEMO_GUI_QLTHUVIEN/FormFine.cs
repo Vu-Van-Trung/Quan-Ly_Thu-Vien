@@ -56,27 +56,19 @@ namespace DoAnDemoUI
 
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             grpSearch = new GroupBox();
             dgvBooks = new DataGridView();
             btnPay = new Button();
             btnCalculateFine = new Button();
             lblLoanId = new Label();
             grpDetails = new GroupBox();
-            lblLoanId = new Label();
-            grpDetails = new GroupBox();
-            // btnSearch = new Guna.UI2.WinForms.Guna2Button(); // REMOVED
-            // txtLoanId2 = new Guna.UI2.WinForms.Guna2TextBox(); // REMOVED
-            cboLoanId = new ComboBox(); // ADDED
+            cboLoanId = new ComboBox();
             lblTotalFine = new Label();
             btnReturn = new Button();
             grpFines = new GroupBox();
@@ -97,7 +89,6 @@ namespace DoAnDemoUI
             // 
             grpSearch.Controls.Add(dgvBooks);
             grpSearch.Controls.Add(btnPay);
-            // btnCalculateFine removed
             grpSearch.Location = new Point(25, 143);
             grpSearch.Name = "grpSearch";
             grpSearch.Size = new Size(1273, 264);
@@ -112,20 +103,20 @@ namespace DoAnDemoUI
             dgvBooks.Location = new Point(26, 26);
             dgvBooks.Name = "dgvBooks";
             dgvBooks.RowHeadersWidth = 51;
-            dgvBooks.Size = new Size(1223, 195);
+            dgvBooks.Size = new Size(1199, 195);
             dgvBooks.TabIndex = 0;
             // 
             // btnPay
             // 
             btnPay.BackColor = Color.FromArgb(192, 255, 192);
-            btnPay.Location = new Point(1144, 227);
+            btnPay.Location = new Point(1134, 227);
             btnPay.Name = "btnPay";
             btnPay.Size = new Size(81, 31);
             btnPay.TabIndex = 1;
             btnPay.Text = "Trả Sách";
             btnPay.UseVisualStyleBackColor = false;
             // 
-            // btnCalculateFine (Removed)
+            // btnCalculateFine
             // 
             btnCalculateFine.Location = new Point(1015, 227);
             btnCalculateFine.Name = "btnCalculateFine";
@@ -145,11 +136,7 @@ namespace DoAnDemoUI
             // 
             // grpDetails
             // 
-            // grpDetails
-            // 
-            // grpDetails.Controls.Add(btnSearch); // REMOVED
             grpDetails.Controls.Add(lblLoanId);
-            // grpDetails.Controls.Add(txtLoanId2); // REMOVED
             grpDetails.Controls.Add(cboLoanId);
             grpDetails.Location = new Point(35, 65);
             grpDetails.Name = "grpDetails";
@@ -158,22 +145,16 @@ namespace DoAnDemoUI
             grpDetails.TabStop = false;
             grpDetails.Text = "Tìm kiếm phiếu mượn";
             // 
-            // 
             // cboLoanId
             // 
+            cboLoanId.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cboLoanId.AutoCompleteSource = AutoCompleteSource.ListItems;
             cboLoanId.Font = new Font("Segoe UI", 12F);
             cboLoanId.FormattingEnabled = true;
             cboLoanId.Location = new Point(309, 28);
             cboLoanId.Name = "cboLoanId";
             cboLoanId.Size = new Size(363, 36);
             cboLoanId.TabIndex = 15;
-            cboLoanId.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            cboLoanId.AutoCompleteSource = AutoCompleteSource.ListItems;
-            // 
-            // btnSearch (Code removed)
-            // 
-            // txtLoanId2 (Code removed)
-            //
             // 
             // lblTotalFine
             // 
@@ -186,7 +167,7 @@ namespace DoAnDemoUI
             // btnReturn
             // 
             btnReturn.BackColor = Color.FromArgb(192, 255, 192);
-            btnReturn.Location = new Point(1144, 227);
+            btnReturn.Location = new Point(1121, 227);
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(94, 31);
             btnReturn.TabIndex = 1;
@@ -208,7 +189,7 @@ namespace DoAnDemoUI
             // 
             // btnWaiver
             // 
-            btnWaiver.Location = new Point(1015, 227);
+            btnWaiver.Location = new Point(986, 224);
             btnWaiver.Name = "btnWaiver";
             btnWaiver.Size = new Size(103, 31);
             btnWaiver.TabIndex = 2;
@@ -221,12 +202,12 @@ namespace DoAnDemoUI
             dgvFines.Location = new Point(10, 26);
             dgvFines.Name = "dgvFines";
             dgvFines.RowHeadersWidth = 51;
-            dgvFines.Size = new Size(1239, 195);
+            dgvFines.Size = new Size(1215, 195);
             dgvFines.TabIndex = 0;
             // 
             // guna2Button1
             // 
-            guna2Button1.CustomizableEdges = customizableEdges15;
+            guna2Button1.CustomizableEdges = customizableEdges7;
             guna2Button1.DisabledState.BorderColor = Color.DarkGray;
             guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -236,10 +217,10 @@ namespace DoAnDemoUI
             guna2Button1.ForeColor = Color.White;
             guna2Button1.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
             guna2Button1.ImageSize = new Size(40, 40);
-            guna2Button1.Location = new Point(1254, 12);
+            guna2Button1.Location = new Point(1219, 12);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.PressedColor = SystemColors.ButtonFace;
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges8;
             guna2Button1.Size = new Size(44, 36);
             guna2Button1.TabIndex = 12;
             guna2Button1.Click += guna2Button1_Click;
@@ -258,7 +239,7 @@ namespace DoAnDemoUI
             // btnPrint
             // 
             btnPrint.BorderRadius = 18;
-            btnPrint.CustomizableEdges = customizableEdges17;
+            btnPrint.CustomizableEdges = customizableEdges9;
             btnPrint.DisabledState.BorderColor = Color.DarkGray;
             btnPrint.DisabledState.CustomBorderColor = Color.DarkGray;
             btnPrint.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -268,7 +249,7 @@ namespace DoAnDemoUI
             btnPrint.ForeColor = Color.White;
             btnPrint.Location = new Point(184, 693);
             btnPrint.Name = "btnPrint";
-            btnPrint.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            btnPrint.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btnPrint.Size = new Size(132, 42);
             btnPrint.TabIndex = 14;
             btnPrint.Text = "In biên lai";
@@ -277,7 +258,7 @@ namespace DoAnDemoUI
             // btnReset
             // 
             btnReset.BorderRadius = 18;
-            btnReset.CustomizableEdges = customizableEdges19;
+            btnReset.CustomizableEdges = customizableEdges11;
             btnReset.DisabledState.BorderColor = Color.DarkGray;
             btnReset.DisabledState.CustomBorderColor = Color.DarkGray;
             btnReset.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -287,7 +268,7 @@ namespace DoAnDemoUI
             btnReset.ForeColor = Color.White;
             btnReset.Location = new Point(32, 693);
             btnReset.Name = "btnReset";
-            btnReset.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            btnReset.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btnReset.Size = new Size(124, 42);
             btnReset.TabIndex = 15;
             btnReset.Text = "Làm mới";
@@ -295,7 +276,7 @@ namespace DoAnDemoUI
             // 
             // FormFine
             // 
-            ClientSize = new Size(1310, 743);
+            ClientSize = new Size(1288, 743);
             Controls.Add(btnReset);
             Controls.Add(btnPrint);
             Controls.Add(lblTitle);

@@ -12,25 +12,43 @@ namespace DoAnDemoUI
         public FormConditionCheck()
         {
             InitializeComponent();
+            chkNormal.Checked = true;
         }
 
         public FormConditionCheck(string bookName) : this()
         {
-            lblMessage.Text = $"Xác nhận trả sách:\n'{bookName}'";        }
+            lblMessage.Text = $"Xác nhận trả sách:\n'{bookName}'";
+        }
 
         private void ChkCondition_CheckedChanged(object sender, EventArgs e)
         {
-            // Ensure mutually exclusive if needed, or prioritization
-            // For now, allow simple toggle. If both checked, priority logic in Confirm.
-            if (sender == chkMat && chkMat.Checked) chkHuHong.Checked = false;
-            if (sender == chkHuHong && chkHuHong.Checked) chkMat.Checked = false;
+            // Improved algorithm: Mutually exclusive selection (Radio button behavior)
+            if (sender is Guna.UI2.WinForms.Guna2CheckBox chk && chk.Checked)
+            {
+                if (chk == chkNormal)
+                {
+                    chkHuHong.Checked = false;
+                    chkMat.Checked = false;
+                }
+                else if (chk == chkHuHong)
+                {
+                    chkNormal.Checked = false;
+                    chkMat.Checked = false;
+                }
+                else if (chk == chkMat)
+                {
+                    chkNormal.Checked = false;
+                    chkHuHong.Checked = false;
+                }
+            }
         }
 
         private void BtnConfirm_Click(object sender, EventArgs e)
         {
             if (chkMat.Checked) SelectedCondition = "Mất";
             else if (chkHuHong.Checked) SelectedCondition = "Hư hỏng";
-            else SelectedCondition = "Tốt";
+            else if (chkNormal.Checked) SelectedCondition = "Tốt";
+            else SelectedCondition = "Tốt"; // Default fallback
 
             this.DialogResult = DialogResult.OK;
             this.Close();

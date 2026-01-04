@@ -111,11 +111,12 @@ namespace DoAnDemoUI
         // --- CÁC SỰ KIỆN KHÁC GIỮ NGUYÊN ---
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
-            //    if (MessageBox.Show("Bạn có chắc muốn thoát?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            //    {
-            //        exitConfirmed = true;
-        Application.Exit();
-
+            //if (MessageBox.Show("Bạn có chắc muốn thoát?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            //{
+            //    this.Close();
+            //}
+           this.Close();
+            
 
         }
 

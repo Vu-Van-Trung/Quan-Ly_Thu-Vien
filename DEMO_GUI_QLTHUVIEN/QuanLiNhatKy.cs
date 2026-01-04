@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using LibraryManagement.Data;
 using LibraryManagement.Models;
 using System.Data;
+using DoAnDemoUI.Services;
 
 namespace DoAnDemoUI
 {
@@ -73,9 +74,25 @@ namespace DoAnDemoUI
                 }
 
                 // 3. Date Filter (inclusive)
+                // 3. Date Filter (inclusive)
                 var fromDate = dtpFrom.Value.Date;
                 var toDate = dtpTo.Value.Date.AddDays(1).AddTicks(-1); // End of day
                 query = query.Where(x => x.ThoiGian >= fromDate && x.ThoiGian <= toDate);
+
+                // 4. Role-based Restriction (NEW)
+                // If user is "Thủ thư", only show related functions
+                if (Session.CurrentRole == "Thủ thư")
+                {
+                    var allowedFunctions = new[] 
+                    { 
+                        "Mượn sách", 
+                        "Trả sách", 
+                        "Gia hạn", 
+                        "Lập phiếu phạt", 
+                        "Thanh toán tiền phạt" 
+                    };
+                    query = query.Where(x => allowedFunctions.Contains(x.ChucNang));
+                }
 
                 var logs = query.OrderByDescending(x => x.ThoiGian).ToList();
                 dgvLogs.DataSource = logs;

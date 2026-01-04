@@ -77,7 +77,7 @@ namespace DoAnDemoUI
             // 
             tabActiveMembers.Location = new Point(4, 29);
             tabActiveMembers.Name = "tabActiveMembers";
-            tabActiveMembers.Size = new Size(752, 17);
+            tabActiveMembers.Size = new Size(1302, 17);
             tabActiveMembers.TabIndex = 1;
             tabActiveMembers.Text = "Độc Giả Tích Cực";
             // 
@@ -85,7 +85,7 @@ namespace DoAnDemoUI
             // 
             tabCategoryStats.Location = new Point(4, 29);
             tabCategoryStats.Name = "tabCategoryStats";
-            tabCategoryStats.Size = new Size(752, 17);
+            tabCategoryStats.Size = new Size(1302, 17);
             tabCategoryStats.TabIndex = 2;
             tabCategoryStats.Text = "Thống Kê Thể Loại";
             // 
@@ -93,7 +93,7 @@ namespace DoAnDemoUI
             // 
             tabFineRevenue.Location = new Point(4, 29);
             tabFineRevenue.Name = "tabFineRevenue";
-            tabFineRevenue.Size = new Size(752, 17);
+            tabFineRevenue.Size = new Size(1302, 17);
             tabFineRevenue.TabIndex = 3;
             tabFineRevenue.Text = "Doanh Thu Phạt";
             // 
@@ -101,7 +101,7 @@ namespace DoAnDemoUI
             // 
             tabInventory.Location = new Point(4, 29);
             tabInventory.Name = "tabInventory";
-            tabInventory.Size = new Size(752, 17);
+            tabInventory.Size = new Size(1302, 17);
             tabInventory.TabIndex = 4;
             tabInventory.Text = "Tồn Kho";
             // 
@@ -114,7 +114,7 @@ namespace DoAnDemoUI
             dgvReport.ReadOnly = true;
             dgvReport.RowHeadersWidth = 51;
             dgvReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvReport.Size = new Size(1286, 539);
+            dgvReport.Size = new Size(1251, 539);
             dgvReport.TabIndex = 7;
             // 
             // btnGenerate
@@ -185,9 +185,9 @@ namespace DoAnDemoUI
             lblTitle.ForeColor = Color.FromArgb(255, 128, 128);
             lblTitle.Location = new Point(374, 9);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(530, 50);
+            lblTitle.Size = new Size(471, 50);
             lblTitle.TabIndex = 9;
-            lblTitle.Text = "📚 DANH SÁCH PHIẾU PHẠT";
+            lblTitle.Text = "📚 BÁO CÁO - THỐNG KÊ";
             // 
             // guna2Button1
             // 
@@ -201,7 +201,7 @@ namespace DoAnDemoUI
             guna2Button1.ForeColor = Color.White;
             guna2Button1.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
             guna2Button1.ImageSize = new Size(40, 40);
-            guna2Button1.Location = new Point(1254, 9);
+            guna2Button1.Location = new Point(1236, 9);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.PressedColor = SystemColors.ButtonFace;
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;

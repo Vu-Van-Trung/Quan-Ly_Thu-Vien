@@ -29,6 +29,7 @@ namespace DoAnDemoUI
         private void InitializeComponent()
         {
             this.lblMessage = new System.Windows.Forms.Label();
+            this.chkNormal = new Guna.UI2.WinForms.Guna2CheckBox();
             this.chkHuHong = new Guna.UI2.WinForms.Guna2CheckBox();
             this.chkMat = new Guna.UI2.WinForms.Guna2CheckBox();
             this.btnConfirm = new Guna.UI2.WinForms.Guna2Button();
@@ -44,21 +45,30 @@ namespace DoAnDemoUI
             this.lblMessage.Text = "Xác nhận trả sách";
             this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // chkNormal
+            // 
+            this.chkNormal.Location = new System.Drawing.Point(50, 90);
+            this.chkNormal.Name = "chkNormal";
+            this.chkNormal.Size = new System.Drawing.Size(300, 30);
+            this.chkNormal.TabIndex = 1;
+            this.chkNormal.Text = "Sách bình thường";
+            this.chkNormal.CheckedChanged += new System.EventHandler(this.ChkCondition_CheckedChanged);
+            // 
             // chkHuHong
             // 
-            this.chkHuHong.Location = new System.Drawing.Point(50, 90);
+            this.chkHuHong.Location = new System.Drawing.Point(50, 130);
             this.chkHuHong.Name = "chkHuHong";
             this.chkHuHong.Size = new System.Drawing.Size(300, 30);
-            this.chkHuHong.TabIndex = 1;
+            this.chkHuHong.TabIndex = 2;
             this.chkHuHong.Text = "Sách bị hư hỏng";
             this.chkHuHong.CheckedChanged += new System.EventHandler(this.ChkCondition_CheckedChanged);
             // 
             // chkMat
             // 
-            this.chkMat.Location = new System.Drawing.Point(50, 130);
+            this.chkMat.Location = new System.Drawing.Point(50, 170);
             this.chkMat.Name = "chkMat";
             this.chkMat.Size = new System.Drawing.Size(300, 30);
-            this.chkMat.TabIndex = 2;
+            this.chkMat.TabIndex = 3;
             this.chkMat.Text = "Sách bị mất";
             this.chkMat.CheckedChanged += new System.EventHandler(this.ChkCondition_CheckedChanged);
             // 
@@ -71,10 +81,10 @@ namespace DoAnDemoUI
             this.btnConfirm.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnConfirm.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnConfirm.ForeColor = System.Drawing.Color.White;
-            this.btnConfirm.Location = new System.Drawing.Point(125, 170);
+            this.btnConfirm.Location = new System.Drawing.Point(125, 210);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(130, 40);
-            this.btnConfirm.TabIndex = 3;
+            this.btnConfirm.TabIndex = 4;
             this.btnConfirm.Text = "Xác nhận";
             this.btnConfirm.Click += new System.EventHandler(this.BtnConfirm_Click);
             // 
@@ -83,10 +93,11 @@ namespace DoAnDemoUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(400, 250);
+            this.ClientSize = new System.Drawing.Size(400, 270);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.chkMat);
             this.Controls.Add(this.chkHuHong);
+            this.Controls.Add(this.chkNormal);
             this.Controls.Add(this.lblMessage);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -101,6 +112,7 @@ namespace DoAnDemoUI
         #endregion
 
         private System.Windows.Forms.Label lblMessage;
+        private Guna.UI2.WinForms.Guna2CheckBox chkNormal;
         private Guna.UI2.WinForms.Guna2CheckBox chkHuHong;
         private Guna.UI2.WinForms.Guna2CheckBox chkMat;
         private Guna.UI2.WinForms.Guna2Button btnConfirm;
