@@ -342,7 +342,7 @@ namespace DoAnDemoUI
             Name = "Login1";
             Padding = new Padding(20);
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Đăng nhập - Thư Viện Tết";
+            Text = "it ";
             WindowState = FormWindowState.Maximized;
             Load += Login_Load;
             ((ISupportInitialize)errorProvider1).EndInit();
