@@ -319,7 +319,7 @@ namespace DoAnDemoUI
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+           this.Close();
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)

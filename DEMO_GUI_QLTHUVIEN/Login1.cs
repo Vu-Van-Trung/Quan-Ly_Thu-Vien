@@ -65,6 +65,12 @@ namespace DoAnDemoUI
 
                     if (user != null)
                     {
+                        if (user.TrangThai != "Hoạt động")
+                        {
+                            ShowError("Tài khoản bị khóa!");
+                            return;
+                        }
+
                         // Cập nhật thời gian đăng nhập cuối (nếu cần)
                         user.LanDangNhapCuoi = DateTime.Now;
                         context.SaveChanges();
