@@ -86,6 +86,7 @@ namespace DoAnDemoUI
             guna2CustomGradientPanel1.Controls.Add(btnMinimize);
             guna2CustomGradientPanel1.Controls.Add(btnCancel);
             guna2CustomGradientPanel1.CustomizableEdges = customizableEdges4;
+            guna2CustomGradientPanel1.Dock = DockStyle.Top;
             guna2CustomGradientPanel1.Location = new Point(259, 0);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
             guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges5;

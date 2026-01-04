@@ -217,7 +217,7 @@ namespace DoAnDemoUI
                 {
                     child.BringToFront();
                     if (child.WindowState == FormWindowState.Minimized)
-                        child.WindowState = FormWindowState.Normal;
+                        child.WindowState = FormWindowState.Normal;      
                     return;
                 }
             }
@@ -227,7 +227,8 @@ namespace DoAnDemoUI
             {
                 Form frm = (Form)Activator.CreateInstance(childType);
                 frm.MdiParent = this;
-                frm.StartPosition = FormStartPosition.CenterScreen;
+                frm.StartPosition = FormStartPosition.Manual;
+                frm.WindowState = FormWindowState.Normal;
                 frm.Show();
             }
             catch (Exception)
