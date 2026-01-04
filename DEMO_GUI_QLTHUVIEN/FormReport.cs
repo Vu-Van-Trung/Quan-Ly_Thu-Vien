@@ -462,8 +462,77 @@ namespace DoAnDemoUI
 
         private void BtnExport_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Chức năng xuất Excel đang được phát triển!\n\nBạn có thể copy dữ liệu từ bảng và paste vào Excel.",
-                "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (dgvReport.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Files (*.csv)|*.csv";
+            saveFileDialog.Title = "Lưu báo cáo";
+            saveFileDialog.FileName = $"BaoCao_{DateTime.Now:yyyyMMdd_HHmmss}.csv";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(saveFileDialog.FileName, false, System.Text.Encoding.UTF8))
+                    {
+                        // Write Header
+                        // Thêm BOM để Excel nhận diện đúng tiếng Việt
+                        sw.Write("\uFEFF"); 
+                        
+                        for (int i = 0; i < dgvReport.Columns.Count; i++)
+                        {
+                            sw.Write(dgvReport.Columns[i].HeaderText);
+                            if (i < dgvReport.Columns.Count - 1)
+                                sw.Write(",");
+                        }
+                        sw.WriteLine();
+
+                        // Write Rows
+                        foreach (DataGridViewRow row in dgvReport.Rows)
+                        {
+                            if (!row.IsNewRow)
+                            {
+                                for (int i = 0; i < dgvReport.Columns.Count; i++)
+                                {
+                                    string value = row.Cells[i].Value?.ToString() ?? "";
+                                    
+                                    // Xử lý trường hợp dữ liệu có chứa dấu phẩy hoặc xuống dòng
+                                    if (value.Contains(",") || value.Contains("\n") || value.Contains("\""))
+                                    {
+                                        value = "\"" + value.Replace("\"", "\"\"") + "\"";
+                                    }
+                                    
+                                    sw.Write(value);
+                                    if (i < dgvReport.Columns.Count - 1)
+                                        sw.Write(",");
+                                }
+                                sw.WriteLine();
+                            }
+                        }
+                    }
+                    MessageBox.Show("Xuất file thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
+                    // Mở file sau khi lưu
+                    try 
+                    {
+                        var p = new System.Diagnostics.Process();
+                        p.StartInfo = new System.Diagnostics.ProcessStartInfo(saveFileDialog.FileName)
+                        {
+                            UseShellExecute = true
+                        };
+                        p.Start();
+                    }
+                    catch { /* Không làm gì nếu không mở được */ }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi lưu file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         // Controls

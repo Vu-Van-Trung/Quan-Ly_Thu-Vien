@@ -52,41 +52,36 @@ namespace DoAnDemoUI
                 iconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Resources", "ModernIcons");
             }
 
-            // Existing menu actions
-            // Use Security.AccessControl to filter
+            // Helper local function to check permission
+            void CheckAndRun(string key, Action action)
+            {
+                if (Security.AccessControl.CanAccess(key, _userRole))
+                {
+                    action();
+                }
+                else
+                {
+                    string allowedRoles = string.Join("\n- ", Security.AccessControl.GetAllowedRoles(key));
+                    MessageBox.Show(
+                        $"⛔ TRUY CẬP BỊ TỪ CHỐI\n\n" +
+                        $"Bạn đang đăng nhập với vai trò: {_userRole}\n" +
+                        $"Chức năng này yêu cầu quyền:\n- {allowedRoles}",
+                        "Thông báo phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
 
-            if (Security.AccessControl.CanAccess("ManageBooks", _userRole))
-                AddMenuAction("ManageBooks", "Quản lý Sách", "books_v2.png", () => OpenOrActivateChild(typeof(QuanLiSach)));
-
-            if (Security.AccessControl.CanAccess("ManageMembers", _userRole))
-                AddMenuAction("ManageMembers", "Quản lý Độc giả", "member_v2.png", () => OpenOrActivateChild(typeof(FormMember)));
-
-            if (Security.AccessControl.CanAccess("ManageLoans", _userRole))
-                AddMenuAction("ManageLoans", "Quản lý Mượn/Trả", "loan_v2.png", () => OpenOrActivateChild(typeof(FormLoan)));
-
-            if (Security.AccessControl.CanAccess("ManageStaff", _userRole))
-                AddMenuAction("ManageStaff", "Quản lý Nhân viên", "staff_v2.png", () => OpenOrActivateChild(typeof(FormStaff)));
-
-            if (Security.AccessControl.CanAccess("ManagePublishers", _userRole))
-                AddMenuAction("ManagePublishers", "Quản lý Nhà XB", "publisher_v2.png", () => OpenOrActivateChild(typeof(FormPublisher)));
-
-            if (Security.AccessControl.CanAccess("ManageAuthors", _userRole))
-                AddMenuAction("ManageAuthors", "Quản lý Tác Giả", "author_v2.png", () => OpenOrActivateChild(typeof(QuanLiTacGia)));
-
-            if (Security.AccessControl.CanAccess("ManageFines", _userRole))
-                AddMenuAction("ManageFines", "Phiếu Phạt & Trả Sách", "fine_v2.png", () => OpenOrActivateChild(typeof(FormFine)));
-
-            if (Security.AccessControl.CanAccess("Reports", _userRole))
-                AddMenuAction("Reports", "Báo cáo & Thống kê", "report_v2.png", () => OpenOrActivateChild(typeof(FormReport)));
-
-            if (Security.AccessControl.CanAccess("ManageAccounts", _userRole))
-                AddMenuAction("ManageAccounts", "Quản lý Tài Khoản", "account_v2.png", () => OpenOrActivateChild(typeof(DEMO_GUI_QLTHUVIEN.QuanLyTaiKhoan)));
-
-            if (Security.AccessControl.CanAccess("ViewLogs", _userRole))
-                AddMenuAction("ViewLogs", "Nhật Ký Hệ Thống", "log_v2.png", () => OpenOrActivateChild(typeof(QuanLiNhatKy)));
-
-            if (Security.AccessControl.CanAccess("Settings", _userRole))
-                AddMenuAction("Settings", "Cài đặt & Dữ liệu", "settings_v2.png", ShowSettingsForm);
+            // Always add menu items, check permission on click
+            AddMenuAction("ManageBooks", "Quản lý Sách", "books_v2.png", () => CheckAndRun("ManageBooks", () => OpenOrActivateChild(typeof(QuanLiSach))));
+            AddMenuAction("ManageMembers", "Quản lý Độc giả", "member_v2.png", () => CheckAndRun("ManageMembers", () => OpenOrActivateChild(typeof(FormMember))));
+            AddMenuAction("ManageLoans", "Quản lý Mượn/Trả", "loan_v2.png", () => CheckAndRun("ManageLoans", () => OpenOrActivateChild(typeof(FormLoan))));
+            AddMenuAction("ManageStaff", "Quản lý Nhân viên", "staff_v2.png", () => CheckAndRun("ManageStaff", () => OpenOrActivateChild(typeof(FormStaff))));
+            AddMenuAction("ManagePublishers", "Quản lý Nhà XB", "publisher_v2.png", () => CheckAndRun("ManagePublishers", () => OpenOrActivateChild(typeof(FormPublisher))));
+            AddMenuAction("ManageAuthors", "Quản lý Tác Giả", "author_v2.png", () => CheckAndRun("ManageAuthors", () => OpenOrActivateChild(typeof(QuanLiTacGia))));
+            AddMenuAction("ManageFines", "Phiếu Phạt & Trả Sách", "fine_v2.png", () => CheckAndRun("ManageFines", () => OpenOrActivateChild(typeof(FormFine))));
+            AddMenuAction("Reports", "Báo cáo & Thống kê", "report_v2.png", () => CheckAndRun("Reports", () => OpenOrActivateChild(typeof(FormReport))));
+            AddMenuAction("ManageAccounts", "Quản lý Tài Khoản", "account_v2.png", () => CheckAndRun("ManageAccounts", () => OpenOrActivateChild(typeof(DEMO_GUI_QLTHUVIEN.QuanLyTaiKhoan))));
+            AddMenuAction("ViewLogs", "Nhật Ký Hệ Thống", "log_v2.png", () => CheckAndRun("ViewLogs", () => OpenOrActivateChild(typeof(QuanLiNhatKy))));
+            AddMenuAction("Settings", "Cài đặt & Dữ liệu", "settings_v2.png", () => CheckAndRun("Settings", ShowSettingsForm));
         }
 
         private void ShowSettingsForm()
