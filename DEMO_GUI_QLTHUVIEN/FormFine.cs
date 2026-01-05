@@ -369,6 +369,7 @@ namespace DoAnDemoUI
                 MessageBox.Show("Thanh toán thành công!");
                 _currentLoan = _fineService.GetLoanWithDetails(_currentLoan.LoanId); // Refresh context
                 LoadFines();
+                CheckRefreshParent(); // Refresh UI to unblock borrowing if fines are cleared
             }
             else
             {

@@ -242,19 +242,9 @@ namespace DoAnDemoUI
                     return;
                 }
 
-                if (member.NgayHetHan != null && member.NgayHetHan < DateTime.Now)
+                if (member.NgayHetHan != null && member.NgayHetHan.Value.Date < DateTime.Now.Date)
                 {
                     MessageBox.Show($"Thẻ độc giả đã hết hạn vào ngày {member.NgayHetHan:dd/MM/yyyy}. Vui lòng gia hạn!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // --- 1.5. KIỂM TRA PHẠT CHƯA THANH TOÁN ---
-                // Chỉ chọn Phat từ các Loan của MemberId này
-                // (Giả sử có bảng Fines có LoanId, Loan có MemberId)
-                bool hasUnpaidFines = db.Fines.Any(f => f.Loan.MemberId == memberId && f.TrangThaiThanhToan == "Chưa thanh toán");
-                if (hasUnpaidFines)
-                {
-                    MessageBox.Show("Độc giả có khoản phạt chưa thanh toán. Vui lòng đóng phạt trước khi mượn sách mới!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -269,10 +259,27 @@ namespace DoAnDemoUI
                 }
 
                 // --- 3. KIỂM TRA GIỚI HẠN SỐ LƯỢNG (MAX 5) ---
-                int currentBorrowedCount = db.LoanDetails.Count(ld => ld.Loan.MemberId == memberId && ld.NgayTra == null);
-                if (currentBorrowedCount >= 5)
+                // Logic mới: Tổng số sách đang mượn + Số phiếu phạt chưa đóng <= 5
+                
+                // 1. Tính số sách đang mượn (Tổng SoLuong active)
+                int dangMuon = db.LoanDetails
+                    .Where(ld => ld.Loan.MemberId == memberId && ld.NgayTra == null)
+                    .Sum(ld => (int?)ld.SoLuong) ?? 0;
+
+                // 2. Tính số lượng phạt chưa thanh toán
+                int noPhat = db.Fines
+                    .Count(f => f.Loan.MemberId == memberId && f.TrangThaiThanhToan == "Chưa thanh toán");
+
+                // 3. Kiểm tra tổng hạn ngạch
+                int soLuongMuonMoi = 1; // Đang thêm 1 cuốn
+                if (dangMuon + noPhat + soLuongMuonMoi > 5)
                 {
-                    MessageBox.Show($"Độc giả đã đạt giới hạn mượn 5 cuốn sách (Đang mượn: {currentBorrowedCount}).\nVui lòng trả bớt sách trước khi mượn thêm.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(
+                        $"Độc giả đã đạt giới hạn mượn tối đa 5 cuốn sách.\n- Đang mượn: {dangMuon}\n- Phạt chưa đóng: {noPhat}\n\nVui lòng trả sách hoặc đóng phạt để được mượn tiếp.",
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                     return;
                 }
 

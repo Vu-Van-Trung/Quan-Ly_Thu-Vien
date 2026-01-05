@@ -27,6 +27,10 @@ namespace LibraryManagement.Services
 
         public Loan GetLoanWithDetails(string loanId)
         {
+            // Clear cache to ensure we get fresh data including newly created fines
+            // This is safe because this method is typically called after SaveChanges()
+            try { _context.ChangeTracker.Clear(); } catch { } 
+            
             return _context.Loans
                 .Include(l => l.LoanDetails)
                     .ThenInclude(ld => ld.Book)
@@ -69,6 +73,19 @@ namespace LibraryManagement.Services
             }
             
             _context.SaveChanges();
+
+            // Check if all books are returned
+            bool isAllReturned = !_context.LoanDetails.Any(ld => ld.LoanId == detail.LoanId && ld.NgayTra == null);
+            if (isAllReturned)
+            {
+                var loan = _context.Loans.FirstOrDefault(l => l.LoanId == detail.LoanId);
+                if (loan != null && loan.TrangThai != "Đã trả")
+                {
+                    loan.TrangThai = "Đã trả";
+                    loan.NgayTraThucTe = DateTime.Now;
+                    _context.SaveChanges();
+                }
+            }
         }
 
         public bool IsFineExists(string loanId, string reason)
