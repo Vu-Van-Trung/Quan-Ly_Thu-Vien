@@ -112,7 +112,7 @@ namespace DoAnDemoUI
             dgvMembers.RowHeadersWidth = 51;
             dgvMembers.RowTemplate.Height = 35;
             dgvMembers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvMembers.Size = new Size(1314, 320);
+            dgvMembers.Size = new Size(1236, 320);
             dgvMembers.TabIndex = 1;
             dgvMembers.CellContentClick += dgvMembers_CellContentClick;
             // 
@@ -149,7 +149,7 @@ namespace DoAnDemoUI
             grpInfo.ForeColor = Color.FromArgb(33, 150, 243);
             grpInfo.Location = new Point(12, 444);
             grpInfo.Name = "grpInfo";
-            grpInfo.Size = new Size(1331, 267);
+            grpInfo.Size = new Size(1253, 222);
             grpInfo.TabIndex = 2;
             grpInfo.TabStop = false;
             grpInfo.Text = "� Thông Tin Độc Giả";
@@ -425,7 +425,7 @@ namespace DoAnDemoUI
             btnThem.FlatStyle = FlatStyle.Flat;
             btnThem.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnThem.ForeColor = Color.White;
-            btnThem.Location = new Point(12, 731);
+            btnThem.Location = new Point(12, 691);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(110, 40);
             btnThem.TabIndex = 3;
@@ -441,7 +441,7 @@ namespace DoAnDemoUI
             btnSua.FlatStyle = FlatStyle.Flat;
             btnSua.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnSua.ForeColor = Color.White;
-            btnSua.Location = new Point(128, 731);
+            btnSua.Location = new Point(128, 691);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(110, 40);
             btnSua.TabIndex = 4;
@@ -457,7 +457,7 @@ namespace DoAnDemoUI
             btnXoa.FlatStyle = FlatStyle.Flat;
             btnXoa.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnXoa.ForeColor = Color.White;
-            btnXoa.Location = new Point(244, 731);
+            btnXoa.Location = new Point(244, 691);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(110, 40);
             btnXoa.TabIndex = 5;
@@ -473,7 +473,7 @@ namespace DoAnDemoUI
             btnLuu.FlatStyle = FlatStyle.Flat;
             btnLuu.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnLuu.ForeColor = Color.White;
-            btnLuu.Location = new Point(360, 731);
+            btnLuu.Location = new Point(360, 691);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(110, 40);
             btnLuu.TabIndex = 6;
@@ -489,7 +489,7 @@ namespace DoAnDemoUI
             btnHuy.FlatStyle = FlatStyle.Flat;
             btnHuy.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnHuy.ForeColor = Color.White;
-            btnHuy.Location = new Point(480, 731);
+            btnHuy.Location = new Point(480, 691);
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(110, 40);
             btnHuy.TabIndex = 7;
@@ -504,7 +504,7 @@ namespace DoAnDemoUI
             btnTimKiem.FlatStyle = FlatStyle.Flat;
             btnTimKiem.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnTimKiem.ForeColor = Color.White;
-            btnTimKiem.Location = new Point(1205, 731);
+            btnTimKiem.Location = new Point(1127, 691);
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(138, 40);
             btnTimKiem.TabIndex = 9;
@@ -515,7 +515,7 @@ namespace DoAnDemoUI
             // 
             txtTimKiem.BorderStyle = BorderStyle.FixedSingle;
             txtTimKiem.Font = new Font("Segoe UI", 10F);
-            txtTimKiem.Location = new Point(958, 738);
+            txtTimKiem.Location = new Point(880, 698);
             txtTimKiem.Name = "txtTimKiem";
             txtTimKiem.PlaceholderText = "Tìm theo tên, SĐT...";
             txtTimKiem.Size = new Size(230, 30);
@@ -533,7 +533,7 @@ namespace DoAnDemoUI
             btnClose.ForeColor = Color.White;
             btnClose.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
             btnClose.ImageSize = new Size(40, 40);
-            btnClose.Location = new Point(1354, 12);
+            btnClose.Location = new Point(1221, 12);
             btnClose.Name = "btnClose";
             btnClose.PressedColor = SystemColors.ButtonFace;
             btnClose.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -543,10 +543,9 @@ namespace DoAnDemoUI
             // 
             // FormMember
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.Inherit;
             BackColor = Color.FromArgb(250, 250, 250);
-            ClientSize = new Size(1426, 900);
+            ClientSize = new Size(1277, 743);
             Controls.Add(btnClose);
             Controls.Add(lblTitle);
             Controls.Add(dgvMembers);

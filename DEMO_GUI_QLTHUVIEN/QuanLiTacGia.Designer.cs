@@ -118,7 +118,7 @@ namespace DoAnDemoUI
             dgvAuthors.ReadOnly = true;
             dgvAuthors.RowHeadersVisible = false;
             dgvAuthors.RowHeadersWidth = 51;
-            dgvAuthors.Size = new Size(1249, 362);
+            dgvAuthors.Size = new Size(1226, 362);
             dgvAuthors.TabIndex = 1;
             dgvAuthors.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvAuthors.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -290,7 +290,7 @@ namespace DoAnDemoUI
             btnClear.Location = new Point(389, 676);
             btnClear.Name = "btnClear";
             btnClear.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            btnClear.Size = new Size(110, 40);
+            btnClear.Size = new Size(152, 40);
             btnClear.TabIndex = 6;
             btnClear.Text = "🚫 Xóa trắng";
             btnClear.Click += btnClear_Click;
@@ -322,7 +322,7 @@ namespace DoAnDemoUI
             grpInfo.ForeColor = Color.FromArgb(33, 150, 243);
             grpInfo.Location = new Point(29, 456);
             grpInfo.Name = "grpInfo";
-            grpInfo.Size = new Size(1249, 200);
+            grpInfo.Size = new Size(1236, 200);
             grpInfo.TabIndex = 2;
             grpInfo.TabStop = false;
             grpInfo.Text = "📝 Thông Tin Tác Giả";
@@ -390,7 +390,7 @@ namespace DoAnDemoUI
             btnClose.ForeColor = Color.White;
             btnClose.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
             btnClose.ImageSize = new Size(40, 40);
-            btnClose.Location = new Point(1234, 9);
+            btnClose.Location = new Point(1221, 12);
             btnClose.Name = "btnClose";
             btnClose.PressedColor = SystemColors.ButtonFace;
             btnClose.ShadowDecoration.CustomizableEdges = customizableEdges20;
@@ -402,7 +402,7 @@ namespace DoAnDemoUI
             // 
             AutoScaleMode = AutoScaleMode.Inherit;
             BackColor = Color.FromArgb(250, 250, 250);
-            ClientSize = new Size(1310, 743);
+            ClientSize = new Size(1277, 743);
             Controls.Add(lblError);
             Controls.Add(btnClose);
             Controls.Add(lblTitle);

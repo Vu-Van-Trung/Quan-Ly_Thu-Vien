@@ -112,7 +112,7 @@ namespace DoAnDemoUI
             lblTitle.ForeColor = Color.White;
             lblTitle.Location = new Point(0, 0);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(1310, 60);
+            lblTitle.Size = new Size(1277, 60);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "QUẢN LÝ SÁCH";
             lblTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -125,7 +125,7 @@ namespace DoAnDemoUI
             topPanel.Dock = DockStyle.Top;
             topPanel.Location = new Point(0, 0);
             topPanel.Name = "topPanel";
-            topPanel.Size = new Size(1310, 60);
+            topPanel.Size = new Size(1277, 60);
             topPanel.TabIndex = 0;
             // 
             // guna2Button1
@@ -140,7 +140,7 @@ namespace DoAnDemoUI
             guna2Button1.ForeColor = Color.White;
             guna2Button1.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
             guna2Button1.ImageSize = new Size(40, 40);
-            guna2Button1.Location = new Point(1236, 12);
+            guna2Button1.Location = new Point(1221, 12);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.PressedColor = SystemColors.ButtonFace;
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -416,7 +416,7 @@ namespace DoAnDemoUI
             dgvBooks.RowHeadersWidth = 51;
             dgvBooks.RowTemplate.Height = 35;
             dgvBooks.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvBooks.Size = new Size(890, 581);
+            dgvBooks.Size = new Size(857, 581);
             dgvBooks.TabIndex = 6;
             // 
             // btnCancel
@@ -429,10 +429,10 @@ namespace DoAnDemoUI
             btnCancel.FlatStyle = FlatStyle.Flat;
             btnCancel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnCancel.ForeColor = Color.White;
-            btnCancel.Location = new Point(293, 0);
+            btnCancel.Location = new Point(277, 0);
             btnCancel.Margin = new Padding(5, 0, 5, 0);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(62, 59);
+            btnCancel.Size = new Size(58, 59);
             btnCancel.TabIndex = 4;
             btnCancel.Text = "✖️ Hủy";
             btnCancel.UseVisualStyleBackColor = false;
@@ -447,10 +447,10 @@ namespace DoAnDemoUI
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(221, 0);
+            btnSave.Location = new Point(209, 0);
             btnSave.Margin = new Padding(5, 0, 5, 0);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(62, 59);
+            btnSave.Size = new Size(58, 59);
             btnSave.TabIndex = 3;
             btnSave.Text = "💾 Lưu";
             btnSave.UseVisualStyleBackColor = false;
@@ -464,10 +464,10 @@ namespace DoAnDemoUI
             btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnDelete.ForeColor = Color.White;
-            btnDelete.Location = new Point(149, 0);
+            btnDelete.Location = new Point(141, 0);
             btnDelete.Margin = new Padding(5, 0, 5, 0);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(62, 59);
+            btnDelete.Size = new Size(58, 59);
             btnDelete.TabIndex = 2;
             btnDelete.Text = "🗑️ Xóa";
             btnDelete.UseVisualStyleBackColor = false;
@@ -481,10 +481,10 @@ namespace DoAnDemoUI
             btnEdit.FlatStyle = FlatStyle.Flat;
             btnEdit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnEdit.ForeColor = Color.White;
-            btnEdit.Location = new Point(77, 0);
+            btnEdit.Location = new Point(73, 0);
             btnEdit.Margin = new Padding(5, 0, 5, 0);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(62, 59);
+            btnEdit.Size = new Size(58, 59);
             btnEdit.TabIndex = 1;
             btnEdit.Text = "✏️ Sửa";
             btnEdit.UseVisualStyleBackColor = false;
@@ -501,7 +501,7 @@ namespace DoAnDemoUI
             btnAdd.Location = new Point(5, 0);
             btnAdd.Margin = new Padding(5, 0, 5, 0);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(62, 59);
+            btnAdd.Size = new Size(58, 59);
             btnAdd.TabIndex = 0;
             btnAdd.Text = "➕ Thêm";
             btnAdd.UseVisualStyleBackColor = false;
@@ -524,12 +524,12 @@ namespace DoAnDemoUI
             buttonPanel.Name = "buttonPanel";
             buttonPanel.RowCount = 1;
             buttonPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            buttonPanel.Size = new Size(360, 59);
+            buttonPanel.Size = new Size(340, 59);
             buttonPanel.TabIndex = 2;
             // 
             // QuanLiSach
             // 
-            ClientSize = new Size(1310, 743);
+            ClientSize = new Size(1277, 743);
             Controls.Add(topPanel);
             Controls.Add(grpDetails);
             Controls.Add(buttonPanel);
