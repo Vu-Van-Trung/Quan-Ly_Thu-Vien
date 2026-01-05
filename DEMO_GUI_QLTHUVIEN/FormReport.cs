@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using LibraryManagement.Data;
 using Microsoft.EntityFrameworkCore;
+using LibraryManagement.Security;
 
 namespace DoAnDemoUI
 {
@@ -313,7 +314,7 @@ namespace DoAnDemoUI
 
         private void GenerateActiveMembersReport(DateTime from, DateTime to)
         {
-            var report = db.Loans
+            var rawData = db.Loans
                 .Include(l => l.Member)
                 .Include(l => l.LoanDetails)
                 .Where(l => l.LoanDate >= from && l.LoanDate <= to)
@@ -336,6 +337,16 @@ namespace DoAnDemoUI
                 .OrderByDescending(x => x.TongSachMuon)
                 .Take(20)
                 .ToList();
+
+            var report = rawData.Select(x => new
+            {
+                x.MaDocGia,
+                HoTen = CryptoHelper.Decrypt(x.HoTen),
+                SoDienThoai = CryptoHelper.Decrypt(x.SoDienThoai),
+                Email = CryptoHelper.Decrypt(x.Email),
+                x.SoPhieuMuon,
+                x.TongSachMuon
+            }).ToList();
 
             dgvReport.DataSource = report;
             lblTotal.Text = $"Top {report.Count} độc giả tích cực nhất";
@@ -372,7 +383,7 @@ namespace DoAnDemoUI
 
         private void GenerateFineRevenueReport(DateTime from, DateTime to)
         {
-            var report = db.Fines
+            var rawData = db.Fines
                 .Include(f => f.Loan)
                 .ThenInclude(l => l.Member)
                 .Where(f => f.NgayPhat >= from && f.NgayPhat <= to)
@@ -388,6 +399,17 @@ namespace DoAnDemoUI
                 })
                 .OrderByDescending(x => x.NgayPhat)
                 .ToList();
+
+            var report = rawData.Select(x => new
+            {
+                x.MaPhat,
+                x.MaPhieuMuon,
+                DocGia = CryptoHelper.Decrypt(x.DocGia),
+                x.LyDo,
+                x.SoTienPhat,
+                x.NgayPhat,
+                x.TrangThai
+            }).ToList();
 
             dgvReport.DataSource = report;
 
@@ -408,7 +430,7 @@ namespace DoAnDemoUI
 
         private void GenerateInventoryReport()
         {
-            var report = db.Books
+            var rawData = db.Books
                 .Include(b => b.Category)
                 .Include(b => b.Author)
                 .Include(b => b.Publisher)
@@ -427,6 +449,19 @@ namespace DoAnDemoUI
                 })
                 .OrderBy(x => x.SoLuongTon)
                 .ToList();
+
+            var report = rawData.Select(x => new
+            {
+                x.MaSach,
+                x.TenSach,
+                x.TacGia,
+                x.TheLoai,
+                NhaXuatBan = CryptoHelper.Decrypt(x.NhaXuatBan),
+                x.SoLuongTon,
+                x.ViTri,
+                x.TrangThai,
+                x.CanhBao
+            }).ToList();
 
             dgvReport.DataSource = report;
 
