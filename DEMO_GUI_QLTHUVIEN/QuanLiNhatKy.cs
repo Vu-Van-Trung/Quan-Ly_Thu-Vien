@@ -16,7 +16,7 @@ namespace DoAnDemoUI
         {
             InitializeComponent();
             db = new LibraryContext();
-            
+
             // Set default date range to last 30 days
             dtpFrom.Value = DateTime.Now.AddDays(-30);
             dtpTo.Value = DateTime.Now;
@@ -83,12 +83,12 @@ namespace DoAnDemoUI
                 // If user is "Thủ thư", only show related functions
                 if (Session.CurrentRole == "Thủ thư")
                 {
-                    var allowedFunctions = new[] 
-                    { 
-                        "Mượn sách", 
-                        "Trả sách", 
-                        "Gia hạn", 
-                        "Lập phiếu phạt", 
+                    var allowedFunctions = new[]
+                    {
+                        "Mượn sách",
+                        "Trả sách",
+                        "Gia hạn",
+                        "Lập phiếu phạt",
                         "Thanh toán tiền phạt",
                         "Quản lý Sách"
                     };
@@ -171,6 +171,11 @@ namespace DoAnDemoUI
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

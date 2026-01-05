@@ -202,7 +202,7 @@ namespace DoAnDemoUI
             guna2Button1.ForeColor = Color.White;
             guna2Button1.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
             guna2Button1.ImageSize = new Size(40, 40);
-            guna2Button1.Location = new Point(1236, 9);
+            guna2Button1.Location = new Point(1221, 12);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.PressedColor = SystemColors.ButtonFace;
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -212,7 +212,7 @@ namespace DoAnDemoUI
             // 
             // FormReport
             // 
-            ClientSize = new Size(1310, 743);
+            ClientSize = new Size(1277, 743);
             Controls.Add(guna2Button1);
             Controls.Add(lblTitle);
             Controls.Add(tabControl);

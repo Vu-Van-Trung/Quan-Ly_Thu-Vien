@@ -527,7 +527,7 @@ namespace DoAnDemoUI
             btnRefresh.ForeColor = Color.White;
             btnRefresh.Location = new Point(668, 665);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(110, 40);
+            btnRefresh.Size = new Size(128, 40);
             btnRefresh.TabIndex = 8;
             btnRefresh.Text = "🔄 Làm mới";
             btnRefresh.UseVisualStyleBackColor = false;
@@ -556,7 +556,7 @@ namespace DoAnDemoUI
             guna2Button1.ForeColor = Color.White;
             guna2Button1.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
             guna2Button1.ImageSize = new Size(40, 40);
-            guna2Button1.Location = new Point(1216, 12);
+            guna2Button1.Location = new Point(1221, 12);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.PressedColor = SystemColors.ButtonFace;
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -567,7 +567,7 @@ namespace DoAnDemoUI
             // FormStaff
             // 
             BackColor = Color.FromArgb(250, 250, 250);
-            ClientSize = new Size(1310, 743);
+            ClientSize = new Size(1277, 743);
             Controls.Add(guna2Button1);
             Controls.Add(lblTitle);
             Controls.Add(dgvStaff);
