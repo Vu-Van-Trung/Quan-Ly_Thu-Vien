@@ -20,11 +20,11 @@ namespace DoAnDemoUI
 
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             dgvStaff = new DataGridView();
             colId = new DataGridViewTextBoxColumn();
             colHoTen = new DataGridViewTextBoxColumn();
@@ -57,6 +57,7 @@ namespace DoAnDemoUI
             dtpNgayVaoLam = new DateTimePicker();
             lblTrangThai = new Label();
             cboTrangThai = new ComboBox();
+            lblThongBao = new Label();
             btnAdd = new Button();
             btnEdit = new Button();
             btnDelete = new Button();
@@ -74,29 +75,29 @@ namespace DoAnDemoUI
             // 
             dgvStaff.AllowUserToAddRows = false;
             dgvStaff.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(245, 245, 245);
-            dgvStaff.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(245, 245, 245);
+            dgvStaff.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvStaff.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvStaff.BackgroundColor = Color.White;
             dgvStaff.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(33, 150, 243);
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvStaff.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(33, 150, 243);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvStaff.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvStaff.ColumnHeadersHeight = 40;
             dgvStaff.Columns.AddRange(new DataGridViewColumn[] { colId, colHoTen, colChucVu, colNgaySinh, colGioiTinh, colSDT, colEmail, colNgayVao, colTrangThai });
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Window;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(100, 181, 246);
-            dataGridViewCellStyle6.SelectionForeColor = Color.White;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dgvStaff.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(100, 181, 246);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvStaff.DefaultCellStyle = dataGridViewCellStyle3;
             dgvStaff.EnableHeadersVisualStyles = false;
             dgvStaff.Location = new Point(71, 78);
             dgvStaff.MultiSelect = false;
@@ -105,7 +106,7 @@ namespace DoAnDemoUI
             dgvStaff.RowHeadersWidth = 51;
             dgvStaff.RowTemplate.Height = 35;
             dgvStaff.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvStaff.Size = new Size(1160, 320);
+            dgvStaff.Size = new Size(1189, 320);
             dgvStaff.TabIndex = 0;
             dgvStaff.SelectionChanged += DgvStaff_SelectionChanged;
             // 
@@ -347,18 +348,6 @@ namespace DoAnDemoUI
             txtEmail.Size = new Size(180, 30);
             txtEmail.TabIndex = 13;
             txtEmail.Text = "nhanvien@example.com";
-            // lblThongBao
-            // 
-            lblThongBao = new Label();
-            lblThongBao.AutoSize = true;
-            lblThongBao.Font = new Font("Segoe UI", 8F);
-            lblThongBao.ForeColor = Color.Red;
-            lblThongBao.Location = new Point(145, 160); // Below cboTrangThai in grpWork
-            lblThongBao.Name = "lblThongBao";
-            lblThongBao.Size = new Size(0, 19);
-            lblThongBao.TabIndex = 14;
-            // 
-
             // 
             // grpWork
             // 
@@ -373,7 +362,7 @@ namespace DoAnDemoUI
             grpWork.ForeColor = Color.FromArgb(33, 150, 243);
             grpWork.Location = new Point(656, 404);
             grpWork.Name = "grpWork";
-            grpWork.Size = new Size(570, 240);
+            grpWork.Size = new Size(604, 240);
             grpWork.TabIndex = 2;
             grpWork.TabStop = false;
             grpWork.Text = "💼 Thông Tin Công Việc";
@@ -437,6 +426,16 @@ namespace DoAnDemoUI
             cboTrangThai.Name = "cboTrangThai";
             cboTrangThai.Size = new Size(200, 31);
             cboTrangThai.TabIndex = 5;
+            // 
+            // lblThongBao
+            // 
+            lblThongBao.AutoSize = true;
+            lblThongBao.Font = new Font("Segoe UI", 8F);
+            lblThongBao.ForeColor = Color.Red;
+            lblThongBao.Location = new Point(145, 160);
+            lblThongBao.Name = "lblThongBao";
+            lblThongBao.Size = new Size(0, 19);
+            lblThongBao.TabIndex = 14;
             // 
             // btnAdd
             // 
@@ -547,7 +546,7 @@ namespace DoAnDemoUI
             // 
             // guna2Button1
             // 
-            guna2Button1.CustomizableEdges = customizableEdges3;
+            guna2Button1.CustomizableEdges = customizableEdges1;
             guna2Button1.DisabledState.BorderColor = Color.DarkGray;
             guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -557,10 +556,10 @@ namespace DoAnDemoUI
             guna2Button1.ForeColor = Color.White;
             guna2Button1.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
             guna2Button1.ImageSize = new Size(40, 40);
-            guna2Button1.Location = new Point(1254, 12);
+            guna2Button1.Location = new Point(1216, 12);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.PressedColor = SystemColors.ButtonFace;
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2Button1.Size = new Size(44, 36);
             guna2Button1.TabIndex = 10;
             guna2Button1.Click += guna2Button1_Click;
@@ -589,6 +588,7 @@ namespace DoAnDemoUI
             grpPersonal.ResumeLayout(false);
             grpPersonal.PerformLayout();
             grpWork.ResumeLayout(false);
+            grpWork.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
 

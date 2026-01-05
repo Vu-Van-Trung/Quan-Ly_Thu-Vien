@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace DoAnDemoUI
 {
-    public partial class    FormMember : Form
+    public partial class FormMember : Form
     {
         private LibraryContext db;
         private bool isEditing = false;
@@ -559,6 +559,16 @@ namespace DoAnDemoUI
         }
 
         private void FormMember_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnThem_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSua_Click_1(object sender, EventArgs e)
         {
 
         }

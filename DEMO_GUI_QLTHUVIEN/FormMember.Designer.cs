@@ -112,7 +112,7 @@ namespace DoAnDemoUI
             dgvMembers.RowHeadersWidth = 51;
             dgvMembers.RowTemplate.Height = 35;
             dgvMembers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvMembers.Size = new Size(1304, 320);
+            dgvMembers.Size = new Size(1314, 320);
             dgvMembers.TabIndex = 1;
             dgvMembers.CellContentClick += dgvMembers_CellContentClick;
             // 
@@ -147,9 +147,9 @@ namespace DoAnDemoUI
             grpInfo.Controls.Add(lblLoiDiaChi);
             grpInfo.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             grpInfo.ForeColor = Color.FromArgb(33, 150, 243);
-            grpInfo.Location = new Point(29, 410);
+            grpInfo.Location = new Point(12, 444);
             grpInfo.Name = "grpInfo";
-            grpInfo.Size = new Size(1304, 260);
+            grpInfo.Size = new Size(1331, 267);
             grpInfo.TabIndex = 2;
             grpInfo.TabStop = false;
             grpInfo.Text = "� Thông Tin Độc Giả";
@@ -425,12 +425,13 @@ namespace DoAnDemoUI
             btnThem.FlatStyle = FlatStyle.Flat;
             btnThem.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnThem.ForeColor = Color.White;
-            btnThem.Location = new Point(29, 686);
+            btnThem.Location = new Point(12, 731);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(110, 40);
             btnThem.TabIndex = 3;
             btnThem.Text = "+ Thêm";
             btnThem.UseVisualStyleBackColor = false;
+            btnThem.Click += btnThem_Click_1;
             // 
             // btnSua
             // 
@@ -440,12 +441,13 @@ namespace DoAnDemoUI
             btnSua.FlatStyle = FlatStyle.Flat;
             btnSua.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnSua.ForeColor = Color.White;
-            btnSua.Location = new Point(149, 686);
+            btnSua.Location = new Point(128, 731);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(110, 40);
             btnSua.TabIndex = 4;
             btnSua.Text = "✎ Sửa";
             btnSua.UseVisualStyleBackColor = false;
+            btnSua.Click += btnSua_Click_1;
             // 
             // btnXoa
             // 
@@ -455,7 +457,7 @@ namespace DoAnDemoUI
             btnXoa.FlatStyle = FlatStyle.Flat;
             btnXoa.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnXoa.ForeColor = Color.White;
-            btnXoa.Location = new Point(269, 686);
+            btnXoa.Location = new Point(244, 731);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(110, 40);
             btnXoa.TabIndex = 5;
@@ -471,7 +473,7 @@ namespace DoAnDemoUI
             btnLuu.FlatStyle = FlatStyle.Flat;
             btnLuu.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnLuu.ForeColor = Color.White;
-            btnLuu.Location = new Point(389, 686);
+            btnLuu.Location = new Point(360, 731);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(110, 40);
             btnLuu.TabIndex = 6;
@@ -487,7 +489,7 @@ namespace DoAnDemoUI
             btnHuy.FlatStyle = FlatStyle.Flat;
             btnHuy.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnHuy.ForeColor = Color.White;
-            btnHuy.Location = new Point(509, 686);
+            btnHuy.Location = new Point(480, 731);
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(110, 40);
             btnHuy.TabIndex = 7;
@@ -502,7 +504,7 @@ namespace DoAnDemoUI
             btnTimKiem.FlatStyle = FlatStyle.Flat;
             btnTimKiem.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnTimKiem.ForeColor = Color.White;
-            btnTimKiem.Location = new Point(1195, 683);
+            btnTimKiem.Location = new Point(1205, 731);
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(138, 40);
             btnTimKiem.TabIndex = 9;
@@ -513,7 +515,7 @@ namespace DoAnDemoUI
             // 
             txtTimKiem.BorderStyle = BorderStyle.FixedSingle;
             txtTimKiem.Font = new Font("Segoe UI", 10F);
-            txtTimKiem.Location = new Point(959, 690);
+            txtTimKiem.Location = new Point(958, 738);
             txtTimKiem.Name = "txtTimKiem";
             txtTimKiem.PlaceholderText = "Tìm theo tên, SĐT...";
             txtTimKiem.Size = new Size(230, 30);
@@ -544,7 +546,7 @@ namespace DoAnDemoUI
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(250, 250, 250);
-            ClientSize = new Size(1426, 863);
+            ClientSize = new Size(1426, 900);
             Controls.Add(btnClose);
             Controls.Add(lblTitle);
             Controls.Add(dgvMembers);

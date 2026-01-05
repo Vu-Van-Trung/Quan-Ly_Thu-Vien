@@ -82,11 +82,9 @@ namespace DoAnDemoUI
             numQuantity = new NumericUpDown();
             lblPrice = new Label();
             numPrice = new NumericUpDown();
-            lblError = new Label();
             lblStatus = new Label();
             cboStatus = new ComboBox();
-            ((ISupportInitialize)numQuantity).BeginInit();
-            ((ISupportInitialize)numPrice).BeginInit();
+            lblError = new Label();
             txtSearch = new TextBox();
             btnSearch = new Button();
             btnReload = new Button();
@@ -100,6 +98,8 @@ namespace DoAnDemoUI
             buttonPanel = new TableLayoutPanel();
             topPanel.SuspendLayout();
             grpDetails.SuspendLayout();
+            ((ISupportInitialize)numQuantity).BeginInit();
+            ((ISupportInitialize)numPrice).BeginInit();
             ((ISupportInitialize)dgvBooks).BeginInit();
             ((ISupportInitialize)bindingSourceBooks).BeginInit();
             buttonPanel.SuspendLayout();
@@ -140,7 +140,7 @@ namespace DoAnDemoUI
             guna2Button1.ForeColor = Color.White;
             guna2Button1.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
             guna2Button1.ImageSize = new Size(40, 40);
-            guna2Button1.Location = new Point(1254, 12);
+            guna2Button1.Location = new Point(1236, 12);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.PressedColor = SystemColors.ButtonFace;
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -241,11 +241,11 @@ namespace DoAnDemoUI
             // 
             // cboAuthor
             // 
+            cboAuthor.DropDownStyle = ComboBoxStyle.DropDownList;
             cboAuthor.Location = new Point(110, 152);
             cboAuthor.Name = "cboAuthor";
-            cboAuthor.Size = new Size(230, 30);
+            cboAuthor.Size = new Size(230, 31);
             cboAuthor.TabIndex = 9;
-            cboAuthor.DropDownStyle = ComboBoxStyle.DropDownList;
             // 
             // lblCategory
             // 
@@ -258,35 +258,35 @@ namespace DoAnDemoUI
             // 
             // cboCategory
             // 
+            cboCategory.DropDownStyle = ComboBoxStyle.DropDownList;
             cboCategory.Location = new Point(110, 192);
             cboCategory.Name = "cboCategory";
-            cboCategory.Size = new Size(230, 30);
+            cboCategory.Size = new Size(230, 31);
             cboCategory.TabIndex = 11;
-            cboCategory.DropDownStyle = ComboBoxStyle.DropDownList;
             // 
             // lblPublisher
             // 
             lblPublisher.AutoSize = true;
             lblPublisher.Location = new Point(15, 235);
             lblPublisher.Name = "lblPublisher";
-            lblPublisher.Size = new Size(107, 23);
+            lblPublisher.Size = new Size(74, 23);
             lblPublisher.TabIndex = 12;
             lblPublisher.Text = "Nhà XB:";
             // 
             // cboPublisher
             // 
+            cboPublisher.DropDownStyle = ComboBoxStyle.DropDownList;
             cboPublisher.Location = new Point(110, 232);
             cboPublisher.Name = "cboPublisher";
-            cboPublisher.Size = new Size(230, 30);
+            cboPublisher.Size = new Size(230, 31);
             cboPublisher.TabIndex = 13;
-            cboPublisher.DropDownStyle = ComboBoxStyle.DropDownList;
             // 
             // lblLocation
             // 
             lblLocation.AutoSize = true;
             lblLocation.Location = new Point(15, 275);
             lblLocation.Name = "lblLocation";
-            lblLocation.Size = new Size(60, 23);
+            lblLocation.Size = new Size(57, 23);
             lblLocation.TabIndex = 14;
             lblLocation.Text = "Vị Trí:";
             // 
@@ -302,7 +302,7 @@ namespace DoAnDemoUI
             lblQuantity.AutoSize = true;
             lblQuantity.Location = new Point(15, 315);
             lblQuantity.Name = "lblQuantity";
-            lblQuantity.Size = new Size(95, 23);
+            lblQuantity.Size = new Size(92, 23);
             lblQuantity.TabIndex = 16;
             lblQuantity.Text = "Số Lượng:";
             // 
@@ -325,10 +325,10 @@ namespace DoAnDemoUI
             // numPrice
             // 
             numPrice.Location = new Point(110, 352);
+            numPrice.Maximum = new decimal(new int[] { 1000000000, 0, 0, 0 });
             numPrice.Name = "numPrice";
             numPrice.Size = new Size(230, 30);
             numPrice.TabIndex = 19;
-            numPrice.Maximum = 1000000000;
             numPrice.ThousandsSeparator = true;
             // 
             // lblStatus
@@ -336,7 +336,7 @@ namespace DoAnDemoUI
             lblStatus.AutoSize = true;
             lblStatus.Location = new Point(15, 395);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(110, 23);
+            lblStatus.Size = new Size(100, 23);
             lblStatus.TabIndex = 21;
             lblStatus.Text = "Trạng Thái:";
             // 
@@ -546,6 +546,8 @@ namespace DoAnDemoUI
             topPanel.ResumeLayout(false);
             grpDetails.ResumeLayout(false);
             grpDetails.PerformLayout();
+            ((ISupportInitialize)numQuantity).EndInit();
+            ((ISupportInitialize)numPrice).EndInit();
             ((ISupportInitialize)dgvBooks).EndInit();
             ((ISupportInitialize)bindingSourceBooks).EndInit();
             buttonPanel.ResumeLayout(false);

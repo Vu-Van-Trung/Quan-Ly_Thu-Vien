@@ -103,6 +103,8 @@ namespace DoAnDemoUI
             dgvBooks.Location = new Point(26, 26);
             dgvBooks.Name = "dgvBooks";
             dgvBooks.RowHeadersWidth = 51;
+            dgvBooks.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvBooks.MultiSelect = true;
             dgvBooks.Size = new Size(1199, 195);
             dgvBooks.TabIndex = 0;
             // 
@@ -202,6 +204,8 @@ namespace DoAnDemoUI
             dgvFines.Location = new Point(10, 26);
             dgvFines.Name = "dgvFines";
             dgvFines.RowHeadersWidth = 51;
+            dgvFines.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvFines.MultiSelect = true;
             dgvFines.Size = new Size(1215, 195);
             dgvFines.TabIndex = 0;
             // 
@@ -506,12 +510,13 @@ namespace DoAnDemoUI
                 }
 
                 _fineService.ReturnBook(detailId, condition);
-                
-                // Auto calculate overdue fine if applicable (Logic inside FineService or here?)
-                // Assuming ReturnBook handles condition fines, let's explicitly add Overdue Logic here also if simpler
-                // Or ensure FineService.ReturnBook handles it. Code view shows FineService only handles Condition Fine.
-                // We should add logic to calculate OVERDUE fine automatically upon return here.
-                
+
+                // Tự động tính phí phạt quá hạn nếu có (Logic nằm trong FineService hay ở đây?)
+                // Giả sử ReturnBook xử lý phí phạt theo điều kiện, hãy thêm logic xử lý phí quá hạn ở đây nếu đơn giản hơn
+                // Hoặc đảm bảo FineService.ReturnBook xử lý việc này. Xem mã cho thấy FineService chỉ xử lý phí phạt theo điều kiện.
+
+                // Chúng ta nên thêm logic để tự động tính phí phạt QUÁ HẠN khi trả sách ở đây.
+
                 // Check Overdue
                 var loanDetail = _currentLoan.LoanDetails.FirstOrDefault(ld => ld.LoanDetailId == detailId);
                 // Note: detail object might be stale if _fineService.ReturnBook commits updates. 

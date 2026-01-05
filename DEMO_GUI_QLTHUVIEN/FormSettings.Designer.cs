@@ -115,7 +115,7 @@ namespace DoAnDemoUI
             guna2Button1.ForeColor = Color.White;
             guna2Button1.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
             guna2Button1.ImageSize = new Size(40, 40);
-            guna2Button1.Location = new Point(1254, 12);
+            guna2Button1.Location = new Point(1223, 12);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.PressedColor = SystemColors.ButtonFace;
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;

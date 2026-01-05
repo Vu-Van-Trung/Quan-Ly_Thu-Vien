@@ -94,7 +94,6 @@
             gbThongTin.TabStop = false;
             gbThongTin.Text = "📄 Thông Tin Phiếu Mượn";
             // 
-            // 
             // txtTenDocGia
             // 
             txtTenDocGia.Location = new Point(152, 165);
@@ -108,7 +107,7 @@
             labelTenDG.AutoSize = true;
             labelTenDG.Location = new Point(27, 168);
             labelTenDG.Name = "labelTenDG";
-            labelTenDG.Size = new Size(100, 23);
+            labelTenDG.Size = new Size(72, 23);
             labelTenDG.TabIndex = 11;
             labelTenDG.Text = "Tên ĐG:";
             // 
@@ -194,7 +193,7 @@
             gbDanhSach.Margin = new Padding(3, 4, 3, 4);
             gbDanhSach.Name = "gbDanhSach";
             gbDanhSach.Padding = new Padding(3, 4, 3, 4);
-            gbDanhSach.Size = new Size(780, 300);
+            gbDanhSach.Size = new Size(760, 300);
             gbDanhSach.TabIndex = 2;
             gbDanhSach.TabStop = false;
             gbDanhSach.Text = "📊 Danh Sách Phiếu Mượn";
@@ -231,7 +230,7 @@
             dgvSachMuon.RowHeadersWidth = 51;
             dgvSachMuon.RowTemplate.Height = 35;
             dgvSachMuon.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSachMuon.Size = new Size(774, 269);
+            dgvSachMuon.Size = new Size(754, 269);
             dgvSachMuon.TabIndex = 0;
             dgvSachMuon.CellContentClick += dgvSachMuon_CellContentClick;
             // 
@@ -346,7 +345,7 @@
             gbDieuKhien.Controls.Add(btnSau);
             gbDieuKhien.Controls.Add(btnTruoc);
             gbDieuKhien.Controls.Add(btnDau);
-            gbDieuKhien.Location = new Point(484, 620);
+            gbDieuKhien.Location = new Point(464, 620);
             gbDieuKhien.Margin = new Padding(3, 4, 3, 4);
             gbDieuKhien.Name = "gbDieuKhien";
             gbDieuKhien.Padding = new Padding(3, 4, 3, 4);
@@ -416,7 +415,7 @@
             gbChiTiet.ForeColor = Color.Red;
             gbChiTiet.Location = new Point(507, 400);
             gbChiTiet.Name = "gbChiTiet";
-            gbChiTiet.Size = new Size(780, 208);
+            gbChiTiet.Size = new Size(760, 208);
             gbChiTiet.TabIndex = 10;
             gbChiTiet.TabStop = false;
             gbChiTiet.Text = "📕 Chi Tiết Sách Đang Mượn";
@@ -432,7 +431,7 @@
             dgvChiTiet.ReadOnly = true;
             dgvChiTiet.RowHeadersWidth = 51;
             dgvChiTiet.RowTemplate.Height = 30;
-            dgvChiTiet.Size = new Size(774, 179);
+            dgvChiTiet.Size = new Size(754, 179);
             dgvChiTiet.TabIndex = 0;
             dgvChiTiet.CellContentClick += dgvChiTiet_CellContentClick;
             // 
@@ -448,7 +447,7 @@
             guna2Button1.ForeColor = Color.White;
             guna2Button1.Image = DEMO_GUI_QLTHUVIEN.Properties.Resources.cancel_50px;
             guna2Button1.ImageSize = new Size(40, 40);
-            guna2Button1.Location = new Point(1254, 14);
+            guna2Button1.Location = new Point(1231, 14);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.PressedColor = SystemColors.ButtonFace;
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -459,7 +458,7 @@
             // FormLoan
             // 
             AutoScaleMode = AutoScaleMode.Inherit;
-            ClientSize = new Size(1310, 743);
+            ClientSize = new Size(1290, 743);
             Controls.Add(guna2Button1);
             Controls.Add(gbChiTiet);
             Controls.Add(gbDieuKhien);

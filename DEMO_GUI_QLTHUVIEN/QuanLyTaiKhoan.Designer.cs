@@ -308,7 +308,7 @@ namespace DEMO_GUI_QLTHUVIEN
             btnClose.ForeColor = Color.White;
             btnClose.Image = Properties.Resources.cancel_50px;
             btnClose.ImageSize = new Size(40, 40);
-            btnClose.Location = new Point(1254, 12);
+            btnClose.Location = new Point(1234, 12);
             btnClose.Name = "btnClose";
             btnClose.PressedColor = SystemColors.ButtonFace;
             btnClose.ShadowDecoration.CustomizableEdges = customizableEdges22;
