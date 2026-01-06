@@ -4,12 +4,23 @@ using LibraryManagement.Data;
 using LibraryManagement.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using DoAnDemoUI.Services;
+using DoAnDemoUI.Model; // Add DoAnDemoUI.Model namespace
 
 namespace LibraryManagement.Services
 {
     public class FineService
     {
         private readonly LibraryContext _context;
+        
+        // ... (constants)
+        
+        public string GetStaffFullName(string username)
+        {
+             if (string.IsNullOrEmpty(username)) return "Admin";
+             var user = _context.Users.Include(u => u.Staff).FirstOrDefault(u => u.Username == username);
+             return user?.Staff?.HoTen ?? username; // Return Full Name or Username if null
+        }
         private const decimal FINE_PER_DAY = 5000;
         private const decimal DAMAGED_PERCENTAGE = 0.5m; // Kept for reference, logic updated in method
         private const decimal LOST_PERCENTAGE = 1.0m; // Kept for reference, logic updated in method
@@ -54,7 +65,7 @@ namespace LibraryManagement.Services
             return 0;
         }
 
-        public void ReturnBook(int loanDetailId, string condition)
+        public decimal ReturnBook(int loanDetailId, string condition)
         {
             var detail = _context.LoanDetails
                 .Include(d => d.Book)
@@ -66,11 +77,21 @@ namespace LibraryManagement.Services
             detail.TinhTrangTra = condition;
 
             // Calculate Condition Fine
+            // Calculate Condition Fine
             decimal fineAmount = CalculateConditionFine(detail.Book, condition);
-            if (fineAmount > 0)
+            
+            // Always create a transaction record, even if 0
+            // If amount > 0, it's a Penalty. If 0, it's a Record of Return (Good/Paid).
+            // We use CreateOverdueFine but maybe with a different reason format to ensure Uniqueness for this return instance?
+            // "Trả sách: Title (Condition)"
+            // Append LoanDetailId to ensure uniqueness if multiple copies of same book are in same loan
+            string reason = $"Trả sách: {detail.Book.Title} ({condition}) #{detail.LoanDetailId}";
+            if (fineAmount > 0) 
             {
-                CreateOverdueFine(detail.LoanId, fineAmount, $"Phạt sách {condition}: {detail.Book.Title}");
+                reason = $"Phạt sách {condition}: {detail.Book.Title} #{detail.LoanDetailId}";
             }
+            
+            CreateOverdueFine(detail.LoanId, fineAmount, reason);
             
             _context.SaveChanges();
 
@@ -86,6 +107,8 @@ namespace LibraryManagement.Services
                     _context.SaveChanges();
                 }
             }
+            
+            return fineAmount;
         }
 
         public bool IsFineExists(string loanId, string reason)
@@ -133,6 +156,45 @@ namespace LibraryManagement.Services
                 fine.SoTienPhat -= discountAmount;
                 fine.LyDo += $" (Đã giảm {percentage}%)";
                 _context.SaveChanges();
+            }
+        }
+
+        public void ApplyWaiver(int fineId, decimal value, bool isPercentage, string reason, string performer)
+        {
+            var fine = _context.Fines.Find(fineId);
+            if (fine != null)
+            {
+                decimal discountAmount;
+                if (isPercentage)
+                {
+                    discountAmount = fine.SoTienPhat * value / 100;
+                }
+                else
+                {
+                    discountAmount = value;
+                }
+
+                if (discountAmount > fine.SoTienPhat) discountAmount = fine.SoTienPhat;
+
+                fine.SoTienPhat -= discountAmount;
+                string waiverType = isPercentage ? "%" : " VNĐ";
+                fine.LyDo += $" (Miễn giảm: {value:N0}{waiverType} - By: {performer} - Reason: {reason})";
+                
+                // If full waiver, mark as paid? Or just let it be 0? 
+                // Usually if amount is 0, it's effectively paid, but status might need update if we want to "clear" it.
+                // For now, keep it simple as per request, just reduce amount. User can "Pay" the 0 amount to clear it if needed, or system handles 0 payment.
+                if (fine.SoTienPhat <= 0)
+                {
+                    fine.SoTienPhat = 0;
+                    fine.TrangThaiThanhToan = "Đã thanh toán"; // Auto-close if 0
+                    fine.NgayThanhToan = DateTime.Now;
+                }
+
+                _context.SaveChanges();
+
+                // Audit Log
+                Logger.Log("Quản lý Phạt", "Miễn giảm", 
+                    $"Miễn giảm {discountAmount:N0} cho khoản phạt {fineId} (Phiếu {fine.LoanId}). Lý do: {reason}. Người thực hiện: {performer}");
             }
         }
         public List<string> GetAllLoanIds()
