@@ -85,12 +85,18 @@ namespace DoAnDemoUI
                 {
                     var allowedFunctions = new[]
                     {
+                        "Quản lý Sách",
+                        "Quản lý Độc giả",
+                        "Quản lý Mượn Trả",
+                        "Quản lý Phạt",
+                        "Quản lý Tác Giả",
+                        "Quản lý Nhà Xuất Bản",
+                        // Legacy support
                         "Mượn sách",
                         "Trả sách",
                         "Gia hạn",
                         "Lập phiếu phạt",
-                        "Thanh toán tiền phạt",
-                        "Quản lý Sách"
+                        "Thanh toán tiền phạt"
                     };
                     query = query.Where(x => allowedFunctions.Contains(x.ChucNang));
                 }
