@@ -373,7 +373,7 @@ namespace DoAnDemoUI
             lblError.AutoSize = true;
             lblError.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblError.ForeColor = Color.Red;
-            lblError.Location = new Point(520, 685);
+            lblError.Location = new Point(550, 685);
             lblError.Name = "lblError";
             lblError.Size = new Size(0, 20);
             lblError.TabIndex = 8;

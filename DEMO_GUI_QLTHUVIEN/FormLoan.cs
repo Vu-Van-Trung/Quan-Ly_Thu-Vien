@@ -43,6 +43,12 @@ namespace DoAnDemoUI
 
             // Load ComboBox Sách và Độc Giả
             LoadComboBoxes();
+
+            // Hide Return Button for Staff
+            if (Services.Session.CurrentRole == Security.AccessControl.RoleStaff)
+            {
+                btnTraSach.Visible = false;
+            }
         }
 
         private void LoadComboBoxes()

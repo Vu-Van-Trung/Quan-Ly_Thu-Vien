@@ -153,11 +153,19 @@ namespace DoAnDemoUI
             txtQuocTich.Text = row.Cells["QuocTich"].Value?.ToString();
             // Parse the date string using the exact format we used when displaying it
             if (DateTime.TryParseExact(row.Cells["NgaySinh"].Value?.ToString(), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out var dt))
+            {
+                if (dt < dtpNgaySinh.MinDate) dt = dtpNgaySinh.MinDate;
+                if (dt > dtpNgaySinh.MaxDate) dt = dtpNgaySinh.MaxDate;
                 dtpNgaySinh.Value = dt;
+            }
             else
+            {
                 dtpNgaySinh.Value = DateTime.Now;
+            }
             txtBio.Text = row.Cells["Bio"].Value?.ToString();
-            ValidateForm(); // Reset/Check validation on load
+            
+            // Clear error label when selecting a row (do not validate immediately)
+            lblError.Text = ""; 
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

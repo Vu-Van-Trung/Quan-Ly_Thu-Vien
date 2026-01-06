@@ -35,7 +35,7 @@ namespace DEMO_GUI_QLTHUVIEN
         {
             // Load Roles
             cbQuyenHan.Items.Clear();
-            cbQuyenHan.Items.Add("Quản trị viên");
+            cbQuyenHan.Items.Add("Thủ thư");
             cbQuyenHan.Items.Add("Nhân viên");
             cbQuyenHan.SelectedIndex = 1;
 
@@ -48,7 +48,11 @@ namespace DEMO_GUI_QLTHUVIEN
             // Load Staff
             try
             {
-                var staffList = db.Staff.Select(s => new { s.StaffId, s.HoTen }).ToList();
+                var staffList = db.Staff.AsNoTracking().ToList()
+                    .Select(s => new StaffDisplayItem { 
+                        StaffId = s.StaffId, 
+                        HoTen = LibraryManagement.Security.CryptoHelper.Decrypt(s.HoTen) 
+                    }).ToList();
                 cbNhanVien.DataSource = staffList;
                 cbNhanVien.DisplayMember = "HoTen";
                 cbNhanVien.ValueMember = "StaffId";
@@ -63,17 +67,18 @@ namespace DEMO_GUI_QLTHUVIEN
         {
             try
             {
-                var users = db.Users
+                var users = db.Users.AsNoTracking()
                     .Include(u => u.Staff)
-                    .Select(u => new
+                    .ToList() // Client-side processing
+                    .Select(u => new UserDisplayItem
                     {
-                        u.Id,
-                        u.Username,
-                        StaffName = u.Staff.HoTen,
-                        u.Role,
-                        u.TrangThai,
-                        u.StaffId,
-                        u.LanDangNhapCuoi
+                        Id = u.Id,
+                        Username = u.Username,
+                        StaffName = u.Staff != null ? LibraryManagement.Security.CryptoHelper.Decrypt(u.Staff.HoTen) : "N/A",
+                        Role = u.Role,
+                        TrangThai = u.TrangThai,
+                        StaffId = u.StaffId,
+                        LanDangNhapCuoi = u.LanDangNhapCuoi
                     })
                     .ToList();
 
@@ -302,5 +307,22 @@ namespace DEMO_GUI_QLTHUVIEN
         {
             this.Close();
         }
+    }
+    
+    public class StaffDisplayItem
+    {
+        public int StaffId { get; set; }
+        public string HoTen { get; set; }
+    }
+
+    public class UserDisplayItem
+    {
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public string StaffName { get; set; }
+        public string Role { get; set; }
+        public string TrangThai { get; set; }
+        public int StaffId { get; set; }
+        public DateTime? LanDangNhapCuoi { get; set; }
     }
 }
