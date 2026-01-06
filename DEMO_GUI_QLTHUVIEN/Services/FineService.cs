@@ -11,8 +11,8 @@ namespace LibraryManagement.Services
     {
         private readonly LibraryContext _context;
         private const decimal FINE_PER_DAY = 5000;
-        private const decimal DAMAGED_PERCENTAGE = 0.5m;
-        private const decimal LOST_PERCENTAGE = 1.0m;
+        private const decimal DAMAGED_PERCENTAGE = 0.5m; // Kept for reference, logic updated in method
+        private const decimal LOST_PERCENTAGE = 1.0m; // Kept for reference, logic updated in method
         private const decimal DEFAULT_BOOK_PRICE = 50000;
 
         public FineService()
@@ -49,8 +49,8 @@ namespace LibraryManagement.Services
         public decimal CalculateConditionFine(Book book, string condition)
         {
             decimal price = book.GiaTien ?? DEFAULT_BOOK_PRICE;
-            if (condition == "Hư hỏng") return price * DAMAGED_PERCENTAGE;
-            if (condition == "Mất") return price * LOST_PERCENTAGE;
+            if (condition == "Hư hỏng") return 10000; // Fixed fee
+            if (condition == "Mất") return price * 3; // x3 Price
             return 0;
         }
 

@@ -510,6 +510,8 @@ namespace DoAnDemoUI
             FormFine frmFine = new FormFine(loanId);
             frmFine.MdiParent = this.MdiParent; // Set same parent if MDI
             frmFine.Show();
+            
+            this.Close(); // Close existing form to prevent multiple active windows
         }
 
         // --- 6. CÁC NÚT ĐIỀU HƯỚNG ---

@@ -451,7 +451,7 @@ namespace DoAnDemoUI
             }).ToList();
 
             decimal total = _currentLoan.Fines.Where(f => f.TrangThaiThanhToan != "Đã thanh toán").Sum(f => f.SoTienPhat);
-            lblTotalFine.Text = $"Tổng tiền phạt: {total:N0} VNĐ";
+            lblTotalFine.Text = "Tổng tiền phạt: " + total.ToString("C0", new System.Globalization.CultureInfo("vi-VN"));
         }
 
         private void CheckRefreshParent()
@@ -509,16 +509,11 @@ namespace DoAnDemoUI
 
                 _fineService.ReturnBook(detailId, condition);
 
-                // Tự động tính phí phạt quá hạn nếu có (Logic nằm trong FineService hay ở đây?)
-                // Giả sử ReturnBook xử lý phí phạt theo điều kiện, hãy thêm logic xử lý phí quá hạn ở đây nếu đơn giản hơn
-                // Hoặc đảm bảo FineService.ReturnBook xử lý việc này. Xem mã cho thấy FineService chỉ xử lý phí phạt theo điều kiện.
-
-                // Chúng ta nên thêm logic để tự động tính phí phạt QUÁ HẠN khi trả sách ở đây.
-
-                // Check Overdue
-                var loanDetail = _currentLoan.LoanDetails.FirstOrDefault(ld => ld.LoanDetailId == detailId);
-                // Note: detail object might be stale if _fineService.ReturnBook commits updates. 
-                // However, dates shouldn't change.
+                // --- LOGIC TÍNH PHẠT (Update V2) ---
+                // 1. Phạt quá hạn (Tiền mượn): 5.000/ngày
+                // 2. Phạt hư hỏng/mất: Tính trong ReturnBook
+                // Nếu hư hỏng + quá hạn -> Tính cả hai.
+                
                 if (DateTime.Now > _currentLoan.DueDate)
                 {
                      decimal overdueAmount = _fineService.CalculateFineAmount(_currentLoan.DueDate, DateTime.Now);
@@ -640,8 +635,8 @@ namespace DoAnDemoUI
 
             // 5. Tổng kết
             y += 20;
-            decimal total = _currentLoan.Fines.Where(f => f.TrangThaiThanhToan != "Đã thanh toán").Sum(f => f.SoTienPhat);
-            g.DrawString(lblTotalFine.Text, fontHeader, Brushes.Blue, x, y);
+            decimal total = _currentLoan.Fines.Sum(f => f.SoTienPhat);
+            g.DrawString("Tổng thanh toán: " + total.ToString("C0", new System.Globalization.CultureInfo("vi-VN")), fontHeader, Brushes.Blue, x, y);
 
             // 6. Chữ ký
             y += 60;
