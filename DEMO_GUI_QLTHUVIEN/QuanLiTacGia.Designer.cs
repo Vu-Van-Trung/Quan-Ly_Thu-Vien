@@ -215,7 +215,7 @@ namespace DoAnDemoUI
             dtpNgaySinh.Format = DateTimePickerFormat.Short;
             dtpNgaySinh.Location = new Point(240, 81);
             dtpNgaySinh.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
-            dtpNgaySinh.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            dtpNgaySinh.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtpNgaySinh.Name = "dtpNgaySinh";
             dtpNgaySinh.ShadowDecoration.CustomizableEdges = customizableEdges8;
             dtpNgaySinh.Size = new Size(329, 30);

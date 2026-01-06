@@ -22,6 +22,9 @@ namespace DoAnDemoUI
         private void QuanLiTacGia_Load(object sender, EventArgs e)
         {
             RefreshGrid();
+            // Update MaxDate dynamically
+            dtpNgaySinh.MaxDate = DateTime.Now.AddYears(-15);
+            
             // Attach Validation Events
             txtName.TextChanged += (s, ev) => ValidateForm();
             txtQuocTich.TextChanged += (s, ev) => ValidateForm();
@@ -82,9 +85,9 @@ namespace DoAnDemoUI
                 {
                     int age = DateTime.Now.Year - dob.Year;
                     if (dob > DateTime.Now.AddYears(-age)) age--;
-                    if (age < 18)
+                    if (age < 15)
                     {
-                        errorMsg = "Tác giả phải từ 18 tuổi trở lên.";
+                        errorMsg = "Tác giả phải từ 15 tuổi trở lên.";
                         isValid = false;
                     }
                 }
