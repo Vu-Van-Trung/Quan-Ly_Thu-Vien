@@ -108,6 +108,16 @@ namespace DoAnDemoUI
         {
             try
             {
+                // Ensure fresh context or clear tracker for real-time updates from other forms (e.g. FormFine)
+                if (db == null) db = new LibraryContext();
+                else 
+                {
+                    // Option 1: db.ChangeTracker.Clear(); (EF Core 5+) 
+                    // Option 2: Re-instantiate context (Safest for all versions)
+                    db.Dispose();
+                    db = new LibraryContext();
+                }
+
                 // Lấy dữ liệu từ bảng Loans, kèm theo thông tin Sách và Độc giả
                 // 1. Fetch raw data first (Server Side)
                 var rawData = db.Loans

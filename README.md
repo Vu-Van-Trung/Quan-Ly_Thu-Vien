@@ -98,7 +98,7 @@ Hệ thống cung cấp **5 loại báo cáo** chuyên sâu:
 - ✅ **Tạo tài khoản**: Liên kết với nhân viên
 - ✅ **Phân quyền**: 3 cấp độ quyền hạn
 - ✅ **Mã hóa mật khẩu**: Hash password an toàn
-- ✅ **Đổi mật khẩu**: Cho phép người dùng đổi mật khẩu
+- ✅ **Đổi mật khẩu**: Cho phép admin đổi mật khẩu người dùng
 - ✅ **Khóa/Mở khóa**: Quản lý trạng thái tài khoản
 - ✅ **Trạng thái**: Đang hoạt động / Bị khóa
 
@@ -117,12 +117,12 @@ Hệ thống cung cấp **5 loại báo cáo** chuyên sâu:
 - **Backward Compatibility**: Tương thích với dữ liệu cũ
 
 #### 🛡️ Phân Quyền (`AccessControl.cs`)
-Hệ thống 5 cấp độ quyền hạn:
+Hệ thống 3 cấp độ quyền hạn:
 
 | Quyền Hạn | Mô Tả | Chức Năng |
 |-----------|-------|-----------|
 | **Quản trị viên** | Toàn quyền | Tất cả chức năng |
-| **Thủ thư** | Nghiệp vụ chính | Quản lý sách, mượn/trả, phạt, báo cáo |
+| **Thủ thư** | Nghiệp vụ chính | Quản lý sách, mượn/trả, phạt, báo cáo | Xem nhật ký hệ thống (Giới hạn)
 | **Nhân viên** | Nghiệp vụ cơ bản | Mượn/trả sách, quản lý độc giả |
 
 **Quyền hạn chi tiết**:
@@ -624,7 +624,7 @@ Nếu có câu hỏi, góp ý hoặc cần hỗ trợ:
 
 ### Version 1.5 (03/01/2026) - Current
 - ✨ **Bảo mật nâng cao**: Mã hóa AES-256 + RSA cho dữ liệu nhạy cảm
-- ✨ **Phân quyền chi tiết**: 5 cấp độ với AccessControl
+- ✨ **Phân quyền chi tiết**: 3 cấp độ với AccessControl
 - ✨ **Audit Logging**: Ghi nhật ký đầy đủ mọi thao tác
 - ✨ **Form Phạt hoàn chỉnh**: Thu phạt, miễn giảm, in phiếu
 - ✨ **5 loại báo cáo**: Sách mượn nhiều, độc giả tích cực, thể loại, doanh thu, tồn kho

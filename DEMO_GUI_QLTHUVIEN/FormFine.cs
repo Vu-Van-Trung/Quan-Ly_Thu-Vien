@@ -22,12 +22,12 @@ namespace DoAnDemoUI
         private GroupBox grpSearch;
         private GroupBox grpDetails;
         private DataGridView dgvBooks;
-        private Button btnReturn;
-        private Button btnCalculateFine;
+        private Guna.UI2.WinForms.Guna2Button btnReturn;
+        private Guna.UI2.WinForms.Guna2Button btnCalculateFine;
         private GroupBox grpFines;
         private DataGridView dgvFines;
-        private Button btnPay;
-        private Button btnWaiver;
+        private Guna.UI2.WinForms.Guna2Button btnPay;
+        private Guna.UI2.WinForms.Guna2Button btnWaiver;
         private Label lblLoanId;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Label lblTitle;
@@ -62,17 +62,25 @@ namespace DoAnDemoUI
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             grpSearch = new GroupBox();
             dgvBooks = new DataGridView();
-            btnPay = new Button();
-            btnCalculateFine = new Button();
+            btnPay = new Guna.UI2.WinForms.Guna2Button();
+            btnCalculateFine = new Guna.UI2.WinForms.Guna2Button();
             lblLoanId = new Label();
             grpDetails = new GroupBox();
             cboLoanId = new ComboBox();
             lblTotalFine = new Label();
-            btnReturn = new Button();
+            btnReturn = new Guna.UI2.WinForms.Guna2Button();
             grpFines = new GroupBox();
-            btnWaiver = new Button();
+            btnWaiver = new Guna.UI2.WinForms.Guna2Button();
             dgvFines = new DataGridView();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             lblTitle = new Label();
@@ -109,22 +117,31 @@ namespace DoAnDemoUI
             // 
             // btnPay
             // 
-            btnPay.BackColor = Color.FromArgb(192, 255, 192);
-            btnPay.Location = new Point(1134, 227);
+            btnPay.BorderRadius = 15;
+            btnPay.CustomizableEdges = customizableEdges1;
+            btnPay.FillColor = Color.FromArgb(46, 204, 113);
+            btnPay.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnPay.ForeColor = Color.White;
+            btnPay.Location = new Point(1114, 227);
             btnPay.Name = "btnPay";
-            btnPay.Size = new Size(81, 31);
+            btnPay.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnPay.Size = new Size(111, 31);
             btnPay.TabIndex = 1;
             btnPay.Text = "Trả Sách";
-            btnPay.UseVisualStyleBackColor = false;
             // 
             // btnCalculateFine
             // 
-            btnCalculateFine.Location = new Point(1015, 227);
+            btnCalculateFine.BorderRadius = 15;
+            btnCalculateFine.CustomizableEdges = customizableEdges3;
+            btnCalculateFine.FillColor = Color.FromArgb(52, 152, 219);
+            btnCalculateFine.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnCalculateFine.ForeColor = Color.White;
+            btnCalculateFine.Location = new Point(995, 227);
             btnCalculateFine.Name = "btnCalculateFine";
-            btnCalculateFine.Size = new Size(103, 31);
+            btnCalculateFine.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnCalculateFine.Size = new Size(113, 31);
             btnCalculateFine.TabIndex = 2;
             btnCalculateFine.Text = "Tính phạt";
-            btnCalculateFine.UseVisualStyleBackColor = false;
             // 
             // lblLoanId
             // 
@@ -161,19 +178,23 @@ namespace DoAnDemoUI
             // 
             lblTotalFine.Location = new Point(10, 232);
             lblTotalFine.Name = "lblTotalFine";
-            lblTotalFine.Size = new Size(100, 23);
+            lblTotalFine.Size = new Size(250, 23);
             lblTotalFine.TabIndex = 3;
             lblTotalFine.Text = "Tổng tiền";
             // 
             // btnReturn
             // 
-            btnReturn.BackColor = Color.FromArgb(192, 255, 192);
-            btnReturn.Location = new Point(1121, 227);
+            btnReturn.BorderRadius = 15;
+            btnReturn.CustomizableEdges = customizableEdges5;
+            btnReturn.FillColor = Color.FromArgb(46, 204, 113);
+            btnReturn.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnReturn.ForeColor = Color.White;
+            btnReturn.Location = new Point(1111, 224);
             btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(94, 31);
+            btnReturn.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnReturn.Size = new Size(114, 31);
             btnReturn.TabIndex = 1;
             btnReturn.Text = "Thanh toán";
-            btnReturn.UseVisualStyleBackColor = false;
             // 
             // grpFines
             // 
@@ -190,9 +211,15 @@ namespace DoAnDemoUI
             // 
             // btnWaiver
             // 
-            btnWaiver.Location = new Point(986, 224);
+            btnWaiver.BorderRadius = 15;
+            btnWaiver.CustomizableEdges = customizableEdges7;
+            btnWaiver.FillColor = Color.FromArgb(230, 126, 34);
+            btnWaiver.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnWaiver.ForeColor = Color.White;
+            btnWaiver.Location = new Point(992, 224);
             btnWaiver.Name = "btnWaiver";
-            btnWaiver.Size = new Size(103, 31);
+            btnWaiver.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            btnWaiver.Size = new Size(113, 31);
             btnWaiver.TabIndex = 2;
             btnWaiver.Text = "Miễn trừ";
             // 
@@ -209,7 +236,7 @@ namespace DoAnDemoUI
             // 
             // guna2Button1
             // 
-            guna2Button1.CustomizableEdges = customizableEdges1;
+            guna2Button1.CustomizableEdges = customizableEdges9;
             guna2Button1.DisabledState.BorderColor = Color.DarkGray;
             guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -222,7 +249,7 @@ namespace DoAnDemoUI
             guna2Button1.Location = new Point(1221, 12);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.PressedColor = SystemColors.ButtonFace;
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges10;
             guna2Button1.Size = new Size(44, 36);
             guna2Button1.TabIndex = 12;
             guna2Button1.Click += guna2Button1_Click;
@@ -241,7 +268,7 @@ namespace DoAnDemoUI
             // btnPrint
             // 
             btnPrint.BorderRadius = 18;
-            btnPrint.CustomizableEdges = customizableEdges3;
+            btnPrint.CustomizableEdges = customizableEdges11;
             btnPrint.DisabledState.BorderColor = Color.DarkGray;
             btnPrint.DisabledState.CustomBorderColor = Color.DarkGray;
             btnPrint.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -251,7 +278,7 @@ namespace DoAnDemoUI
             btnPrint.ForeColor = Color.White;
             btnPrint.Location = new Point(184, 693);
             btnPrint.Name = "btnPrint";
-            btnPrint.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnPrint.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btnPrint.Size = new Size(132, 42);
             btnPrint.TabIndex = 14;
             btnPrint.Text = "In biên lai";
@@ -260,7 +287,7 @@ namespace DoAnDemoUI
             // btnReset
             // 
             btnReset.BorderRadius = 18;
-            btnReset.CustomizableEdges = customizableEdges5;
+            btnReset.CustomizableEdges = customizableEdges13;
             btnReset.DisabledState.BorderColor = Color.DarkGray;
             btnReset.DisabledState.CustomBorderColor = Color.DarkGray;
             btnReset.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -270,7 +297,7 @@ namespace DoAnDemoUI
             btnReset.ForeColor = Color.White;
             btnReset.Location = new Point(32, 693);
             btnReset.Name = "btnReset";
-            btnReset.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnReset.ShadowDecoration.CustomizableEdges = customizableEdges14;
             btnReset.Size = new Size(124, 42);
             btnReset.TabIndex = 15;
             btnReset.Text = "Làm mới";
@@ -313,9 +340,10 @@ namespace DoAnDemoUI
             
             btnWaiver.Click += BtnWaiver_Click;
             btnReset.Click += BtnReset_Click;
-            btnPrint.Click += BtnPrint_Click;
+            // btnPrint.Click += BtnPrint_Click; // REMOVED duplicate
             
             dgvBooks.CellDoubleClick += DgvBooks_CellDoubleClick;
+            dgvBooks.SelectionChanged += DgvBooks_SelectionChanged; // Cross-Highlight
             dgvFines.CellDoubleClick += DgvFines_CellDoubleClick; // Quick Pay by Double Click
 
             // Print Configuration
@@ -379,6 +407,28 @@ namespace DoAnDemoUI
             }
         }
 
+        private void DgvBooks_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvBooks.CurrentRow == null) return;
+            
+            // Cross-Highlight: Select corresponding fines
+            string bookTitle = dgvBooks.CurrentRow.Cells["pBookName"].Value?.ToString();
+            if (string.IsNullOrEmpty(bookTitle)) return;
+
+            dgvFines.ClearSelection();
+            bool found = false;
+            foreach (DataGridViewRow row in dgvFines.Rows)
+            {
+                string reason = row.Cells["LyDo"].Value?.ToString();
+                // Simple containment check: Reason usually contains book name (e.g. "Quá hạn sách ABC")
+                if (!string.IsNullOrEmpty(reason) && reason.Contains(bookTitle, StringComparison.OrdinalIgnoreCase))
+                {
+                    row.Selected = true;
+                    found = true;
+                }
+            }
+        }
+
         private void DgvBooks_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return; // Header clicked
@@ -437,6 +487,31 @@ namespace DoAnDemoUI
 
             // Bind Fines
             LoadFines();
+
+            // Style Grids
+            ConfigureBeautifulGrid(dgvBooks);
+            ConfigureBeautifulGrid(dgvFines);
+        }
+
+        private void ConfigureBeautifulGrid(DataGridView dgv)
+        {
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dgv.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dgv.BackgroundColor = Color.White;
+
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgv.ColumnHeadersHeight = 30;
+
+            dgv.RowHeadersVisible = false;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.AllowUserToResizeRows = false;
+            dgv.ReadOnly = true;
         }
 
         private void LoadFines()
@@ -482,9 +557,11 @@ namespace DoAnDemoUI
         private void ProcessReturnForRows(System.Collections.Generic.IEnumerable<DataGridViewRow> rows)
         {
             int successCount = 0;
+            decimal totalOverdueGenerated = 0;
+            decimal totalConditionGenerated = 0;
+
             foreach (DataGridViewRow row in rows)
             {
-                // Check if already returned (Status cell check or null check logic)
                 var status = row.Cells["Status"].Value?.ToString();
                 if (status == "Đã trả") continue;
 
@@ -492,7 +569,6 @@ namespace DoAnDemoUI
                 string bookName = row.Cells["pBookName"].Value.ToString();
                 string condition = "Tốt"; // Default
 
-                // Use FormConditionCheck Dialog
                 using (var frmCondition = new FormConditionCheck(bookName))
                 {
                     if (frmCondition.ShowDialog() == DialogResult.OK)
@@ -501,25 +577,21 @@ namespace DoAnDemoUI
                     }
                     else
                     {
-                         // Cancelled whole operation or just skip this book? 
-                         // Let's assume skip this row if cancelled
                          continue; 
                     }
                 }
 
-                _fineService.ReturnBook(detailId, condition);
+                // Capture condition fine amount
+                decimal conditionFine = _fineService.ReturnBook(detailId, condition);
+                totalConditionGenerated += conditionFine;
 
-                // --- LOGIC TÍNH PHẠT (Update V2) ---
-                // 1. Phạt quá hạn (Tiền mượn): 5.000/ngày
-                // 2. Phạt hư hỏng/mất: Tính trong ReturnBook
-                // Nếu hư hỏng + quá hạn -> Tính cả hai.
-                
                 if (DateTime.Now > _currentLoan.DueDate)
                 {
                      decimal overdueAmount = _fineService.CalculateFineAmount(_currentLoan.DueDate, DateTime.Now);
                      if (overdueAmount > 0)
                      {
-                         _fineService.CreateOverdueFine(_currentLoan.LoanId, overdueAmount, $"Quá hạn sách {bookName}");
+                         var fine = _fineService.CreateOverdueFine(_currentLoan.LoanId, overdueAmount, $"Quá hạn sách {bookName}");
+                         if (fine != null) totalOverdueGenerated += overdueAmount;
                      }
                 }
                 
@@ -528,13 +600,54 @@ namespace DoAnDemoUI
 
             if (successCount > 0)
             {
-                MessageBox.Show($"Đã cập nhật trả sách thành công cho {successCount} quyển!");
                 LoadLoanDetails(_currentLoan.LoanId); // Reload
-                CheckRefreshParent(); // Refresh Parent FormLoan Data
+                CheckRefreshParent(); // Refresh Parent
+                
+                string msg = $"Đã cập nhật trả sách thành công cho {successCount} quyển!";
+                
+                // Calculate Total Unpaid Balance for the Loan
+                decimal totalUnpaid = _currentLoan.Fines
+                    .Where(f => f.TrangThaiThanhToan == "Chưa thanh toán")
+                    .Sum(f => f.SoTienPhat);
+
+                if (totalUnpaid > 0)
+                {
+                    // Update: Prompt for immediate action if ANY unpaid balance exists
+                    msg += $"\n\nLƯU Ý: Hiện tại phiếu mượn này có khoản phạt chưa thanh toán: {totalUnpaid:N0} VNĐ.";
+                    msg += "\n(Bao gồm phạt cũ và phạt mới tạo nếu có)";
+                    
+                    msg += "\n\nBạn có muốn xử lý MIỄN GIẢM / THANH TOÁN ngay không?";
+
+                    if (MessageBox.Show(msg, "Thông báo & Xử lý phạt", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        // Auto-select unpaid fines
+                        HighlightUnpaidFines();
+                        
+                        // Open Waiver Form directly
+                        BtnWaiver_Click(null, null); 
+                    }
+                }
+                else
+                {
+                     MessageBox.Show(msg, "Thông báo trả sách", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
                 MessageBox.Show("Sách đã được trả trước đó hoặc không có thay đổi.");
+            }
+        }
+        
+        private void HighlightUnpaidFines()
+        {
+            // Helper to select unpaid fines
+            dgvFines.ClearSelection();
+            foreach(DataGridViewRow r in dgvFines.Rows)
+            {
+                if (r.Cells["TrangThaiThanhToan"].Value?.ToString() == "Chưa thanh toán")
+                {
+                    r.Selected = true;
+                }
             }
         }
 
@@ -542,27 +655,51 @@ namespace DoAnDemoUI
 
         private void BtnWaiver_Click(object sender, EventArgs e)
         {
+            // Auto-select if nothing selected but rows exist
+            if (dgvFines.SelectedRows.Count == 0 && dgvFines.Rows.Count > 0)
+            {
+                // Find unpaid ones preferably
+                bool found = false;
+                foreach (DataGridViewRow r in dgvFines.Rows)
+                {
+                    if (r.Cells["TrangThaiThanhToan"].Value?.ToString() == "Chưa thanh toán")
+                    {
+                        r.Selected = true;
+                        found = true;
+                    }
+                }
+                
+                // If no unpaid ones found (all paid?), just select all or first?
+                // If all paid, Waiver checks technically useless but user might want to see history or something (though waiver applies to amount).
+                // Let's just select all if nothing specific found, to allow user to see the form (though it might not do anything useful if balance is 0).
+                if (!found)
+                {
+                     dgvFines.Rows[0].Selected = true;
+                }
+            }
+
             if (dgvFines.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Vui lòng chọn khoản phạt cần miễn giảm!");
+                MessageBox.Show("Không có khoản phạt nào để xử lý!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            string input = Microsoft.VisualBasic.Interaction.InputBox("Nhập phần trăm miễn giảm (0-100):", "Miễn giảm", "0");
-            if (int.TryParse(input, out int percent) && percent >= 0 && percent <= 100)
+            using (var frm = new FormWaiver())
             {
-                foreach (DataGridViewRow row in dgvFines.SelectedRows)
+                if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    int fineId = (int)row.Cells["FineId"].Value;
-                    _fineService.ApplyDiscount(fineId, percent);
+                    string performer = Services.Session.CurrentUsername ?? "Unknown User";
+                    
+                    foreach (DataGridViewRow row in dgvFines.SelectedRows)
+                    {
+                        int fineId = (int)row.Cells["FineId"].Value;
+                        // Use updated ApplyWaiver logic
+                        _fineService.ApplyWaiver(fineId, frm.WaiverValue, frm.IsPercentage, frm.Reason, performer);
+                    }
+                    MessageBox.Show("Đã áp dụng miễn giảm thành công!");
+                    _currentLoan = _fineService.GetLoanWithDetails(_currentLoan.LoanId);
+                    LoadFines();
                 }
-                MessageBox.Show("Đã áp dụng miễn giảm!");
-                _currentLoan = _fineService.GetLoanWithDetails(_currentLoan.LoanId);
-                LoadFines();
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng nhập số hợp lệ từ 0 đến 100.");
             }
         }
 
@@ -627,7 +764,26 @@ namespace DoAnDemoUI
 
                 foreach (var f in _currentLoan.Fines)
                 {
-                    string line = $"{f.LyDo}: {f.SoTienPhat:N0} VNĐ ({f.TrangThaiThanhToan})";
+                    // Clean up Reason string
+                    string cleanReason = f.LyDo;
+                    // Format: "Original Reason (Miễn giảm: X% - By: User - Reason: Text)"
+                    int idx = cleanReason.IndexOf("(Miễn giảm:");
+                    if (idx >= 0)
+                    {
+                        // Extract "Miễn giảm: X%" part, discard " - By: ..."
+                        // Find " - By:"
+                        int endIdx = cleanReason.IndexOf(" - By:", idx);
+                        if (endIdx > idx)
+                        {
+                            string discountPart = cleanReason.Substring(idx, endIdx - idx);
+                            // Append closing parenthesis
+                            discountPart += ")"; 
+                            // Reconstruct: "Original Reason (Miễn giảm: 50%)"
+                            cleanReason = cleanReason.Substring(0, idx) + discountPart;
+                        }
+                    }
+
+                    string line = $"{cleanReason}: {f.SoTienPhat:N0} VNĐ ({f.TrangThaiThanhToan})";
                     g.DrawString(line, fontBody, Brushes.Black, x + 20, y);
                     y += 25;
                 }
@@ -642,9 +798,24 @@ namespace DoAnDemoUI
             y += 60;
             g.DrawString("Thủ thư", fontHeader, Brushes.Black, x + 50, y);
             g.DrawString("Người nộp", fontHeader, Brushes.Black, e.MarginBounds.Right - 150, y);
-            y += 80;
+            
+            // Adjust spacing for Signature line
+            y += 25; // Move closer to header
             g.DrawString("(Ký và ghi rõ họ tên)", fontFooter, Brushes.Black, x + 40, y);
             g.DrawString("(Ký và ghi rõ họ tên)", fontFooter, Brushes.Black, e.MarginBounds.Right - 160, y);
+
+            // Auto-fill Librarian Name (Full Name)
+            y += 100; // Space for signature
+            string currentUsername = DoAnDemoUI.Services.Session.CurrentUsername;
+            string librarianName = _fineService.GetStaffFullName(currentUsername); 
+            
+            // Draw Librarian Name centered roughly under the header
+            // Header is at x + 50
+            // Draw name at x + 50 or slightly adjusted depending on length? 
+            // Left aligning at x + 50 matches the header alignment.
+            g.DrawString(librarianName, fontHeader, Brushes.Black, x + 50, y);
+            
+            // Payer name removed as requested.
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
