@@ -131,21 +131,21 @@ GO
 PRINT 'Inserting Members...';
 
 INSERT INTO DOC_GIA (MaDocGia, HoTen, NgaySinh, GioiTinh, DiaChi, SoDienThoai, Email, CMND, NgayDangKy, NgayHetHan, TrangThai, GhiChu) VALUES
-('DG001', N'Nguyễn Văn An', '2000-01-15', N'Nam', N'Số 10, Bạch Mai, Hai Bà Trưng, Hà Nội', '0901234567', 'an.nguyen@email.com', '001234567890', '2024-01-01', '2026-01-01', N'Hoạt động', N'Độc giả thân thiết'),
-('DG002', N'Trần Thị Bình', '1998-05-20', N'Nữ', N'Số 22, Trần Đại Nghĩa, Hai Bà Trưng, Hà Nội', '0901234568', 'binh.tran@email.com', '001234567891', '2024-01-05', '2026-01-05', N'Hoạt động', NULL),
-('DG003', N'Lê Minh Cường', '2002-08-10', N'Nam', N'Số 33, Lê Duẩn, Đống Đa, Hà Nội', '0901234569', 'cuong.le@email.com', '001234567892', '2024-02-01', '2026-02-01', N'Hoạt động', NULL),
-('DG004', N'Phạm Thị Dung', '1999-12-25', N'Nữ', N'Số 44, Nguyễn Chí Thanh, Đống Đa, Hà Nội', '0901234570', 'dung.pham@email.com', '001234567893', '2024-02-15', '2026-02-15', N'Hoạt động', NULL),
-('DG005', N'Hoàng Văn Em', '2001-03-30', N'Nam', N'Số 55, Khâm Thiên, Đống Đa, Hà Nội', '0901234571', 'em.hoang@email.com', '001234567894', '2024-03-01', '2026-03-01', N'Hoạt động', NULL),
-('DG006', N'Đỗ Thị Phượng', '2003-06-15', N'Nữ', N'Số 66, Thái Hà, Đống Đa, Hà Nội', '0901234572', 'phuong.do@email.com', '001234567895', '2024-03-10', '2026-03-10', N'Hoạt động', NULL),
-('DG007', N'Vũ Văn Giang', '2000-09-05', N'Nam', N'Số 77, Chùa Bộc, Đống Đa, Hà Nội', '0901234573', 'giang.vu@email.com', '001234567896', '2024-04-01', '2026-04-01', N'Hoạt động', NULL),
-('DG008', N'Bùi Thị Hương', '1997-11-20', N'Nữ', N'Số 88, Nguyễn Lương Bằng, Đống Đa, Hà Nội', '0901234574', 'huong.bui@email.com', '001234567897', '2024-04-15', '2026-04-15', N'Hoạt động', NULL),
-('DG009', N'Đinh Văn Inh', '2002-02-28', N'Nam', N'Số 99, Tôn Thất Tùng, Đống Đa, Hà Nội', '0901234575', 'inh.dinh@email.com', '001234567898', '2024-05-01', '2026-05-01', N'Hoạt động', NULL),
-('DG010', N'Ngô Thị Khánh', '2001-07-12', N'Nữ', N'Số 111, Láng, Đống Đa, Hà Nội', '0901234576', 'khanh.ngo@email.com', '001234567899', '2024-05-10', '2026-05-10', N'Hoạt động', NULL),
-('DG011', N'Trương Văn Long', '1995-03-18', N'Nam', N'Số 123, Kim Mã, Ba Đình, Hà Nội', '0901234577', 'long.truong@email.com', '001234567900', '2024-06-01', '2026-06-01', N'Hoạt động', NULL),
-('DG012', N'Phan Thị Mai', '2000-10-05', N'Nữ', N'Số 135, Núi Trúc, Ba Đình, Hà Nội', '0901234578', 'mai.phan@email.com', '001234567901', '2024-06-15', '2026-06-15', N'Hoạt động', NULL),
-('DG013', N'Lý Văn Nam', '1998-05-22', N'Nam', N'Số 147, Liễu Giai, Ba Đình, Hà Nội', '0901234579', 'nam.ly@email.com', '001234567902', '2024-07-01', '2026-07-01', N'Hoạt động', NULL),
-('DG014', N'Đặng Thị Oanh', '2001-08-14', N'Nữ', N'Số 159, Cát Linh, Đống Đa, Hà Nội', '0901234580', 'oanh.dang@email.com', '001234567903', '2024-07-15', '2026-07-15', N'Hoạt động', NULL),
-('DG015', N'Cao Văn Phong', '1999-11-30', N'Nam', N'Số 171, Nguyễn Thái Học, Ba Đình, Hà Nội', '0901234581', 'phong.cao@email.com', '001234567904', '2024-08-01', '2026-08-01', N'Hoạt động', NULL);
+('DG001', N'Nguyễn Văn An', '2000-01-15', N'Nam', N'Số 10, Bạch Mai, Hai Bà Trưng, Hà Nội', '0901234567', 'an.nguyen@email.com', '001234567890', '2025-01-01', '2027-01-01', N'Hoạt động', N'Độc giả thân thiết'),
+('DG002', N'Trần Thị Bình', '1998-05-20', N'Nữ', N'Số 22, Trần Đại Nghĩa, Hai Bà Trưng, Hà Nội', '0901234568', 'binh.tran@email.com', '001234567891', '2025-01-05', '2027-01-05', N'Hoạt động', NULL),
+('DG003', N'Lê Minh Cường', '2002-08-10', N'Nam', N'Số 33, Lê Duẩn, Đống Đa, Hà Nội', '0901234569', 'cuong.le@email.com', '001234567892', '2025-02-01', '2027-02-01', N'Hoạt động', NULL),
+('DG004', N'Phạm Thị Dung', '1999-12-25', N'Nữ', N'Số 44, Nguyễn Chí Thanh, Đống Đa, Hà Nội', '0901234570', 'dung.pham@email.com', '001234567893', '2025-02-15', '2027-02-15', N'Hoạt động', NULL),
+('DG005', N'Hoàng Văn Em', '2001-03-30', N'Nam', N'Số 55, Khâm Thiên, Đống Đa, Hà Nội', '0901234571', 'em.hoang@email.com', '001234567894', '2025-03-01', '2027-03-01', N'Hoạt động', NULL),
+('DG006', N'Đỗ Thị Phượng', '2003-06-15', N'Nữ', N'Số 66, Thái Hà, Đống Đa, Hà Nội', '0901234572', 'phuong.do@email.com', '001234567895', '2025-03-10', '2027-03-10', N'Hoạt động', NULL),
+('DG007', N'Vũ Văn Giang', '2000-09-05', N'Nam', N'Số 77, Chùa Bộc, Đống Đa, Hà Nội', '0901234573', 'giang.vu@email.com', '001234567896', '2025-04-01', '2027-04-01', N'Hoạt động', NULL),
+('DG008', N'Bùi Thị Hương', '1997-11-20', N'Nữ', N'Số 88, Nguyễn Lương Bằng, Đống Đa, Hà Nội', '0901234574', 'huong.bui@email.com', '001234567897', '2025-04-15', '2027-04-15', N'Hoạt động', NULL),
+('DG009', N'Đinh Văn Inh', '2002-02-28', N'Nam', N'Số 99, Tôn Thất Tùng, Đống Đa, Hà Nội', '0901234575', 'inh.dinh@email.com', '001234567898', '2025-05-01', '2027-05-01', N'Hoạt động', NULL),
+('DG010', N'Ngô Thị Khánh', '2001-07-12', N'Nữ', N'Số 111, Láng, Đống Đa, Hà Nội', '0901234576', 'khanh.ngo@email.com', '001234567899', '2025-05-10', '2027-05-10', N'Hoạt động', NULL),
+('DG011', N'Trương Văn Long', '1995-03-18', N'Nam', N'Số 123, Kim Mã, Ba Đình, Hà Nội', '0901234577', 'long.truong@email.com', '001234567900', '2025-06-01', '2027-06-01', N'Hoạt động', NULL),
+('DG012', N'Phan Thị Mai', '2000-10-05', N'Nữ', N'Số 135, Núi Trúc, Ba Đình, Hà Nội', '0901234578', 'mai.phan@email.com', '001234567901', '2025-06-15', '2027-06-15', N'Hoạt động', NULL),
+('DG013', N'Lý Văn Nam', '1998-05-22', N'Nam', N'Số 147, Liễu Giai, Ba Đình, Hà Nội', '0901234579', 'nam.ly@email.com', '001234567902', '2025-07-01', '2027-07-01', N'Hoạt động', NULL),
+('DG014', N'Đặng Thị Oanh', '2001-08-14', N'Nữ', N'Số 159, Cát Linh, Đống Đa, Hà Nội', '0901234580', 'oanh.dang@email.com', '001234567903', '2025-07-15', '2027-07-15', N'Hoạt động', NULL),
+('DG015', N'Cao Văn Phong', '1999-11-30', N'Nam', N'Số 171, Nguyễn Thái Học, Ba Đình, Hà Nội', '0901234581', 'phong.cao@email.com', '001234567904', '2025-08-01', '2027-08-01', N'Hoạt động', NULL);
 
 PRINT '  ✓ Inserted 15 members';
 GO
