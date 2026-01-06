@@ -326,6 +326,7 @@ namespace DoAnDemoUI
             // 
             numPrice.Location = new Point(110, 352);
             numPrice.Maximum = new decimal(new int[] { 1000000000, 0, 0, 0 });
+            numPrice.Increment = 500;
             numPrice.Name = "numPrice";
             numPrice.Size = new Size(230, 30);
             numPrice.TabIndex = 19;
