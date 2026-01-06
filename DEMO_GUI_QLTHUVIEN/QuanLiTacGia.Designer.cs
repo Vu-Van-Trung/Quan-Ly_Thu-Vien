@@ -214,7 +214,7 @@ namespace DoAnDemoUI
             dtpNgaySinh.Font = new Font("Segoe UI", 10F);
             dtpNgaySinh.Format = DateTimePickerFormat.Short;
             dtpNgaySinh.Location = new Point(240, 81);
-            dtpNgaySinh.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
+            dtpNgaySinh.MaxDate = new DateTime(2026, 12, 31, 0, 0, 0, 0);
             dtpNgaySinh.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtpNgaySinh.Name = "dtpNgaySinh";
             dtpNgaySinh.ShadowDecoration.CustomizableEdges = customizableEdges8;
